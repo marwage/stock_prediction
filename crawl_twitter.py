@@ -1,7 +1,7 @@
 import numpy as np
 import json
 import twitter
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 from pymongo import MongoClient
 
 
@@ -33,11 +33,17 @@ def query_store(sp500):
         since = date.today() - timedelta(days=1)
         until = date.today()
         query = "q=" + "%24"+ company + "%20since%3A" + str(since) + "%20until%3A" + str(until)
-        try:
-            results = api.GetSearch(raw_query=query)
-        except:
-            print("exceeded")
-        print(str(len(results)) + " results for " + company)
+        exceeded = True
+        while exceeded:
+            try:
+                results = api.GetSearch(raw_query=query)
+                exceeded = False
+            except:
+                time.sleep(960)
+
+        # log
+        with open("files/crawl_twitter.log". "a") as log:
+            log.write(str(len(results)) + " results for " + company)
 
         collection = db[company]
         for tweet in results:
@@ -50,6 +56,10 @@ def main():
 
     sp500 = read_sp500(path)
     query_store(sp500)
+
+    # log
+    with open("files/crawl_twitter.log". "a") as log:
+        log.write(str(datetime.now()) + " finished")
 
 
 if __name__ == '__main__':
