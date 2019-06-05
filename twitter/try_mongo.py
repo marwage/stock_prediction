@@ -25,7 +25,7 @@ def main():
     ###
 
     with open("query_results.json", "w") as query_results:
-        query_results.write(results)
+        query_results.write(str(results))
 
     result = collection.insert_many(results)
     print(result.inserted_ids)
