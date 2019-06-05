@@ -1,9 +1,14 @@
+import pymongo
 import json
 import twitter
 from datetime import date, timedelta
 
-
 def main():
+	client = MongoClient()
+	db = client.twitter
+	collection = db.aapl
+
+	###
 	with open("access_token.json") as access_token_file:
 		json_object = json.load(access_token_file)
 
@@ -16,11 +21,11 @@ def main():
 	since = date.today() - timedelta(days=1)
 	until = date.today()
 	query = "q=" + company_abbreviation + "%20since%3A" + str(since) + "%20until%3A" + str(until)
-	print("query " + str(query))
 	results = api.GetSearch(raw_query=query)
-	print("results " + str(results))
-	print("len(results) " + str(len(results)))
-	print("results[0] " + str(results[0]))
+	###
+
+	result = collection.insert_many(results)
+	print(result.inserted_ids)
 
 
 if __name__ == '__main__':
