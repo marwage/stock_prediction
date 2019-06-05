@@ -33,7 +33,10 @@ def query_store(sp500):
         since = date.today() - timedelta(days=1)
         until = date.today()
         query = "q=" + "%24"+ company + "%20since%3A" + str(since) + "%20until%3A" + str(until)
-        results = api.GetSearch(raw_query=query)
+        try:
+            results = api.GetSearch(raw_query=query)
+        except:
+            print("exceeded")
         print(str(len(results)) + " results for " + company)
 
         collection = db[company]
