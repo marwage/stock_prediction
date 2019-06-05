@@ -1,11 +1,11 @@
-import pymongo
 import json
 import twitter
 from datetime import date, timedelta
+from pymongo import MongoClient
 
 def main():
 	client = MongoClient()
-	db = client.twitter
+	db = client.twitterdb
 	collection = db.aapl
 
 	###
@@ -23,6 +23,9 @@ def main():
 	query = "q=" + company_abbreviation + "%20since%3A" + str(since) + "%20until%3A" + str(until)
 	results = api.GetSearch(raw_query=query)
 	###
+
+        with open("query_results.json", "w") as query_results:
+            query_results.write(results)
 
 	result = collection.insert_many(results)
 	print(result.inserted_ids)
