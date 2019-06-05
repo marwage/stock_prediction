@@ -1,6 +1,7 @@
 import numpy as np
 import json
 import twitter
+import time
 from datetime import date, timedelta, datetime
 from pymongo import MongoClient
 
@@ -39,11 +40,14 @@ def query_store(sp500):
                 results = api.GetSearch(raw_query=query)
                 exceeded = False
             except:
+                # log
+                with open("files/crawl_twitter.log", "a") as log:
+                    log.write("sleeping for 16 min\n")
                 time.sleep(960)
 
         # log
         with open("files/crawl_twitter.log", "a") as log:
-            log.write(str(len(results)) + " results for " + company)
+            log.write(str(len(results)) + " results for " + company + "\n")
 
         collection = db[company]
         for tweet in results:
@@ -59,7 +63,7 @@ def main():
 
     # log
     with open("files/crawl_twitter.log", "a") as log:
-        log.write(str(datetime.now()) + " finished")
+        log.write(str(datetime.now()) + " finished\n")
 
 
 if __name__ == '__main__':
