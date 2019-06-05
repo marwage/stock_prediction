@@ -28,14 +28,13 @@ def query_store(sp500):
                   access_token_secret=json_object["access_token_secret"])
 
     companies = sp500["co_tic"].tolist()
-    print(companies)
 
     for company in companies:
         since = date.today() - timedelta(days=1)
         until = date.today()
         query = "q=" + "%24"+ company + "%20since%3A" + str(since) + "%20until%3A" + str(until)
         results = api.GetSearch(raw_query=query)
-        print(len(results) + " results for " + company)
+        print(str(len(results)) + " results for " + company)
 
         collection = db[company]
         for tweet in results:
