@@ -42,7 +42,7 @@ def query_store(sp500):
                 time.sleep(960)
 
         # log
-        with open("files/crawl_twitter.log". "a") as log:
+        with open("files/crawl_twitter.log", "a") as log:
             log.write(str(len(results)) + " results for " + company)
 
         collection = db[company]
@@ -58,7 +58,7 @@ def main():
     query_store(sp500)
 
     # log
-    with open("files/crawl_twitter.log". "a") as log:
+    with open("files/crawl_twitter.log", "a") as log:
         log.write(str(datetime.now()) + " finished")
 
 
