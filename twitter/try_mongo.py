@@ -23,12 +23,10 @@ def main():
     query = "q=" + company_abbreviation + "%20since%3A" + str(since) + "%20until%3A" + str(until)
     results = api.GetSearch(raw_query=query)
     ###
-
-    with open("query_results.json", "w") as query_results:
-        query_results.write(str(results[0]))
-
-    result = collection.insert_many(results[0])
-    print(result.inserted_ids)
+    
+    for tweet in results:
+        tweet_json = json.loads(str(tweet))
+        tweet_id = collection.insert_one(tweet_json).inserted_id
 
 
 if __name__ == '__main__':
