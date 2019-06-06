@@ -53,7 +53,7 @@ def query_store(sp500):
         collection = db[company]
         for tweet in results:
             tweet_json = json.loads(str(tweet))
-            tweet_id = collection.update(tweet_json, tweet_json, {upsert:true}).inserted_id
+            write_result = collection.update(tweet_json, tweet_json, upsert=True)
 
 
 def main():
