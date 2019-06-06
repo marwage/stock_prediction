@@ -5,6 +5,7 @@ import time
 from datetime import date, timedelta, datetime
 from pymongo import MongoClient
 
+files_path = "/home/wagenlaeder/stock-prediction/files"
 
 def read_sp500(path):
     sp500 = np.genfromtxt(path, dtype=None, delimiter=",", names=True, encoding="utf8")
@@ -21,7 +22,7 @@ def query_store(sp500):
     client = MongoClient()
     db = client.twitterdb
     #twitter
-    with open("files/access_token.json") as access_token_file:
+    with open(files_path + "/access_token.json") as access_token_file:
         json_object = json.load(access_token_file)
     api = twitter.Api(consumer_key=json_object["consumer_key"],
                   consumer_secret=json_object["consumer_secret"],
@@ -41,28 +42,28 @@ def query_store(sp500):
                 exceeded = False
             except:
                 # log
-                with open("files/crawl_twitter.log", "a") as log:
+                with open(files_path + "/crawl_twitter.log", "a") as log:
                     log.write("sleeping for 16 min\n")
                 time.sleep(960)
 
         # log
-        with open("files/crawl_twitter.log", "a") as log:
+        with open(files_path + "/crawl_twitter.log", "a") as log:
             log.write(str(len(results)) + " results for " + company + "\n")
 
         collection = db[company]
         for tweet in results:
             tweet_json = json.loads(str(tweet))
-            tweet_id = collection.insert_one(tweet_json).inserted_id
+            tweet_id = collection.update(tweet_json, tweet_json, {upsert:true}).inserted_id
 
 
 def main():
-    path = "files/sp500_constituents.csv"
+    path = files_path + "/sp500_constituents.csv"
 
     sp500 = read_sp500(path)
     query_store(sp500)
 
     # log
-    with open("files/crawl_twitter.log", "a") as log:
+    with open(files_path + "/crawl_twitter.log", "a") as log:
         log.write(str(datetime.now()) + " finished\n")
 
 
