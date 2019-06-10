@@ -32,13 +32,12 @@ def query_store(sp500):
         exceeded = True
         while exceeded:
             result = requests.get(request_url)
-            print(result.status_code)
             if result.status_code == 200:
                 exceeded = False
             if result.status_code == 429:
                 # log
                 with open(files_path + log_file, "a") as log:
-                    log.write("status_code " + result.status_code + ", sleeping for 1 h\n")
+                    log.write("status_code " + str(result.status_code) + ", sleeping for 1 h\n")
                 time.sleep(3600)
 
         # log
