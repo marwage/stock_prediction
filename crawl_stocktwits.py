@@ -5,7 +5,7 @@ import requests
 from datetime import date, timedelta, datetime
 from pymongo import MongoClient
 
-files_path = "/home/wagenlaeder/stock-prediction/files"
+files_path = "/home/wagenlaeder/stock-prediction/files/"
 log_file = "crawl_stocktwits.log"
 
 def read_sp500(path):
@@ -38,12 +38,12 @@ def query_store(sp500):
             if result.status_code == 429:
                 # log
                 with open(files_path + log_file, "a") as log:
-                    log.write("sleeping for 16 min\n")
-                time.sleep(3660)
+                    log.write("status_code " + result.status_code + ", sleeping for 1 h\n")
+                time.sleep(3600)
 
         # log
         with open(files_path + log_file, "a") as log:
-            log.write(str(len(results)) + " results for " + company + "\n")
+            log.write(str(len(result.json()["messages"])) + " results for " + company + "\n")
 
         collection = db[company]
         for post in result.json()["messages"]:
@@ -51,7 +51,7 @@ def query_store(sp500):
 
 
 def main():
-    path = files_path + "/sp500_constituents.csv"
+    path = files_path + "sp500_constituents.csv"
 
     sp500 = read_sp500(path)
     query_store(sp500)
