@@ -2,6 +2,7 @@ import numpy as np
 import json
 import time
 import requests
+import sys
 from datetime import date, timedelta, datetime
 from pymongo import MongoClient
 
@@ -19,6 +20,9 @@ def read_sp500(path):
 
 
 def query_store(sp500):
+    #time
+    start_time = time.time()
+
     #mongodb
     client = MongoClient()
     db = client.stocktwitsdb
@@ -35,10 +39,17 @@ def query_store(sp500):
             if result.status_code == 200:
                 exceeded = False
             if result.status_code == 429:
-                # log
-                with open(files_path + log_file, "a") as log:
-                    log.write("status_code " + str(result.status_code) + ", sleeping for 1 h\n")
-                time.sleep(3600)
+                if (start_time + 79200 < time.time()):
+                    sys.exit()
+                    # log
+                    with open(files_path + log_file, "a") as log:
+                        log.write("exiting\n")
+                else:
+                    # log
+                    with open(files_path + log_file, "a") as log:
+                        log.write(str(result.json()) + "\n")
+                        log.write("sleeping for 1 h\n")
+                    time.sleep(3600)
 
         # log
         with open(files_path + log_file, "a") as log:
