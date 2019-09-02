@@ -43,12 +43,12 @@ def query_store(sp500):
             except:
                 # log
                 with open(files_path + "/crawl_twitter.log", "a") as log:
-                    log.write("sleeping for 16 min\n")
+                    log.write(str(datetime.now()) + " sleeping for 16 min\n")
                 time.sleep(960)
 
         # log
         with open(files_path + "/crawl_twitter.log", "a") as log:
-            log.write(str(len(results)) + " results for " + company + "\n")
+            log.write(str(datetime.now()) + " " + str(len(results)) + " results for " + company + "\n")
 
         collection = db[company]
         for tweet in results:

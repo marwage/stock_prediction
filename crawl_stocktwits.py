@@ -40,20 +40,20 @@ def query_store(sp500):
                 exceeded = False
             if result.status_code == 429:
                 if (start_time + 79200 < time.time()):
-                    sys.exit()
                     # log
                     with open(files_path + log_file, "a") as log:
-                        log.write("exiting\n")
+                        log.write(str(datetime.now()) + " exiting\n")
+                    sys.exit()
                 else:
                     # log
                     with open(files_path + log_file, "a") as log:
-                        log.write(str(result.json()) + "\n")
+                        log.write(str(datetime.now()) + " " + str(result.json()) + "\n")
                         log.write("sleeping for 1 h\n")
                     time.sleep(3600)
 
         # log
         with open(files_path + log_file, "a") as log:
-            log.write(str(len(result.json()["messages"])) + " results for " + company + "\n")
+            log.write(str(datetime.now()) + " " + str(len(result.json()["messages"])) + " results for " + company + "\n")
 
         collection = db[company]
         for post in result.json()["messages"]:
