@@ -17,9 +17,9 @@ def main():
         n = n + 1
 
     ind = np.arange(n) 
-    width = 0.3
+    height = 0.1
 
-    p1 = plt.barh(ind, counts)
+    p1 = plt.barh(ind, counts, height)
 
     plt.xlabel('Counts')
     plt.title('AAPL counts per day')
