@@ -19,11 +19,11 @@ def main():
     ind = np.arange(n) 
     width = 0.3
 
-    p1 = plt.bar(ind, counts, width)
+    p1 = plt.barh(ind, counts)
 
-    plt.ylabel('Counts')
+    plt.xlabel('Counts')
     plt.title('AAPL counts per day')
-    plt.xticks(ind, dates, rotation='vertical')
+    plt.yticks(ind, dates, rotation='vertical')
 
     plt.savefig('stocktwits_AAPL.svg')
 
