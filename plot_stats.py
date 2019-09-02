@@ -11,7 +11,7 @@ def main():
     n = 0
     dates = []
     counts = []
-    for key, value in apple:
+    for key, value in apple.items():
         dates.append(key)
         counts.append(value)
         n = n + 1
@@ -19,11 +19,11 @@ def main():
     ind = np.arange(n)
     width = 0.35
 
-    p1 = plt.bar(ind, menMeans, width)
+    p1 = plt.bar(ind, counts, width)
 
     plt.ylabel('Counts')
     plt.title('AAPL counts per day')
-    plt.xticks(ind, dates)
+    plt.xticks(ind, dates, rotation='vertical')
 
     plt.savefig('stocktwits_AAPL.svg')
 
