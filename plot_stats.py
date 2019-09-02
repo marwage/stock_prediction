@@ -23,7 +23,7 @@ def main():
 
     plt.xlabel('Counts')
     plt.title('AAPL counts per day')
-    plt.yticks(ind, dates, rotation='vertical')
+    plt.yticks(ind, dates)
 
     plt.savefig('stocktwits_AAPL.svg')
 
