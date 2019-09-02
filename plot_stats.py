@@ -16,8 +16,11 @@ def main():
         counts.append(value)
         n = n + 1
 
-    ind = np.arange(n) 
-    height = 0.1
+    ind = np.arange(n) * 1
+    height = 0.5
+
+    fig, ax = plt.subplots()
+    ax.tick_params(axis='y', labelsize=4)
 
     p1 = plt.barh(ind, counts, height)
 
