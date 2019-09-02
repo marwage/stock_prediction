@@ -16,7 +16,7 @@ def main():
         counts.append(value)
         n = n + 1
 
-    ind = np.arange(n) * 10
+    ind = np.arange(n) 
     width = 0.3
 
     p1 = plt.bar(ind, counts, width)
