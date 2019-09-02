@@ -19,6 +19,8 @@ def main():
             else:
                 stats[share_code][date] = 1
 
+    print(stats)
+
 
 if __name__ == '__main__':
     main()
