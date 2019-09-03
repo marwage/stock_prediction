@@ -22,14 +22,13 @@ def get_proxies(path):
     with open(path, "r") as proxy_file:
         proxy_lines = proxy_file.readlines()
 
-    # save proxies in array
     for row in proxy_lines:
         row_split = row.split(":")
         proxy = dict()
         proxy["ip"] = row_split[0]
         proxy["port"] = row_split[1]
-      proxies.append(proxy)
-      
+        proxies.append(proxy)
+
     return proxies
 
 
