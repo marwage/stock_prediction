@@ -5,7 +5,6 @@ import time
 from pymongo import MongoClient
 
 from urllib.request import Request, urlopen
-from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
 import random
 
@@ -17,38 +16,28 @@ def read_sp500(path):
     return sp500_json["sp500"]
 
 
-def get_proxies():
-    user_agent = UserAgent()
+def get_proxies(path):
     proxies = []
 
-    # retrieve  proxies
-    proxies_req = Request('https://www.sslproxies.org/')
-    proxies_req.add_header('User-Agent', user_agent.random)
-    proxies_doc = urlopen(proxies_req).read().decode('utf8')
-
-    soup = BeautifulSoup(proxies_doc, 'html.parser')
-    proxies_table = soup.find(id='proxylisttable')
+    with open(path, "r") as proxy_file:
+        proxy_lines = proxy_file.readlines()
 
     # save proxies in array
-    for row in proxies_table.tbody.find_all('tr'):
+    for row in proxy_lines:
+        row_split = row.split(":")
       proxies.append({
-        'ip':   row.find_all('td')[0].string,
-        'port': row.find_all('td')[1].string
+        'ip':   row_split[0],
+        'port': row_split[1].
     })
 
     return proxies
 
-    # Choose a random proxy
-    proxy_index = random.randint(0, len(proxies) - 1)
-    proxy = proxies[proxy_index]
-
 
 def query_store(sp500, proxies):
     start_time = datetime.now()
-
-    #mongodb
     client = MongoClient()
     db = client.stocktwitsdb
+    user_agent = UserAgent()
 
     for company in sp500:
         # pick random proxy
@@ -57,6 +46,7 @@ def query_store(sp500, proxies):
 
         request_url = "https://api.stocktwits.com/api/2/streams/symbol/" + company + ".json"
         req = Request(request_url)
+        req.add_header('User-Agent', user_agent.random)
         req.set_proxy(proxy["ip"] + ":" + proxy["port"], "http")
 
         successful = False
@@ -67,7 +57,7 @@ def query_store(sp500, proxies):
                 successful = True
             except: # If error, delete this proxy and find another one
                 del proxies[proxy_index]
-                write_to_log("proxy " + proxy["ip"] + ":" + proxy["port"] + " deleted.")
+                write_to_log("proxy " + proxy["ip"] + ":" + proxy["port"] + " deleted")
                 proxy_index = random.randint(0, len(proxies) - 1)
                 proxy = proxies[proxy_index]
 
@@ -89,9 +79,10 @@ def write_to_log(text):
 
 def main():
     sp500_path = "files/sp500.json"
+    proxy_path = "files/proxy_list.txt"
 
     sp500 = read_sp500(sp500_path)
-    proxies = get_proxies()
+    proxies = get_proxies(proxy_path)
     query_store(sp500, proxies)
 
     write_to_log(str(datetime.now()) + " finished")
