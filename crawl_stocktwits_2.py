@@ -43,7 +43,7 @@ def get_proxies():
     proxy = proxies[proxy_index]
 
 
-def query_store(sp500, log_path, proxies):
+def query_store(sp500, proxies):
     start_time = datetime.now()
 
     #mongodb
@@ -90,9 +90,9 @@ def write_to_log(text):
 def main():
     sp500_path = "files/sp500.json"
 
-    sp500 = read_sp500(path)
+    sp500 = read_sp500(sp500_path)
     proxies = get_proxies()
-    query_store(sp500, log_path, proxies)
+    query_store(sp500, proxies)
 
     write_to_log(str(datetime.now()) + " finished")
 
