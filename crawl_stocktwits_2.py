@@ -84,7 +84,7 @@ def write_to_log(text):
 
 def main():
     sp500_path = "files/sp500.json"
-    proxy_path = "files/proxy_list.txt"
+    proxy_path = "files/proxy_list_2.txt"
 
     sp500 = read_sp500(sp500_path)
     proxies = get_proxies(proxy_path)
