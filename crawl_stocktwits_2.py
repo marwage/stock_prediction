@@ -25,10 +25,10 @@ def get_proxies(path):
     # save proxies in array
     for row in proxy_lines:
         row_split = row.split(":")
-      proxies.append({
-        'ip': row_split[0],
-        'port': row_split[1]
-    })
+        proxy = dict()
+        proxy["ip"] = row_split[0]
+        proxy["port"] = row_split[1]
+      proxies.append(proxy)
 
     return proxies
 
