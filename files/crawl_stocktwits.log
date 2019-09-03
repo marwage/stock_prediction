@@ -13108,3 +13108,230 @@ sleeping for 1 h
 sleeping for 1 h
 2019-09-02 15:07:15.213147 {'response': {'status': 429}, 'errors': [{'message': 'Rate limit exceeded. Client may not make more than 200 requests an hour.'}]}
 sleeping for 1 h
+2019-09-02 16:07:51.457241 {'response': {'status': 429}, 'errors': [{'message': 'Rate limit exceeded. Client may not make more than 200 requests an hour.'}]}
+sleeping for 1 h
+2019-09-02 17:08:27.694290 {'response': {'status': 429}, 'errors': [{'message': 'Rate limit exceeded. Client may not make more than 200 requests an hour.'}]}
+sleeping for 1 h
+2019-09-02 18:09:04.962041 {'response': {'status': 429}, 'errors': [{'message': 'Rate limit exceeded. Client may not make more than 200 requests an hour.'}]}
+sleeping for 1 h
+2019-09-02 19:09:41.911172 {'response': {'status': 429}, 'errors': [{'message': 'Rate limit exceeded. Client may not make more than 200 requests an hour.'}]}
+sleeping for 1 h
+2019-09-02 20:10:18.658184 {'response': {'status': 429}, 'errors': [{'message': 'Rate limit exceeded. Client may not make more than 200 requests an hour.'}]}
+sleeping for 1 h
+2019-09-02 21:10:55.575610 {'response': {'status': 429}, 'errors': [{'message': 'Rate limit exceeded. Client may not make more than 200 requests an hour.'}]}
+sleeping for 1 h
+2019-09-02 22:11:31.085915 {'response': {'status': 429}, 'errors': [{'message': 'Rate limit exceeded. Client may not make more than 200 requests an hour.'}]}
+sleeping for 1 h
+2019-09-02 23:12:06.054223 {'response': {'status': 429}, 'errors': [{'message': 'Rate limit exceeded. Client may not make more than 200 requests an hour.'}]}
+sleeping for 1 h
+2019-09-03 00:12:44.057498 {'response': {'status': 429}, 'errors': [{'message': 'Rate limit exceeded. Client may not make more than 200 requests an hour.'}]}
+sleeping for 1 h
+2019-09-03 01:13:21.422290 {'response': {'status': 429}, 'errors': [{'message': 'Rate limit exceeded. Client may not make more than 200 requests an hour.'}]}
+sleeping for 1 h
+2019-09-03 02:13:58.069916 {'response': {'status': 429}, 'errors': [{'message': 'Rate limit exceeded. Client may not make more than 200 requests an hour.'}]}
+sleeping for 1 h
+2019-09-03 03:14:36.671152 {'response': {'status': 429}, 'errors': [{'message': 'Rate limit exceeded. Client may not make more than 200 requests an hour.'}]}
+sleeping for 1 h
+2019-09-03 04:15:15.659262 exiting
+2019-09-03 06:00:06.941867 30 results for ABT
+2019-09-03 06:00:07.195105 30 results for HON
+2019-09-03 06:00:07.658543 30 results for AEP
+2019-09-03 06:00:08.023135 30 results for BA
+2019-09-03 06:00:08.534892 30 results for BMY
+2019-09-03 06:00:08.788312 30 results for CPB
+2019-09-03 06:00:09.229543 30 results for CAT
+2019-09-03 06:00:09.660470 30 results for CVX
+2019-09-03 06:00:10.025737 30 results for KO
+2019-09-03 06:00:10.462961 30 results for CL
+2019-09-03 06:00:10.909877 30 results for ED
+2019-09-03 06:00:11.233106 30 results for GLW
+2019-09-03 06:00:11.589343 30 results for DE
+2019-09-03 06:00:12.340739 30 results for DTE
+2019-09-03 06:00:12.860642 30 results for D
+2019-09-03 06:00:13.211270 30 results for DWDP
+2019-09-03 06:00:13.607119 30 results for ETN
+2019-09-03 06:00:13.851257 30 results for XOM
+2019-09-03 06:00:14.101158 30 results for F
+2019-09-03 06:00:14.430014 30 results for GD
+2019-09-03 06:00:14.805398 30 results for GE
+2019-09-03 06:00:15.170809 30 results for GT
+2019-09-03 06:00:15.519013 30 results for HAL
+2019-09-03 06:00:15.979714 30 results for HSY
+2019-09-03 06:00:16.398161 30 results for IBM
+2019-09-03 06:00:16.639339 30 results for IP
+2019-09-03 06:00:17.097269 30 results for K
+2019-09-03 06:00:17.555613 30 results for KMB
+2019-09-03 06:00:18.019085 30 results for KR
+2019-09-03 06:00:18.379074 30 results for SPGI
+2019-09-03 06:00:18.731366 30 results for CVS
+2019-09-03 06:00:18.994754 30 results for MRK
+2019-09-03 06:00:19.259471 30 results for ETR
+2019-09-03 06:00:19.702852 30 results for MMM
+2019-09-03 06:00:19.959968 30 results for MSI
+2019-09-03 06:00:20.281262 30 results for NSC
+2019-09-03 06:00:20.538205 30 results for XEL
+2019-09-03 06:00:21.145900 30 results for FE
+2019-09-03 06:00:21.602433 30 results for PPG
+2019-09-03 06:00:22.033759 30 results for PCG
+2019-09-03 06:00:22.317660 30 results for SRE
+2019-09-03 06:00:22.754609 30 results for PEP
+2019-09-03 06:00:23.008349 30 results for PFE
+2019-09-03 06:00:23.243726 30 results for EXC
+2019-09-03 06:00:23.602094 30 results for MO
+2019-09-03 06:00:24.005207 30 results for COP
+2019-09-03 06:00:24.425076 30 results for PG
+2019-09-03 06:00:24.753569 30 results for PEG
+2019-09-03 06:00:25.182708 30 results for RTN
+2019-09-03 06:00:25.519453 30 results for ROK
+2019-09-03 06:00:26.000593 30 results for EIX
+2019-09-03 06:00:26.253900 30 results for SO
+2019-09-03 06:00:26.609613 30 results for TXN
+2019-09-03 06:00:26.864517 30 results for UNP
+2019-09-03 06:00:27.211654 30 results for UTX
+2019-09-03 06:00:27.467170 30 results for WY
+2019-09-03 06:00:27.735986 30 results for WHR
+2019-09-03 06:00:27.985197 30 results for XRX
+2019-09-03 06:00:28.233952 30 results for SHW
+2019-09-03 06:00:28.512535 30 results for CMI
+2019-09-03 06:00:28.861673 30 results for EMR
+2019-09-03 06:00:29.162088 30 results for SLB
+2019-09-03 06:00:29.497164 30 results for CSX
+2019-09-03 06:00:29.845513 30 results for CLX
+2019-09-03 06:00:30.098578 30 results for GIS
+2019-09-03 06:00:30.356200 30 results for NEM
+2019-09-03 06:00:30.765074 30 results for MCD
+2019-09-03 06:00:31.016678 30 results for LLY
+2019-09-03 06:00:31.447473 30 results for BAX
+2019-09-03 06:00:31.813746 30 results for BDX
+2019-09-03 06:00:32.059706 30 results for JNJ
+2019-09-03 06:00:32.587039 30 results for GPC
+2019-09-03 06:00:32.836316 30 results for HPQ
+2019-09-03 06:00:33.115886 30 results for WMB
+2019-09-03 06:00:33.367819 30 results for BCR
+2019-09-03 06:00:33.608048 30 results for IFF
+2019-09-03 06:00:33.869886 30 results for AET
+2019-09-03 06:00:34.288139 30 results for AXP
+2019-09-03 06:00:34.651940 30 results for CI
+2019-09-03 06:00:34.985213 30 results for JPM
+2019-09-03 06:00:35.263948 30 results for TAP
+2019-09-03 06:00:35.515852 30 results for DIS
+2019-09-03 06:00:35.784983 30 results for DUK
+2019-09-03 06:00:36.031794 30 results for NEE
+2019-09-03 06:00:36.277884 30 results for LNC
+2019-09-03 06:00:36.540798 30 results for BAC
+2019-09-03 06:00:36.789059 30 results for WFC
+2019-09-03 06:00:37.040892 30 results for TGT
+2019-09-03 06:00:37.313558 30 results for INTC
+2019-09-03 06:00:37.566683 30 results for TXT
+2019-09-03 06:00:37.814154 30 results for VFC
+2019-09-03 06:00:38.070158 30 results for WBA
+2019-09-03 06:00:38.359695 30 results for AIG
+2019-09-03 06:00:38.609943 30 results for FLR
+2019-09-03 06:00:38.897603 30 results for FDX
+2019-09-03 06:00:39.141674 30 results for PCAR
+2019-09-03 06:00:39.408652 30 results for ADP
+2019-09-03 06:00:39.687082 30 results for GWW
+2019-09-03 06:00:40.112928 30 results for MAS
+2019-09-03 06:00:40.436570 30 results for ADM
+2019-09-03 06:00:40.824587 30 results for MAT
+2019-09-03 06:00:41.262747 30 results for WMT
+2019-09-03 06:00:41.689152 30 results for SNA
+2019-09-03 06:00:42.174677 30 results for SWK
+2019-09-03 06:00:42.683860 30 results for BF.B
+2019-09-03 06:00:42.907728 30 results for AAPL
+2019-09-03 06:00:43.365440 30 results for OXY
+2019-09-03 06:00:43.721574 30 results for CAG
+2019-09-03 06:00:44.047200 30 results for LB
+2019-09-03 06:00:44.292723 30 results for VZ
+2019-09-03 06:00:44.563120 30 results for T
+2019-09-03 06:00:44.821564 30 results for LOW
+2019-09-03 06:00:45.070566 30 results for PHM
+2019-09-03 06:00:45.435601 30 results for HES
+2019-09-03 06:00:45.679123 30 results for LMT
+2019-09-03 06:00:45.922216 30 results for HAS
+2019-09-03 06:00:46.299827 30 results for BLL
+2019-09-03 06:00:46.553263 30 results for APD
+2019-09-03 06:00:46.800916 30 results for NUE
+2019-09-03 06:00:47.114729 30 results for PKI
+2019-09-03 06:00:47.564944 30 results for NOC
+2019-09-03 06:00:47.843604 30 results for CNP
+2019-09-03 06:00:48.190208 30 results for TJX
+2019-09-03 06:00:48.878759 30 results for DOV
+2019-09-03 06:00:49.287487 30 results for PH
+2019-09-03 06:00:49.528340 30 results for ITW
+2019-09-03 06:00:49.776950 30 results for JCI
+2019-09-03 06:00:50.123468 30 results for GPS
+2019-09-03 06:00:50.378958 30 results for JWN
+2019-09-03 06:00:50.741303 30 results for MDT
+2019-09-03 06:00:51.029582 30 results for HRB
+2019-09-03 06:00:51.274609 30 results for SYY
+2019-09-03 06:00:51.515333 30 results for CA
+2019-09-03 06:00:51.758568 30 results for MMC
+2019-09-03 06:00:52.008835 30 results for AVY
+2019-09-03 06:00:52.247511 30 results for HD
+2019-09-03 06:00:52.577098 30 results for PNC
+2019-09-03 06:00:52.836458 30 results for C
+2019-09-03 06:00:53.110368 30 results for STI
+2019-09-03 06:00:53.481259 30 results for NKE
+2019-09-03 06:00:53.742839 30 results for ECL
+2019-09-03 06:00:53.992025 30 results for NWL
+2019-09-03 06:00:54.238083 30 results for TMK
+2019-09-03 06:00:54.493543 30 results for ORCL
+2019-09-03 06:00:54.749659 30 results for ADSK
+2019-09-03 06:00:54.998007 30 results for MRO
+2019-09-03 06:00:55.251831 30 results for AEE
+2019-09-03 06:00:55.540420 30 results for AMGN
+2019-09-03 06:00:55.791147 30 results for PX
+2019-09-03 06:00:56.055771 30 results for IPG
+2019-09-03 06:00:56.498427 30 results for COST
+2019-09-03 06:00:56.945871 30 results for CSCO
+2019-09-03 06:00:57.204859 30 results for EMN
+2019-09-03 06:00:57.454397 30 results for KEY
+2019-09-03 06:00:57.901045 30 results for UNM
+2019-09-03 06:00:58.159471 30 results for MSFT
+2019-09-03 06:00:58.404187 30 results for LUV
+2019-09-03 06:00:58.650233 30 results for UNH
+2019-09-03 06:00:58.898166 30 results for CBS
+2019-09-03 06:00:59.179779 30 results for MU
+2019-09-03 06:00:59.424332 30 results for BSX
+2019-09-03 06:00:59.679717 30 results for AMAT
+2019-09-03 06:00:59.983898 30 results for BK
+2019-09-03 06:01:00.251755 30 results for L
+2019-09-03 06:01:00.519007 30 results for DRI
+2019-09-03 06:01:00.805599 30 results for ALL
+2019-09-03 06:01:01.128800 30 results for FCX
+2019-09-03 06:01:01.378421 30 results for MS
+2019-09-03 06:01:01.640440 30 results for M
+2019-09-03 06:01:01.937384 30 results for PPL
+2019-09-03 06:01:02.219287 30 results for CMA
+2019-09-03 06:01:02.581961 30 results for HUM
+2019-09-03 06:01:02.860964 30 results for HIG
+2019-09-03 06:01:03.109590 30 results for FITB
+2019-09-03 06:01:03.360561 30 results for AON
+2019-09-03 06:01:03.701131 30 results for TMO
+2019-09-03 06:01:04.033173 30 results for AZO
+2019-09-03 06:01:04.285765 30 results for ADBE
+2019-09-03 06:01:04.532741 30 results for CAH
+2019-09-03 06:01:04.793734 30 results for SCHW
+2019-09-03 06:01:05.032194 30 results for EFX
+2019-09-03 06:01:05.385769 30 results for APA
+2019-09-03 06:01:05.634212 30 results for APC
+2019-09-03 06:01:05.998408 30 results for PGR
+2019-09-03 06:01:06.261534 30 results for HBAN
+2019-09-03 06:01:06.557889 30 results for STT
+2019-09-03 06:01:06.848342 30 results for KLAC
+2019-09-03 06:01:07.179136 30 results for YUM
+2019-09-03 06:01:07.427469 30 results for BBT
+2019-09-03 06:01:07.662650 30 results for CINF
+2019-09-03 06:01:07.939656 30 results for OMC
+2019-09-03 06:01:08.204480 30 results for NTRS
+2019-09-03 06:01:08.462036 30 results for SEE
+2019-09-03 06:01:08.717183 30 results for BEN
+2019-09-03 06:01:08.967413 30 results for MAR
+2019-09-03 06:01:09.220205 30 results for NAVI
+2019-09-03 06:01:09.589326 30 results for COF
+2019-09-03 06:01:09.832924 30 results for WM
+2019-09-03 06:01:10.161210 30 results for KSS
+2019-09-03 06:01:10.419309 30 results for RF
+2019-09-03 06:01:10.727954 {'response': {'status': 429}, 'errors': [{'message': 'Rate limit exceeded. Client may not make more than 200 requests an hour.'}]}
+sleeping for 1 h
