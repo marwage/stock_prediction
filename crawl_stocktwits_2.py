@@ -28,7 +28,7 @@ def get_proxies(path):
         proxy["ip"] = row_split[0]
         proxy["port"] = row_split[1]
         proxies.append(proxy)
-
+        
     return proxies
 
 
