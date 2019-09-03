@@ -23,6 +23,7 @@ def get_proxies(path):
         proxy_lines = proxy_file.readlines()
 
     for row in proxy_lines:
+        row = row.replace("\n", "")
         row_split = row.split(":")
         proxy = dict()
         proxy["ip"] = row_split[0]
@@ -46,7 +47,7 @@ def query_store(sp500, proxies):
         request_url = "https://api.stocktwits.com/api/2/streams/symbol/" + company + ".json"
         req = Request(request_url)
         req.add_header('User-Agent', user_agent.random)
-        req.set_proxy(proxy["ip"] + ":" + proxy["port"], "http")
+        req.set_proxy(proxy["ip"] + ":" + proxy["port"], "https")
 
         successful = False
         while not successful:
@@ -54,11 +55,16 @@ def query_store(sp500, proxies):
                 result = urlopen(req).read().decode('utf8')
                 print(type(result))
                 successful = True
-            except: # If error, delete this proxy and find another one
+            except Exception as e:
+                write_to_log(str(e))
                 del proxies[proxy_index]
                 write_to_log("proxy " + proxy["ip"] + ":" + proxy["port"] + " deleted")
-                proxy_index = random.randint(0, len(proxies) - 1)
-                proxy = proxies[proxy_index]
+                if len(proxies) == 0:
+                    write_to_log("no proxies left")
+                    sys.exit()
+                else:
+                    proxy_index = random.randint(0, len(proxies) - 1)
+                    proxy = proxies[proxy_index]
 
         # write_to_log(str(datetime.now()) + " " + str(len(result.json()["messages"])) + " results for " + company)
 
