@@ -27,21 +27,23 @@ def get_proxies(path):
     return proxies
 
 
-def query_store(sp500, proxies):
-    start_time = datetime.now()
-    
+def query_store(sp500, proxies):    
     client = MongoClient()
     db = client.stocktwitsdb
 
     for company in sp500:
-        proxy_index = random.randint(0, len(proxies) - 1)
-        proxy = proxies[proxy_index]
-
         request_url = "https://api.stocktwits.com/api/2/streams/symbol/" + company + ".json"
-        result = requests.get(request_url, proxies=proxy)
-        
-        write_to_log(str(result))
-        return
+
+        successful = False
+        while not successful:
+            proxy_index = random.randint(0, len(proxies) - 1)
+            proxy = proxies[proxy_index]
+            
+            result = requests.get(request_url, proxies=proxy)        
+            write_to_log(str(result))
+
+            if result.status_code == 200:
+                successful = True
 
 
 def write_to_log(text):
