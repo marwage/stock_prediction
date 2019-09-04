@@ -78,7 +78,7 @@ def main():
     write_to_log("start crawling stocktwits")
 
     sp500 = read_sp500(sp500_path)
-    proxies = get_proxies(proxy_path)
+    proxies = get_proxies(proxy_paths)
     query_store(sp500, proxies)
 
     write_to_log("crawling stocktwits finished")
