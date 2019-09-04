@@ -32,24 +32,33 @@ def query_store(sp500, proxies):
     db = client.stocktwitsdb
 
     timeout = 6
+    proxy_index = random.randint(0, len(proxies) - 1)
+    proxy = proxies[proxy_index]
 
     for company in sp500:
         request_url = "https://api.stocktwits.com/api/2/streams/symbol/" + company + ".json"
 
         successful = False
-        while not successful:
-            proxy_index = random.randint(0, len(proxies) - 1)
-            proxy = proxies[proxy_index]
-            
+        while not successful:         
             try:
                 result = requests.get(request_url, proxies=proxy, timeout=timeout)
                 write_to_log(str(result))
+                
                 if result.status_code == 200:
                     successful = True
+                else:
+                    proxy_index = random.randint(0, len(proxies) - 1)
+                    proxy = proxies[proxy_index]
             except Exception as e:
                 write_to_log(str(e))
                 del proxies[proxy_index]
                 write_to_log("proxy " + proxy["https"] + " deleted")
+                proxy_index = random.randint(0, len(proxies) - 1)
+                proxy = proxies[proxy_index]
+
+        collection = db[company]
+        for post in result.json()["messages"]:
+            write_result = collection.update(post, post, upsert=True)
 
 
 def write_to_log(text):
