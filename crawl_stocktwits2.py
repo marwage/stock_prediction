@@ -31,7 +31,7 @@ def crawl(sp500, proxies):
     client = MongoClient()
     db = client.stocktwitsdb
 
-    timeout = 12
+    timeout = 9
     proxy_index = random.randint(0, len(proxies) - 1)
     proxy = proxies[proxy_index]
 
