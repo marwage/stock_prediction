@@ -33,13 +33,14 @@ def query_store(sp500):
         try:
             result = urlopen(req).read().decode('utf8')
             print(type(result))
-            sys.exit()
         except Exception as e:
             write_to_log(str(e))
 
+        return
+
 
 def write_to_log(text):
-    log_path = "files/crawl_stocktwits_2.log"
+    log_path = "files/crawl_stocktwits_2-1.log"
     
     with open(log_path, "a") as log:
         log.write(text + "\n")
@@ -50,6 +51,8 @@ def write_to_log(text):
 def main():
     sp500_path = "files/sp500.json"
     proxy_path = "files/proxy_list_2.txt"
+
+    write_to_log(str(datetime.now()) + " started")
 
     sp500 = read_sp500(sp500_path)
     query_store(sp500)

@@ -1,4 +1,5 @@
 import json
+import requests
 from datetime import timedelta, datetime
 from pymongo import MongoClient
 
@@ -23,7 +24,7 @@ def query_store(sp500):
 
         request_url = "https://api.stocktwits.com/api/2/streams/symbol/" + company + ".json"
         result = requests.get(request_url, proxies=proxies)
-        write_to_log(result)
+        write_to_log(str(result))
 
 
 def write_to_log(text):
