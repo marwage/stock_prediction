@@ -59,6 +59,7 @@ def query_store(sp500, proxies):
                 write_to_log(str(e))
                 del proxies[proxy_index]
                 write_to_log("proxy " + proxy["https"] + " deleted")
+                write_to_log(str(len(proxies)) + " proxies left")
                 proxy_index = random.randint(0, len(proxies) - 1)
                 proxy = proxies[proxy_index]
 
