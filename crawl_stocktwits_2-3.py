@@ -65,7 +65,7 @@ def write_to_log(text):
     log_path = "files/crawl_stocktwits_2-3.log"
     
     with open(log_path, "a") as log:
-        log.write(text + "\n")
+        log.write(str(datetime.now()) + " " + text.replace("\n", " ") + "\n")
 
     return
 
@@ -74,13 +74,13 @@ def main():
     sp500_path = "files/sp500.json"
     proxy_path = "files/proxy_list.txt"
 
-    write_to_log(str(datetime.now()) + " started")
+    write_to_log("start crawling stocktwits")
 
     sp500 = read_sp500(sp500_path)
     proxies = get_proxies(proxy_path)
     query_store(sp500, proxies)
 
-    write_to_log(str(datetime.now()) + " finished")
+    write_to_log("crawling stocktwits finished")
 
 
 if __name__ == '__main__':
