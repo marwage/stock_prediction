@@ -39,7 +39,14 @@ def query_store(sp500, proxies):
             proxy_index = random.randint(0, len(proxies) - 1)
             proxy = proxies[proxy_index]
             
-            result = requests.get(request_url, proxies=proxy)        
+            try:
+                result = requests.get(request_url, proxies=proxy)
+            except Exception as e:
+                write_to_log(str(e))
+                del proxies[proxy_index]
+                write_to_log("proxy " + proxy["https"] + " deleted")
+            
+
             write_to_log(str(result))
 
             if result.status_code == 200:
