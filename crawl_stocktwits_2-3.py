@@ -43,10 +43,15 @@ def query_store(sp500, proxies):
         while not successful:         
             try:
                 result = requests.get(request_url, proxies=proxy, timeout=timeout)
-                write_to_log(str(len(result.json()["messages"])) + " results for " + company)
+                
                 
                 if result.status_code == 200:
                     successful = True
+                    write_to_log(str(len(result.json()["messages"])) + " results for " + company)
+
+                    collection = db[company]
+                    for post in result.json()["messages"]:
+                        write_result = collection.update(post, post, upsert=True)
                 else:
                     proxy_index = random.randint(0, len(proxies) - 1)
                     proxy = proxies[proxy_index]
@@ -56,10 +61,6 @@ def query_store(sp500, proxies):
                 write_to_log("proxy " + proxy["https"] + " deleted")
                 proxy_index = random.randint(0, len(proxies) - 1)
                 proxy = proxies[proxy_index]
-
-        collection = db[company]
-        for post in result.json()["messages"]:
-            write_result = collection.update(post, post, upsert=True)
 
 
 def write_to_log(text):
