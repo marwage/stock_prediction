@@ -33,6 +33,7 @@ def query_store(sp500):
         try:
             result = urlopen(req).read().decode('utf8')
             print(type(result))
+            sys.exit()
         except Exception as e:
             write_to_log(str(e))
 
