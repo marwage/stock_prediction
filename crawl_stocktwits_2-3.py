@@ -31,6 +31,8 @@ def query_store(sp500, proxies):
     client = MongoClient()
     db = client.stocktwitsdb
 
+    timeout = 6
+
     for company in sp500:
         request_url = "https://api.stocktwits.com/api/2/streams/symbol/" + company + ".json"
 
@@ -40,12 +42,11 @@ def query_store(sp500, proxies):
             proxy = proxies[proxy_index]
             
             try:
-                result = requests.get(request_url, proxies=proxy)
+                result = requests.get(request_url, proxies=proxy, timeout=timeout)
             except Exception as e:
                 write_to_log(str(e))
                 del proxies[proxy_index]
                 write_to_log("proxy " + proxy["https"] + " deleted")
-            
 
             write_to_log(str(result))
 
