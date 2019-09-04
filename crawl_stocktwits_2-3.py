@@ -17,7 +17,7 @@ def get_proxies(paths):
 
     for path in paths:
         with open(path, "r") as proxy_file:
-        proxy_lines = proxy_file.readlines()
+            proxy_lines = proxy_file.readlines()
 
         for row in proxy_lines:
             row = row.replace("\n", "")
