@@ -12,18 +12,19 @@ def read_sp500(path):
     return sp500_json["sp500"]
 
 
-def get_proxies(path):
+def get_proxies(paths):
     proxies = []
 
-    with open(path, "r") as proxy_file:
+    for path in paths:
+        with open(path, "r") as proxy_file:
         proxy_lines = proxy_file.readlines()
 
-    for row in proxy_lines:
-        row = row.replace("\n", "")
-        proxy = dict()
-        proxy["https"] = "http://" + row
-        proxies.append(proxy)
-        
+        for row in proxy_lines:
+            row = row.replace("\n", "")
+            proxy = dict()
+            proxy["https"] = "http://" + row
+            proxies.append(proxy)
+
     return proxies
 
 
@@ -42,7 +43,7 @@ def query_store(sp500, proxies):
         while not successful:         
             try:
                 result = requests.get(request_url, proxies=proxy, timeout=timeout)
-                write_to_log(str(result))
+                write_to_log(str(len(result.json()["messages"])) + " results for " + company)
                 
                 if result.status_code == 200:
                     successful = True
@@ -72,7 +73,7 @@ def write_to_log(text):
 
 def main():
     sp500_path = "files/sp500.json"
-    proxy_path = "files/proxy_list.txt"
+    proxy_paths = ["files/proxy_list.txt", "files/proxy_list_2.txt"]
 
     write_to_log("start crawling stocktwits")
 
