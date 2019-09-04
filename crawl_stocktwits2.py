@@ -12,18 +12,17 @@ def read_sp500(path):
     return sp500_json["sp500"]
 
 
-def get_proxies(paths):
+def get_proxies(path):
     proxies = []
 
-    for path in paths:
-        with open(path, "r") as proxy_file:
-            proxy_lines = proxy_file.readlines()
+    with open(path, "r") as proxy_file:
+        proxy_lines = proxy_file.readlines()
 
-        for row in proxy_lines:
-            row = row.replace("\n", "")
-            proxy = dict()
-            proxy["https"] = "http://" + row
-            proxies.append(proxy)
+    for row in proxy_lines:
+        row = row.replace("\n", "")
+        proxy = dict()
+        proxy["https"] = "http://" + row
+        proxies.append(proxy)
 
     return proxies
 
@@ -65,7 +64,7 @@ def query_store(sp500, proxies):
 
 
 def write_to_log(text):
-    log_path = "files/crawl_stocktwits_2-3.log"
+    log_path = "files/crawl_stocktwits2.log"
     
     with open(log_path, "a") as log:
         log.write(str(datetime.now()) + " " + text.replace("\n", " ") + "\n")
@@ -75,12 +74,12 @@ def write_to_log(text):
 
 def main():
     sp500_path = "files/sp500.json"
-    proxy_paths = ["files/proxy_list.txt", "files/proxy_list_2.txt"]
+    proxy_path = "files/proxy_list.txt"
 
     write_to_log("start crawling stocktwits")
 
     sp500 = read_sp500(sp500_path)
-    proxies = get_proxies(proxy_paths)
+    proxies = get_proxies(proxy_path)
     query_store(sp500, proxies)
 
     write_to_log("crawling stocktwits finished")
