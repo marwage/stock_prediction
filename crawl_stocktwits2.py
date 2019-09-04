@@ -27,7 +27,7 @@ def get_proxies(path):
     return proxies
 
 
-def query_store(sp500, proxies):    
+def crawl(sp500, proxies):    
     client = MongoClient()
     db = client.stocktwitsdb
 
@@ -80,7 +80,11 @@ def main():
 
     sp500 = read_sp500(sp500_path)
     proxies = get_proxies(proxy_path)
-    query_store(sp500, proxies)
+
+    end = datetime.now() + timedelta(hours=23)
+
+    while datetime.now() < end:
+        crawl(sp500, proxies)
 
     write_to_log("crawling stocktwits finished")
 
