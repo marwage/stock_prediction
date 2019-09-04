@@ -43,15 +43,13 @@ def query_store(sp500, proxies):
             
             try:
                 result = requests.get(request_url, proxies=proxy, timeout=timeout)
+                write_to_log(str(result))
+                if result.status_code == 200:
+                    successful = True
             except Exception as e:
                 write_to_log(str(e))
                 del proxies[proxy_index]
                 write_to_log("proxy " + proxy["https"] + " deleted")
-
-            write_to_log(str(result))
-
-            if result.status_code == 200:
-                successful = True
 
 
 def write_to_log(text):
