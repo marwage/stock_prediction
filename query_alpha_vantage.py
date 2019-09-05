@@ -20,7 +20,7 @@ def get_apikey(path):
 
 
 def write_to_log(text):
-    log_path = "/home/wagenlaeder/stock-prediction/files/crawl_stocktwits2.log"
+    log_path = "/home/wagenlaeder/stock-prediction/files/query_alpha_vantage.log"
     
     with open(log_path, "a") as log:
         log.write(str(datetime.now()) + " " + text.replace("\n", " ") + "\n")
