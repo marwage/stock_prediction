@@ -3,6 +3,7 @@ import json
 from pymongo import MongoClient
 from datetime import datetime
 import time
+import random
 
 
 def read_sp500(path):
@@ -69,6 +70,7 @@ def main():
     apikey_path = files_path + "alpha_vantage_apikey.json"
     apikey = get_apikey(apikey_path)
     sp500 = read_sp500(sp500_path)
+    random.shuffle(sp500)
     stock_price = query_stock_price(apikey, sp500)
 
 
