@@ -1,0 +1,2054 @@
+2019-09-04 18:42:36.394364 start crawling stocktwits
+2019-09-04 18:42:42.414412 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/ABT.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a76326828>, 'Connection to 89.28.164.55 timed out. (connect timeout=6)'))
+2019-09-04 18:42:42.414597 proxy http://89.28.164.55:8080 deleted
+2019-09-04 18:42:42.414734 3879 proxies left
+2019-09-04 18:42:48.424664 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/ABT.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a76326fd0>, 'Connection to 93.88.216.51 timed out. (connect timeout=6)'))
+2019-09-04 18:42:48.424803 proxy http://93.88.216.51:31091 deleted
+2019-09-04 18:42:48.424884 3878 proxies left
+2019-09-04 18:42:54.434396 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/ABT.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7631b5f8>, 'Connection to 5.8.203.76 timed out. (connect timeout=6)'))
+2019-09-04 18:42:54.434613 proxy http://5.8.203.76:57140 deleted
+2019-09-04 18:42:54.434714 3877 proxies left
+2019-09-04 18:42:54.607512 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/ABT.json (Caused by ProxyError('Cannot connect to proxy.', NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a76326e10>: Failed to establish a new connection: [Errno 111] Connection refused',)))
+2019-09-04 18:42:54.607684 proxy http://167.71.124.99:8080 deleted
+2019-09-04 18:42:54.607784 3876 proxies left
+2019-09-04 18:43:00.616877 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/ABT.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7634d828>, 'Connection to 114.130.31.157 timed out. (connect timeout=6)'))
+2019-09-04 18:43:00.617080 proxy http://114.130.31.157:58154 deleted
+2019-09-04 18:43:00.617199 3875 proxies left
+2019-09-04 18:43:06.626873 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/ABT.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7634de80>, 'Connection to 150.107.22.2 timed out. (connect timeout=6)'))
+2019-09-04 18:43:06.627181 proxy http://150.107.22.2:8080 deleted
+2019-09-04 18:43:06.627293 3874 proxies left
+2019-09-04 18:43:17.210494 30 results for ABT
+2019-09-04 18:43:23.281519 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/HON.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7619a898>, 'Connection to 103.123.229.106 timed out. (connect timeout=6)'))
+2019-09-04 18:43:23.281671 proxy http://103.123.229.106:8080 deleted
+2019-09-04 18:43:23.281754 3873 proxies left
+2019-09-04 18:43:30.924216 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/HON.json (Caused by ProxyError('Cannot connect to proxy.', timeout('timed out',)))
+2019-09-04 18:43:30.924373 proxy http://1.198.73.8:9999 deleted
+2019-09-04 18:43:30.924457 3872 proxies left
+2019-09-04 18:43:36.934340 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/HON.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a76326860>, 'Connection to 188.6.164.138 timed out. (connect timeout=6)'))
+2019-09-04 18:43:36.934523 proxy http://188.6.164.138:55042 deleted
+2019-09-04 18:43:36.934619 3871 proxies left
+2019-09-04 18:43:43.488101 30 results for HON
+2019-09-04 18:43:48.188779 30 results for AEP
+2019-09-04 18:43:55.319670 30 results for BA
+2019-09-04 18:44:01.388987 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/BMY.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a761cdef0>, 'Connection to 182.52.51.38 timed out. (connect timeout=6)'))
+2019-09-04 18:44:01.389152 proxy http://182.52.51.38:42572 deleted
+2019-09-04 18:44:01.389231 3870 proxies left
+2019-09-04 18:44:06.023355 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/BMY.json (Caused by ProxyError('Cannot connect to proxy.', OSError('Tunnel connection failed: 400 Bad Request',)))
+2019-09-04 18:44:06.023491 proxy http://5.128.73.158:8081 deleted
+2019-09-04 18:44:06.023575 3869 proxies left
+2019-09-04 18:44:08.029737 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/BMY.json (Caused by ProxyError('Cannot connect to proxy.', NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a761cdc50>: Failed to establish a new connection: [Errno 113] No route to host',)))
+2019-09-04 18:44:08.029913 proxy http://103.69.216.204:8080 deleted
+2019-09-04 18:44:08.029992 3868 proxies left
+2019-09-04 18:44:14.370750 30 results for BMY
+2019-09-04 18:44:20.176433 30 results for CPB
+2019-09-04 18:44:26.400447 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/CAT.json (Caused by ProxyError('Cannot connect to proxy.', timeout('timed out',)))
+2019-09-04 18:44:26.400578 proxy http://207.246.109.227:3128 deleted
+2019-09-04 18:44:26.400660 3867 proxies left
+2019-09-04 18:44:32.410553 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/CAT.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a761cdeb8>, 'Connection to 1.197.11.202 timed out. (connect timeout=6)'))
+2019-09-04 18:44:32.410714 proxy http://1.197.11.202:9999 deleted
+2019-09-04 18:44:32.410822 3866 proxies left
+2019-09-04 18:44:38.421377 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/CAT.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a763269e8>, 'Connection to 112.85.164.182 timed out. (connect timeout=6)'))
+2019-09-04 18:44:38.421556 proxy http://112.85.164.182:9999 deleted
+2019-09-04 18:44:38.421649 3865 proxies left
+2019-09-04 18:44:40.978356 30 results for CAT
+2019-09-04 18:44:43.421857 30 results for CVX
+2019-09-04 18:44:46.727471 30 results for KO
+2019-09-04 18:44:49.118775 30 results for CL
+2019-09-04 18:44:51.320766 30 results for ED
+2019-09-04 18:44:53.754164 30 results for GLW
+2019-09-04 18:44:56.385152 30 results for DE
+2019-09-04 18:44:58.533009 30 results for DTE
+2019-09-04 18:45:01.840661 30 results for D
+2019-09-04 18:45:04.034254 30 results for DWDP
+2019-09-04 18:45:06.253799 30 results for ETN
+2019-09-04 18:45:08.610759 30 results for XOM
+2019-09-04 18:45:11.289745 30 results for F
+2019-09-04 18:45:13.957092 30 results for GD
+2019-09-04 18:45:16.064486 30 results for GE
+2019-09-04 18:45:19.385982 30 results for GT
+2019-09-04 18:45:21.524921 30 results for HAL
+2019-09-04 18:45:24.811983 30 results for HSY
+2019-09-04 18:45:27.472517 30 results for IBM
+2019-09-04 18:45:29.955841 30 results for IP
+2019-09-04 18:45:32.146007 30 results for K
+2019-09-04 18:45:34.563890 30 results for KMB
+2019-09-04 18:45:36.968947 30 results for KR
+2019-09-04 18:45:39.161843 30 results for SPGI
+2019-09-04 18:45:41.298312 30 results for CVS
+2019-09-04 18:45:43.443136 30 results for MRK
+2019-09-04 18:45:47.023711 30 results for ETR
+2019-09-04 18:45:49.513652 30 results for MMM
+2019-09-04 18:45:52.113013 30 results for MSI
+2019-09-04 18:45:54.535294 30 results for NSC
+2019-09-04 18:45:56.798721 30 results for XEL
+2019-09-04 18:45:58.979715 30 results for FE
+2019-09-04 18:46:01.644817 30 results for PPG
+2019-09-04 18:46:04.621204 30 results for PCG
+2019-09-04 18:46:06.903932 30 results for SRE
+2019-09-04 18:46:09.809349 30 results for PEP
+2019-09-04 18:46:12.452650 30 results for PFE
+2019-09-04 18:46:14.758133 30 results for EXC
+2019-09-04 18:46:17.485775 30 results for MO
+2019-09-04 18:46:20.196488 30 results for COP
+2019-09-04 18:46:22.512428 30 results for PG
+2019-09-04 18:46:25.149813 30 results for PEG
+2019-09-04 18:46:28.222196 30 results for RTN
+2019-09-04 18:46:31.088345 30 results for ROK
+2019-09-04 18:46:33.837689 30 results for EIX
+2019-09-04 18:46:36.981835 30 results for SO
+2019-09-04 18:46:39.486054 30 results for TXN
+2019-09-04 18:46:42.460461 30 results for UNP
+2019-09-04 18:46:44.919442 30 results for UTX
+2019-09-04 18:46:47.589460 30 results for WY
+2019-09-04 18:46:50.190818 30 results for WHR
+2019-09-04 18:46:52.696401 30 results for XRX
+2019-09-04 18:46:55.201973 30 results for SHW
+2019-09-04 18:46:57.857521 30 results for CMI
+2019-09-04 18:47:00.503027 30 results for EMR
+2019-09-04 18:47:03.003585 30 results for SLB
+2019-09-04 18:47:05.301984 30 results for CSX
+2019-09-04 18:47:08.524009 30 results for CLX
+2019-09-04 18:47:12.056836 30 results for GIS
+2019-09-04 18:47:14.982968 30 results for NEM
+2019-09-04 18:47:17.392809 30 results for MCD
+2019-09-04 18:47:19.799535 30 results for LLY
+2019-09-04 18:47:22.229143 30 results for BAX
+2019-09-04 18:47:24.571847 30 results for BDX
+2019-09-04 18:47:26.999908 30 results for JNJ
+2019-09-04 18:47:30.765720 30 results for GPC
+2019-09-04 18:47:34.130901 30 results for HPQ
+2019-09-04 18:47:36.338802 30 results for WMB
+2019-09-04 18:47:38.813697 30 results for BCR
+2019-09-04 18:47:41.271300 30 results for IFF
+2019-09-04 18:47:43.699961 30 results for AET
+2019-09-04 18:47:45.956273 30 results for AXP
+2019-09-04 18:47:49.538890 30 results for CI
+2019-09-04 18:47:51.918179 30 results for JPM
+2019-09-04 18:47:54.204872 30 results for TAP
+2019-09-04 18:47:56.674976 30 results for DIS
+2019-09-04 18:47:58.910546 30 results for DUK
+2019-09-04 18:48:01.302827 30 results for NEE
+2019-09-04 18:48:03.653683 30 results for LNC
+2019-09-04 18:48:06.070399 30 results for BAC
+2019-09-04 18:48:09.170989 30 results for WFC
+2019-09-04 18:48:11.344850 30 results for TGT
+2019-09-04 18:48:13.757244 30 results for INTC
+2019-09-04 18:48:16.139660 30 results for TXT
+2019-09-04 18:48:18.764766 30 results for VFC
+2019-09-04 18:48:21.301342 30 results for WBA
+2019-09-04 18:48:23.942912 30 results for AIG
+2019-09-04 18:48:26.711276 30 results for FLR
+2019-09-04 18:48:28.979057 30 results for FDX
+2019-09-04 18:48:31.889013 30 results for PCAR
+2019-09-04 18:48:34.117144 30 results for ADP
+2019-09-04 18:48:36.579194 30 results for GWW
+2019-09-04 18:48:39.249915 30 results for MAS
+2019-09-04 18:48:42.072543 30 results for ADM
+2019-09-04 18:48:44.320939 30 results for MAT
+2019-09-04 18:48:47.173687 30 results for WMT
+2019-09-04 18:48:50.149350 30 results for SNA
+2019-09-04 18:48:54.307348 30 results for SWK
+2019-09-04 18:48:58.197682 30 results for BF.B
+2019-09-04 18:49:02.598815 30 results for AAPL
+2019-09-04 18:49:05.286965 30 results for OXY
+2019-09-04 18:49:08.401046 30 results for CAG
+2019-09-04 18:49:10.780936 30 results for LB
+2019-09-04 18:49:13.149852 30 results for VZ
+2019-09-04 18:49:16.743899 30 results for T
+2019-09-04 18:49:18.971709 30 results for LOW
+2019-09-04 18:49:21.583176 30 results for PHM
+2019-09-04 18:49:24.134139 30 results for HES
+2019-09-04 18:49:27.871001 30 results for LMT
+2019-09-04 18:49:30.664314 30 results for HAS
+2019-09-04 18:49:33.428931 30 results for BLL
+2019-09-04 18:49:35.662400 30 results for APD
+2019-09-04 18:49:37.914581 30 results for NUE
+2019-09-04 18:49:40.192256 30 results for PKI
+2019-09-04 18:49:42.472716 30 results for NOC
+2019-09-04 18:49:44.687944 30 results for CNP
+2019-09-04 18:49:46.958752 30 results for TJX
+2019-09-04 18:49:49.684978 30 results for DOV
+2019-09-04 18:49:52.187866 30 results for PH
+2019-09-04 18:49:54.439237 30 results for ITW
+2019-09-04 18:49:56.672305 30 results for JCI
+2019-09-04 18:49:58.871026 30 results for GPS
+2019-09-04 18:50:01.082312 30 results for JWN
+2019-09-04 18:50:04.419222 30 results for MDT
+2019-09-04 18:50:06.689616 30 results for HRB
+2019-09-04 18:50:08.976633 30 results for SYY
+2019-09-04 18:50:11.358545 30 results for CA
+2019-09-04 18:50:13.548899 30 results for MMC
+2019-09-04 18:50:15.830068 30 results for AVY
+2019-09-04 18:50:18.251966 30 results for HD
+2019-09-04 18:50:20.444240 30 results for PNC
+2019-09-04 18:50:22.612395 30 results for C
+2019-09-04 18:50:24.759621 30 results for STI
+2019-09-04 18:50:28.255507 30 results for NKE
+2019-09-04 18:50:30.714920 30 results for ECL
+2019-09-04 18:50:32.928353 30 results for NWL
+2019-09-04 18:50:35.155159 30 results for TMK
+2019-09-04 18:50:37.310721 30 results for ORCL
+2019-09-04 18:50:39.432765 30 results for ADSK
+2019-09-04 18:50:41.628673 30 results for MRO
+2019-09-04 18:50:43.842641 30 results for AEE
+2019-09-04 18:50:46.139380 30 results for AMGN
+2019-09-04 18:50:48.543224 30 results for PX
+2019-09-04 18:50:51.032736 30 results for IPG
+2019-09-04 18:50:53.267346 30 results for COST
+2019-09-04 18:50:55.438038 30 results for CSCO
+2019-09-04 18:50:57.875815 30 results for EMN
+2019-09-04 18:51:00.311057 30 results for KEY
+2019-09-04 18:51:02.449625 30 results for UNM
+2019-09-04 18:51:04.806085 30 results for MSFT
+2019-09-04 18:51:07.112347 30 results for LUV
+2019-09-04 18:51:09.327848 30 results for UNH
+2019-09-04 18:51:11.748253 30 results for CBS
+2019-09-04 18:51:14.117993 30 results for MU
+2019-09-04 18:51:16.797223 30 results for BSX
+2019-09-04 18:51:19.000176 30 results for AMAT
+2019-09-04 18:51:21.179908 30 results for BK
+2019-09-04 18:51:23.351395 30 results for L
+2019-09-04 18:51:25.580806 30 results for DRI
+2019-09-04 18:51:28.000284 30 results for ALL
+2019-09-04 18:51:30.401539 30 results for FCX
+2019-09-04 18:51:33.876135 30 results for MS
+2019-09-04 18:51:36.050419 30 results for M
+2019-09-04 18:51:38.363012 30 results for PPL
+2019-09-04 18:51:40.832650 30 results for CMA
+2019-09-04 18:51:43.712163 30 results for HUM
+2019-09-04 18:51:46.404508 30 results for HIG
+2019-09-04 18:51:49.096645 30 results for FITB
+2019-09-04 18:51:51.245041 30 results for AON
+2019-09-04 18:51:53.444474 30 results for TMO
+2019-09-04 18:51:55.832311 30 results for AZO
+2019-09-04 18:51:57.978154 30 results for ADBE
+2019-09-04 18:52:00.287958 30 results for CAH
+2019-09-04 18:52:02.459087 30 results for SCHW
+2019-09-04 18:52:04.723629 30 results for EFX
+2019-09-04 18:52:07.180230 30 results for APA
+2019-09-04 18:52:09.834727 30 results for APC
+2019-09-04 18:52:12.434181 30 results for PGR
+2019-09-04 18:52:14.652408 30 results for HBAN
+2019-09-04 18:52:16.781371 30 results for STT
+2019-09-04 18:52:19.076535 30 results for KLAC
+2019-09-04 18:52:21.352361 30 results for YUM
+2019-09-04 18:52:23.481355 30 results for BBT
+2019-09-04 18:52:25.793353 30 results for CINF
+2019-09-04 18:52:28.030088 30 results for OMC
+2019-09-04 18:52:30.250991 30 results for NTRS
+2019-09-04 18:52:32.925904 30 results for SEE
+2019-09-04 18:52:35.943611 30 results for BEN
+2019-09-04 18:52:39.661161 30 results for MAR
+2019-09-04 18:52:42.091304 30 results for NAVI
+2019-09-04 18:52:44.432467 30 results for COF
+2019-09-04 18:52:46.041132 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/WM.json (Caused by ProxyError('Cannot connect to proxy.', ConnectionResetError(104, 'Connection reset by peer')))
+2019-09-04 18:52:46.041388 proxy http://139.99.218.46:8080 deleted
+2019-09-04 18:52:46.041514 3864 proxies left
+2019-09-04 18:52:50.877183 30 results for WM
+2019-09-04 18:53:05.434456 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Read timed out.
+2019-09-04 18:53:05.434785 proxy http://41.60.238.75:61031 deleted
+2019-09-04 18:53:05.434922 3863 proxies left
+2019-09-04 18:53:11.447309 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/KSS.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a761cdf60>, 'Connection to 185.247.20.254 timed out. (connect timeout=6)'))
+2019-09-04 18:53:11.447610 proxy http://185.247.20.254:51851 deleted
+2019-09-04 18:53:11.447756 3862 proxies left
+2019-09-04 18:53:17.820321 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/KSS.json (Caused by ProxyError('Cannot connect to proxy.', timeout('timed out',)))
+2019-09-04 18:53:17.820582 proxy http://175.43.34.20:9999 deleted
+2019-09-04 18:53:17.820706 3861 proxies left
+2019-09-04 18:53:18.232955 30 results for KSS
+2019-09-04 18:53:18.341734 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/RF.json (Caused by ProxyError('Cannot connect to proxy.', OSError('Tunnel connection failed: 503 Too many open connections',)))
+2019-09-04 18:53:18.341907 proxy http://178.32.223.164:8118 deleted
+2019-09-04 18:53:18.342175 3860 proxies left
+2019-09-04 18:53:19.128458 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/RF.json (Caused by ProxyError('Cannot connect to proxy.', OSError('Tunnel connection failed: 403 Forbidden',)))
+2019-09-04 18:53:19.128709 proxy http://170.239.87.138:8080 deleted
+2019-09-04 18:53:19.128974 3859 proxies left
+2019-09-04 18:53:25.140031 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/RF.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a761cb978>, 'Connection to 1.0.179.72 timed out. (connect timeout=6)'))
+2019-09-04 18:53:25.140411 proxy http://1.0.179.72:8080 deleted
+2019-09-04 18:53:25.140558 3858 proxies left
+2019-09-04 18:53:33.240667 30 results for RF
+2019-09-04 18:53:39.309527 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/PAYX.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a761cb748>, 'Connection to 36.84.10.153 timed out. (connect timeout=6)'))
+2019-09-04 18:53:39.309780 proxy http://36.84.10.153:3128 deleted
+2019-09-04 18:53:39.309915 3857 proxies left
+2019-09-04 18:53:50.230438 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/PAYX.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a761cdd30>, 'Connection to 194.44.236.48 timed out. (connect timeout=6)'))
+2019-09-04 18:53:50.230673 proxy http://194.44.236.48:39998 deleted
+2019-09-04 18:53:50.230794 3856 proxies left
+2019-09-04 18:53:56.241117 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/PAYX.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7634da58>, 'Connection to 1.195.57.3 timed out. (connect timeout=6)'))
+2019-09-04 18:53:56.241394 proxy http://1.195.57.3:9797 deleted
+2019-09-04 18:53:56.241519 3855 proxies left
+2019-09-04 18:53:56.986570 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/PAYX.json (Caused by ProxyError('Cannot connect to proxy.', OSError('Tunnel connection failed: 403 Forbidden',)))
+2019-09-04 18:53:56.986804 proxy http://103.108.140.243:8080 deleted
+2019-09-04 18:53:56.986955 3854 proxies left
+2019-09-04 18:54:02.997189 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/PAYX.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7619a048>, 'Connection to 200.116.195.220 timed out. (connect timeout=6)'))
+2019-09-04 18:54:02.997447 proxy http://200.116.195.220:8080 deleted
+2019-09-04 18:54:02.997577 3853 proxies left
+2019-09-04 18:54:03.199166 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/PAYX.json (Caused by ProxyError('Cannot connect to proxy.', NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a761cbda0>: Failed to establish a new connection: [Errno 111] Connection refused',)))
+2019-09-04 18:54:03.199347 proxy http://113.120.38.200:61234 deleted
+2019-09-04 18:54:03.199566 3852 proxies left
+2019-09-04 18:54:03.941715 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/PAYX.json (Caused by ProxyError('Cannot connect to proxy.', OSError('Tunnel connection failed: 500 Proxy detectou um erro',)))
+2019-09-04 18:54:03.941967 proxy http://177.75.4.34:80 deleted
+2019-09-04 18:54:03.942199 3851 proxies left
+2019-09-04 18:54:09.952496 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/PAYX.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a761cbd68>, 'Connection to 109.86.225.33 timed out. (connect timeout=6)'))
+2019-09-04 18:54:09.952712 proxy http://109.86.225.33:37238 deleted
+2019-09-04 18:54:09.952875 3850 proxies left
+2019-09-04 18:54:25.163116 30 results for PAYX
+2019-09-04 18:54:25.698600 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/AES.json (Caused by ProxyError('Cannot connect to proxy.', ConnectionResetError(104, 'Connection reset by peer')))
+2019-09-04 18:54:25.698784 proxy http://103.36.48.105:53281 deleted
+2019-09-04 18:54:25.698910 3849 proxies left
+2019-09-04 18:54:28.317737 30 results for AES
+2019-09-04 18:54:34.386883 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/SPLS.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a763264a8>, 'Connection to 82.113.39.38 timed out. (connect timeout=6)'))
+2019-09-04 18:54:34.387956 proxy http://82.113.39.38:33915 deleted
+2019-09-04 18:54:34.388100 3848 proxies left
+2019-09-04 18:54:46.573720 30 results for SPLS
+2019-09-04 18:54:52.803241 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/DHR.json (Caused by ProxyError('Cannot connect to proxy.', timeout('timed out',)))
+2019-09-04 18:54:52.803538 proxy http://103.250.158.21:48484 deleted
+2019-09-04 18:54:52.803664 3847 proxies left
+2019-09-04 18:54:58.813866 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/DHR.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7619a4e0>, 'Connection to 84.0.50.24 timed out. (connect timeout=6)'))
+2019-09-04 18:54:58.814135 proxy http://84.0.50.24:8080 deleted
+2019-09-04 18:54:58.814263 3846 proxies left
+2019-09-04 18:54:59.524849 30 results for DHR
+2019-09-04 18:55:00.009486 30 results for CCL
+2019-09-04 18:55:00.595461 30 results for USB
+2019-09-04 18:55:01.194891 30 results for TWX
+2019-09-04 18:55:01.668513 30 results for MCK
+2019-09-04 18:55:02.138991 30 results for CTL
+2019-09-04 18:55:02.603869 30 results for AGN
+2019-09-04 18:55:03.145125 30 results for CMS
+2019-09-04 18:55:03.626998 30 results for AFL
+2019-09-04 18:55:04.092230 30 results for NTAP
+2019-09-04 18:55:04.553760 30 results for BBY
+2019-09-04 18:55:05.090431 30 results for VMC
+2019-09-04 18:55:05.523395 30 results for QCOM
+2019-09-04 18:55:05.986156 30 results for PNW
+2019-09-04 18:55:06.624766 30 results for ADI
+2019-09-04 18:55:07.064234 30 results for TROW
+2019-09-04 18:55:07.551269 30 results for LEG
+2019-09-04 18:55:08.001981 30 results for XLNX
+2019-09-04 18:55:08.449341 30 results for CTXS
+2019-09-04 18:55:08.915007 30 results for HOG
+2019-09-04 18:55:09.372384 30 results for A
+2019-09-04 18:55:09.815075 30 results for SBUX
+2019-09-04 18:55:10.266729 30 results for TIF
+2019-09-04 18:55:10.930336 30 results for DVN
+2019-09-04 18:55:11.378248 30 results for MCO
+2019-09-04 18:55:11.832761 30 results for NI
+2019-09-04 18:55:12.574715 30 results for EOG
+2019-09-04 18:55:13.050617 30 results for RHI
+2019-09-04 18:55:13.501572 30 results for INTU
+2019-09-04 18:55:14.065240 30 results for MET
+2019-09-04 18:55:14.512197 30 results for SYK
+2019-09-04 18:55:15.187444 30 results for CTAS
+2019-09-04 18:55:15.758162 30 results for FISV
+2019-09-04 18:55:16.212902 30 results for ZION
+2019-09-04 18:55:16.663272 30 results for COL
+2019-09-04 18:55:17.134695 30 results for ZBH
+2019-09-04 18:55:17.599558 30 results for ABC
+2019-09-04 18:55:18.109420 30 results for XL
+2019-09-04 18:55:18.543560 30 results for NVDA
+2019-09-04 18:55:19.208281 30 results for EQR
+2019-09-04 18:55:19.767705 30 results for WAT
+2019-09-04 18:55:20.227027 30 results for SPG
+2019-09-04 18:55:20.691195 30 results for UPS
+2019-09-04 18:55:21.171994 30 results for EA
+2019-09-04 18:55:21.626492 30 results for EBAY
+2019-09-04 18:55:22.085856 30 results for GS
+2019-09-04 18:55:22.525751 30 results for PRU
+2019-09-04 18:55:22.974483 30 results for PFG
+2019-09-04 18:55:23.422751 30 results for ANTM
+2019-09-04 18:55:24.390487 30 results for MON
+2019-09-04 18:55:25.027009 30 results for CMCSA
+2019-09-04 18:55:25.583796 30 results for DGX
+2019-09-04 18:55:26.181397 30 results for AIV
+2019-09-04 18:55:26.667493 30 results for MKC
+2019-09-04 18:55:27.142515 30 results for SYMC
+2019-09-04 18:55:27.608808 30 results for PLD
+2019-09-04 18:55:28.455962 30 results for ESRX
+2019-09-04 18:55:28.897144 30 results for BIIB
+2019-09-04 18:55:29.340420 30 results for MTB
+2019-09-04 18:55:30.036951 30 results for ETFC
+2019-09-04 18:55:30.511289 30 results for MYL
+2019-09-04 18:55:31.190565 30 results for VLO
+2019-09-04 18:55:31.642533 30 results for TRV
+2019-09-04 18:55:32.301272 30 results for GILD
+2019-09-04 18:55:32.763575 30 results for COH
+2019-09-04 18:55:33.304774 30 results for LH
+2019-09-04 18:55:33.925111 30 results for LLL
+2019-09-04 18:55:34.400407 30 results for FOXA
+2019-09-04 18:55:34.971165 30 results for NOV
+2019-09-04 18:55:35.687971 30 results for STZ
+2019-09-04 18:55:36.146450 30 results for DHI
+2019-09-04 18:55:36.591331 30 results for TSN
+2019-09-04 18:55:37.271819 30 results for VNO
+2019-09-04 18:55:38.138221 30 results for PSA
+2019-09-04 18:55:38.681467 30 results for AMP
+2019-09-04 18:55:39.136436 30 results for LEN
+2019-09-04 18:55:39.615619 30 results for PDCO
+2019-09-04 18:55:40.092833 30 results for AMZN
+2019-09-04 18:55:40.546416 30 results for VIAB
+2019-09-04 18:55:40.991801 30 results for EL
+2019-09-04 18:55:41.434110 30 results for VRSN
+2019-09-04 18:55:41.888295 30 results for CHK
+2019-09-04 18:55:42.375072 30 results for KIM
+2019-09-04 18:55:43.029892 30 results for BXP
+2019-09-04 18:55:43.575051 30 results for GOOGL
+2019-09-04 18:55:44.046174 30 results for JNPR
+2019-09-04 18:55:44.501707 30 results for WYN
+2019-09-04 18:55:44.966346 30 results for CME
+2019-09-04 18:55:45.427966 30 results for WU
+2019-09-04 18:55:45.921157 30 results for CELG
+2019-09-04 18:55:46.496255 30 results for FIS
+2019-09-04 18:55:46.952129 30 results for CBG
+2019-09-04 18:55:47.401996 30 results for CTSH
+2019-09-04 18:55:47.863212 30 results for AVB
+2019-09-04 18:55:48.303935 30 results for RL
+2019-09-04 18:55:48.756619 30 results for VAR
+2019-09-04 18:55:49.196953 30 results for CHRW
+2019-09-04 18:55:49.722183 30 results for HST
+2019-09-04 18:55:50.184696 30 results for MDLZ
+2019-09-04 18:55:50.825257 30 results for AIZ
+2019-09-04 18:55:51.480552 30 results for DFS
+2019-09-04 18:55:51.961240 30 results for AKAM
+2019-09-04 18:55:52.425169 30 results for LUK
+2019-09-04 18:55:52.986784 30 results for MCHP
+2019-09-04 18:55:53.555105 30 results for ICE
+2019-09-04 18:55:54.018653 30 results for ANDV
+2019-09-04 18:55:54.483232 30 results for EXPE
+2019-09-04 18:55:54.926607 30 results for NBL
+2019-09-04 18:55:55.403598 30 results for EXPD
+2019-09-04 18:55:55.853775 30 results for JEC
+2019-09-04 18:55:56.309381 30 results for AMT
+2019-09-04 18:55:56.756574 30 results for RRC
+2019-09-04 18:55:57.254488 30 results for TSS
+2019-09-04 18:55:57.856310 30 results for HCP
+2019-09-04 18:55:58.319868 30 results for PM
+2019-09-04 18:55:58.779795 30 results for ISRG
+2019-09-04 18:55:59.240265 30 results for COG
+2019-09-04 18:55:59.699855 30 results for SNI
+2019-09-04 18:56:00.160193 30 results for MA
+2019-09-04 18:56:00.623789 30 results for DVA
+2019-09-04 18:56:01.083238 30 results for IVZ
+2019-09-04 18:56:01.634231 30 results for CF
+2019-09-04 18:56:02.095037 30 results for FAST
+2019-09-04 18:56:02.588454 30 results for CRM
+2019-09-04 18:56:03.166226 30 results for HRS
+2019-09-04 18:56:03.646002 30 results for PXD
+2019-09-04 18:56:04.121507 30 results for APH
+2019-09-04 18:56:04.690520 30 results for FLS
+2019-09-04 18:56:05.159117 30 results for DPS
+2019-09-04 18:56:05.638481 30 results for NDAQ
+2019-09-04 18:56:06.160506 30 results for WEC
+2019-09-04 18:56:06.610464 30 results for SJM
+2019-09-04 18:56:07.070762 30 results for PBCT
+2019-09-04 18:56:07.528832 30 results for XRAY
+2019-09-04 18:56:07.990489 30 results for WYNN
+2019-09-04 18:56:08.547755 30 results for SRCL
+2019-09-04 18:56:09.010023 30 results for RSG
+2019-09-04 18:56:09.573743 30 results for EQT
+2019-09-04 18:56:10.137889 30 results for SCG
+2019-09-04 18:56:10.576883 30 results for FLIR
+2019-09-04 18:56:11.042616 30 results for IRM
+2019-09-04 18:56:11.667601 30 results for HCN
+2019-09-04 18:56:12.114387 30 results for HRL
+2019-09-04 18:56:12.575511 30 results for VTR
+2019-09-04 18:56:13.042154 30 results for ES
+2019-09-04 18:56:13.796568 30 results for ORLY
+2019-09-04 18:56:14.246829 30 results for WDC
+2019-09-04 18:56:16.486812 30 results for PWR
+2019-09-04 18:56:17.214550 30 results for RHT
+2019-09-04 18:56:17.766015 30 results for FMC
+2019-09-04 18:56:18.226047 30 results for PCLN
+2019-09-04 18:56:18.681193 30 results for ROST
+2019-09-04 18:56:19.129814 30 results for V
+2019-09-04 18:56:19.587892 30 results for ROP
+2019-09-04 18:56:20.042074 30 results for NRG
+2019-09-04 18:56:20.507583 30 results for BRK.B
+2019-09-04 18:56:21.003003 30 results for HP
+2019-09-04 18:56:21.535849 30 results for DISCA
+2019-09-04 18:56:22.003728 30 results for OKE
+2019-09-04 18:56:22.467579 30 results for CERN
+2019-09-04 18:56:22.937529 30 results for KMX
+2019-09-04 18:56:23.395214 30 results for CB
+2019-09-04 18:56:23.932948 30 results for IR
+2019-09-04 18:56:24.397786 30 results for NFX
+2019-09-04 18:56:24.849176 30 results for FFIV
+2019-09-04 18:56:25.305793 30 results for NFLX
+2019-09-04 18:56:25.925096 30 results for EW
+2019-09-04 18:56:26.373037 30 results for BLK
+2019-09-04 18:56:26.925903 30 results for CMG
+2019-09-04 18:56:27.389114 30 results for MPC
+2019-09-04 18:56:27.850404 30 results for ACN
+2019-09-04 18:56:28.292969 30 results for MOS
+2019-09-04 18:56:28.756861 30 results for TEL
+2019-09-04 18:56:29.250367 30 results for XYL
+2019-09-04 18:56:29.745119 30 results for PRGO
+2019-09-04 18:56:30.201688 30 results for BWA
+2019-09-04 18:56:30.724543 30 results for DLTR
+2019-09-04 18:56:31.192010 30 results for TRIP
+2019-09-04 18:56:31.655466 30 results for CCI
+2019-09-04 18:56:32.102280 30 results for PSX
+2019-09-04 18:56:32.593933 30 results for KMI
+2019-09-04 18:56:33.186020 30 results for ALXN
+2019-09-04 18:56:33.649329 30 results for LRCX
+2019-09-04 18:56:34.214431 30 results for MNST
+2019-09-04 18:56:34.668891 30 results for STX
+2019-09-04 18:56:35.224768 30 results for LYB
+2019-09-04 18:56:35.692053 30 results for PNR
+2019-09-04 18:56:36.133103 30 results for DG
+2019-09-04 18:56:36.622859 30 results for GRMN
+2019-09-04 18:56:37.085525 30 results for DLPH
+2019-09-04 18:56:37.538365 30 results for ABBV
+2019-09-04 18:56:38.025964 30 results for PVH
+2019-09-04 18:56:38.507119 30 results for REGN
+2019-09-04 18:56:39.033787 30 results for MAC
+2019-09-04 18:56:39.544916 30 results for KSU
+2019-09-04 18:56:39.994747 30 results for GM
+2019-09-04 18:56:40.468080 30 results for ZTS
+2019-09-04 18:56:40.928310 30 results for NWSA
+2019-09-04 18:56:41.479968 30 results for NLSN
+2019-09-04 18:56:41.932003 30 results for DAL
+2019-09-04 18:56:42.518402 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/AME.json (Caused by ProxyError('Cannot connect to proxy.', NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7634d2e8>: Failed to establish a new connection: [Errno 111] Connection refused',)))
+2019-09-04 18:56:42.518573 proxy http://163.172.164.190:3128 deleted
+2019-09-04 18:56:42.518675 3845 proxies left
+2019-09-04 18:56:48.368064 30 results for AME
+2019-09-04 18:56:54.441075 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/VRTX.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a761c1160>, 'Connection to 185.20.163.135 timed out. (connect timeout=6)'))
+2019-09-04 18:56:54.441292 proxy http://185.20.163.135:8080 deleted
+2019-09-04 18:56:54.441461 3844 proxies left
+2019-09-04 18:56:54.867265 30 results for VRTX
+2019-09-04 18:56:55.481754 30 results for KORS
+2019-09-04 18:56:56.060181 30 results for ALLE
+2019-09-04 18:56:56.540761 30 results for GGP
+2019-09-04 18:56:57.026121 30 results for MHK
+2019-09-04 18:56:57.533257 30 results for ADS
+2019-09-04 18:56:57.994603 30 results for FB
+2019-09-04 18:56:58.674972 30 results for TSCO
+2019-09-04 18:56:59.773779 30 results for ESS
+2019-09-04 18:57:00.355736 30 results for GOOGL
+2019-09-04 18:57:00.819327 30 results for UAA
+2019-09-04 18:57:01.279575 30 results for AVGO
+2019-09-04 18:57:01.747984 30 results for XEC
+2019-09-04 18:57:02.445114 30 results for AMG
+2019-09-04 18:57:03.003154 30 results for MLM
+2019-09-04 18:57:03.452540 30 results for DISCA
+2019-09-04 18:57:04.253351 30 results for UHS
+2019-09-04 18:57:04.715735 30 results for URI
+2019-09-04 18:57:05.167828 30 results for LVLT
+2019-09-04 18:57:05.626546 30 results for RCL
+2019-09-04 18:57:06.292170 30 results for HCA
+2019-09-04 18:57:06.738456 30 results for SWKS
+2019-09-04 18:57:07.199876 30 results for HSIC
+2019-09-04 18:57:07.647893 30 results for AAL
+2019-09-04 18:57:08.368310 30 results for SLG
+2019-09-04 18:57:08.922626 30 results for EQIX
+2019-09-04 18:57:09.602781 30 results for HBI
+2019-09-04 18:57:10.076277 30 results for O
+2019-09-04 18:57:10.533189 30 results for QRVO
+2019-09-04 18:57:11.201013 30 results for JBHT
+2019-09-04 18:57:11.656657 30 results for WRK
+2019-09-04 18:57:12.103287 30 results for KHC
+2019-09-04 18:57:12.662680 30 results for AAP
+2019-09-04 18:57:13.126655 30 results for PYPL
+2019-09-04 18:57:13.577895 30 results for SIG
+2019-09-04 18:57:14.037199 30 results for ATVI
+2019-09-04 18:57:14.492751 30 results for UAL
+2019-09-04 18:57:15.052881 30 results for FOXA
+2019-09-04 18:57:15.611285 30 results for NWSA
+2019-09-04 18:57:16.081376 30 results for VRSK
+2019-09-04 18:57:16.658960 30 results for HPE
+2019-09-04 18:57:17.138236 30 results for SYF
+2019-09-04 18:57:17.801765 30 results for ILMN
+2019-09-04 18:57:18.272434 30 results for CSRA
+2019-09-04 18:57:18.770741 30 results for CHD
+2019-09-04 18:57:19.376950 30 results for WLTW
+2019-09-04 18:57:19.846561 30 results for EXR
+2019-09-04 18:57:20.315153 30 results for FRT
+2019-09-04 18:57:20.764200 30 results for CFG
+2019-09-04 18:57:21.437850 30 results for CXO
+2019-09-04 18:57:21.942834 30 results for AWK
+2019-09-04 18:57:22.501291 30 results for UDR
+2019-09-04 18:57:22.948643 30 results for HOLX
+2019-09-04 18:57:23.498541 30 results for CNC
+2019-09-04 18:57:23.953562 30 results for FL
+2019-09-04 18:57:24.398394 30 results for UAA
+2019-09-04 18:57:24.845146 30 results for ULTA
+2019-09-04 18:57:25.306160 30 results for GPN
+2019-09-04 18:57:25.886565 30 results for AYI
+2019-09-04 18:57:26.556724 30 results for ALK
+2019-09-04 18:57:27.103050 30 results for DLR
+2019-09-04 18:57:27.659330 30 results for LKQ
+2019-09-04 18:57:28.314603 30 results for AJG
+2019-09-04 18:57:28.813088 30 results for TDG
+2019-09-04 18:57:29.289622 30 results for FBHS
+2019-09-04 18:57:29.765984 30 results for LNT
+2019-09-04 18:57:30.220282 30 results for ALB
+2019-09-04 18:57:30.685306 30 results for FTV
+2019-09-04 18:57:31.162554 30 results for MTD
+2019-09-04 18:57:31.690528 30 results for CHTR
+2019-09-04 18:57:32.259259 30 results for COO
+2019-09-04 18:57:32.754356 30 results for COTY
+2019-09-04 18:57:33.222806 30 results for ARNC
+2019-09-04 18:57:33.664092 30 results for MAA
+2019-09-04 18:57:34.132435 30 results for EVHC
+2019-09-04 18:57:34.587624 30 results for IDXX
+2019-09-04 18:57:35.037250 30 results for FTI
+2019-09-04 18:57:35.706280 30 results for INCY
+2019-09-04 18:57:36.147185 30 results for CBOE
+2019-09-04 18:57:36.598031 30 results for REG
+2019-09-04 18:57:37.059015 30 results for DISH
+2019-09-04 18:57:37.516757 30 results for SNPS
+2019-09-04 18:57:38.022728 30 results for AMD
+2019-09-04 18:57:38.482077 30 results for RJF
+2019-09-04 18:57:39.005538 30 results for ARE
+2019-09-04 18:57:39.994246 30 results for DXC
+2019-09-04 18:57:40.467987 30 results for IT
+2019-09-04 18:57:40.929304 30 results for INFO
+2019-09-04 18:57:41.379546 30 results for HLT
+2019-09-04 18:57:41.826610 30 results for RE
+2019-09-04 18:57:42.280519 30 results for ANSS
+2019-09-04 18:57:43.072284 30 results for ALGN
+2019-09-04 18:57:43.531198 30 results for BHGE
+2019-09-04 18:57:44.017785 30 results for AOS
+2019-09-04 18:57:44.472277 30 results for DRE
+2019-09-04 18:57:45.023611 30 results for MGM
+2019-09-04 18:57:45.467262 30 results for RMD
+2019-09-04 18:57:45.987553 30 results for PKG
+2019-09-04 18:57:46.447331 30 results for BHF
+2019-09-04 18:57:47.112744 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a761cd240>: Failed to establish a new connection: [Errno 111] Connection refused',)))
+2019-09-04 18:57:47.113000 proxy http://180.183.224.185:8080 deleted
+2019-09-04 18:57:47.113088 3843 proxies left
+2019-09-04 18:57:53.335011 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', timeout('timed out',)))
+2019-09-04 18:57:53.335294 proxy http://154.73.136.146:50773 deleted
+2019-09-04 18:57:53.335432 3842 proxies left
+2019-09-04 18:57:59.345755 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7634d8d0>, 'Connection to 36.67.239.23 timed out. (connect timeout=6)'))
+2019-09-04 18:57:59.345991 proxy http://36.67.239.23:8080 deleted
+2019-09-04 18:57:59.346112 3841 proxies left
+2019-09-04 18:58:09.120872 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a76326b70>, 'Connection to 110.164.91.50 timed out. (connect timeout=6)'))
+2019-09-04 18:58:09.121102 proxy http://110.164.91.50:51065 deleted
+2019-09-04 18:58:09.121223 3840 proxies left
+2019-09-04 18:58:15.128236 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7634da20>, 'Connection to 201.184.102.2 timed out. (connect timeout=6)'))
+2019-09-04 18:58:15.128528 proxy http://201.184.102.2:8080 deleted
+2019-09-04 18:58:15.128656 3839 proxies left
+2019-09-04 18:58:20.991176 ('Connection aborted.', BadStatusLine('<html>\r\n',))
+2019-09-04 18:58:20.991441 proxy http://223.19.212.30:8197 deleted
+2019-09-04 18:58:20.991569 3838 proxies left
+2019-09-04 18:58:21.447733 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', OSError('Tunnel connection failed: 503 Service Temporarily Unavailable',)))
+2019-09-04 18:58:21.447983 proxy http://104.152.45.45:80 deleted
+2019-09-04 18:58:21.448144 3837 proxies left
+2019-09-04 18:58:27.495067 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', timeout('timed out',)))
+2019-09-04 18:58:27.495402 proxy http://163.172.148.62:8811 deleted
+2019-09-04 18:58:27.495545 3836 proxies left
+2019-09-04 18:58:44.879769 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', timeout('timed out',)))
+2019-09-04 18:58:44.880011 proxy http://18.182.56.34:8080 deleted
+2019-09-04 18:58:44.880228 3835 proxies left
+2019-09-04 18:58:50.890394 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a761cd400>, 'Connection to 134.35.110.41 timed out. (connect timeout=6)'))
+2019-09-04 18:58:50.890635 proxy http://134.35.110.41:8080 deleted
+2019-09-04 18:58:50.890769 3834 proxies left
+2019-09-04 18:58:51.078693 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7631bc50>: Failed to establish a new connection: [Errno 111] Connection refused',)))
+2019-09-04 18:58:51.078895 proxy http://1.199.194.44:9999 deleted
+2019-09-04 18:58:51.079027 3833 proxies left
+2019-09-04 18:58:57.088687 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a761cde80>, 'Connection to 103.112.167.133 timed out. (connect timeout=6)'))
+2019-09-04 18:58:57.088994 proxy http://103.112.167.133:8080 deleted
+2019-09-04 18:58:57.089128 3832 proxies left
+2019-09-04 18:59:03.099272 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7634d0b8>, 'Connection to 163.204.242.37 timed out. (connect timeout=6)'))
+2019-09-04 18:59:03.099509 proxy http://163.204.242.37:9999 deleted
+2019-09-04 18:59:03.099631 3831 proxies left
+2019-09-04 18:59:03.127171 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a761c51d0>: Failed to establish a new connection: [Errno 111] Connection refused',)))
+2019-09-04 18:59:03.127417 proxy http://95.140.38.245:3128 deleted
+2019-09-04 18:59:03.127590 3830 proxies left
+2019-09-04 18:59:09.139342 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7634dc88>, 'Connection to 222.249.238.138 timed out. (connect timeout=6)'))
+2019-09-04 18:59:09.139583 proxy http://222.249.238.138:8080 deleted
+2019-09-04 18:59:09.139716 3829 proxies left
+2019-09-04 18:59:15.149589 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7634d6d8>, 'Connection to 185.132.178.135 timed out. (connect timeout=6)'))
+2019-09-04 18:59:15.149857 proxy http://185.132.178.135:1080 deleted
+2019-09-04 18:59:15.149986 3828 proxies left
+2019-09-04 18:59:21.159933 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a761cdeb8>, 'Connection to 103.112.212.10 timed out. (connect timeout=6)'))
+2019-09-04 18:59:21.160240 proxy http://103.112.212.10:83 deleted
+2019-09-04 18:59:21.160368 3827 proxies left
+2019-09-04 18:59:27.588414 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', timeout('select timed out',)))
+2019-09-04 18:59:27.588685 proxy http://185.132.178.152:1080 deleted
+2019-09-04 18:59:27.588828 3826 proxies left
+2019-09-04 18:59:33.601211 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a761cd7b8>, 'Connection to 115.171.202.128 timed out. (connect timeout=6)'))
+2019-09-04 18:59:33.601519 proxy http://115.171.202.128:9000 deleted
+2019-09-04 18:59:33.601644 3825 proxies left
+2019-09-04 18:59:39.611733 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7619a940>, 'Connection to 103.220.204.101 timed out. (connect timeout=6)'))
+2019-09-04 18:59:39.612012 proxy http://103.220.204.101:59570 deleted
+2019-09-04 18:59:39.612171 3824 proxies left
+2019-09-04 18:59:45.622310 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7619a518>, 'Connection to 113.120.36.130 timed out. (connect timeout=6)'))
+2019-09-04 18:59:45.622592 proxy http://113.120.36.130:9999 deleted
+2019-09-04 18:59:45.622753 3823 proxies left
+2019-09-04 18:59:57.888246 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7619a518>, 'Connection to 202.29.237.250 timed out. (connect timeout=6)'))
+2019-09-04 18:59:57.888445 proxy http://202.29.237.250:80 deleted
+2019-09-04 18:59:57.888543 3822 proxies left
+2019-09-04 18:59:58.067882 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a761cdef0>: Failed to establish a new connection: [Errno 111] Connection refused',)))
+2019-09-04 18:59:58.068102 proxy http://103.81.77.129:82 deleted
+2019-09-04 18:59:58.068255 3821 proxies left
+2019-09-04 19:00:04.078297 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a761cdf60>, 'Connection to 85.21.240.153 timed out. (connect timeout=6)'))
+2019-09-04 19:00:04.078494 proxy http://85.21.240.153:8080 deleted
+2019-09-04 19:00:04.078639 3820 proxies left
+2019-09-04 19:00:10.089084 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7634de80>, 'Connection to 183.166.145.13 timed out. (connect timeout=6)'))
+2019-09-04 19:00:10.089390 proxy http://183.166.145.13:808 deleted
+2019-09-04 19:00:10.089519 3819 proxies left
+2019-09-04 19:00:10.649740 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', RemoteDisconnected('Remote end closed connection without response',)))
+2019-09-04 19:00:10.649949 proxy http://103.105.197.67:80 deleted
+2019-09-04 19:00:10.650077 3818 proxies left
+2019-09-04 19:00:16.660296 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7634d240>, 'Connection to 89.255.83.199 timed out. (connect timeout=6)'))
+2019-09-04 19:00:16.660584 proxy http://89.255.83.199:33737 deleted
+2019-09-04 19:00:16.660742 3817 proxies left
+2019-09-04 19:00:26.252486 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7631bf28>, 'Connection to 45.124.169.59 timed out. (connect timeout=6)'))
+2019-09-04 19:00:26.252742 proxy http://45.124.169.59:8080 deleted
+2019-09-04 19:00:26.252868 3816 proxies left
+2019-09-04 19:00:26.309706 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', RemoteDisconnected('Remote end closed connection without response',)))
+2019-09-04 19:00:26.309881 proxy http://185.132.133.187:8080 deleted
+2019-09-04 19:00:26.310018 3815 proxies left
+2019-09-04 19:00:32.196242 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7634dfd0>: Failed to establish a new connection: [Errno 111] Connection refused',)))
+2019-09-04 19:00:32.196516 proxy http://45.77.35.186:3128 deleted
+2019-09-04 19:00:32.196641 3814 proxies left
+2019-09-04 19:00:38.206248 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a76326828>, 'Connection to 85.112.90.64 timed out. (connect timeout=6)'))
+2019-09-04 19:00:38.206484 proxy http://85.112.90.64:8080 deleted
+2019-09-04 19:00:38.206612 3813 proxies left
+2019-09-04 19:00:44.217738 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a76326940>, 'Connection to 118.174.234.80 timed out. (connect timeout=6)'))
+2019-09-04 19:00:44.218048 proxy http://118.174.234.80:48879 deleted
+2019-09-04 19:00:44.218181 3812 proxies left
+2019-09-04 19:00:50.228127 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7619a5c0>, 'Connection to 103.81.153.9 timed out. (connect timeout=6)'))
+2019-09-04 19:00:50.228371 proxy http://103.81.153.9:8080 deleted
+2019-09-04 19:00:50.228498 3811 proxies left
+2019-09-04 19:00:56.238438 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a761c50f0>, 'Connection to 117.191.11.102 timed out. (connect timeout=6)'))
+2019-09-04 19:00:56.238697 proxy http://117.191.11.102:8080 deleted
+2019-09-04 19:00:56.238824 3810 proxies left
+2019-09-04 19:00:56.418872 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7619a1d0>: Failed to establish a new connection: [Errno 111] Connection refused',)))
+2019-09-04 19:00:56.419065 proxy http://45.32.105.55:8080 deleted
+2019-09-04 19:00:56.419194 3809 proxies left
+2019-09-04 19:01:02.428870 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7619a588>, 'Connection to 163.204.241.251 timed out. (connect timeout=6)'))
+2019-09-04 19:01:02.429151 proxy http://163.204.241.251:9999 deleted
+2019-09-04 19:01:02.429277 3808 proxies left
+2019-09-04 19:01:08.439653 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a76326c88>, 'Connection to 110.78.141.191 timed out. (connect timeout=6)'))
+2019-09-04 19:01:08.439901 proxy http://110.78.141.191:8080 deleted
+2019-09-04 19:01:08.440028 3807 proxies left
+2019-09-04 19:01:14.450027 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a761cdac8>, 'Connection to 77.65.47.234 timed out. (connect timeout=6)'))
+2019-09-04 19:01:14.450308 proxy http://77.65.47.234:80 deleted
+2019-09-04 19:01:14.450433 3806 proxies left
+2019-09-04 19:01:42.616373 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', OSError('Tunnel connection failed: 403 Forbidden',)))
+2019-09-04 19:01:42.616611 proxy http://217.61.20.190:3128 deleted
+2019-09-04 19:01:42.616728 3805 proxies left
+2019-09-04 19:01:58.475731 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Read timed out. (read timeout=6)
+2019-09-04 19:01:58.475970 proxy http://5.59.145.129:8080 deleted
+2019-09-04 19:01:58.476101 3804 proxies left
+2019-09-04 19:02:04.578923 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', OSError('Tunnel connection failed: 403 Forbidden',)))
+2019-09-04 19:02:04.579202 proxy http://134.209.162.5:80 deleted
+2019-09-04 19:02:04.579336 3803 proxies left
+2019-09-04 19:02:10.589533 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a761cd080>, 'Connection to 175.42.68.134 timed out. (connect timeout=6)'))
+2019-09-04 19:02:10.589791 proxy http://175.42.68.134:9999 deleted
+2019-09-04 19:02:10.589935 3802 proxies left
+2019-09-04 19:02:16.651402 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', timeout('timed out',)))
+2019-09-04 19:02:16.651680 proxy http://193.105.124.152:8080 deleted
+2019-09-04 19:02:16.651805 3801 proxies left
+2019-09-04 19:02:22.661887 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a761cd668>, 'Connection to 114.5.195.226 timed out. (connect timeout=6)'))
+2019-09-04 19:02:22.662137 proxy http://114.5.195.226:8080 deleted
+2019-09-04 19:02:22.662262 3800 proxies left
+2019-09-04 19:02:30.206014 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a761cd6d8>, 'Connection to 103.111.83.122 timed out. (connect timeout=6)'))
+2019-09-04 19:02:30.206363 proxy http://103.111.83.122:3128 deleted
+2019-09-04 19:02:30.206488 3799 proxies left
+2019-09-04 19:02:30.772304 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', OSError('Tunnel connection failed: 403 Forbidden',)))
+2019-09-04 19:02:30.772499 proxy http://103.206.102.143:8080 deleted
+2019-09-04 19:02:30.772663 3798 proxies left
+2019-09-04 19:02:36.782462 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a761c5e80>, 'Connection to 1.193.247.78 timed out. (connect timeout=6)'))
+2019-09-04 19:02:36.782715 proxy http://1.193.247.78:9999 deleted
+2019-09-04 19:02:36.782853 3797 proxies left
+2019-09-04 19:02:36.983236 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a761c5358>: Failed to establish a new connection: [Errno 113] No route to host',)))
+2019-09-04 19:02:36.983402 proxy http://182.253.31.98:8080 deleted
+2019-09-04 19:02:36.983515 3796 proxies left
+2019-09-04 19:02:39.569648 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a761c5160>: Failed to establish a new connection: [Errno 111] Connection refused',)))
+2019-09-04 19:02:39.569901 proxy http://117.196.239.57:8080 deleted
+2019-09-04 19:02:39.570025 3795 proxies left
+2019-09-04 19:02:39.668585 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7631bf98>: Failed to establish a new connection: [Errno 111] Connection refused',)))
+2019-09-04 19:02:39.668746 proxy http://198.98.55.168:8080 deleted
+2019-09-04 19:02:39.668870 3794 proxies left
+2019-09-04 19:02:54.128015 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7634d240>, 'Connection to 164.68.118.10 timed out. (connect timeout=6)'))
+2019-09-04 19:02:54.128409 proxy http://164.68.118.10:3128 deleted
+2019-09-04 19:02:54.128538 3793 proxies left
+2019-09-04 19:03:13.334674 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a761cd6a0>, 'Connection to 40.115.178.207 timed out. (connect timeout=6)'))
+2019-09-04 19:03:13.335061 proxy http://40.115.178.207:80 deleted
+2019-09-04 19:03:13.335211 3792 proxies left
+2019-09-04 19:03:13.684674 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7619aa58>: Failed to establish a new connection: [Errno 111] Connection refused',)))
+2019-09-04 19:03:13.684892 proxy http://112.85.170.219:9999 deleted
+2019-09-04 19:03:13.685020 3791 proxies left
+2019-09-04 19:03:19.694945 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7631bba8>, 'Connection to 164.68.118.7 timed out. (connect timeout=6)'))
+2019-09-04 19:03:19.695208 proxy http://164.68.118.7:3128 deleted
+2019-09-04 19:03:19.695334 3790 proxies left
+2019-09-04 19:03:25.705280 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7634dcc0>, 'Connection to 177.94.206.67 timed out. (connect timeout=6)'))
+2019-09-04 19:03:25.705538 proxy http://177.94.206.67:60666 deleted
+2019-09-04 19:03:25.705663 3789 proxies left
+2019-09-04 19:03:31.715895 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a76326d30>, 'Connection to 95.175.14.25 timed out. (connect timeout=6)'))
+2019-09-04 19:03:31.716061 proxy http://95.175.14.25:8080 deleted
+2019-09-04 19:03:31.716294 3788 proxies left
+2019-09-04 19:03:38.020676 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', timeout('timed out',)))
+2019-09-04 19:03:38.020846 proxy http://103.216.59.198:8080 deleted
+2019-09-04 19:03:38.020932 3787 proxies left
+2019-09-04 19:03:38.115733 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', OSError('Tunnel connection failed: 403 Forbidden',)))
+2019-09-04 19:03:38.116005 proxy http://94.177.255.8:80 deleted
+2019-09-04 19:03:38.116099 3786 proxies left
+2019-09-04 19:03:44.126717 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a76326f60>, 'Connection to 58.22.177.114 timed out. (connect timeout=6)'))
+2019-09-04 19:03:44.126895 proxy http://58.22.177.114:9999 deleted
+2019-09-04 19:03:44.126975 3785 proxies left
+2019-09-04 19:03:45.944205 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', ConnectionResetError(104, 'Connection reset by peer')))
+2019-09-04 19:03:45.944418 proxy http://119.82.252.115:49085 deleted
+2019-09-04 19:03:45.945617 3784 proxies left
+2019-09-04 19:03:51.955729 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a761c5fd0>, 'Connection to 164.68.118.9 timed out. (connect timeout=6)'))
+2019-09-04 19:03:51.955877 proxy http://164.68.118.9:3128 deleted
+2019-09-04 19:03:51.955957 3783 proxies left
+2019-09-04 19:03:57.965772 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a761c5f28>, 'Connection to 213.160.150.239 timed out. (connect timeout=6)'))
+2019-09-04 19:03:57.965935 proxy http://213.160.150.239:44733 deleted
+2019-09-04 19:03:57.966021 3782 proxies left
+2019-09-04 19:04:04.273843 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', timeout('timed out',)))
+2019-09-04 19:04:04.273973 proxy http://203.80.190.162:8080 deleted
+2019-09-04 19:04:04.274053 3781 proxies left
+2019-09-04 19:04:10.284547 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a761c5f28>, 'Connection to 36.74.190.92 timed out. (connect timeout=6)'))
+2019-09-04 19:04:10.284699 proxy http://36.74.190.92:8080 deleted
+2019-09-04 19:04:10.284779 3780 proxies left
+2019-09-04 19:04:16.294388 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a761c5f60>, 'Connection to 185.26.219.34 timed out. (connect timeout=6)'))
+2019-09-04 19:04:16.294536 proxy http://185.26.219.34:52838 deleted
+2019-09-04 19:04:16.294616 3779 proxies left
+2019-09-04 19:04:22.304535 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a76326eb8>, 'Connection to 36.91.129.18 timed out. (connect timeout=6)'))
+2019-09-04 19:04:22.304700 proxy http://36.91.129.18:8080 deleted
+2019-09-04 19:04:22.304780 3778 proxies left
+2019-09-04 19:04:33.145365 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7619a4e0>, 'Connection to 122.5.107.69 timed out. (connect timeout=6)'))
+2019-09-04 19:04:33.145521 proxy http://122.5.107.69:9999 deleted
+2019-09-04 19:04:33.145600 3777 proxies left
+2019-09-04 19:04:39.155272 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7634d0b8>, 'Connection to 175.42.128.125 timed out. (connect timeout=6)'))
+2019-09-04 19:04:39.155406 proxy http://175.42.128.125:9999 deleted
+2019-09-04 19:04:39.155486 3776 proxies left
+2019-09-04 19:04:39.998569 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', OSError('Tunnel connection failed: 500 Internal Server Error',)))
+2019-09-04 19:04:39.998760 proxy http://47.107.147.168:8000 deleted
+2019-09-04 19:04:39.998892 3775 proxies left
+2019-09-04 19:04:50.718449 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7631bf98>: Failed to establish a new connection: [Errno 111] Connection refused',)))
+2019-09-04 19:04:50.718609 proxy http://121.230.208.131:808 deleted
+2019-09-04 19:04:50.718697 3774 proxies left
+2019-09-04 19:05:00.081273 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7634d9e8>, 'Connection to 103.81.77.37 timed out. (connect timeout=6)'))
+2019-09-04 19:05:00.081499 proxy http://103.81.77.37:82 deleted
+2019-09-04 19:05:00.081587 3773 proxies left
+2019-09-04 19:05:06.092630 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7631bac8>, 'Connection to 202.166.216.213 timed out. (connect timeout=6)'))
+2019-09-04 19:05:06.092815 proxy http://202.166.216.213:23500 deleted
+2019-09-04 19:05:06.092913 3772 proxies left
+2019-09-04 19:05:06.638558 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', ConnectionResetError(104, 'Connection reset by peer')))
+2019-09-04 19:05:06.638743 proxy http://101.27.20.218:61234 deleted
+2019-09-04 19:05:06.638834 3771 proxies left
+2019-09-04 19:05:09.342801 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', OSError('Tunnel connection failed: 500 Internal Server Error',)))
+2019-09-04 19:05:09.342978 proxy http://67.207.94.118:80 deleted
+2019-09-04 19:05:09.343067 3770 proxies left
+2019-09-04 19:05:09.636050 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', OSError('Tunnel connection failed: 405 Method Not Allowed',)))
+2019-09-04 19:05:09.636261 proxy http://62.33.207.98:80 deleted
+2019-09-04 19:05:09.636358 3769 proxies left
+2019-09-04 19:05:15.646375 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a761c5630>, 'Connection to 77.37.142.203 timed out. (connect timeout=6)'))
+2019-09-04 19:05:15.646596 proxy http://77.37.142.203:53281 deleted
+2019-09-04 19:05:15.646684 3768 proxies left
+2019-09-04 19:05:21.657225 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7619a9b0>, 'Connection to 62.24.109.77 timed out. (connect timeout=6)'))
+2019-09-04 19:05:21.657401 proxy http://62.24.109.77:53281 deleted
+2019-09-04 19:05:21.657492 3767 proxies left
+2019-09-04 19:05:21.888685 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a74f58208>: Failed to establish a new connection: [Errno 111] Connection refused',)))
+2019-09-04 19:05:21.888801 proxy http://59.57.149.173:9999 deleted
+2019-09-04 19:05:21.888887 3766 proxies left
+2019-09-04 19:05:22.319344 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', OSError('Tunnel connection failed: 400 Bad Request',)))
+2019-09-04 19:05:22.319530 proxy http://222.66.94.130:80 deleted
+2019-09-04 19:05:22.319614 3765 proxies left
+2019-09-04 19:05:28.329445 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7619a048>, 'Connection to 195.14.114.24 timed out. (connect timeout=6)'))
+2019-09-04 19:05:28.329634 proxy http://195.14.114.24:56897 deleted
+2019-09-04 19:05:28.329717 3764 proxies left
+2019-09-04 19:05:34.339643 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a761c52b0>, 'Connection to 218.204.153.156 timed out. (connect timeout=6)'))
+2019-09-04 19:05:34.339799 proxy http://218.204.153.156:8080 deleted
+2019-09-04 19:05:34.339882 3763 proxies left
+2019-09-04 19:05:44.880650 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a761c5cf8>, 'Connection to 112.85.168.4 timed out. (connect timeout=6)'))
+2019-09-04 19:05:44.880797 proxy http://112.85.168.4:9999 deleted
+2019-09-04 19:05:44.880878 3762 proxies left
+2019-09-04 19:05:53.015106 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', timeout('timed out',)))
+2019-09-04 19:05:53.015243 proxy http://185.22.174.65:10010 deleted
+2019-09-04 19:05:53.015327 3761 proxies left
+2019-09-04 19:05:59.025602 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a76326828>, 'Connection to 164.68.117.76 timed out. (connect timeout=6)'))
+2019-09-04 19:05:59.025792 proxy http://164.68.117.76:3128 deleted
+2019-09-04 19:05:59.025932 3760 proxies left
+2019-09-04 19:06:05.037757 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a761cd198>, 'Connection to 103.206.178.1 timed out. (connect timeout=6)'))
+2019-09-04 19:06:05.037913 proxy http://103.206.178.1:56357 deleted
+2019-09-04 19:06:05.037996 3759 proxies left
+2019-09-04 19:06:12.086641 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', timeout('timed out',)))
+2019-09-04 19:06:12.086798 proxy http://52.233.189.29:80 deleted
+2019-09-04 19:06:12.086881 3758 proxies left
+2019-09-04 19:06:12.448262 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7634de10>: Failed to establish a new connection: [Errno 111] Connection refused',)))
+2019-09-04 19:06:12.448381 proxy http://120.83.120.251:9999 deleted
+2019-09-04 19:06:12.448479 3757 proxies left
+2019-09-04 19:06:18.458346 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7634db00>, 'Connection to 114.104.135.158 timed out. (connect timeout=6)'))
+2019-09-04 19:06:18.458530 proxy http://114.104.135.158:61234 deleted
+2019-09-04 19:06:18.458615 3756 proxies left
+2019-09-04 19:06:18.668008 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a79e42668>: Failed to establish a new connection: [Errno 111] Connection refused',)))
+2019-09-04 19:06:18.668240 proxy http://113.124.95.217:9999 deleted
+2019-09-04 19:06:18.668335 3755 proxies left
+2019-09-04 19:06:18.763530 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', OSError('Tunnel connection failed: 403 Forbidden',)))
+2019-09-04 19:06:18.763634 proxy http://217.61.22.186:8080 deleted
+2019-09-04 19:06:18.763713 3754 proxies left
+2019-09-04 19:06:25.005864 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', timeout('timed out',)))
+2019-09-04 19:06:25.006008 proxy http://200.192.243.137:31497 deleted
+2019-09-04 19:06:25.006108 3753 proxies left
+2019-09-04 19:06:36.253884 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a761cd358>, 'Connection to 78.37.27.139 timed out. (connect timeout=6)'))
+2019-09-04 19:06:36.254037 proxy http://78.37.27.139:44291 deleted
+2019-09-04 19:06:36.254123 3752 proxies left
+2019-09-04 19:06:43.473882 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', timeout('timed out',)))
+2019-09-04 19:06:43.474020 proxy http://103.31.227.16:8080 deleted
+2019-09-04 19:06:43.474100 3751 proxies left
+2019-09-04 19:06:49.484198 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a76326c88>, 'Connection to 189.51.101.126 timed out. (connect timeout=6)'))
+2019-09-04 19:06:49.484338 proxy http://189.51.101.126:39108 deleted
+2019-09-04 19:06:49.484424 3750 proxies left
+2019-09-04 19:06:49.637700 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', ConnectionResetError(104, 'Connection reset by peer')))
+2019-09-04 19:06:49.637827 proxy http://206.54.183.169:4433 deleted
+2019-09-04 19:06:49.637912 3749 proxies left
+2019-09-04 19:07:04.240646 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7634db70>, 'Connection to 117.239.240.202 timed out. (connect timeout=6)'))
+2019-09-04 19:07:04.240781 proxy http://117.239.240.202:53281 deleted
+2019-09-04 19:07:04.240864 3748 proxies left
+2019-09-04 19:07:04.658948 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', RemoteDisconnected('Remote end closed connection without response',)))
+2019-09-04 19:07:04.659057 proxy http://118.97.53.99:31439 deleted
+2019-09-04 19:07:04.659140 3747 proxies left
+2019-09-04 19:07:04.911708 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7619a320>: Failed to establish a new connection: [Errno 111] Connection refused',)))
+2019-09-04 19:07:04.911816 proxy http://171.11.179.106:9999 deleted
+2019-09-04 19:07:04.911903 3746 proxies left
+2019-09-04 19:07:10.921587 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a74f58748>, 'Connection to 110.39.192.206 timed out. (connect timeout=6)'))
+2019-09-04 19:07:10.921777 proxy http://110.39.192.206:8080 deleted
+2019-09-04 19:07:10.921860 3745 proxies left
+2019-09-04 19:07:10.940041 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a761c5358>: Failed to establish a new connection: [Errno 111] Connection refused',)))
+2019-09-04 19:07:10.940205 proxy http://164.68.117.73:3128 deleted
+2019-09-04 19:07:10.940296 3744 proxies left
+2019-09-04 19:07:16.962722 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', timeout('timed out',)))
+2019-09-04 19:07:16.962880 proxy http://134.119.207.5:1080 deleted
+2019-09-04 19:07:16.962961 3743 proxies left
+2019-09-04 19:07:22.972896 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a761cdac8>, 'Connection to 122.193.244.113 timed out. (connect timeout=6)'))
+2019-09-04 19:07:22.973078 proxy http://122.193.244.113:9999 deleted
+2019-09-04 19:07:22.973161 3742 proxies left
+2019-09-04 19:07:28.983011 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a763269e8>, 'Connection to 36.90.122.246 timed out. (connect timeout=6)'))
+2019-09-04 19:07:28.983178 proxy http://36.90.122.246:8080 deleted
+2019-09-04 19:07:28.983261 3741 proxies left
+2019-09-04 19:07:34.993209 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7631bef0>, 'Connection to 163.204.241.76 timed out. (connect timeout=6)'))
+2019-09-04 19:07:34.993349 proxy http://163.204.241.76:9999 deleted
+2019-09-04 19:07:34.993441 3740 proxies left
+2019-09-04 19:07:35.680096 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', OSError('Tunnel connection failed: 503 Service Temporarily Unavailable',)))
+2019-09-04 19:07:35.680334 proxy http://194.124.35.114:80 deleted
+2019-09-04 19:07:35.680438 3739 proxies left
+2019-09-04 19:07:41.690744 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7634de80>, 'Connection to 118.173.233.31 timed out. (connect timeout=6)'))
+2019-09-04 19:07:41.690920 proxy http://118.173.233.31:59669 deleted
+2019-09-04 19:07:41.691013 3738 proxies left
+2019-09-04 19:07:48.520005 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', ConnectionResetError(104, 'Connection reset by peer')))
+2019-09-04 19:07:48.520185 proxy http://41.73.15.130:80 deleted
+2019-09-04 19:07:48.520269 3737 proxies left
+2019-09-04 19:07:54.530259 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a76326e10>, 'Connection to 195.9.114.222 timed out. (connect timeout=6)'))
+2019-09-04 19:07:54.530429 proxy http://195.9.114.222:63141 deleted
+2019-09-04 19:07:54.530524 3736 proxies left
+2019-09-04 19:08:08.953003 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7619a7f0>, 'Connection to 103.105.209.86 timed out. (connect timeout=6)'))
+2019-09-04 19:08:08.953998 proxy http://103.105.209.86:3129 deleted
+2019-09-04 19:08:08.954104 3735 proxies left
+2019-09-04 19:08:10.054019 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ProxyError('Cannot connect to proxy.', OSError('Tunnel connection failed: 502 Bad Gateway',)))
+2019-09-04 19:08:10.054163 proxy http://42.159.91.248:8080 deleted
+2019-09-04 19:08:10.054253 3734 proxies left
+2019-09-04 19:08:16.803059 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a761cd710>, 'Connection to 185.108.128.110 timed out. (connect timeout=6)'))
+2019-09-04 19:08:16.803224 proxy http://185.108.128.110:80 deleted
+2019-09-04 19:08:16.803306 3733 proxies left
+2019-09-04 19:08:22.813305 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a761cd3c8>, 'Connection to 148.77.34.196 timed out. (connect timeout=6)'))
+2019-09-04 19:08:22.813455 proxy http://148.77.34.196:45146 deleted
+2019-09-04 19:08:22.813537 3732 proxies left
+2019-09-04 19:08:28.823466 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/Q.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f6a7634da20>, 'Connection to 01.179.185.249 timed out. (connect timeout=6)'))
+2019-09-04 19:08:28.823626 proxy http://01.179.185.249:8080 deleted
+2019-09-04 19:08:28.823708 3731 proxies left
+2019-09-04 19:08:38.648619 start crawling stocktwits
+2019-09-04 19:08:46.596952 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/ABT.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f404ee940>, 'Connection to 1.197.204.200 timed out. (connect timeout=6)'))
+2019-09-04 19:08:46.597108 proxy http://1.197.204.200:9999 deleted
+2019-09-04 19:08:46.597196 3879 proxies left
+2019-09-04 19:08:56.369400 30 results for ABT
+2019-09-04 19:09:02.441345 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/HON.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f404eecf8>, 'Connection to 203.80.190.162 timed out. (connect timeout=6)'))
+2019-09-04 19:09:02.441504 proxy http://203.80.190.162:8080 deleted
+2019-09-04 19:09:02.441595 3878 proxies left
+2019-09-04 19:09:12.250112 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/HON.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f40354c88>, 'Connection to 200.35.44.189 timed out. (connect timeout=6)'))
+2019-09-04 19:09:12.250278 proxy http://200.35.44.189:44968 deleted
+2019-09-04 19:09:12.250364 3877 proxies left
+2019-09-04 19:09:30.879835 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/HON.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f40354e48>, 'Connection to 103.109.58.50 timed out. (connect timeout=6)'))
+2019-09-04 19:09:30.880000 proxy http://103.109.58.50:8080 deleted
+2019-09-04 19:09:30.880136 3876 proxies left
+2019-09-04 19:09:36.889904 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/HON.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f4035e9e8>, 'Connection to 94.243.140.162 timed out. (connect timeout=6)'))
+2019-09-04 19:09:36.890104 proxy http://94.243.140.162:40960 deleted
+2019-09-04 19:09:36.890250 3875 proxies left
+2019-09-04 19:09:41.689508 30 results for HON
+2019-09-04 19:09:45.865394 30 results for AEP
+2019-09-04 19:09:50.356276 30 results for BA
+2019-09-04 19:09:54.788657 30 results for BMY
+2019-09-04 19:10:02.217807 30 results for CPB
+2019-09-04 19:10:05.367117 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/CAT.json (Caused by ProxyError('Cannot connect to proxy.', ConnectionResetError(104, 'Connection reset by peer')))
+2019-09-04 19:10:05.367324 proxy http://36.91.44.243:58550 deleted
+2019-09-04 19:10:05.367421 3874 proxies left
+2019-09-04 19:10:09.846571 30 results for CAT
+2019-09-04 19:10:13.889899 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/CVX.json (Caused by ProxyError('Cannot connect to proxy.', ConnectionResetError(104, 'Connection reset by peer')))
+2019-09-04 19:10:13.890161 proxy http://118.173.233.152:41245 deleted
+2019-09-04 19:10:13.890263 3873 proxies left
+2019-09-04 19:10:25.142976 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/CVX.json (Caused by ProxyError('Cannot connect to proxy.', timeout('timed out',)))
+2019-09-04 19:10:25.143154 proxy http://195.170.15.66:8080 deleted
+2019-09-04 19:10:25.143244 3872 proxies left
+2019-09-04 19:10:31.153482 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/CVX.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f404c6b00>, 'Connection to 1.20.101.24 timed out. (connect timeout=6)'))
+2019-09-04 19:10:31.153639 proxy http://1.20.101.24:34683 deleted
+2019-09-04 19:10:31.153727 3871 proxies left
+2019-09-04 19:10:43.319765 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/CVX.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f404ee9e8>, 'Connection to 49.156.35.22 timed out. (connect timeout=6)'))
+2019-09-04 19:10:43.320025 proxy http://49.156.35.22:8080 deleted
+2019-09-04 19:10:43.320890 3870 proxies left
+2019-09-04 19:10:49.331053 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/CVX.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f40354400>, 'Connection to 103.76.175.88 timed out. (connect timeout=6)'))
+2019-09-04 19:10:49.331212 proxy http://103.76.175.88:8080 deleted
+2019-09-04 19:10:49.331324 3869 proxies left
+2019-09-04 19:10:55.341381 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/CVX.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f4035ecf8>, 'Connection to 213.91.187.242 timed out. (connect timeout=6)'))
+2019-09-04 19:10:55.341540 proxy http://213.91.187.242:59761 deleted
+2019-09-04 19:10:55.341634 3868 proxies left
+2019-09-04 19:11:01.352586 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/CVX.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f4036c4e0>, 'Connection to 123.117.36.226 timed out. (connect timeout=6)'))
+2019-09-04 19:11:01.352857 proxy http://123.117.36.226:9000 deleted
+2019-09-04 19:11:01.352995 3867 proxies left
+2019-09-04 19:11:07.363108 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/CVX.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f4035e748>, 'Connection to 103.123.151.124 timed out. (connect timeout=6)'))
+2019-09-04 19:11:07.363456 proxy http://103.123.151.124:8080 deleted
+2019-09-04 19:11:07.363583 3866 proxies left
+2019-09-04 19:11:13.373716 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/CVX.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f40354eb8>, 'Connection to 217.30.78.52 timed out. (connect timeout=6)'))
+2019-09-04 19:11:13.374012 proxy http://217.30.78.52:53281 deleted
+2019-09-04 19:11:13.374142 3865 proxies left
+2019-09-04 19:11:19.384380 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/CVX.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f404ee908>, 'Connection to 82.100.63.181 timed out. (connect timeout=6)'))
+2019-09-04 19:11:19.384696 proxy http://82.100.63.181:38442 deleted
+2019-09-04 19:11:19.384827 3864 proxies left
+2019-09-04 19:11:25.394866 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/CVX.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f404eeda0>, 'Connection to 5.160.171.45 timed out. (connect timeout=6)'))
+2019-09-04 19:11:25.395113 proxy http://5.160.171.45:8080 deleted
+2019-09-04 19:11:25.395239 3863 proxies left
+2019-09-04 19:11:31.443805 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/CVX.json (Caused by ProxyError('Cannot connect to proxy.', timeout('timed out',)))
+2019-09-04 19:11:31.444041 proxy http://163.172.148.62:8811 deleted
+2019-09-04 19:11:31.444231 3862 proxies left
+2019-09-04 19:11:35.826946 30 results for CVX
+2019-09-04 19:11:42.103325 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/KO.json (Caused by ProxyError('Cannot connect to proxy.', timeout('timed out',)))
+2019-09-04 19:11:42.103572 proxy http://210.245.54.97:8080 deleted
+2019-09-04 19:11:42.103674 3861 proxies left
+2019-09-04 19:11:42.382158 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/KO.json (Caused by ProxyError('Cannot connect to proxy.', NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f404ee358>: Failed to establish a new connection: [Errno 113] No route to host',)))
+2019-09-04 19:11:42.382415 proxy http://103.246.249.47:8080 deleted
+2019-09-04 19:11:42.382545 3860 proxies left
+2019-09-04 19:11:48.393044 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/KO.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f40354f98>, 'Connection to 37.60.35.7 timed out. (connect timeout=6)'))
+2019-09-04 19:11:48.393361 proxy http://37.60.35.7:37392 deleted
+2019-09-04 19:11:48.393489 3859 proxies left
+2019-09-04 19:11:53.670359 30 results for KO
+2019-09-04 19:12:00.912738 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/CL.json (Caused by ProxyError('Cannot connect to proxy.', timeout('timed out',)))
+2019-09-04 19:12:00.913020 proxy http://103.50.154.4:42071 deleted
+2019-09-04 19:12:00.913146 3858 proxies left
+2019-09-04 19:12:13.163377 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/CL.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f4035e710>, 'Connection to 45.64.133.178 timed out. (connect timeout=6)'))
+2019-09-04 19:12:13.163587 proxy http://45.64.133.178:8080 deleted
+2019-09-04 19:12:13.163696 3857 proxies left
+2019-09-04 19:12:17.177274 30 results for CL
+2019-09-04 19:12:20.766561 30 results for ED
+2019-09-04 19:12:26.386011 30 results for GLW
+2019-09-04 19:12:32.755415 30 results for DE
+2019-09-04 19:12:38.099787 30 results for DTE
+2019-09-04 19:12:44.168223 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/D.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f4036cfd0>, 'Connection to 41.222.3.176 timed out. (connect timeout=6)'))
+2019-09-04 19:12:44.168433 proxy http://41.222.3.176:8080 deleted
+2019-09-04 19:12:44.168540 3856 proxies left
+2019-09-04 19:12:47.918335 30 results for D
+2019-09-04 19:12:53.986243 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/DWDP.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f404c6dd8>, 'Connection to 91.135.242.10 timed out. (connect timeout=6)'))
+2019-09-04 19:12:53.986469 proxy http://91.135.242.10:8080 deleted
+2019-09-04 19:12:53.986572 3855 proxies left
+2019-09-04 19:13:02.606543 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/DWDP.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f4035eef0>, 'Connection to 36.255.86.229 timed out. (connect timeout=6)'))
+2019-09-04 19:13:02.606831 proxy http://36.255.86.229:83 deleted
+2019-09-04 19:13:02.606934 3854 proxies left
+2019-09-04 19:13:08.616876 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/DWDP.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f403542b0>, 'Connection to 185.189.199.75 timed out. (connect timeout=6)'))
+2019-09-04 19:13:08.617080 proxy http://185.189.199.75:23500 deleted
+2019-09-04 19:13:08.617182 3853 proxies left
+2019-09-04 19:13:08.784712 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/DWDP.json (Caused by ProxyError('Cannot connect to proxy.', NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f404ee780>: Failed to establish a new connection: [Errno 111] Connection refused',)))
+2019-09-04 19:13:08.784851 proxy http://201.247.175.51:8080 deleted
+2019-09-04 19:13:08.784957 3852 proxies left
+2019-09-04 19:13:09.079840 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/DWDP.json (Caused by ProxyError('Cannot connect to proxy.', OSError('Tunnel connection failed: 403 Forbidden',)))
+2019-09-04 19:13:09.079994 proxy http://167.99.118.177:8080 deleted
+2019-09-04 19:13:09.080096 3851 proxies left
+2019-09-04 19:13:15.089640 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/DWDP.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f404ee470>, 'Connection to 222.189.247.135 timed out. (connect timeout=6)'))
+2019-09-04 19:13:15.089863 proxy http://222.189.247.135:9999 deleted
+2019-09-04 19:13:15.090190 3850 proxies left
+2019-09-04 19:13:21.100096 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/DWDP.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f4036ce80>, 'Connection to 148.77.34.196 timed out. (connect timeout=6)'))
+2019-09-04 19:13:21.100339 proxy http://148.77.34.196:45146 deleted
+2019-09-04 19:13:21.100452 3849 proxies left
+2019-09-04 19:13:27.110405 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/DWDP.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f404c6b70>, 'Connection to 31.209.110.159 timed out. (connect timeout=6)'))
+2019-09-04 19:13:27.110615 proxy http://31.209.110.159:36575 deleted
+2019-09-04 19:13:27.110758 3848 proxies left
+2019-09-04 19:13:33.121039 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/DWDP.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f40354470>, 'Connection to 201.116.230.229 timed out. (connect timeout=6)'))
+2019-09-04 19:13:33.121292 proxy http://201.116.230.229:52202 deleted
+2019-09-04 19:13:33.121419 3847 proxies left
+2019-09-04 19:13:39.131436 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/DWDP.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f40354f98>, 'Connection to 181.211.240.147 timed out. (connect timeout=6)'))
+2019-09-04 19:13:39.131669 proxy http://181.211.240.147:30674 deleted
+2019-09-04 19:13:39.131805 3846 proxies left
+2019-09-04 19:13:45.343289 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/DWDP.json (Caused by ProxyError('Cannot connect to proxy.', timeout('timed out',)))
+2019-09-04 19:13:45.343566 proxy http://61.19.40.50:42630 deleted
+2019-09-04 19:13:45.343704 3845 proxies left
+2019-09-04 19:13:51.643595 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/DWDP.json (Caused by ProxyError('Cannot connect to proxy.', NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f4035ef28>: Failed to establish a new connection: [Errno 111] Connection refused',)))
+2019-09-04 19:13:51.643810 proxy http://1.198.73.182:9999 deleted
+2019-09-04 19:13:51.643916 3844 proxies left
+2019-09-04 19:13:57.653458 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/DWDP.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f40354668>, 'Connection to 103.31.227.16 timed out. (connect timeout=6)'))
+2019-09-04 19:13:57.653676 proxy http://103.31.227.16:8080 deleted
+2019-09-04 19:13:57.653783 3843 proxies left
+2019-09-04 19:14:03.664237 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/DWDP.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f404c6b70>, 'Connection to 163.204.247.32 timed out. (connect timeout=6)'))
+2019-09-04 19:14:03.664447 proxy http://163.204.247.32:9999 deleted
+2019-09-04 19:14:03.664570 3842 proxies left
+2019-09-04 19:14:08.310426 30 results for DWDP
+2019-09-04 19:14:14.801260 30 results for ETN
+2019-09-04 19:14:20.868653 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/XOM.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f4036c470>, 'Connection to 136.228.128.14 timed out. (connect timeout=6)'))
+2019-09-04 19:14:20.868871 proxy http://136.228.128.14:61158 deleted
+2019-09-04 19:14:20.868980 3841 proxies left
+2019-09-04 19:14:40.672030 30 results for XOM
+2019-09-04 19:14:46.742726 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/F.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f4036c748>, 'Connection to 116.204.152.110 timed out. (connect timeout=6)'))
+2019-09-04 19:14:46.742982 proxy http://116.204.152.110:8080 deleted
+2019-09-04 19:14:46.743122 3840 proxies left
+2019-09-04 19:14:46.760679 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/F.json (Caused by ProxyError('Cannot connect to proxy.', NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f404ba6d8>: Failed to establish a new connection: [Errno 111] Connection refused',)))
+2019-09-04 19:14:46.760851 proxy http://164.68.117.89:3128 deleted
+2019-09-04 19:14:46.760974 3839 proxies left
+2019-09-04 19:14:52.787246 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/F.json (Caused by ProxyError('Cannot connect to proxy.', timeout('timed out',)))
+2019-09-04 19:14:52.787511 proxy http://185.132.178.140:1080 deleted
+2019-09-04 19:14:52.787652 3838 proxies left
+2019-09-04 19:14:53.205245 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/F.json (Caused by ProxyError('Cannot connect to proxy.', OSError('Tunnel connection failed: 400 Bad Request',)))
+2019-09-04 19:14:53.205490 proxy http://36.25.243.251:80 deleted
+2019-09-04 19:14:53.205610 3837 proxies left
+2019-09-04 19:14:59.215214 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/F.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f403547b8>, 'Connection to 195.69.135.78 timed out. (connect timeout=6)'))
+2019-09-04 19:14:59.215457 proxy http://195.69.135.78:46704 deleted
+2019-09-04 19:14:59.215588 3836 proxies left
+2019-09-04 19:15:05.225853 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/F.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f40354e80>, 'Connection to 202.152.51.197 timed out. (connect timeout=6)'))
+2019-09-04 19:15:05.226130 proxy http://202.152.51.197:80 deleted
+2019-09-04 19:15:05.226261 3835 proxies left
+2019-09-04 19:15:11.236527 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/F.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f404c6048>, 'Connection to 36.37.70.102 timed out. (connect timeout=6)'))
+2019-09-04 19:15:11.236765 proxy http://36.37.70.102:44933 deleted
+2019-09-04 19:15:11.236897 3834 proxies left
+2019-09-04 19:15:17.244613 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/F.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f40354b70>, 'Connection to 1.197.16.99 timed out. (connect timeout=6)'))
+2019-09-04 19:15:17.244867 proxy http://1.197.16.99:9999 deleted
+2019-09-04 19:15:17.245001 3833 proxies left
+2019-09-04 19:15:23.252606 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/F.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f40354128>, 'Connection to 67.154.191.166 timed out. (connect timeout=6)'))
+2019-09-04 19:15:23.252845 proxy http://67.154.191.166:37112 deleted
+2019-09-04 19:15:23.252969 3832 proxies left
+2019-09-04 19:15:23.294155 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/F.json (Caused by ProxyError('Cannot connect to proxy.', NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f404ee9b0>: Failed to establish a new connection: [Errno 111] Connection refused',)))
+2019-09-04 19:15:23.294334 proxy http://163.172.164.190:3128 deleted
+2019-09-04 19:15:23.294467 3831 proxies left
+2019-09-04 19:15:29.303968 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/F.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f404eeeb8>, 'Connection to 93.190.137.122 timed out. (connect timeout=6)'))
+2019-09-04 19:15:29.304259 proxy http://93.190.137.122:8080 deleted
+2019-09-04 19:15:29.304392 3830 proxies left
+2019-09-04 19:15:39.657454 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/F.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f4036c7f0>, 'Connection to 114.104.135.158 timed out. (connect timeout=6)'))
+2019-09-04 19:15:39.657805 proxy http://114.104.135.158:61234 deleted
+2019-09-04 19:15:39.657933 3829 proxies left
+2019-09-04 19:15:44.147704 30 results for F
+2019-09-04 19:15:50.217061 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/GD.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f4036c4e0>, 'Connection to 190.92.5.158 timed out. (connect timeout=6)'))
+2019-09-04 19:15:50.217336 proxy http://190.92.5.158:53281 deleted
+2019-09-04 19:15:50.217476 3828 proxies left
+2019-09-04 19:15:56.228012 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/GD.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f4035ef60>, 'Connection to 83.239.97.26 timed out. (connect timeout=6)'))
+2019-09-04 19:15:56.228374 proxy http://83.239.97.26:32502 deleted
+2019-09-04 19:15:56.228516 3827 proxies left
+2019-09-04 19:16:02.239076 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/GD.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f404ee780>, 'Connection to 120.83.105.13 timed out. (connect timeout=6)'))
+2019-09-04 19:16:02.239366 proxy http://120.83.105.13:9999 deleted
+2019-09-04 19:16:02.239504 3826 proxies left
+2019-09-04 19:16:02.639043 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/GD.json (Caused by ProxyError('Cannot connect to proxy.', ConnectionResetError(104, 'Connection reset by peer')))
+2019-09-04 19:16:02.639261 proxy http://117.60.8.105:61234 deleted
+2019-09-04 19:16:02.639392 3825 proxies left
+2019-09-04 19:16:07.046475 30 results for GD
+2019-09-04 19:16:13.115509 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/GE.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f40354240>, 'Connection to 202.150.132.98 timed out. (connect timeout=6)'))
+2019-09-04 19:16:13.115779 proxy http://202.150.132.98:63141 deleted
+2019-09-04 19:16:13.115921 3824 proxies left
+2019-09-04 19:16:18.722062 30 results for GE
+2019-09-04 19:16:21.808954 30 results for GT
+2019-09-04 19:16:27.875932 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/HAL.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f404eea58>, 'Connection to 138.68.132.217 timed out. (connect timeout=6)'))
+2019-09-04 19:16:27.876270 proxy http://138.68.132.217:3128 deleted
+2019-09-04 19:16:27.876404 3823 proxies left
+2019-09-04 19:16:38.495685 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/HAL.json (Caused by ProxyError('Cannot connect to proxy.', timeout('timed out',)))
+2019-09-04 19:16:38.495945 proxy http://190.145.200.126:53281 deleted
+2019-09-04 19:16:38.496071 3822 proxies left
+2019-09-04 19:16:44.506328 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/HAL.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f4035e5c0>, 'Connection to 1.197.16.160 timed out. (connect timeout=6)'))
+2019-09-04 19:16:44.507391 proxy http://1.197.16.160:9999 deleted
+2019-09-04 19:16:44.507536 3821 proxies left
+2019-09-04 19:16:50.517710 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/HAL.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f40354630>, 'Connection to 188.40.183.148 timed out. (connect timeout=6)'))
+2019-09-04 19:16:50.517966 proxy http://188.40.183.148:8080 deleted
+2019-09-04 19:16:50.518096 3820 proxies left
+2019-09-04 19:16:53.386923 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/HAL.json (Caused by ProxyError('Cannot connect to proxy.', RemoteDisconnected('Remote end closed connection without response',)))
+2019-09-04 19:16:53.387173 proxy http://171.100.57.134:8080 deleted
+2019-09-04 19:16:53.387299 3819 proxies left
+2019-09-04 19:16:59.397725 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/HAL.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f4036c6a0>, 'Connection to 103.135.47.253 timed out. (connect timeout=6)'))
+2019-09-04 19:16:59.397956 proxy http://103.135.47.253:8080 deleted
+2019-09-04 19:16:59.398083 3818 proxies left
+2019-09-04 19:17:08.484360 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/HAL.json (Caused by ProxyError('Cannot connect to proxy.', timeout('timed out',)))
+2019-09-04 19:17:08.484690 proxy http://62.210.73.38:80 deleted
+2019-09-04 19:17:08.484843 3817 proxies left
+2019-09-04 19:17:11.002869 30 results for HAL
+2019-09-04 19:17:11.293299 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/HSY.json (Caused by ProxyError('Cannot connect to proxy.', NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f4035eba8>: Failed to establish a new connection: [Errno 111] Connection refused',)))
+2019-09-04 19:17:11.293496 proxy http://177.91.33.119:80 deleted
+2019-09-04 19:17:11.293609 3816 proxies left
+2019-09-04 19:17:20.463515 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/HSY.json (Caused by ProxyError('Cannot connect to proxy.', timeout('timed out',)))
+2019-09-04 19:17:20.463769 proxy http://207.176.218.178:1325 deleted
+2019-09-04 19:17:20.463910 3815 proxies left
+2019-09-04 19:17:26.474158 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/HSY.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f4035ee10>, 'Connection to 222.89.32.151 timed out. (connect timeout=6)'))
+2019-09-04 19:17:26.474413 proxy http://222.89.32.151:9999 deleted
+2019-09-04 19:17:26.474550 3814 proxies left
+2019-09-04 19:17:39.961398 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/HSY.json (Caused by ProxyError('Cannot connect to proxy.', timeout('timed out',)))
+2019-09-04 19:17:39.961642 proxy http://103.36.48.105:53281 deleted
+2019-09-04 19:17:39.961789 3813 proxies left
+2019-09-04 19:17:45.971921 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/HSY.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f4035ec88>, 'Connection to 217.61.20.190 timed out. (connect timeout=6)'))
+2019-09-04 19:17:45.972272 proxy http://217.61.20.190:3128 deleted
+2019-09-04 19:17:45.972413 3812 proxies left
+2019-09-04 19:17:51.982576 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/HSY.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f40354208>, 'Connection to 164.68.118.7 timed out. (connect timeout=6)'))
+2019-09-04 19:17:51.982828 proxy http://164.68.118.7:3128 deleted
+2019-09-04 19:17:51.982961 3811 proxies left
+2019-09-04 19:17:57.993108 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/HSY.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f404c6da0>, 'Connection to 1.198.72.245 timed out. (connect timeout=6)'))
+2019-09-04 19:17:57.993389 proxy http://1.198.72.245:9999 deleted
+2019-09-04 19:17:57.993516 3810 proxies left
+2019-09-04 19:18:04.003800 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/HSY.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f4036cd30>, 'Connection to 203.210.84.83 timed out. (connect timeout=6)'))
+2019-09-04 19:18:04.004091 proxy http://203.210.84.83:8080 deleted
+2019-09-04 19:18:04.004257 3809 proxies left
+2019-09-04 19:18:11.523607 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/HSY.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f40354cf8>, 'Connection to 1.34.146.163 timed out. (connect timeout=6)'))
+2019-09-04 19:18:11.523887 proxy http://1.34.146.163:30086 deleted
+2019-09-04 19:18:11.524019 3808 proxies left
+2019-09-04 19:18:17.534402 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/HSY.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f404ee898>, 'Connection to 190.184.144.50 timed out. (connect timeout=6)'))
+2019-09-04 19:18:17.534682 proxy http://190.184.144.50:38843 deleted
+2019-09-04 19:18:17.534817 3807 proxies left
+2019-09-04 19:18:23.545428 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/HSY.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f404ee7b8>, 'Connection to 123.169.121.18 timed out. (connect timeout=6)'))
+2019-09-04 19:18:23.545737 proxy http://123.169.121.18:9999 deleted
+2019-09-04 19:18:23.545878 3806 proxies left
+2019-09-04 19:18:29.556021 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/HSY.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f4035e908>, 'Connection to 69.130.120.228 timed out. (connect timeout=6)'))
+2019-09-04 19:18:29.556352 proxy http://69.130.120.228:46439 deleted
+2019-09-04 19:18:29.556497 3805 proxies left
+2019-09-04 19:18:35.566570 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/HSY.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f4035ee48>, 'Connection to 87.228.62.73 timed out. (connect timeout=6)'))
+2019-09-04 19:18:35.566828 proxy http://87.228.62.73:53281 deleted
+2019-09-04 19:18:35.566959 3804 proxies left
+2019-09-04 19:18:41.577188 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/HSY.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f4036ca58>, 'Connection to 186.46.136.70 timed out. (connect timeout=6)'))
+2019-09-04 19:18:41.577441 proxy http://186.46.136.70:59436 deleted
+2019-09-04 19:18:41.577573 3803 proxies left
+2019-09-04 19:18:44.981454 30 results for HSY
+2019-09-04 19:18:51.050965 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/IBM.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f404ee7b8>, 'Connection to 159.253.110.8 timed out. (connect timeout=6)'))
+2019-09-04 19:18:51.051233 proxy http://159.253.110.8:59695 deleted
+2019-09-04 19:18:51.051360 3802 proxies left
+2019-09-04 19:18:57.061378 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/IBM.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f404ee9e8>, 'Connection to 185.252.144.77 timed out. (connect timeout=6)'))
+2019-09-04 19:18:57.061625 proxy http://185.252.144.77:80 deleted
+2019-09-04 19:18:57.061758 3801 proxies left
+2019-09-04 19:19:02.324064 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/IBM.json (Caused by ProxyError('Cannot connect to proxy.', ConnectionResetError(104, 'Connection reset by peer')))
+2019-09-04 19:19:02.324395 proxy http://190.184.144.2:56324 deleted
+2019-09-04 19:19:02.324517 3800 proxies left
+2019-09-04 19:19:03.988778 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/IBM.json (Caused by ProxyError('Cannot connect to proxy.', OSError('Tunnel connection failed: 400 Bad Request',)))
+2019-09-04 19:19:03.989042 proxy http://140.206.203.56:9999 deleted
+2019-09-04 19:19:03.989165 3799 proxies left
+2019-09-04 19:19:09.372600 30 results for IBM
+2019-09-04 19:19:15.443677 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/IP.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f4036cd68>, 'Connection to 45.121.29.254 timed out. (connect timeout=6)'))
+2019-09-04 19:19:15.443973 proxy http://45.121.29.254:54858 deleted
+2019-09-04 19:19:15.444100 3798 proxies left
+2019-09-04 19:19:19.347062 30 results for IP
+2019-09-04 19:19:23.018582 30 results for K
+2019-09-04 19:19:26.862654 30 results for KMB
+2019-09-04 19:19:31.590169 30 results for KR
+2019-09-04 19:19:36.036727 30 results for SPGI
+2019-09-04 19:19:39.774908 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/CVS.json (Caused by ProxyError('Cannot connect to proxy.', RemoteDisconnected('Remote end closed connection without response',)))
+2019-09-04 19:19:39.775149 proxy http://168.205.28.22:8181 deleted
+2019-09-04 19:19:39.775276 3797 proxies left
+2019-09-04 19:19:45.785537 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/CVS.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f40354198>, 'Connection to 41.60.216.65 timed out. (connect timeout=6)'))
+2019-09-04 19:19:45.785790 proxy http://41.60.216.65:8080 deleted
+2019-09-04 19:19:45.785924 3796 proxies left
+2019-09-04 19:19:52.063810 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/CVS.json (Caused by ProxyError('Cannot connect to proxy.', timeout('timed out',)))
+2019-09-04 19:19:52.064082 proxy http://43.255.228.150:3128 deleted
+2019-09-04 19:19:52.064244 3795 proxies left
+2019-09-04 19:19:58.074552 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/CVS.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f40354f98>, 'Connection to 45.248.145.138 timed out. (connect timeout=6)'))
+2019-09-04 19:19:58.074840 proxy http://45.248.145.138:8080 deleted
+2019-09-04 19:19:58.074966 3794 proxies left
+2019-09-04 19:19:58.197680 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/CVS.json (Caused by ProxyError('Cannot connect to proxy.', OSError('Tunnel connection failed: 400 Bad Request',)))
+2019-09-04 19:19:58.197842 proxy http://128.140.225.41:80 deleted
+2019-09-04 19:19:58.197967 3793 proxies left
+2019-09-04 19:19:58.248291 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/CVS.json (Caused by ProxyError('Cannot connect to proxy.', NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f4035eeb8>: Failed to establish a new connection: [Errno 101] Network is unreachable',)))
+2019-09-04 19:19:58.248484 proxy http://178.213.0.207:35140 deleted
+2019-09-04 19:19:58.248613 3792 proxies left
+2019-09-04 19:20:04.257982 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/CVS.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f4035e588>, 'Connection to 163.204.242.215 timed out. (connect timeout=6)'))
+2019-09-04 19:20:04.258267 proxy http://163.204.242.215:9999 deleted
+2019-09-04 19:20:04.258399 3791 proxies left
+2019-09-04 19:20:10.268609 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/CVS.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f4036cb00>, 'Connection to 43.240.103.228 timed out. (connect timeout=6)'))
+2019-09-04 19:20:10.268930 proxy http://43.240.103.228:8888 deleted
+2019-09-04 19:20:10.269062 3790 proxies left
+2019-09-04 19:20:16.280053 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/CVS.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f4036cc50>, 'Connection to 36.66.246.133 timed out. (connect timeout=6)'))
+2019-09-04 19:20:16.280386 proxy http://36.66.246.133:8080 deleted
+2019-09-04 19:20:16.280544 3789 proxies left
+2019-09-04 19:20:18.020433 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/CVS.json (Caused by ProxyError('Cannot connect to proxy.', NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f4035ee48>: Failed to establish a new connection: [Errno 111] Connection refused',)))
+2019-09-04 19:20:18.020736 proxy http://164.68.117.90:3128 deleted
+2019-09-04 19:20:18.020865 3788 proxies left
+2019-09-04 19:20:28.126016 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/CVS.json (Caused by ProxyError('Cannot connect to proxy.', timeout('timed out',)))
+2019-09-04 19:20:28.126349 proxy http://110.86.136.100:9999 deleted
+2019-09-04 19:20:28.126482 3787 proxies left
+2019-09-04 19:20:34.136998 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/CVS.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f4035ec50>, 'Connection to 182.253.101.170 timed out. (connect timeout=6)'))
+2019-09-04 19:20:34.137241 proxy http://182.253.101.170:80 deleted
+2019-09-04 19:20:34.137374 3786 proxies left
+2019-09-04 19:20:40.147374 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/CVS.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f404ee780>, 'Connection to 123.163.122.168 timed out. (connect timeout=6)'))
+2019-09-04 19:20:40.147644 proxy http://123.163.122.168:9999 deleted
+2019-09-04 19:20:40.147773 3785 proxies left
+2019-09-04 19:20:46.158507 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/CVS.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f404eedd8>, 'Connection to 123.59.199.100 timed out. (connect timeout=6)'))
+2019-09-04 19:20:46.158761 proxy http://123.59.199.100:80 deleted
+2019-09-04 19:20:46.158887 3784 proxies left
+2019-09-04 19:20:52.168815 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/CVS.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f40354fd0>, 'Connection to 122.193.244.113 timed out. (connect timeout=6)'))
+2019-09-04 19:20:52.169112 proxy http://122.193.244.113:9999 deleted
+2019-09-04 19:20:52.169245 3783 proxies left
+2019-09-04 19:21:05.673403 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/CVS.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f40354a58>, 'Connection to 1.197.11.124 timed out. (connect timeout=6)'))
+2019-09-04 19:21:05.673645 proxy http://1.197.11.124:9999 deleted
+2019-09-04 19:21:05.673787 3782 proxies left
+2019-09-04 19:21:12.970829 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/CVS.json (Caused by ProxyError('Cannot connect to proxy.', timeout('timed out',)))
+2019-09-04 19:21:12.971108 proxy http://61.7.147.59:8080 deleted
+2019-09-04 19:21:12.971241 3781 proxies left
+2019-09-04 19:21:18.976828 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/CVS.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f404bac88>, 'Connection to 164.68.117.74 timed out. (connect timeout=6)'))
+2019-09-04 19:21:18.977072 proxy http://164.68.117.74:3128 deleted
+2019-09-04 19:21:18.977199 3780 proxies left
+2019-09-04 19:21:24.987594 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/CVS.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f404eeba8>, 'Connection to 220.180.50.14 timed out. (connect timeout=6)'))
+2019-09-04 19:21:24.987855 proxy http://220.180.50.14:53281 deleted
+2019-09-04 19:21:24.988013 3779 proxies left
+2019-09-04 19:21:25.702440 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/CVS.json (Caused by ProxyError('Cannot connect to proxy.', OSError('Tunnel connection failed: 400 Bad Request',)))
+2019-09-04 19:21:25.702679 proxy http://103.242.13.69:8082 deleted
+2019-09-04 19:21:25.702834 3778 proxies left
+2019-09-04 19:21:34.128069 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/CVS.json (Caused by ProxyError('Cannot connect to proxy.', ConnectionResetError(104, 'Connection reset by peer')))
+2019-09-04 19:21:34.128373 proxy http://36.67.212.187:3128 deleted
+2019-09-04 19:21:34.128530 3777 proxies left
+2019-09-04 19:21:37.482379 30 results for CVS
+2019-09-04 19:21:44.395162 30 results for MRK
+2019-09-04 19:21:50.463225 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/ETR.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f404c69e8>, 'Connection to 217.219.93.111 timed out. (connect timeout=6)'))
+2019-09-04 19:21:50.463583 proxy http://217.219.93.111:8080 deleted
+2019-09-04 19:21:50.463696 3776 proxies left
+2019-09-04 19:21:56.474176 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/ETR.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f4035eb00>, 'Connection to 164.68.118.9 timed out. (connect timeout=6)'))
+2019-09-04 19:21:56.474383 proxy http://164.68.118.9:3128 deleted
+2019-09-04 19:21:56.474533 3775 proxies left
+2019-09-04 19:22:00.296403 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/ETR.json (Caused by ProxyError('Cannot connect to proxy.', OSError('Tunnel connection failed: 400 Bad Request',)))
+2019-09-04 19:22:00.296698 proxy http://182.19.41.145:80 deleted
+2019-09-04 19:22:00.296830 3774 proxies left
+2019-09-04 19:22:00.489324 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/ETR.json (Caused by ProxyError('Cannot connect to proxy.', NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f4036c588>: Failed to establish a new connection: [Errno 111] Connection refused',)))
+2019-09-04 19:22:00.489568 proxy http://180.250.148.60:3128 deleted
+2019-09-04 19:22:00.489703 3773 proxies left
+2019-09-04 19:22:02.888469 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/ETR.json (Caused by ProxyError('Cannot connect to proxy.', ConnectionResetError(104, 'Connection reset by peer')))
+2019-09-04 19:22:02.888745 proxy http://139.99.222.192:8080 deleted
+2019-09-04 19:22:02.888881 3772 proxies left
+2019-09-04 19:22:11.270604 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/ETR.json (Caused by ProxyError('Cannot connect to proxy.', timeout('select timed out',)))
+2019-09-04 19:22:11.270867 proxy http://201.184.93.218:30310 deleted
+2019-09-04 19:22:11.271000 3771 proxies left
+2019-09-04 19:22:21.149763 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/ETR.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f4036c630>, 'Connection to 196.195.215.10 timed out. (connect timeout=6)'))
+2019-09-04 19:22:21.150013 proxy http://196.195.215.10:8080 deleted
+2019-09-04 19:22:21.150160 3770 proxies left
+2019-09-04 19:22:25.252808 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/ETR.json (Caused by ProxyError('Cannot connect to proxy.', OSError('Tunnel connection failed: 502 Tunnel Connection Failed',)))
+2019-09-04 19:22:25.253071 proxy http://221.7.255.168:80 deleted
+2019-09-04 19:22:25.253207 3769 proxies left
+2019-09-04 19:22:31.263689 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/ETR.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f404eefd0>, 'Connection to 89.29.100.212 timed out. (connect timeout=6)'))
+2019-09-04 19:22:31.263964 proxy http://89.29.100.212:3128 deleted
+2019-09-04 19:22:31.264154 3768 proxies left
+2019-09-04 19:22:37.274294 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/ETR.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f40354d30>, 'Connection to 58.219.124.185 timed out. (connect timeout=6)'))
+2019-09-04 19:22:37.274578 proxy http://58.219.124.185:808 deleted
+2019-09-04 19:22:37.274709 3767 proxies left
+2019-09-04 19:22:43.285634 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/ETR.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f404ee470>, 'Connection to 223.30.190.66 timed out. (connect timeout=6)'))
+2019-09-04 19:22:43.285904 proxy http://223.30.190.66:8080 deleted
+2019-09-04 19:22:43.286035 3766 proxies left
+2019-09-04 19:22:49.296307 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/ETR.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f40354320>, 'Connection to 1.197.16.67 timed out. (connect timeout=6)'))
+2019-09-04 19:22:49.296665 proxy http://1.197.16.67:9999 deleted
+2019-09-04 19:22:49.296805 3765 proxies left
+2019-09-04 19:22:55.306795 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/ETR.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f4036cd68>, 'Connection to 45.71.202.164 timed out. (connect timeout=6)'))
+2019-09-04 19:22:55.307063 proxy http://45.71.202.164:9991 deleted
+2019-09-04 19:22:55.307194 3764 proxies left
+2019-09-04 19:23:01.317500 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/ETR.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f404c69b0>, 'Connection to 175.106.17.62 timed out. (connect timeout=6)'))
+2019-09-04 19:23:01.317780 proxy http://175.106.17.62:57503 deleted
+2019-09-04 19:23:01.317903 3763 proxies left
+2019-09-04 19:23:04.722363 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/ETR.json (Caused by ProxyError('Cannot connect to proxy.', NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f4035e668>: Failed to establish a new connection: [Errno 111] Connection refused',)))
+2019-09-04 19:23:04.722615 proxy http://163.204.246.130:9999 deleted
+2019-09-04 19:23:04.722749 3762 proxies left
+2019-09-04 19:23:04.941012 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/ETR.json (Caused by ProxyError('Cannot connect to proxy.', NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f4035e0b8>: Failed to establish a new connection: [Errno 111] Connection refused',)))
+2019-09-04 19:23:04.941176 proxy http://119.41.198.209:53281 deleted
+2019-09-04 19:23:04.941301 3761 proxies left
+2019-09-04 19:23:10.950855 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/ETR.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f404c6ac8>, 'Connection to 184.82.47.16 timed out. (connect timeout=6)'))
+2019-09-04 19:23:10.951094 proxy http://184.82.47.16:8080 deleted
+2019-09-04 19:23:10.951217 3760 proxies left
+2019-09-04 19:23:11.049608 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/ETR.json (Caused by ProxyError('Cannot connect to proxy.', NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f4035ee48>: Failed to establish a new connection: [Errno 111] Connection refused',)))
+2019-09-04 19:23:11.049786 proxy http://198.98.55.168:8080 deleted
+2019-09-04 19:23:11.049923 3759 proxies left
+2019-09-04 19:23:17.059250 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/ETR.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f4035e8d0>, 'Connection to 163.204.246.19 timed out. (connect timeout=6)'))
+2019-09-04 19:23:17.059524 proxy http://163.204.246.19:9999 deleted
+2019-09-04 19:23:17.059660 3758 proxies left
+2019-09-04 19:23:24.153835 30 results for ETR
+2019-09-04 19:23:30.224657 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/MMM.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f0f40354d68>, 'Connection to 49.49.11.8 timed out. (connect timeout=6)'))
+2019-09-04 19:23:30.224924 proxy http://49.49.11.8:8080 deleted
+2019-09-04 19:23:30.225061 3757 proxies left
+2019-09-04 19:24:16.052230 start crawling stocktwits
+2019-09-04 19:24:25.166669 30 results for ABT
+2019-09-04 19:24:34.240892 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/HON.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a268da0>, 'Connection to 103.60.137.2 timed out. (connect timeout=9)'))
+2019-09-04 19:24:34.241062 proxy http://103.60.137.2:22217 deleted
+2019-09-04 19:24:34.241150 3879 proxies left
+2019-09-04 19:24:42.257740 30 results for HON
+2019-09-04 19:24:51.330381 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/AEP.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a114978>, 'Connection to 181.129.153.141 timed out. (connect timeout=9)'))
+2019-09-04 19:24:51.330604 proxy http://181.129.153.141:9991 deleted
+2019-09-04 19:24:51.330695 3878 proxies left
+2019-09-04 19:25:04.206193 30 results for AEP
+2019-09-04 19:25:06.568697 30 results for BA
+2019-09-04 19:25:14.478139 30 results for BMY
+2019-09-04 19:25:18.521141 30 results for CPB
+2019-09-04 19:25:25.628971 30 results for CAT
+2019-09-04 19:25:37.241042 30 results for CVX
+2019-09-04 19:25:40.964843 30 results for KO
+2019-09-04 19:25:53.282510 30 results for CL
+2019-09-04 19:25:58.516596 30 results for ED
+2019-09-04 19:26:02.541499 30 results for GLW
+2019-09-04 19:26:06.234737 30 results for DE
+2019-09-04 19:26:15.305482 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/DTE.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a119940>, 'Connection to 196.2.15.96 timed out. (connect timeout=9)'))
+2019-09-04 19:26:15.305747 proxy http://196.2.15.96:49509 deleted
+2019-09-04 19:26:15.305883 3877 proxies left
+2019-09-04 19:26:15.474377 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/DTE.json (Caused by ProxyError('Cannot connect to proxy.', NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a114e10>: Failed to establish a new connection: [Errno 111] Connection refused',)))
+2019-09-04 19:26:15.474548 proxy http://144.202.81.106:8080 deleted
+2019-09-04 19:26:15.474690 3876 proxies left
+2019-09-04 19:26:31.467846 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/DTE.json (Caused by ProxyError('Cannot connect to proxy.', RemoteDisconnected('Remote end closed connection without response',)))
+2019-09-04 19:26:31.468213 proxy http://134.119.188.156:1080 deleted
+2019-09-04 19:26:31.468343 3875 proxies left
+2019-09-04 19:26:31.702502 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/DTE.json (Caused by ProxyError('Cannot connect to proxy.', NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a119940>: Failed to establish a new connection: [Errno 111] Connection refused',)))
+2019-09-04 19:26:31.702672 proxy http://114.239.251.119:9999 deleted
+2019-09-04 19:26:31.702804 3874 proxies left
+2019-09-04 19:26:40.715939 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/DTE.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a29cb00>, 'Connection to 120.50.13.38 timed out. (connect timeout=9)'))
+2019-09-04 19:26:40.716340 proxy http://120.50.13.38:46634 deleted
+2019-09-04 19:26:40.716470 3873 proxies left
+2019-09-04 19:26:42.499879 30 results for DTE
+2019-09-04 19:26:49.492743 30 results for D
+2019-09-04 19:26:52.652720 30 results for DWDP
+2019-09-04 19:26:56.031676 30 results for ETN
+2019-09-04 19:27:04.514253 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/XOM.json (Caused by ProxyError('Cannot connect to proxy.', ConnectionResetError(104, 'Connection reset by peer')))
+2019-09-04 19:27:04.516276 proxy http://91.135.242.10:8080 deleted
+2019-09-04 19:27:04.516428 3872 proxies left
+2019-09-04 19:27:13.530277 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/XOM.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a29cc88>, 'Connection to 163.204.246.174 timed out. (connect timeout=9)'))
+2019-09-04 19:27:13.530535 proxy http://163.204.246.174:9999 deleted
+2019-09-04 19:27:13.530669 3871 proxies left
+2019-09-04 19:27:22.543051 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/XOM.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a114160>, 'Connection to 1.2.169.49 timed out. (connect timeout=9)'))
+2019-09-04 19:27:22.543319 proxy http://1.2.169.49:50129 deleted
+2019-09-04 19:27:22.543446 3870 proxies left
+2019-09-04 19:27:33.583249 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/XOM.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a114dd8>, 'Connection to 193.68.26.185 timed out. (connect timeout=9)'))
+2019-09-04 19:27:33.583486 proxy http://193.68.26.185:44682 deleted
+2019-09-04 19:27:33.583655 3869 proxies left
+2019-09-04 19:27:48.386654 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/XOM.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a114c18>, 'Connection to 106.14.225.145 timed out. (connect timeout=9)'))
+2019-09-04 19:27:48.386898 proxy http://106.14.225.145:3128 deleted
+2019-09-04 19:27:48.387024 3868 proxies left
+2019-09-04 19:27:51.338588 30 results for XOM
+2019-09-04 19:27:56.526951 30 results for F
+2019-09-04 19:28:01.115930 30 results for GD
+2019-09-04 19:28:10.499935 30 results for GE
+2019-09-04 19:28:12.622041 30 results for GT
+2019-09-04 19:28:15.566198 30 results for HAL
+2019-09-04 19:28:28.705762 30 results for HSY
+2019-09-04 19:28:34.305036 30 results for IBM
+2019-09-04 19:28:43.376015 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/IP.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a10b080>, 'Connection to 70.65.233.174 timed out. (connect timeout=9)'))
+2019-09-04 19:28:43.376348 proxy http://70.65.233.174:8080 deleted
+2019-09-04 19:28:43.376504 3867 proxies left
+2019-09-04 19:28:56.521315 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/IP.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a29cd68>, 'Connection to 89.108.137.230 timed out. (connect timeout=9)'))
+2019-09-04 19:28:56.521537 proxy http://89.108.137.230:80 deleted
+2019-09-04 19:28:56.521644 3866 proxies left
+2019-09-04 19:29:05.534776 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/IP.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a114e10>, 'Connection to 112.85.151.163 timed out. (connect timeout=9)'))
+2019-09-04 19:29:05.534975 proxy http://112.85.151.163:9999 deleted
+2019-09-04 19:29:05.535098 3865 proxies left
+2019-09-04 19:29:14.548198 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/IP.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a1199b0>, 'Connection to 1.199.31.60 timed out. (connect timeout=9)'))
+2019-09-04 19:29:14.548386 proxy http://1.199.31.60:9999 deleted
+2019-09-04 19:29:14.548492 3864 proxies left
+2019-09-04 19:29:15.813276 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/IP.json (Caused by ProxyError('Cannot connect to proxy.', NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a119390>: Failed to establish a new connection: [Errno 111] Connection refused',)))
+2019-09-04 19:29:15.813499 proxy http://171.13.103.100:9999 deleted
+2019-09-04 19:29:15.813613 3863 proxies left
+2019-09-04 19:29:24.827643 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/IP.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a119d30>, 'Connection to 36.72.78.238 timed out. (connect timeout=9)'))
+2019-09-04 19:29:24.827864 proxy http://36.72.78.238:8080 deleted
+2019-09-04 19:29:24.827975 3862 proxies left
+2019-09-04 19:29:25.165945 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/IP.json (Caused by ProxyError('Cannot connect to proxy.', NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a119c50>: Failed to establish a new connection: [Errno 111] Connection refused',)))
+2019-09-04 19:29:25.166160 proxy http://163.204.241.179:9999 deleted
+2019-09-04 19:29:25.166279 3861 proxies left
+2019-09-04 19:29:34.181091 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/IP.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a29cb00>, 'Connection to 213.149.152.151 timed out. (connect timeout=9)'))
+2019-09-04 19:29:34.181295 proxy http://213.149.152.151:58221 deleted
+2019-09-04 19:29:34.181419 3860 proxies left
+2019-09-04 19:29:46.410518 ('Connection aborted.', BadStatusLine("<H1>The online users' count exceeds the license's permission. You need to purchase or upgrade your license.</H1>",))
+2019-09-04 19:29:46.410718 proxy http://65.111.166.141:8081 deleted
+2019-09-04 19:29:46.410870 3859 proxies left
+2019-09-04 19:29:59.157884 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/IP.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a1140b8>, 'Connection to 120.50.19.84 timed out. (connect timeout=9)'))
+2019-09-04 19:29:59.158115 proxy http://120.50.19.84:8080 deleted
+2019-09-04 19:29:59.158237 3858 proxies left
+2019-09-04 19:30:08.171753 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/IP.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a10ba20>, 'Connection to 163.204.243.236 timed out. (connect timeout=9)'))
+2019-09-04 19:30:08.172070 proxy http://163.204.243.236:9999 deleted
+2019-09-04 19:30:08.172258 3857 proxies left
+2019-09-04 19:30:17.468502 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/IP.json (Caused by ProxyError('Cannot connect to proxy.', timeout('timed out',)))
+2019-09-04 19:30:17.468840 proxy http://140.227.213.165:3128 deleted
+2019-09-04 19:30:17.468992 3856 proxies left
+2019-09-04 19:30:26.482369 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/IP.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a10b2b0>, 'Connection to 185.86.15.222 timed out. (connect timeout=9)'))
+2019-09-04 19:30:26.482688 proxy http://185.86.15.222:3128 deleted
+2019-09-04 19:30:26.482815 3855 proxies left
+2019-09-04 19:30:43.094170 30 results for IP
+2019-09-04 19:30:43.519697 30 results for K
+2019-09-04 19:30:43.928864 30 results for KMB
+2019-09-04 19:30:44.331909 30 results for KR
+2019-09-04 19:30:44.939311 30 results for SPGI
+2019-09-04 19:30:45.320707 30 results for CVS
+2019-09-04 19:30:45.782870 30 results for MRK
+2019-09-04 19:30:46.198980 30 results for ETR
+2019-09-04 19:30:46.623232 30 results for MMM
+2019-09-04 19:30:47.014672 30 results for MSI
+2019-09-04 19:30:47.563475 30 results for NSC
+2019-09-04 19:30:48.150130 30 results for XEL
+2019-09-04 19:30:48.567924 30 results for FE
+2019-09-04 19:30:48.971273 30 results for PPG
+2019-09-04 19:30:49.378115 30 results for PCG
+2019-09-04 19:30:49.799035 30 results for SRE
+2019-09-04 19:30:50.190404 30 results for PEP
+2019-09-04 19:30:50.603307 30 results for PFE
+2019-09-04 19:30:51.126847 30 results for EXC
+2019-09-04 19:30:51.561535 30 results for MO
+2019-09-04 19:30:51.941491 30 results for COP
+2019-09-04 19:30:52.311343 30 results for PG
+2019-09-04 19:30:52.706890 30 results for PEG
+2019-09-04 19:30:53.086919 30 results for RTN
+2019-09-04 19:30:53.494324 30 results for ROK
+2019-09-04 19:30:53.917945 30 results for EIX
+2019-09-04 19:30:54.306386 30 results for SO
+2019-09-04 19:30:54.712535 30 results for TXN
+2019-09-04 19:30:55.117761 30 results for UNP
+2019-09-04 19:30:55.562147 30 results for UTX
+2019-09-04 19:30:55.955544 30 results for WY
+2019-09-04 19:30:56.355372 30 results for WHR
+2019-09-04 19:30:56.746374 30 results for XRX
+2019-09-04 19:30:57.229450 30 results for SHW
+2019-09-04 19:30:57.630888 30 results for CMI
+2019-09-04 19:30:58.025096 30 results for EMR
+2019-09-04 19:30:58.417019 30 results for SLB
+2019-09-04 19:30:58.904838 30 results for CSX
+2019-09-04 19:30:59.390098 30 results for CLX
+2019-09-04 19:30:59.780637 30 results for GIS
+2019-09-04 19:31:00.269455 30 results for NEM
+2019-09-04 19:31:00.664688 30 results for MCD
+2019-09-04 19:31:01.057166 30 results for LLY
+2019-09-04 19:31:01.546456 30 results for BAX
+2019-09-04 19:31:01.944647 30 results for BDX
+2019-09-04 19:31:02.327758 30 results for JNJ
+2019-09-04 19:31:02.739089 30 results for GPC
+2019-09-04 19:31:03.142780 30 results for HPQ
+2019-09-04 19:31:03.621990 30 results for WMB
+2019-09-04 19:31:04.030025 30 results for BCR
+2019-09-04 19:31:04.406164 30 results for IFF
+2019-09-04 19:31:04.892586 30 results for AET
+2019-09-04 19:31:05.251331 30 results for AXP
+2019-09-04 19:31:05.639073 30 results for CI
+2019-09-04 19:31:06.052584 30 results for JPM
+2019-09-04 19:31:06.459079 30 results for TAP
+2019-09-04 19:31:06.831342 30 results for DIS
+2019-09-04 19:31:07.233208 30 results for DUK
+2019-09-04 19:31:07.630734 30 results for NEE
+2019-09-04 19:31:08.119814 30 results for LNC
+2019-09-04 19:31:08.503909 30 results for BAC
+2019-09-04 19:31:08.878061 30 results for WFC
+2019-09-04 19:31:09.275757 30 results for TGT
+2019-09-04 19:31:09.695139 30 results for INTC
+2019-09-04 19:31:10.083299 30 results for TXT
+2019-09-04 19:31:10.461781 30 results for VFC
+2019-09-04 19:31:10.874291 30 results for WBA
+2019-09-04 19:31:11.258594 30 results for AIG
+2019-09-04 19:31:11.659237 30 results for FLR
+2019-09-04 19:31:12.042224 30 results for FDX
+2019-09-04 19:31:12.436644 30 results for PCAR
+2019-09-04 19:31:12.820761 30 results for ADP
+2019-09-04 19:31:13.302553 30 results for GWW
+2019-09-04 19:31:13.691680 30 results for MAS
+2019-09-04 19:31:14.088985 30 results for ADM
+2019-09-04 19:31:14.486831 30 results for MAT
+2019-09-04 19:31:14.927934 30 results for WMT
+2019-09-04 19:31:15.452041 30 results for SNA
+2019-09-04 19:31:15.867563 30 results for SWK
+2019-09-04 19:31:16.266065 30 results for BF.B
+2019-09-04 19:31:16.634153 30 results for AAPL
+2019-09-04 19:31:17.046282 30 results for OXY
+2019-09-04 19:31:17.437150 30 results for CAG
+2019-09-04 19:31:17.921062 30 results for LB
+2019-09-04 19:31:18.309344 30 results for VZ
+2019-09-04 19:31:18.694521 30 results for T
+2019-09-04 19:31:19.119096 30 results for LOW
+2019-09-04 19:31:19.599583 30 results for PHM
+2019-09-04 19:31:20.048179 30 results for HES
+2019-09-04 19:31:20.446667 30 results for LMT
+2019-09-04 19:31:20.856202 30 results for HAS
+2019-09-04 19:31:21.283286 30 results for BLL
+2019-09-04 19:31:21.668867 30 results for APD
+2019-09-04 19:31:22.059167 30 results for NUE
+2019-09-04 19:31:22.547465 30 results for PKI
+2019-09-04 19:31:22.950150 30 results for NOC
+2019-09-04 19:31:23.358096 30 results for CNP
+2019-09-04 19:31:23.741876 30 results for TJX
+2019-09-04 19:31:24.131882 30 results for DOV
+2019-09-04 19:31:24.514994 30 results for PH
+2019-09-04 19:31:24.980875 30 results for ITW
+2019-09-04 19:31:25.489421 30 results for JCI
+2019-09-04 19:31:25.909962 30 results for GPS
+2019-09-04 19:31:26.338431 30 results for JWN
+2019-09-04 19:31:26.738786 30 results for MDT
+2019-09-04 19:31:27.130916 30 results for HRB
+2019-09-04 19:31:27.514388 30 results for SYY
+2019-09-04 19:31:28.076807 30 results for CA
+2019-09-04 19:31:28.531120 30 results for MMC
+2019-09-04 19:31:28.968417 30 results for AVY
+2019-09-04 19:31:29.354500 30 results for HD
+2019-09-04 19:31:29.752072 30 results for PNC
+2019-09-04 19:31:30.134838 30 results for C
+2019-09-04 19:31:30.535950 30 results for STI
+2019-09-04 19:31:31.027965 30 results for NKE
+2019-09-04 19:31:31.421539 30 results for ECL
+2019-09-04 19:31:31.899971 30 results for NWL
+2019-09-04 19:31:32.291789 30 results for TMK
+2019-09-04 19:31:32.693163 30 results for ORCL
+2019-09-04 19:31:33.198188 30 results for ADSK
+2019-09-04 19:31:33.581778 30 results for MRO
+2019-09-04 19:31:34.069758 30 results for AEE
+2019-09-04 19:31:34.598652 30 results for AMGN
+2019-09-04 19:31:35.001780 30 results for PX
+2019-09-04 19:31:35.401801 30 results for IPG
+2019-09-04 19:31:35.883556 30 results for COST
+2019-09-04 19:31:36.267982 30 results for CSCO
+2019-09-04 19:31:36.657674 30 results for EMN
+2019-09-04 19:31:37.064515 30 results for KEY
+2019-09-04 19:31:37.455852 30 results for UNM
+2019-09-04 19:31:37.841038 30 results for MSFT
+2019-09-04 19:31:38.232812 30 results for LUV
+2019-09-04 19:31:38.601784 30 results for UNH
+2019-09-04 19:31:38.983801 30 results for CBS
+2019-09-04 19:31:39.379455 30 results for MU
+2019-09-04 19:31:39.763844 30 results for BSX
+2019-09-04 19:31:40.145959 30 results for AMAT
+2019-09-04 19:31:40.529264 30 results for BK
+2019-09-04 19:31:40.929247 30 results for L
+2019-09-04 19:31:41.541274 30 results for DRI
+2019-09-04 19:31:42.000181 30 results for ALL
+2019-09-04 19:31:42.438852 30 results for FCX
+2019-09-04 19:31:42.926414 30 results for MS
+2019-09-04 19:31:43.312955 30 results for M
+2019-09-04 19:31:43.799588 30 results for PPL
+2019-09-04 19:31:44.186696 30 results for CMA
+2019-09-04 19:31:44.574931 30 results for HUM
+2019-09-04 19:31:44.985503 30 results for HIG
+2019-09-04 19:31:45.413209 30 results for FITB
+2019-09-04 19:31:45.814455 30 results for AON
+2019-09-04 19:31:46.206613 30 results for TMO
+2019-09-04 19:31:46.597623 30 results for AZO
+2019-09-04 19:31:56.072452 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/ADBE.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a119940>, 'Connection to 59.100.6.49 timed out. (connect timeout=9)'))
+2019-09-04 19:31:56.072698 proxy http://59.100.6.49:8080 deleted
+2019-09-04 19:31:56.072811 3854 proxies left
+2019-09-04 19:32:01.744862 30 results for ADBE
+2019-09-04 19:32:10.824398 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/CAH.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a29c3c8>, 'Connection to 101.51.105.147 timed out. (connect timeout=9)'))
+2019-09-04 19:32:10.824628 proxy http://101.51.105.147:8080 deleted
+2019-09-04 19:32:10.824717 3853 proxies left
+2019-09-04 19:32:13.134440 30 results for CAH
+2019-09-04 19:32:15.598892 30 results for SCHW
+2019-09-04 19:32:18.357563 30 results for EFX
+2019-09-04 19:32:21.103480 30 results for APA
+2019-09-04 19:32:23.733577 30 results for APC
+2019-09-04 19:32:26.447535 30 results for PGR
+2019-09-04 19:32:29.271631 30 results for HBAN
+2019-09-04 19:32:32.230180 30 results for STT
+2019-09-04 19:32:34.706175 30 results for KLAC
+2019-09-04 19:32:38.266586 30 results for YUM
+2019-09-04 19:32:40.973195 30 results for BBT
+2019-09-04 19:32:43.568077 30 results for CINF
+2019-09-04 19:32:46.035139 30 results for OMC
+2019-09-04 19:32:48.238084 30 results for NTRS
+2019-09-04 19:32:50.493892 30 results for SEE
+2019-09-04 19:32:52.803949 30 results for BEN
+2019-09-04 19:32:55.219042 30 results for MAR
+2019-09-04 19:32:58.806400 30 results for NAVI
+2019-09-04 19:33:01.425273 30 results for COF
+2019-09-04 19:33:04.703509 30 results for WM
+2019-09-04 19:33:07.114994 30 results for KSS
+2019-09-04 19:33:09.418151 30 results for RF
+2019-09-04 19:33:12.288181 30 results for PAYX
+2019-09-04 19:33:14.831304 30 results for AES
+2019-09-04 19:33:17.700886 30 results for SPLS
+2019-09-04 19:33:20.327915 30 results for DHR
+2019-09-04 19:33:23.117612 30 results for CCL
+2019-09-04 19:33:26.087347 30 results for USB
+2019-09-04 19:33:28.805984 30 results for TWX
+2019-09-04 19:33:31.723025 30 results for MCK
+2019-09-04 19:33:35.323362 30 results for CTL
+2019-09-04 19:33:37.921976 30 results for AGN
+2019-09-04 19:33:41.990567 30 results for CMS
+2019-09-04 19:33:45.226434 30 results for AFL
+2019-09-04 19:33:48.070780 30 results for NTAP
+2019-09-04 19:33:51.807295 30 results for BBY
+2019-09-04 19:33:54.623069 30 results for VMC
+2019-09-04 19:33:57.678578 30 results for QCOM
+2019-09-04 19:34:00.373276 30 results for PNW
+2019-09-04 19:34:02.878544 30 results for ADI
+2019-09-04 19:34:05.172698 30 results for TROW
+2019-09-04 19:34:07.948170 30 results for LEG
+2019-09-04 19:34:11.657522 30 results for XLNX
+2019-09-04 19:34:14.105827 30 results for CTXS
+2019-09-04 19:34:16.677461 30 results for HOG
+2019-09-04 19:34:19.358107 30 results for A
+2019-09-04 19:34:21.810041 30 results for SBUX
+2019-09-04 19:34:24.619965 30 results for TIF
+2019-09-04 19:34:27.098836 30 results for DVN
+2019-09-04 19:34:29.562601 30 results for MCO
+2019-09-04 19:34:32.270594 30 results for NI
+2019-09-04 19:34:34.772953 30 results for EOG
+2019-09-04 19:34:38.278601 30 results for RHI
+2019-09-04 19:34:40.780783 30 results for INTU
+2019-09-04 19:34:43.137263 30 results for MET
+2019-09-04 19:34:45.712596 30 results for SYK
+2019-09-04 19:34:48.220670 30 results for CTAS
+2019-09-04 19:34:51.090718 30 results for FISV
+2019-09-04 19:34:54.245251 30 results for ZION
+2019-09-04 19:34:57.750023 30 results for COL
+2019-09-04 19:35:00.469837 30 results for ZBH
+2019-09-04 19:35:03.322939 30 results for ABC
+2019-09-04 19:35:06.046341 30 results for XL
+2019-09-04 19:35:08.579819 30 results for NVDA
+2019-09-04 19:35:11.441154 30 results for EQR
+2019-09-04 19:35:15.200041 30 results for WAT
+2019-09-04 19:35:17.686245 30 results for SPG
+2019-09-04 19:35:20.210575 30 results for UPS
+2019-09-04 19:35:22.671376 30 results for EA
+2019-09-04 19:35:25.251550 30 results for EBAY
+2019-09-04 19:35:27.541170 30 results for GS
+2019-09-04 19:35:30.070596 30 results for PRU
+2019-09-04 19:35:32.709627 30 results for PFG
+2019-09-04 19:35:35.147622 30 results for ANTM
+2019-09-04 19:35:37.743041 30 results for MON
+2019-09-04 19:35:40.288930 30 results for CMCSA
+2019-09-04 19:35:42.725675 30 results for DGX
+2019-09-04 19:35:45.392217 30 results for AIV
+2019-09-04 19:35:47.910198 30 results for MKC
+2019-09-04 19:35:50.739038 30 results for SYMC
+2019-09-04 19:35:53.223670 30 results for PLD
+2019-09-04 19:35:55.889873 30 results for ESRX
+2019-09-04 19:35:58.672443 30 results for BIIB
+2019-09-04 19:36:01.107749 30 results for MTB
+2019-09-04 19:36:03.861220 30 results for ETFC
+2019-09-04 19:36:06.502255 30 results for MYL
+2019-09-04 19:36:10.142733 30 results for VLO
+2019-09-04 19:36:12.724006 30 results for TRV
+2019-09-04 19:36:15.484278 30 results for GILD
+2019-09-04 19:36:18.317323 30 results for COH
+2019-09-04 19:36:21.818076 30 results for LH
+2019-09-04 19:36:24.735051 30 results for LLL
+2019-09-04 19:36:27.415410 30 results for FOXA
+2019-09-04 19:36:30.068029 30 results for NOV
+2019-09-04 19:36:32.658027 30 results for STZ
+2019-09-04 19:36:35.288240 30 results for DHI
+2019-09-04 19:36:38.101705 30 results for TSN
+2019-09-04 19:36:40.829224 30 results for VNO
+2019-09-04 19:36:44.611811 30 results for PSA
+2019-09-04 19:36:46.931389 30 results for AMP
+2019-09-04 19:36:49.575844 30 results for LEN
+2019-09-04 19:36:52.347562 30 results for PDCO
+2019-09-04 19:36:54.749993 30 results for AMZN
+2019-09-04 19:36:57.339691 30 results for VIAB
+2019-09-04 19:36:59.991811 30 results for EL
+2019-09-04 19:37:02.961679 30 results for VRSN
+2019-09-04 19:37:05.422794 30 results for CHK
+2019-09-04 19:37:09.166414 30 results for KIM
+2019-09-04 19:37:11.812693 30 results for BXP
+2019-09-04 19:37:14.911946 30 results for GOOGL
+2019-09-04 19:37:17.928981 30 results for JNPR
+2019-09-04 19:37:22.788937 30 results for WYN
+2019-09-04 19:37:25.796360 30 results for CME
+2019-09-04 19:37:28.747520 30 results for WU
+2019-09-04 19:37:31.740531 30 results for CELG
+2019-09-04 19:37:34.130349 30 results for FIS
+2019-09-04 19:37:36.668295 30 results for CBG
+2019-09-04 19:37:40.411804 30 results for CTSH
+2019-09-04 19:37:44.013973 30 results for AVB
+2019-09-04 19:37:50.180897 30 results for RL
+2019-09-04 19:37:52.970109 30 results for VAR
+2019-09-04 19:37:55.770099 30 results for CHRW
+2019-09-04 19:37:58.398935 30 results for HST
+2019-09-04 19:38:02.193818 30 results for MDLZ
+2019-09-04 19:38:04.890429 30 results for AIZ
+2019-09-04 19:38:07.452758 30 results for DFS
+2019-09-04 19:38:09.882209 30 results for AKAM
+2019-09-04 19:38:12.300068 30 results for LUK
+2019-09-04 19:38:14.805490 30 results for MCHP
+2019-09-04 19:38:17.060786 30 results for ICE
+2019-09-04 19:38:19.572132 30 results for ANDV
+2019-09-04 19:38:22.530198 30 results for EXPE
+2019-09-04 19:38:28.482508 30 results for NBL
+2019-09-04 19:38:31.360854 30 results for EXPD
+2019-09-04 19:38:34.201455 30 results for JEC
+2019-09-04 19:38:37.024067 30 results for AMT
+2019-09-04 19:38:39.742407 30 results for RRC
+2019-09-04 19:38:41.386817 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/TSS.json (Caused by ProxyError('Cannot connect to proxy.', ConnectionResetError(104, 'Connection reset by peer')))
+2019-09-04 19:38:41.387078 proxy http://139.99.216.26:8080 deleted
+2019-09-04 19:38:41.387283 3852 proxies left
+2019-09-04 19:38:50.400310 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/TSS.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a119400>, 'Connection to 89.121.211.242 timed out. (connect timeout=9)'))
+2019-09-04 19:38:50.400542 proxy http://89.121.211.242:48614 deleted
+2019-09-04 19:38:50.400663 3851 proxies left
+2019-09-04 19:39:07.467729 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/TSS.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a274550>, 'Connection to 45.251.57.115 timed out. (connect timeout=9)'))
+2019-09-04 19:39:07.467993 proxy http://45.251.57.115:8080 deleted
+2019-09-04 19:39:07.468158 3850 proxies left
+2019-09-04 19:39:16.481407 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/TSS.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a29ccf8>, 'Connection to 123.163.96.132 timed out. (connect timeout=9)'))
+2019-09-04 19:39:16.481695 proxy http://123.163.96.132:9999 deleted
+2019-09-04 19:39:16.481830 3849 proxies left
+2019-09-04 19:39:16.678982 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/TSS.json (Caused by ProxyError('Cannot connect to proxy.', NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a119320>: Failed to establish a new connection: [Errno 111] Connection refused',)))
+2019-09-04 19:39:16.679242 proxy http://183.166.170.64:61234 deleted
+2019-09-04 19:39:16.679369 3848 proxies left
+2019-09-04 19:39:25.691917 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/TSS.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a29c898>, 'Connection to 190.61.43.2 timed out. (connect timeout=9)'))
+2019-09-04 19:39:25.692229 proxy http://190.61.43.2:9991 deleted
+2019-09-04 19:39:25.692364 3847 proxies left
+2019-09-04 19:39:34.705250 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/TSS.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a10b6d8>, 'Connection to 41.60.237.236 timed out. (connect timeout=9)'))
+2019-09-04 19:39:34.705533 proxy http://41.60.237.236:42110 deleted
+2019-09-04 19:39:34.705669 3846 proxies left
+2019-09-04 19:39:40.348457 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/TSS.json (Caused by ProxyError('Cannot connect to proxy.', RemoteDisconnected('Remote end closed connection without response',)))
+2019-09-04 19:39:40.348722 proxy http://134.119.214.196:1080 deleted
+2019-09-04 19:39:40.348847 3845 proxies left
+2019-09-04 19:39:57.957460 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/TSS.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a119080>, 'Connection to 191.7.207.51 timed out. (connect timeout=9)'))
+2019-09-04 19:39:57.957701 proxy http://191.7.207.51:38268 deleted
+2019-09-04 19:39:57.957823 3844 proxies left
+2019-09-04 19:40:09.914406 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/TSS.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a119048>, 'Connection to 188.242.224.144 timed out. (connect timeout=9)'))
+2019-09-04 19:40:09.914661 proxy http://188.242.224.144:56391 deleted
+2019-09-04 19:40:09.914782 3843 proxies left
+2019-09-04 19:40:22.103573 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/TSS.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a2748d0>, 'Connection to 103.217.72.211 timed out. (connect timeout=9)'))
+2019-09-04 19:40:22.103877 proxy http://103.217.72.211:3128 deleted
+2019-09-04 19:40:22.104015 3842 proxies left
+2019-09-04 19:40:23.076393 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/TSS.json (Caused by ProxyError('Cannot connect to proxy.', OSError('Tunnel connection failed: 502 Bad Gateway',)))
+2019-09-04 19:40:23.076670 proxy http://47.107.80.181:8000 deleted
+2019-09-04 19:40:23.076793 3841 proxies left
+2019-09-04 19:40:32.089822 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/TSS.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a119550>, 'Connection to 171.12.113.230 timed out. (connect timeout=9)'))
+2019-09-04 19:40:32.090076 proxy http://171.12.113.230:9999 deleted
+2019-09-04 19:40:32.090197 3840 proxies left
+2019-09-04 19:40:41.103025 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/TSS.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a119b70>, 'Connection to 85.112.71.26 timed out. (connect timeout=9)'))
+2019-09-04 19:40:41.103282 proxy http://85.112.71.26:54583 deleted
+2019-09-04 19:40:41.103420 3839 proxies left
+2019-09-04 19:40:50.373988 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/TSS.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f4248e8da58>, 'Connection to 1.193.244.169 timed out. (connect timeout=9)'))
+2019-09-04 19:40:50.374249 proxy http://1.193.244.169:9999 deleted
+2019-09-04 19:40:50.374370 3838 proxies left
+2019-09-04 19:40:55.324243 30 results for TSS
+2019-09-04 19:41:04.393828 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/HCP.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a119710>, 'Connection to 202.162.203.165 timed out. (connect timeout=9)'))
+2019-09-04 19:41:04.394145 proxy http://202.162.203.165:57019 deleted
+2019-09-04 19:41:04.394287 3837 proxies left
+2019-09-04 19:41:06.383502 30 results for HCP
+2019-09-04 19:41:08.358561 30 results for PM
+2019-09-04 19:41:11.142199 30 results for ISRG
+2019-09-04 19:41:13.274274 30 results for COG
+2019-09-04 19:41:16.185080 30 results for SNI
+2019-09-04 19:41:18.687669 30 results for MA
+2019-09-04 19:41:20.768331 30 results for DVA
+2019-09-04 19:41:22.711733 30 results for IVZ
+2019-09-04 19:41:24.518967 30 results for CF
+2019-09-04 19:41:26.443005 30 results for FAST
+2019-09-04 19:41:28.059801 30 results for CRM
+2019-09-04 19:41:30.067383 30 results for HRS
+2019-09-04 19:41:33.110983 30 results for PXD
+2019-09-04 19:41:35.997432 30 results for APH
+2019-09-04 19:41:38.721368 30 results for FLS
+2019-09-04 19:41:41.434884 30 results for DPS
+2019-09-04 19:41:43.165844 30 results for NDAQ
+2019-09-04 19:41:45.165449 30 results for WEC
+2019-09-04 19:41:47.289469 30 results for SJM
+2019-09-04 19:41:49.147578 30 results for PBCT
+2019-09-04 19:41:52.174476 30 results for XRAY
+2019-09-04 19:41:54.038756 30 results for WYNN
+2019-09-04 19:41:56.854007 30 results for SRCL
+2019-09-04 19:41:58.754552 30 results for RSG
+2019-09-04 19:42:00.767162 30 results for EQT
+2019-09-04 19:42:03.449575 30 results for SCG
+2019-09-04 19:42:05.292992 30 results for FLIR
+2019-09-04 19:42:07.362288 30 results for IRM
+2019-09-04 19:42:08.951743 30 results for HCN
+2019-09-04 19:42:11.056887 30 results for HRL
+2019-09-04 19:42:14.027737 30 results for VTR
+2019-09-04 19:42:15.910451 30 results for ES
+2019-09-04 19:42:18.727696 30 results for ORLY
+2019-09-04 19:42:20.428740 30 results for WDC
+2019-09-04 19:42:21.982672 30 results for PWR
+2019-09-04 19:42:23.690880 30 results for RHT
+2019-09-04 19:42:25.469142 30 results for FMC
+2019-09-04 19:42:27.343807 30 results for PCLN
+2019-09-04 19:42:29.448073 30 results for ROST
+2019-09-04 19:42:31.420429 30 results for V
+2019-09-04 19:42:34.137746 30 results for ROP
+2019-09-04 19:42:36.452573 30 results for NRG
+2019-09-04 19:42:38.441629 30 results for BRK.B
+2019-09-04 19:42:40.056687 30 results for HP
+2019-09-04 19:42:41.518425 30 results for DISCA
+2019-09-04 19:42:43.545849 30 results for OKE
+2019-09-04 19:42:45.160362 30 results for CERN
+2019-09-04 19:42:46.725817 30 results for KMX
+2019-09-04 19:42:48.335359 30 results for CB
+2019-09-04 19:42:50.387580 30 results for IR
+2019-09-04 19:42:52.893953 30 results for NFX
+2019-09-04 19:42:54.389568 30 results for FFIV
+2019-09-04 19:42:56.917948 30 results for NFLX
+2019-09-04 19:42:59.579751 30 results for EW
+2019-09-04 19:43:01.404489 30 results for BLK
+2019-09-04 19:43:03.450561 30 results for CMG
+2019-09-04 19:43:05.059106 30 results for MPC
+2019-09-04 19:43:07.342277 30 results for ACN
+2019-09-04 19:43:08.849587 30 results for MOS
+2019-09-04 19:43:10.440679 30 results for TEL
+2019-09-04 19:43:12.090094 30 results for XYL
+2019-09-04 19:43:13.517943 30 results for PRGO
+2019-09-04 19:43:15.870644 30 results for BWA
+2019-09-04 19:43:17.859532 30 results for DLTR
+2019-09-04 19:43:19.939907 30 results for TRIP
+2019-09-04 19:43:22.552779 30 results for CCI
+2019-09-04 19:43:24.113865 30 results for PSX
+2019-09-04 19:43:25.935325 30 results for KMI
+2019-09-04 19:43:28.056775 30 results for ALXN
+2019-09-04 19:43:30.852598 30 results for LRCX
+2019-09-04 19:43:33.755099 30 results for MNST
+2019-09-04 19:43:35.226239 30 results for STX
+2019-09-04 19:43:36.711815 30 results for LYB
+2019-09-04 19:43:38.711801 30 results for PNR
+2019-09-04 19:43:40.745346 30 results for DG
+2019-09-04 19:43:42.623654 30 results for GRMN
+2019-09-04 19:43:44.235989 30 results for DLPH
+2019-09-04 19:43:46.709100 30 results for ABBV
+2019-09-04 19:43:49.851592 30 results for PVH
+2019-09-04 19:43:51.711441 30 results for REGN
+2019-09-04 19:43:54.090628 30 results for MAC
+2019-09-04 19:43:57.076407 30 results for KSU
+2019-09-04 19:43:59.735493 30 results for GM
+2019-09-04 19:44:01.658747 30 results for ZTS
+2019-09-04 19:44:03.228395 30 results for NWSA
+2019-09-04 19:44:04.728077 30 results for NLSN
+2019-09-04 19:44:06.498018 30 results for DAL
+2019-09-04 19:44:09.427311 30 results for AME
+2019-09-04 19:44:12.250882 30 results for VRTX
+2019-09-04 19:44:22.043088 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Read timed out. (read timeout=9)
+2019-09-04 19:44:22.043381 proxy http://51.79.142.41:8080 deleted
+2019-09-04 19:44:22.043513 3836 proxies left
+2019-09-04 19:44:31.056797 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/KORS.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a11f6a0>, 'Connection to 45.76.167.66 timed out. (connect timeout=9)'))
+2019-09-04 19:44:31.057077 proxy http://45.76.167.66:8080 deleted
+2019-09-04 19:44:31.057205 3835 proxies left
+2019-09-04 19:44:40.407045 30 results for KORS
+2019-09-04 19:44:43.823735 30 results for ALLE
+2019-09-04 19:44:53.001562 30 results for GGP
+2019-09-04 19:44:58.063926 30 results for MHK
+2019-09-04 19:44:59.905049 30 results for ADS
+2019-09-04 19:45:02.049053 30 results for FB
+2019-09-04 19:45:04.355705 30 results for TSCO
+2019-09-04 19:45:13.427856 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/ESS.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a2747f0>, 'Connection to 51.68.215.137 timed out. (connect timeout=9)'))
+2019-09-04 19:45:13.428136 proxy http://51.68.215.137:8080 deleted
+2019-09-04 19:45:13.428267 3834 proxies left
+2019-09-04 19:45:16.972200 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/ESS.json (Caused by ProxyError('Cannot connect to proxy.', ConnectionResetError(104, 'Connection reset by peer')))
+2019-09-04 19:45:16.972485 proxy http://37.235.28.41:41353 deleted
+2019-09-04 19:45:16.972617 3833 proxies left
+2019-09-04 19:45:18.231691 30 results for ESS
+2019-09-04 19:45:20.101186 30 results for GOOGL
+2019-09-04 19:45:20.655747 30 results for UAA
+2019-09-04 19:45:20.770821 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/AVGO.json (Caused by ProxyError('Cannot connect to proxy.', RemoteDisconnected('Remote end closed connection without response',)))
+2019-09-04 19:45:20.771036 proxy http://185.132.178.133:8080 deleted
+2019-09-04 19:45:20.771164 3832 proxies left
+2019-09-04 19:45:29.783459 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/AVGO.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a10ba90>, 'Connection to 171.100.43.122 timed out. (connect timeout=9)'))
+2019-09-04 19:45:29.783705 proxy http://171.100.43.122:8080 deleted
+2019-09-04 19:45:29.783841 3831 proxies left
+2019-09-04 19:45:38.796982 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/AVGO.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a11f748>, 'Connection to 123.101.110.197 timed out. (connect timeout=9)'))
+2019-09-04 19:45:38.797253 proxy http://123.101.110.197:9999 deleted
+2019-09-04 19:45:38.797376 3830 proxies left
+2019-09-04 19:45:47.810300 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/AVGO.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a11f630>, 'Connection to 195.9.114.222 timed out. (connect timeout=9)'))
+2019-09-04 19:45:47.810575 proxy http://195.9.114.222:63141 deleted
+2019-09-04 19:45:47.810696 3829 proxies left
+2019-09-04 19:45:56.823616 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/AVGO.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a29cb70>, 'Connection to 213.23.122.170 timed out. (connect timeout=9)'))
+2019-09-04 19:45:56.823893 proxy http://213.23.122.170:83 deleted
+2019-09-04 19:45:56.824028 3828 proxies left
+2019-09-04 19:46:05.837007 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/AVGO.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a274940>, 'Connection to 190.185.114.93 timed out. (connect timeout=9)'))
+2019-09-04 19:46:05.837267 proxy http://190.185.114.93:8080 deleted
+2019-09-04 19:46:05.837389 3827 proxies left
+2019-09-04 19:46:14.850374 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/AVGO.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a1193c8>, 'Connection to 105.27.116.46 timed out. (connect timeout=9)'))
+2019-09-04 19:46:14.850617 proxy http://105.27.116.46:35883 deleted
+2019-09-04 19:46:14.850739 3826 proxies left
+2019-09-04 19:46:26.054587 30 results for AVGO
+2019-09-04 19:46:29.044818 30 results for XEC
+2019-09-04 19:46:31.853410 30 results for AMG
+2019-09-04 19:46:33.959281 30 results for MLM
+2019-09-04 19:46:39.233221 30 results for DISCA
+2019-09-04 19:46:41.115176 30 results for UHS
+2019-09-04 19:46:42.045978 30 results for URI
+2019-09-04 19:46:42.956622 30 results for LVLT
+2019-09-04 19:46:43.441074 30 results for RCL
+2019-09-04 19:46:45.042080 30 results for HCA
+2019-09-04 19:46:47.509566 30 results for SWKS
+2019-09-04 19:46:49.437465 30 results for HSIC
+2019-09-04 19:46:50.252481 30 results for AAL
+2019-09-04 19:46:51.100863 30 results for SLG
+2019-09-04 19:46:52.918031 30 results for EQIX
+2019-09-04 19:46:54.321805 30 results for HBI
+2019-09-04 19:46:54.882607 30 results for O
+2019-09-04 19:46:55.712161 30 results for QRVO
+2019-09-04 19:46:57.132698 30 results for JBHT
+2019-09-04 19:46:59.146885 30 results for WRK
+2019-09-04 19:47:03.640284 30 results for KHC
+2019-09-04 19:47:04.725783 30 results for AAP
+2019-09-04 19:47:05.958805 30 results for PYPL
+2019-09-04 19:47:07.084828 30 results for SIG
+2019-09-04 19:47:10.209370 30 results for ATVI
+2019-09-04 19:47:11.780313 30 results for UAL
+2019-09-04 19:47:13.576662 30 results for FOXA
+2019-09-04 19:47:20.571394 30 results for NWSA
+2019-09-04 19:47:25.372004 30 results for VRSK
+2019-09-04 19:47:28.526518 30 results for HPE
+2019-09-04 19:47:30.009412 30 results for SYF
+2019-09-04 19:47:33.419868 30 results for ILMN
+2019-09-04 19:47:35.647917 30 results for CSRA
+2019-09-04 19:47:42.326396 30 results for CHD
+2019-09-04 19:47:44.930107 30 results for WLTW
+2019-09-04 19:47:47.029304 30 results for EXR
+2019-09-04 19:47:48.580757 30 results for FRT
+2019-09-04 19:47:50.626700 30 results for CFG
+2019-09-04 19:47:53.410041 30 results for CXO
+2019-09-04 19:47:56.393343 30 results for AWK
+2019-09-04 19:48:02.351290 30 results for UDR
+2019-09-04 19:48:05.938345 30 results for HOLX
+2019-09-04 19:48:09.637537 30 results for CNC
+2019-09-04 19:48:13.444720 30 results for FL
+2019-09-04 19:48:22.515621 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/UAA.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a10b2e8>, 'Connection to 51.68.215.137 timed out. (connect timeout=9)'))
+2019-09-04 19:48:22.515846 proxy http://51.68.215.137:8080 deleted
+2019-09-04 19:48:22.515993 3825 proxies left
+2019-09-04 19:48:31.074517 30 results for UAA
+2019-09-04 19:48:42.653668 30 results for ULTA
+2019-09-04 19:48:51.730354 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/GPN.json (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x7f424a1191d0>, 'Connection to 103.105.197.154 timed out. (connect timeout=9)'))
+2019-09-04 19:48:51.730647 proxy http://103.105.197.154:8080 deleted
+2019-09-04 19:48:51.730778 3824 proxies left
+2019-09-04 19:48:52.519002 30 results for GPN
+2019-09-04 19:48:53.316529 30 results for AYI
+2019-09-04 19:48:54.146659 30 results for ALK
+2019-09-04 19:48:54.943182 30 results for DLR
+2019-09-04 19:48:55.768899 30 results for LKQ
+2019-09-04 19:48:56.581549 30 results for AJG
+2019-09-04 19:48:57.395555 30 results for TDG
+2019-09-04 19:48:58.255493 30 results for FBHS
+2019-09-04 19:48:59.166045 30 results for LNT
+2019-09-04 19:48:59.990691 30 results for ALB
+2019-09-04 19:49:00.854190 30 results for FTV
+2019-09-04 19:49:01.831009 30 results for MTD
+2019-09-04 19:49:02.647975 30 results for CHTR
+2019-09-04 19:49:03.545750 30 results for COO
+2019-09-04 19:49:04.419154 30 results for COTY
+2019-09-04 19:49:05.244369 30 results for ARNC
+2019-09-04 19:49:06.131263 30 results for MAA
+2019-09-04 19:49:06.919030 30 results for EVHC
+2019-09-04 19:49:08.180336 30 results for IDXX
+2019-09-04 19:49:09.024522 30 results for FTI
+2019-09-04 19:49:09.887383 30 results for INCY
+2019-09-04 19:49:10.964888 30 results for CBOE
+2019-09-04 19:49:12.127222 30 results for REG
+2019-09-04 19:49:12.926155 30 results for DISH
+2019-09-04 19:49:13.767406 30 results for SNPS
+2019-09-04 19:49:14.603573 30 results for AMD
+2019-09-04 19:49:15.454628 30 results for RJF
+2019-09-04 19:49:16.285154 30 results for ARE
+2019-09-04 19:49:17.223175 30 results for DXC
+2019-09-04 19:49:18.277251 30 results for IT
+2019-09-04 19:49:19.155329 30 results for INFO
+2019-09-04 19:49:19.963552 30 results for HLT
+2019-09-04 19:49:20.816840 30 results for RE
+2019-09-04 19:49:21.806878 30 results for ANSS
+2019-09-04 19:49:22.666643 30 results for ALGN
+2019-09-04 19:49:23.476895 30 results for BHGE
+2019-09-04 19:49:24.418051 30 results for AOS
+2019-09-04 19:49:25.245180 30 results for DRE
+2019-09-04 19:49:26.079860 30 results for MGM
+2019-09-04 19:49:26.964270 30 results for RMD
+2019-09-04 19:49:27.758587 30 results for PKG
+2019-09-04 19:49:28.559338 30 results for BHF
+2019-09-04 19:49:29.395067 30 results for SBAC
+2019-09-04 19:49:41.742842 30 results for ABT
+2019-09-04 19:49:50.962083 30 results for HON
+2019-09-04 19:49:57.825106 30 results for AEP
+2019-09-04 19:50:02.304476 30 results for BA
+2019-09-04 19:50:04.578521 HTTPSConnectionPool(host='api.stocktwits.com', port=443): Max retries exceeded with url: /api/2/streams/symbol/BMY.json (Caused by ProxyError('Cannot connect to proxy.', ConnectionResetError(104, 'Connection reset by peer')))
+2019-09-04 19:50:04.578773 proxy http://60.253.116.243:8080 deleted
+2019-09-04 19:50:04.578920 3823 proxies left
+2019-09-04 19:50:08.604719 30 results for BMY
+2019-09-04 19:50:11.670498 30 results for CPB
+2019-09-04 19:50:14.102182 30 results for CAT
+2019-09-04 19:50:17.035713 30 results for CVX
+2019-09-04 19:50:19.738197 30 results for KO
+2019-09-04 19:50:22.401057 30 results for CL
+2019-09-04 19:50:25.882590 30 results for ED
+2019-09-04 19:50:29.327351 30 results for GLW
+2019-09-04 19:50:32.930208 30 results for DE
+2019-09-04 19:50:36.217266 30 results for DTE
+2019-09-04 19:50:38.378397 30 results for D
+2019-09-04 19:50:40.933827 30 results for DWDP
+2019-09-04 19:50:44.664911 30 results for ETN
+2019-09-04 19:50:47.274795 30 results for XOM
+2019-09-04 19:50:51.232578 30 results for F
+2019-09-04 19:50:54.701922 30 results for GD
+2019-09-04 19:50:58.046698 30 results for GE
+2019-09-04 19:51:00.390463 30 results for GT
+2019-09-04 19:51:02.957816 30 results for HAL
+2019-09-04 19:51:05.421767 30 results for HSY
