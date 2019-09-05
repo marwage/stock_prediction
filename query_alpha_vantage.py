@@ -47,7 +47,7 @@ def query_stock_price(apikey, sp500):
                     entry[key]["close"] = float(value["4. close"])
                     entry[key]["volume"] = float(value["5. volume"])
                     
-                    write_result = collection.update(post, post, upsert=True)
+                    write_result = collection.update(entry, entry, upsert=True)
 
         else:
             write_to_log("error " + result.status_code)
