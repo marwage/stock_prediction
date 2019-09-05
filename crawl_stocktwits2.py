@@ -73,8 +73,9 @@ def write_to_log(text):
 
 
 def main():
-    sp500_path = "files/sp500.json"
-    proxy_path = "files/proxy_list.txt"
+    files_path = "/home/wagenlaeder/stock-prediction/files/"
+    sp500_path = files_path + "sp500.json"
+    proxy_path = files_path + "proxy_list.txt"
 
     write_to_log("start crawling stocktwits")
 
