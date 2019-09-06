@@ -3,13 +3,7 @@ import requests
 import random
 from datetime import timedelta, datetime
 from pymongo import MongoClient
-
-
-def read_sp500(path):
-    with open(path, "r") as json_file:
-        sp500_json = json.load(json_file)
-
-    return sp500_json["sp500"]
+from util import read_sp500, write_to_log
 
 
 def get_proxies(path):
@@ -27,7 +21,9 @@ def get_proxies(path):
     return proxies
 
 
-def crawl(sp500, proxies):    
+def crawl(sp500, proxies):
+    log_path = "/home/wagenlaeder/stock-prediction/files/crawl_stocktwits2.log"
+
     client = MongoClient()
     db = client.stocktwitsdb
 
@@ -46,7 +42,7 @@ def crawl(sp500, proxies):
                 
                 if result.status_code == 200:
                     successful = True
-                    write_to_log(str(len(result.json()["messages"])) + " results for " + company)
+                    write_to_log(log_path, str(len(result.json()["messages"])) + " results for " + company)
 
                     collection = db[company]
                     for post in result.json()["messages"]:
@@ -55,29 +51,21 @@ def crawl(sp500, proxies):
                     proxy_index = random.randint(0, len(proxies) - 1)
                     proxy = proxies[proxy_index]
             except Exception as e:
-                write_to_log(str(e))
+                write_to_log(log_path, str(e))
                 del proxies[proxy_index]
-                write_to_log("proxy " + proxy["https"] + " deleted")
-                write_to_log(str(len(proxies)) + " proxies left")
+                write_to_log(log_path, "proxy " + proxy["https"] + " deleted")
+                write_to_log(log_path, str(len(proxies)) + " proxies left")
                 proxy_index = random.randint(0, len(proxies) - 1)
                 proxy = proxies[proxy_index]
-
-
-def write_to_log(text):
-    log_path = "/home/wagenlaeder/stock-prediction/files/crawl_stocktwits2.log"
-    
-    with open(log_path, "a") as log:
-        log.write(str(datetime.now()) + " " + text.replace("\n", " ") + "\n")
-
-    return
 
 
 def main():
     files_path = "/home/wagenlaeder/stock-prediction/files/"
     sp500_path = files_path + "sp500.json"
     proxy_path = files_path + "proxy_list.txt"
+    log_path = files_path + "crawl_stocktwits2.log"
 
-    write_to_log("start crawling stocktwits")
+    write_to_log(log_path, "start crawling stocktwits")
 
     sp500 = read_sp500(sp500_path)
     proxies = get_proxies(proxy_path)
@@ -87,7 +75,7 @@ def main():
     while datetime.now() < end:
         crawl(sp500, proxies)
 
-    write_to_log("crawling stocktwits finished")
+    write_to_log(log_path, "crawling stocktwits finished")
 
 
 if __name__ == '__main__':
