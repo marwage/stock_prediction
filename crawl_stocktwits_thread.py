@@ -37,7 +37,7 @@ def crawl(company, proxies, log_queue):
     db = client.stocktwitsdb
 
     all_proxies = proxies.copy()
-    proxies.shuffle()
+    random.shuffle(proxies)
 
     timeout = 30
     proxy_index = random.randint(0, len(proxies) - 1)
@@ -74,7 +74,7 @@ def crawl(company, proxies, log_queue):
 
                 if len(proxies) == 0: # if all proxies are deleted
                     proxies = all_proxies.copy()
-                    proxies.shuffle()
+                    random.shuffle(proxies)
                 
                 # select a new proxy randomly
                 proxy_index = random.randint(0, len(proxies) - 1)
