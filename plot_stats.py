@@ -4,10 +4,10 @@ import numpy as np
 
 
 def main():
-    with open('stocktwits_stats.json', 'r') as json_file:
+    with open("files/stocktwits_stats.json", "r") as json_file:
         stats = json.load(json_file)
 
-    apple = stats['AAPL']
+    apple = stats["AAPL"]
     n = 0
     dates = []
     counts = []
@@ -20,15 +20,15 @@ def main():
     height = 0.5
 
     fig, ax = plt.subplots()
-    ax.tick_params(axis='y', labelsize=4)
+    ax.tick_params(axis="y", labelsize=4)
 
     p1 = plt.barh(ind, counts, height)
 
-    plt.xlabel('Counts')
-    plt.title('AAPL counts per day')
+    plt.xlabel("Counts")
+    plt.title("AAPL counts per day")
     plt.yticks(ind, dates)
 
-    plt.savefig('stocktwits_AAPL.svg')
+    plt.savefig("files/stocktwits_AAPL.svg")
 
 
 if __name__ == '__main__':

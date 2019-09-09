@@ -22,7 +22,7 @@ def main():
             else:
                 stats[share_code][date_string] = 1
 
-    with open('stocktwits_stats.json', 'w') as json_file:
+    with open('files/stocktwits_stats.json', 'w') as json_file:
         json.dump(stats, json_file)
 
 
