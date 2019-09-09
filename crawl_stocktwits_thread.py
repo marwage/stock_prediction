@@ -3,7 +3,7 @@ import requests
 import random
 from datetime import timedelta, datetime
 from pymongo import MongoClient
-from util import read_sp500, write_to_log
+from util import read_sp500
 import threading
 import queue
 
@@ -29,7 +29,8 @@ def write_to_log_thread(queue):
     end = datetime.now() + timedelta(hours=23)
     while datetime.now() < end:
         if not queue.empty():
-            write_to_log(log_path, queue.get())
+            with open(path, "a") as log:
+                log.write(str(datetime.now()) + " " + text.replace("\n", " ") + "\n")
 
 
 def crawl(company, proxies, log_queue):
