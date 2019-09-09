@@ -23,7 +23,12 @@ def get_proxies(path):
     return proxies
 
 
-def crawl(company, proxies):
+def divide_in_chunks(l, num): 
+    for i in range(0, len(l), num): 
+        yield l[i : i+num] 
+
+
+def crawl(sp500_chunk, proxies):
     client = MongoClient()
     db = client.stocktwitsdb
 
@@ -33,43 +38,43 @@ def crawl(company, proxies):
     timeout = 30
     proxy_index = random.randint(0, len(proxies) - 1)
     proxy = proxies[proxy_index]
-    
-    request_url = "https://api.stocktwits.com/api/2/streams/symbol/" + company + ".json"
 
     end = datetime.now() + timedelta(hours=23)
     while datetime.now() < end:
-        successful = False
-        while not successful:         
-            try:
-                result = requests.get(request_url, proxies=proxy, timeout=timeout)
-                
-                if result.status_code == 200: # request was successful
-                    successful = True
+        for company in sp500_chunk:
+            request_url = "https://api.stocktwits.com/api/2/streams/symbol/" + company + ".json"
+            successful = False
+            while not successful:         
+                try:
+                    result = requests.get(request_url, proxies=proxy, timeout=timeout)
+                    
+                    if result.status_code == 200: # request was successful
+                        successful = True
 
-                    logging.debug(str(len(result.json()["messages"])) + " results for " + company)
+                        logging.debug(str(len(result.json()["messages"])) + " results for " + company)
 
-                    # add all messages to the database
-                    collection = db[company]
-                    for post in result.json()["messages"]:
-                        write_result = collection.update(post, post, upsert=True)
-                else: # proxy worked but API did not response as wished
+                        # add all messages to the database
+                        collection = db[company]
+                        for post in result.json()["messages"]:
+                            write_result = collection.update(post, post, upsert=True)
+                    else: # proxy worked but API did not response as wished
+                        proxy_index = random.randint(0, len(proxies) - 1)
+                        proxy = proxies[proxy_index]
+                except Exception as e:
+                    logging.error(str(e))
+                    
+                    # delete the proxy that causes an exception from the list of proxies
+                    del proxies[proxy_index]
+
+                    logging.debug(str(len(proxies)) + " proxies left")
+
+                    if len(proxies) == 0: # if all proxies are deleted
+                        proxies = all_proxies.copy()
+                        random.shuffle(proxies)
+                    
+                    # select a new proxy randomly
                     proxy_index = random.randint(0, len(proxies) - 1)
                     proxy = proxies[proxy_index]
-            except Exception as e:
-                logging.error(str(e))
-                
-                # delete the proxy that causes an exception from the list of proxies
-                del proxies[proxy_index]
-
-                logging.debug(str(len(proxies)) + " proxies left")
-
-                if len(proxies) == 0: # if all proxies are deleted
-                    proxies = all_proxies.copy()
-                    random.shuffle(proxies)
-                
-                # select a new proxy randomly
-                proxy_index = random.randint(0, len(proxies) - 1)
-                proxy = proxies[proxy_index]
 
 
 def main():
@@ -88,11 +93,14 @@ def main():
 
     sp500 = read_sp500(sp500_path)
     proxies = get_proxies(proxy_path)
+
+    split_in = 10
+    sp500_chunks = list(divide_in_chunks(sp500, split_in))
+    proxies_chunks = list(divide_in_chunks(proxies), split_in)
     
     threads = []
-
-    for company in sp500:
-        thread = threading.Thread(target=crawl, name=company, args=(company, proxies.copy()))
+    for i in range(split_in):
+        thread = threading.Thread(target=crawl, args=(sp500_chunks[i], proxies_chunks[i].copy()))
         thread.start()
         threads.append(thread)
 
