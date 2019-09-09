@@ -25,7 +25,7 @@ def get_proxies(path):
 
 def divide_in_chunks(l, num):
     length = len(l)
-    chunk_size = (length % num) + 1
+    chunk_size = (length // num) + 1
     for i in range(0, length, chunk_size): 
         yield l[i : i+chunk_size] 
 
@@ -95,7 +95,7 @@ def main():
 
     sp500 = read_sp500(sp500_path)
     proxies = get_proxies(proxy_path)
-
+    
     split_in = 10
     sp500_chunks = list(divide_in_chunks(sp500, split_in))
     proxies_chunks = list(divide_in_chunks(proxies, split_in))
