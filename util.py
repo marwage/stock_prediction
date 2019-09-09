@@ -13,3 +13,4 @@ def read_sp500(path):
 def write_to_log(path, text):    
     with open(path, "a") as log:
         log.write(str(datetime.now()) + " " + text.replace("\n", " ") + "\n")
+    return
