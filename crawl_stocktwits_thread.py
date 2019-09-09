@@ -3,7 +3,7 @@ import requests
 import random
 from datetime import timedelta, datetime
 from pymongo import MongoClient
-from util import read_sp500, write_to_log
+from util import read_sp500, write_to_log_with_lock
 import threading
 
 
