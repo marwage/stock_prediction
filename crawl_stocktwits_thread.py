@@ -5,7 +5,7 @@ from datetime import timedelta, datetime
 from pymongo import MongoClient
 from util import read_sp500
 import threading
-import queue
+import logging
 
 
 def get_proxies(path):
@@ -23,18 +23,7 @@ def get_proxies(path):
     return proxies
 
 
-def write_to_log_thread(queue):
-    log_path = "/home/wagenlaeder/stock-prediction/files/crawl_stocktwits_threading.log"
-
-    end = datetime.now() + timedelta(hours=23)
-    while datetime.now() < end:
-        if not queue.empty():
-            log = open(log_path, "a")
-            log.write(str(datetime.now()) + " " + queue.get().replace("\n", " ") + "\n")
-            log.close()
-
-
-def crawl(company, proxies, log_queue):
+def crawl(company, proxies):
     client = MongoClient()
     db = client.stocktwitsdb
 
@@ -57,7 +46,7 @@ def crawl(company, proxies, log_queue):
                 if result.status_code == 200: # request was successful
                     successful = True
 
-                    log_queue.put(str(len(result.json()["messages"])) + " results for " + company)
+                    logging.debug(str(len(result.json()["messages"])) + " results for " + company)
 
                     # add all messages to the database
                     collection = db[company]
@@ -67,12 +56,12 @@ def crawl(company, proxies, log_queue):
                     proxy_index = random.randint(0, len(proxies) - 1)
                     proxy = proxies[proxy_index]
             except Exception as e:
-                log_queue.put(str(e))
+                logging.error(str(e))
                 
                 # delete the proxy that causes an exception from the list of proxies
                 del proxies[proxy_index]
 
-                log_queue.put(str(len(proxies)) + " proxies left")
+                logging.debug(str(len(proxies)) + " proxies left")
 
                 if len(proxies) == 0: # if all proxies are deleted
                     proxies = all_proxies.copy()
@@ -88,27 +77,29 @@ def main():
     sp500_path = files_path + "sp500.json"
     proxy_path = files_path + "proxy_list.txt"
     log_path = files_path + "crawl_stocktwits_threading.log"
-    log_queue = queue.Queue()
+
+    logging.basicConfig(
+        filename=log_path,
+        level=logging.DEBUG,
+        format="%(asctime)s:%(levelname)s:%(message)s"
+        )
     
-    log_queue.put("start crawling stocktwits")
+    logging.info("start crawling stocktwits")
 
     sp500 = read_sp500(sp500_path)
     proxies = get_proxies(proxy_path)
     
     threads = []
-    thread = threading.Thread(target=write_to_log_thread, name="log_thread", args=(log_queue,))
-    thread.start()
-    threads.append(thread)
 
     for company in sp500:
-        thread = threading.Thread(target=crawl, name=company, args=(company, proxies.copy(), log_queue))
+        thread = threading.Thread(target=crawl, name=company, args=(company, proxies.copy()))
         thread.start()
         threads.append(thread)
 
     for thread in threads:
         thread.join()
 
-    write_to_log(log_path, "crawling stocktwits finished")
+    logging.info("crawling stocktwits finished")
 
 
 if __name__ == '__main__':
