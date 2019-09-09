@@ -23,9 +23,11 @@ def get_proxies(path):
     return proxies
 
 
-def divide_in_chunks(l, num): 
-    for i in range(0, len(l), num): 
-        yield l[i : i+num] 
+def divide_in_chunks(l, num):
+    length = len(l)
+    chunk_size = (length % num) + 1
+    for i in range(0, length, chunk_size): 
+        yield l[i : i+chunk_size] 
 
 
 def crawl(sp500_chunk, proxies):
@@ -35,7 +37,7 @@ def crawl(sp500_chunk, proxies):
     all_proxies = proxies.copy()
     random.shuffle(proxies)
 
-    timeout = 30
+    timeout = 9
     proxy_index = random.randint(0, len(proxies) - 1)
     proxy = proxies[proxy_index]
 
