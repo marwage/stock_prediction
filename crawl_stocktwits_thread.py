@@ -96,7 +96,7 @@ def main():
 
     split_in = 10
     sp500_chunks = list(divide_in_chunks(sp500, split_in))
-    proxies_chunks = list(divide_in_chunks(proxies), split_in)
+    proxies_chunks = list(divide_in_chunks(proxies, split_in))
     
     threads = []
     for i in range(split_in):
