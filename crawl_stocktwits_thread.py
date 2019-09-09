@@ -54,7 +54,7 @@ def crawl(company, proxies, log_queue):
                 if result.status_code == 200: # request was successful
                     successful = True
 
-                    log.put(str(len(result.json()["messages"])) + " results for " + company)
+                    log_queue.put(str(len(result.json()["messages"])) + " results for " + company)
 
                     # add all messages to the database
                     collection = db[company]
@@ -64,12 +64,12 @@ def crawl(company, proxies, log_queue):
                     proxy_index = random.randint(0, len(proxies) - 1)
                     proxy = proxies[proxy_index]
             except Exception as e:
-                log.put(str(e))
+                log_queue.put(str(e))
                 
                 # delete the proxy that causes an exception from the list of proxies
                 del proxies[proxy_index]
 
-                log.put(str(len(proxies)) + " proxies left")
+                log_queue.put(str(len(proxies)) + " proxies left")
 
                 if len(proxies) == 0: # if all proxies are deleted
                     proxies = all_proxies.copy()
