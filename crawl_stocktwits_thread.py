@@ -92,7 +92,7 @@ def main():
     proxies = get_proxies(proxy_path)
     
     threads = []
-    thread = threading.Thread(target=write_to_log_thread, name="log_thread", args=log_queue)
+    thread = threading.Thread(target=write_to_log_thread, name="log_thread", args=(log_queue,))
     thread.start()
     threads.append(thread)
 
