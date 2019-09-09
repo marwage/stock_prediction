@@ -22,7 +22,7 @@ def get_proxies(path):
     return proxies
 
 
-def crawl(company, proxies):
+def crawl(company, proxies, log_lock):
     log_path = "/home/wagenlaeder/stock-prediction/files/crawl_stocktwits_threading.log"
 
     client = MongoClient()
@@ -86,7 +86,7 @@ def main():
     
     threads = []
     for company in sp500:
-        thread = threading.Thread(target=crawl, name=company, args=(company, proxies.copy()))
+        thread = threading.Thread(target=crawl, name=company, args=(company, proxies.copy(), log_lock))
         thread.start()
         threads.append(thread)
 
