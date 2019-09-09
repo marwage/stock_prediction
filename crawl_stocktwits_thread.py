@@ -93,6 +93,7 @@ def main():
     
     threads = []
     thread = threading.Thread(target=write_to_log_thread, name="log_thread", args=log_queue)
+    thread.start()
     threads.append(thread)
 
     for company in sp500:
