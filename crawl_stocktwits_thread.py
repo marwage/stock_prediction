@@ -29,8 +29,8 @@ def write_to_log_thread(queue):
     end = datetime.now() + timedelta(hours=23)
     while datetime.now() < end:
         if not queue.empty():
-            with open(path, "a") as log:
-                log.write(str(datetime.now()) + " " + text.replace("\n", " ") + "\n")
+            with open(log_path, "a") as log:
+                log.write(str(datetime.now()) + " " + queue.get().replace("\n", " ") + "\n")
 
 
 def crawl(company, proxies, log_queue):
