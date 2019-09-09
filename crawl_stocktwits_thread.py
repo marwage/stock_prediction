@@ -23,7 +23,7 @@ def get_proxies(path):
 
 
 def crawl(company, proxies):
-    log_path = "/home/wagenlaeder/stock-prediction/files/crawl_stocktwits2.log"
+    log_path = "/home/wagenlaeder/stock-prediction/files/crawl_stocktwits_threading.log"
 
     client = MongoClient()
     db = client.stocktwitsdb
@@ -75,7 +75,7 @@ def main():
     files_path = "/home/wagenlaeder/stock-prediction/files/"
     sp500_path = files_path + "sp500.json"
     proxy_path = files_path + "proxy_list.txt"
-    log_path = files_path + "crawl_stocktwits2.log"
+    log_path = files_path + "crawl_stocktwits_threading.log"
 
     write_to_log(log_path, "start crawling stocktwits")
 
