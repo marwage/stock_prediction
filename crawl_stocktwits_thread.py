@@ -38,7 +38,7 @@ def crawl(company, proxies, log_queue):
 
     all_proxies = proxies.copy()
 
-    timeout = 9
+    timeout = 30
     proxy_index = random.randint(0, len(proxies) - 1)
     proxy = proxies[proxy_index]
     
