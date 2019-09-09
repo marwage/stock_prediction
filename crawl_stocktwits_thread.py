@@ -31,6 +31,8 @@ def write_to_log_thread(queue):
         if not queue.empty():
             with open(log_path, "a") as log:
                 log.write(str(datetime.now()) + " " + queue.get().replace("\n", " ") + "\n")
+    # why did it help to get rid of the "OSError: [Errno 24] Too many open files" by moving the body of write_to_log inside here?
+    # I have no clue...
 
 
 def crawl(company, proxies, log_queue):
