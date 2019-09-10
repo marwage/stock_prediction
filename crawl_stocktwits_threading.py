@@ -8,17 +8,9 @@ import threading
 import logging
 
 
-def get_proxies(path):
-    proxies = []
-
+def get_working_proxies(path):
     with open(path, "r") as proxy_file:
-        proxy_lines = proxy_file.readlines()
-
-    for row in proxy_lines:
-        row = row.replace("\n", "")
-        proxy = dict()
-        proxy["https"] = "http://" + row
-        proxies.append(proxy)
+        proxies = json.load(proxy_file)
 
     return proxies
 
@@ -94,7 +86,7 @@ def main():
     logging.info("start crawling stocktwits")
 
     sp500 = read_sp500(sp500_path)
-    proxies = get_proxies(proxy_path)
+    proxies = get_working_proxies(proxy_path)
     
     split_in = 10
     sp500_chunks = list(divide_in_chunks(sp500, split_in))
