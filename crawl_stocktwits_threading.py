@@ -15,11 +15,11 @@ def get_working_proxies(path):
     return proxies
 
 
-def divide_in_chunks(l, num):
-    length = len(l)
+def divide_in_chunks(lis, num):
+    length = len(lis)
     chunk_size = (length // num) + 1
     for i in range(0, length, chunk_size): 
-        yield l[i : i+chunk_size] 
+        yield lis[i : i+chunk_size] 
 
 
 def crawl(sp500_chunk, proxies):
@@ -88,12 +88,12 @@ def main():
     sp500 = read_sp500(sp500_path)
     proxies = get_working_proxies(proxy_path)
     
-    split_in = 10
-    sp500_chunks = list(divide_in_chunks(sp500, split_in))
-    proxies_chunks = list(divide_in_chunks(proxies, split_in))
+    num_threads = 24
+    sp500_chunks = list(divide_in_chunks(sp500, num_threads))
+    proxies_chunks = list(divide_in_chunks(proxies, num_threads))
     
     threads = []
-    for i in range(split_in):
+    for i in range(num_threads):
         thread = threading.Thread(target=crawl, args=(sp500_chunks[i], proxies_chunks[i].copy()))
         thread.start()
         threads.append(thread)
