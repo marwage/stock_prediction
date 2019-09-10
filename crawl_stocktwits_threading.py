@@ -74,7 +74,7 @@ def crawl(sp500_chunk, proxies):
 def main():
     files_path = "/home/wagenlaeder/stock-prediction/files/"
     sp500_path = files_path + "sp500.json"
-    proxy_path = files_path + "proxy_list.txt"
+    proxy_path = files_path + "working_proxies.json"
     log_path = files_path + "crawl_stocktwits_threading.log"
 
     logging.basicConfig(
