@@ -38,6 +38,7 @@ def main():
         plt.yticks(ind, dates)
 
         plt.savefig(save_path + company + ".svg")
+        plt.close()
 
 
 if __name__ == '__main__':
