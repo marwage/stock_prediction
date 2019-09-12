@@ -8,18 +8,19 @@ def delete_duplicates():
     pipeline = [
         {"$group": {
             "_id": {"body": "$body", "created_at": "$created_at"},
-            "uniqueIds": {$addToSet: "$_id"},
-            "count": {$sum: 1}
+            "uniqueIds": {"$addToSet": "$_id"},
+            "count": {"$sum": 1}
             }
         },
-        {$match: { 
-            count: {"$gt": 1}
+        {"$match": { 
+            "count": {"$gt": 1}
             }
         }
         ]
-    
-    for collection in db.list_collection_names():
-        print(collection.aggregate(pipeline))
+   
+    for collection_name in db.list_collection_names():
+        for ob in db[collection_name].aggregate(pipeline):
+            db[collection_name].delete_many( { "_id": { "$in": ob["uniqueIds"][0:len(ob["uniqueIds"]) - 1]}})
 
 
 def main():
