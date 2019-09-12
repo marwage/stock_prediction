@@ -46,6 +46,10 @@ def crawl(sp500, proxies):
 
                     collection = db[company]
                     for post in result.json()["messages"]:
+                        query = {
+                            "body": post["body"],
+                            "created_at": post["created_at"]
+                            }
                         write_result = collection.update(post, post, upsert=True)
                 else:
                     proxy_index = random.randint(0, len(proxies) - 1)

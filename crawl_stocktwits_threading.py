@@ -53,7 +53,11 @@ def crawl(sp500_chunk, proxies):
                         # add all messages to the database
                         collection = db[company]
                         for post in result.json()["messages"]:
-                            write_result = collection.update(post, post, upsert=True)
+                            query = {
+                                "body": post["body"],
+                                "created_at": post["created_at"]
+                                }
+                            write_result = collection.update(query, post, upsert=True)
                     else: # proxy worked but API did not response as wished
                         proxy_index = random.randint(0, len(proxies) - 1)
                         proxy = proxies[proxy_index]
