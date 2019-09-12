@@ -19,7 +19,8 @@ def try_update():
                 query = dict()
                 query["body"] = post["body"]
                 query["created_at"] = post["created_at"]
-                print(collection.find(query))
+                for ob in collection.find(query):
+                    print(ob)
                 write_result = collection.update(query , post, upsert=True)
     except Exception as e:
         print(e)
