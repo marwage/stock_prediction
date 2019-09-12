@@ -1,8 +1,12 @@
 import json
 import requests
+from pymongo import MongoClient
 
 
 def try_update():
+    client = MongoClient()
+    db = client.stocktwitsdb
+
     request_url = "https://api.stocktwits.com/api/2/streams/symbol/AAPL.json"     
         
     try:
