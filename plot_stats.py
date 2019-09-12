@@ -1,26 +1,36 @@
 import json
 import matplotlib.pyplot as plt
 import numpy as np
-from util import read_sp500
+from pymongo import MongoClient
+from datetime import datetime
 
 
-def main():
+def plot_stats():
     files_path = "files/"
     stats_path = files_path + "stocktwits_stats.json"
     sp500_path = files_path + "sp500.json"
     save_path = files_path + "graphs/stocktwits/"
 
-    sp500 = read_sp500(sp500_path)
+    # mongodb
+    client = MongoClient()
+    db = client.stocktwitsdb
 
-    with open(stats_path, "r") as json_file:
-        stats = json.load(json_file)
+    for share_code in db.list_collection_names():
+        collection = db[share_code]
+        stats = dict()
+        for post in collection.find({}):
+            date_string = post['created_at']
+            post_date = datetime.strptime(date_string[0:10], '%Y-%m-%d')
+            date_string = post_date.strftime('%Y-%m-%d')
+            if date_string in stats:
+                stats[date_string] = stats[share_code][date_string] + 1
+            else:
+                stats[date_string] = 1
 
-    for company in sp500:
-        company_stats = stats[company]
         n = 0
         dates = []
         counts = []
-        for key, value in company_stats.items():
+        for key, value in stats.items():
             dates.append(key)
             counts.append(value)
             n = n + 1
@@ -34,12 +44,12 @@ def main():
         p1 = plt.barh(ind, counts, height)
 
         plt.xlabel("Counts")
-        plt.title(company + " messages per day")
+        plt.title(share_code + " messages per day")
         plt.yticks(ind, dates)
 
-        plt.savefig(save_path + company + ".svg")
+        plt.savefig(save_path + share_code + ".svg")
         plt.close()
 
 
 if __name__ == '__main__':
-    main()
+    plot_stats()
