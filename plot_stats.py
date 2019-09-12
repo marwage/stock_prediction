@@ -23,7 +23,7 @@ def plot_stats():
             post_date = datetime.strptime(date_string[0:10], '%Y-%m-%d')
             date_string = post_date.strftime('%Y-%m-%d')
             if date_string in stats:
-                stats[date_string] = stats[share_code][date_string] + 1
+                stats[date_string] = stats[date_string] + 1
             else:
                 stats[date_string] = 1
 
