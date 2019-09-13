@@ -9,18 +9,16 @@ def create_dataset():
     client = MongoClient()
     db = client.stocktwitsdb
     sid = SentimentIntensityAnalyzer()
+    sentences = []
 
     for share_code in db.list_collection_names():
         for ob in db[share_code].find(filter={}, projection={"body"}):
-            print(type(ob))
-
-        sentences = ["VADER is smart, handsome, and funny."]
+            sentences.append(ob["body"])
 
         for sentence in sentences:
             print(sentence)
             ss = sid.polarity_scores(sentence)
-            for k in sorted(ss):
-                print("{0}: {1}, ".format(k, ss[k]), end="")
+            print(ss)
 
 
 if __name__ == '__main__':
