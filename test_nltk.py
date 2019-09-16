@@ -11,14 +11,13 @@ def create_dataset():
     sid = SentimentIntensityAnalyzer()
     sentences = []
 
-    for share_code in db.list_collection_names():
-        for ob in db[share_code].find(filter={}, projection={"body"}):
-            sentences.append(ob["body"])
+    for ob in db["AAPL"].find(filter={}, projection={"body"}):
+        sentences.append(ob["body"])
 
-        for sentence in sentences:
-            print(sentence)
-            ss = sid.polarity_scores(sentence)
-            print(ss)
+    for sentence in sentences:
+        print(sentence)
+        ss = sid.polarity_scores(sentence)
+        print(ss)
 
 
 if __name__ == '__main__':
