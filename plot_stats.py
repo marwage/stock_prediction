@@ -39,6 +39,7 @@ def plot_stats():
         height = 0.5
 
         fig, ax = plt.subplots()
+        plt.rcParams['figure.figsize'] = [8, 12]
         ax.tick_params(axis="y", labelsize=4)
 
         p1 = plt.barh(ind, counts, height)
