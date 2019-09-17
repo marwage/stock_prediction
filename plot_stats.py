@@ -45,9 +45,10 @@ def plot_stats():
         plt.rcParams['xtick.top'] = plt.rcParams['xtick.labeltop'] = True
 
         ax.tick_params(axis="y", labelsize=10)
-
+        ax.xaxis.set_label_position('top') 
+        
         p1 = plt.barh(ind, counts, height)
-
+        
         plt.xlabel("Counts")
         plt.title(share_code + " messages per day")
         plt.yticks(ind, dates)
