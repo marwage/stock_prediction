@@ -46,7 +46,8 @@ def plot_stats():
 
         ax.tick_params(axis="y", labelsize=10)
         ax.xaxis.set_label_position('top') 
-        
+        ax.xaxis.grid(True)
+
         p1 = plt.barh(ind, counts, height)
         
         plt.xlabel("Counts")
