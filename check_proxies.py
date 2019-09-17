@@ -30,7 +30,7 @@ def check_proxies(proxies):
 
     files_path = "files/"
     with open(files_path + "working_proxies.json", "w") as proxies_file:
-        json.dump(proxies, proxies_file)
+        json.dump(proxies, proxies_file, indent=4)
 
 
 def main():
