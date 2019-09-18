@@ -17,8 +17,8 @@ def get_proxies(path):
     return proxies
 
 
-def check_proxies(proxies):
-    timeout = 30
+def check_proxies(proxies, output_path):
+    timeout = 9
 
     for proxy in proxies:
         request_url = "https://api.stocktwits.com/api/2/streams/symbol/AAPL.json"     
@@ -28,14 +28,14 @@ def check_proxies(proxies):
         except Exception as e:
             proxies.remove(proxy)
 
-    files_path = "files/"
-    with open(files_path + "working_proxies.json", "w") as proxies_file:
+    with open(output_path, "w") as proxies_file:
         json.dump(proxies, proxies_file, indent=4)
 
 
 def main():
-    files_path = "files/"
-    proxy_path = files_path + "proxy_list.txt"
+    # paths are relative
+    proxy_path = "data/proxy-list.txt"
+    output_path = "data/working-proxies.json"
 
     proxies = get_proxies(proxy_path)
     check_proxies(proxies)

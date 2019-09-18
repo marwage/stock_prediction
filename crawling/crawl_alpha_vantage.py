@@ -4,7 +4,8 @@ from pymongo import MongoClient
 from datetime import datetime
 import time
 import random
-from util import read_sp500, write_to_log
+import logging
+from read_sp500 import read_sp500
 
 
 def get_apikey(path):
@@ -29,7 +30,7 @@ def query_stock_price(apikey, sp500):
                     items = result.json()["Time Series (Daily)"].items()
                     sucessful = True
                 except Exception as e:
-                    write_to_log(log_path, str(e))
+                    logging.error(str(e))
                     time.sleep(60)
                     break
 
@@ -47,14 +48,20 @@ def query_stock_price(apikey, sp500):
                         
                         write_result = collection.update(entry, entry, upsert=True)
             else:
-                write_to_log(log_path, str(result))
+                logging.debug(str(result))
 
 
 def main():
-    files_path = "/home/wagenlaeder/stock-prediction/files/"
-    sp500_path = files_path + "sp500.json"
-    apikey_path = files_path + "alpha_vantage_apikey.json"
-    log_path = files_path + "query_alpha_vantage.log"
+    repo_path = "/home/wagenlaeder/stock-prediction/"
+    sp500_path = repo_path + "crawling/data/sp500.json"
+    apikey_path = repo_path + "crawling/access-token/alpha-vantage-apikey.json"
+    log_path = repo_path + "/crawling/log/crawl-alpha-vantage.log"
+
+    logging.basicConfig(
+        filename=log_path,
+        level=logging.DEBUG,
+        format="%(asctime)s:%(levelname)s:%(message)s"
+        )
 
     apikey = get_apikey(apikey_path)
     sp500 = read_sp500(sp500_path)
