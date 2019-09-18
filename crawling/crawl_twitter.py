@@ -36,11 +36,11 @@ def crawl_twitter(sp500, access_token_path):
         logging.debug(str(len(results)) + " results for " + company)
 
         collection = db[company]
-        for tweet in results:
-            tweet_json = json.loads(str(tweet))
+        for result in results:
+            tweet = json.loads(str(result))
             query = {
-                    "text": post["text"],
-                    "created_at": post["created_at"]
+                    "text": tweet["text"],
+                    "created_at": tweet["created_at"]
                     }
             write_result = collection.update(query, tweet_json, upsert=True)
 
