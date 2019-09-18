@@ -49,7 +49,7 @@ def main():
         )
 
     proxies = get_proxies(proxy_path)
-    check_proxies(proxies)
+    check_proxies(proxies, output_path)
 
 
 if __name__ == '__main__':
