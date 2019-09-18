@@ -2,6 +2,7 @@ import numpy as np
 import json
 import twitter
 import time
+import logging
 from datetime import date, timedelta, datetime
 from pymongo import MongoClient
 from read_sp500 import read_sp500
