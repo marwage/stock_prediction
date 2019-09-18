@@ -44,7 +44,7 @@ def delete_twitterdb_duplicates():
         }
         ]
    
-   delete_duplicates(db, pipeline)
+    delete_duplicates(db, pipeline)
 
 
 def delete_duplicates(db, pipeline):
