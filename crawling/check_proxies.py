@@ -1,5 +1,6 @@
 import json
 import requests
+import logging
 
 
 def get_proxies(path):
@@ -19,8 +20,11 @@ def get_proxies(path):
 
 def check_proxies(proxies, output_path):
     timeout = 9
+    num_proxies = len(proxies)
 
-    for proxy in proxies:
+    for i, proxy in enumerate(proxies):
+        logging.debug("check proxy " + str(i) + "/" + str(num_proxies))
+
         request_url = "https://api.stocktwits.com/api/2/streams/symbol/AAPL.json"     
             
         try:
@@ -33,9 +37,16 @@ def check_proxies(proxies, output_path):
 
 
 def main():
-    # paths are relative
-    proxy_path = "data/proxy-list.txt"
-    output_path = "data/working-proxies.json"
+    crawling_path = "stock-prediction/crawling/"
+    proxy_path = crawling_path + "data/proxy_list.txt"
+    output_path = crawling_path + "data/working_proxies.json"
+    log_path = crawling_path + "log/crawl_alpha_vantage.log"
+
+    logging.basicConfig(
+        filename=log_path,
+        level=logging.DEBUG,
+        format="%(asctime)s:%(levelname)s:%(message)s"
+        )
 
     proxies = get_proxies(proxy_path)
     check_proxies(proxies)
