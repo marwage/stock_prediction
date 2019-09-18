@@ -3,8 +3,9 @@ import json
 
 
 def main():
-    files_path = "files/"
-    path = path = files_path + "sp500_constituents.csv"
+    data_path = "stock-prediction/crawling/data"
+    input_path = data_path + "sp500_constituents.csv"
+    output_path = data_path + "sp500.json"
 
     sp500 = np.genfromtxt(path, dtype=None, delimiter=",", names=True, encoding="utf8")
     
@@ -14,11 +15,11 @@ def main():
     sp500 = sp500[filter]
 
     sp500_dict = dict()
-    sp500_dict['sp500'] = companies = sp500["co_tic"].tolist()
+    sp500_dict["sp500"] = sp500["co_tic"].tolist()
 
-    with open(files_path + 'sp500.json', 'w') as json_file:
+    with open(output_path, "w") as json_file:
         json.dump(sp500_dict, json_file)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
