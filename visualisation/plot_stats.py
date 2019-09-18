@@ -7,7 +7,7 @@ from datetime import datetime
 
 
 def plot_company_stats(db_name, company, stats):
-    save_path = "stock-prediction/visualisation/" + db_name "/"
+    save_path = "stock-prediction/visualisation/" + db_name + "/"
 
     logging.debug("plot stats of " + company)
 
