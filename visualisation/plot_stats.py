@@ -67,6 +67,7 @@ def plot_stats(db_name):
 
 
 def main():
+    visualisation_path = "stock-prediction/visualisation/"
     log_path = visualisation_path + "log/visualisation_path.log"
     logging.basicConfig(
         filename=log_path,
