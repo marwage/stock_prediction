@@ -48,7 +48,7 @@ def crawl_twitter(sp500, access_token_path):
 def main():
     crawling_path = "stock-prediction/crawling/"
     sp500_path = crawling_path + "data/sp500.json"
-    log_path = crawling_path + "log/crawl_stocktwits.log"
+    log_path = crawling_path + "log/crawl_twitter.log"
     access_token_path = crawling_path + "access_token/twitter_access_token.json"
 
     logging.basicConfig(
