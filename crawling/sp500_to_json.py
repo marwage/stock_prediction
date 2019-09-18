@@ -3,7 +3,7 @@ import json
 
 
 def main():
-    data_path = "stock-prediction/crawling/data"
+    data_path = "stock-prediction/crawling/data/"
     input_path = data_path + "sp500_constituents.csv"
     output_path = data_path + "sp500.json"
 
