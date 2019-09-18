@@ -7,7 +7,7 @@ def main():
     input_path = data_path + "sp500_constituents.csv"
     output_path = data_path + "sp500.json"
 
-    sp500 = np.genfromtxt(path, dtype=None, delimiter=",", names=True, encoding="utf8")
+    sp500 = np.genfromtxt(input_path, dtype=None, delimiter=",", names=True, encoding="utf8")
     
     filter = sp500[:]["conm"]=="S&P 500 Comp-Ltd"
     sp500 = sp500[filter]
