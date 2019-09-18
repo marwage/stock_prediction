@@ -1,4 +1,5 @@
 .DS_Store
 /tmp/*
-*access_token.json
+*/access-token/*
 __pycache__
+*.log
