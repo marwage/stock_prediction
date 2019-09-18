@@ -4,51 +4,35 @@ import twitter
 import time
 from datetime import date, timedelta, datetime
 from pymongo import MongoClient
-
-files_path = "/home/wagenlaeder/stock-prediction/files"
-
-def read_sp500(path):
-    sp500 = np.genfromtxt(path, dtype=None, delimiter=",", names=True, encoding="utf8")
-    filter = sp500[:]["conm"]=="S&P 500 Comp-Ltd"
-    sp500 = sp500[filter]
-    filter = sp500[:]["thru"]==""
-    sp500 = sp500[filter]
-    
-    return sp500
+from read_sp500 import read_sp500
 
 
-def query_store(sp500):
-    #mongodb
+def crawl_twitter(sp500, access_token_path):
     client = MongoClient()
     db = client.twitterdb
-    #twitter
-    with open(files_path + "/access_token.json") as access_token_file:
+
+    with open(access_token_path, "r") as access_token_file:
         json_object = json.load(access_token_file)
+
     api = twitter.Api(consumer_key=json_object["consumer_key"],
                   consumer_secret=json_object["consumer_secret"],
                   access_token_key=json_object["access_token_key"],
                   access_token_secret=json_object["access_token_secret"])
 
-    companies = sp500["co_tic"].tolist()
-
-    for company in companies:
+    for company in sp500:
         since = date.today() - timedelta(days=1)
         until = date.today()
         query = "q=" + "%24"+ company + "%20since%3A" + str(since) + "%20until%3A" + str(until)
-        exceeded = True
-        while exceeded:
+        succeeded = False
+        while not succeeded:
             try:
                 results = api.GetSearch(raw_query=query)
-                exceeded = False
+                succeeded = True
             except:
-                # log
-                with open(files_path + "/crawl_twitter.log", "a") as log:
-                    log.write(str(datetime.now()) + " sleeping for 16 min\n")
+                log.debug("sleeping for 16 min")
                 time.sleep(960)
 
-        # log
-        with open(files_path + "/crawl_twitter.log", "a") as log:
-            log.write(str(datetime.now()) + " " + str(len(results)) + " results for " + company + "\n")
+        logging.debug(str(len(results)) + " results for " + company)
 
         collection = db[company]
         for tweet in results:
@@ -61,14 +45,23 @@ def query_store(sp500):
 
 
 def main():
-    path = files_path + "/sp500_constituents.csv"
+    crawling_path = "stock-prediction/crawling/"
+    sp500_path = crawling_path + "data/sp500.json"
+    log_path = crawling_path + "log/crawl_stocktwits.log"
+    access_token_path = crawling_path + "access_token/twitter_access_token.json"
+
+    logging.basicConfig(
+        filename=log_path,
+        level=logging.DEBUG,
+        format="%(asctime)s:%(levelname)s:%(message)s"
+        )
+
+    logging.info("start crawling twitter")
 
     sp500 = read_sp500(path)
-    query_store(sp500)
+    crawl_twitter(sp500, access_token_path)
 
-    # log
-    with open(files_path + "/crawl_twitter.log", "a") as log:
-        log.write(str(datetime.now()) + " finished\n")
+    logging.info("crawling twitter finished")
 
 
 if __name__ == '__main__':
