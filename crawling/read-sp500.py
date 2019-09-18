@@ -9,8 +9,3 @@ def read_sp500(path):
 
     return sp500_json["sp500"]
 
-# append a string to a log file
-def write_to_log(path, text):    
-    with open(path, "a") as log:
-        log.write(str(datetime.now()) + " " + text.replace("\n", " ") + "\n")
-    return
