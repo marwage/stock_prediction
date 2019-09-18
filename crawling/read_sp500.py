@@ -8,4 +8,3 @@ def read_sp500(path):
         sp500_json = json.load(json_file)
 
     return sp500_json["sp500"]
-

@@ -16,7 +16,6 @@ def get_apikey(path):
 
 
 def query_stock_price(apikey, sp500):
-    log_path = "/home/wagenlaeder/stock-prediction/files/query_alpha_vantage.log"
     client = MongoClient()
     db = client.stockpricedb
 
@@ -52,10 +51,10 @@ def query_stock_price(apikey, sp500):
 
 
 def main():
-    repo_path = "/home/wagenlaeder/stock-prediction/"
-    sp500_path = repo_path + "crawling/data/sp500.json"
-    apikey_path = repo_path + "crawling/access-token/alpha-vantage-apikey.json"
-    log_path = repo_path + "/crawling/log/crawl-alpha-vantage.log"
+    crawling_path = "~/stock-prediction/crawling/"
+    sp500_path = crawling_path + "data/sp500.json"
+    apikey_path = crawling_path + "access-token/alpha-vantage-apikey.json"
+    log_path = crawling_path + "log/crawl-alpha-vantage.log"
 
     logging.basicConfig(
         filename=log_path,
