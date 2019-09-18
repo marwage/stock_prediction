@@ -51,7 +51,7 @@ def query_stock_price(apikey, sp500):
 
 
 def main():
-    crawling_path = "~/stock-prediction/crawling/"
+    crawling_path = "stock-prediction/crawling/"
     sp500_path = crawling_path + "data/sp500.json"
     apikey_path = crawling_path + "access-token/alpha-vantage-apikey.json"
     log_path = crawling_path + "log/crawl-alpha-vantage.log"
