@@ -59,7 +59,7 @@ def main():
 
     logging.info("start crawling twitter")
 
-    sp500 = read_sp500(path)
+    sp500 = read_sp500(sp500_path)
     crawl_twitter(sp500, access_token_path)
 
     logging.info("crawling twitter finished")
