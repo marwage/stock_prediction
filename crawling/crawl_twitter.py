@@ -42,7 +42,7 @@ def crawl_twitter(sp500, access_token_path):
                     "text": tweet["text"],
                     "created_at": tweet["created_at"]
                     }
-            write_result = collection.update(query, tweet_json, upsert=True)
+            write_result = collection.update(query, tweet, upsert=True)
 
 
 def main():
