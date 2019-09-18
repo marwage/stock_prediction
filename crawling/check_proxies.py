@@ -40,7 +40,7 @@ def main():
     crawling_path = "stock-prediction/crawling/"
     proxy_path = crawling_path + "data/proxy_list.txt"
     output_path = crawling_path + "data/working_proxies.json"
-    log_path = crawling_path + "log/crawl_alpha_vantage.log"
+    log_path = crawling_path + "log/check_proxies.log"
 
     logging.basicConfig(
         filename=log_path,
