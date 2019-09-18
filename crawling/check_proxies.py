@@ -33,7 +33,7 @@ def check_proxies(proxies, output_path):
             proxies.remove(proxy)
 
     with open(output_path, "w") as proxies_file:
-        json.dump(proxies, proxies_file, indent=4)
+        json.dump(proxies, proxies_file, indent="\t")
 
 
 def main():

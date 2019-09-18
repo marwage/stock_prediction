@@ -18,7 +18,7 @@ def main():
     sp500_dict["sp500"] = sp500["co_tic"].tolist()
 
     with open(output_path, "w") as json_file:
-        json.dump(sp500_dict, json_file)
+        json.dump(sp500_dict, json_file, indent="\t")
 
 
 if __name__ == "__main__":
