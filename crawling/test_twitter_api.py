@@ -1,5 +1,4 @@
 import json
-import logging
 import time
 import requests
 from requests_oauthlib import OAuth1
@@ -38,12 +37,6 @@ def main():
     sp500_path = crawling_path + "data/sp500.json"
     log_path = crawling_path + "log/test_twitter_api.log"
     access_token_path = crawling_path + "access_token/twitter_access_token.json"
-
-    logging.basicConfig(
-        filename=log_path,
-        level=logging.DEBUG,
-        format="%(asctime)s:%(levelname)s:%(message)s"
-        )
 
     access_token = read_access_token(access_token_path)
     crawl_twitter(access_token)
