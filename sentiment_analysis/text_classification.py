@@ -22,10 +22,6 @@ def main():
     imdb = keras.datasets.imdb
     (train_data, train_labels), (test_data, test_labels) = imdb.load_data(num_words=25000)
 
-    for i in range(3):
-        print(train_data[i])
-        print(train_labels[i])
-
     # dictionary mapping words to an integer index
     word_index = imdb.get_word_index()
 
@@ -40,6 +36,10 @@ def main():
 
     def decode_review(text):
         return ' '.join([reverse_word_index.get(i, '?') for i in text])
+
+    for i in range(5):
+        print(decode_review(train_data[i]))
+        print(train_labels[i])
 
     # prepare data
     train_data = keras.preprocessing.sequence.pad_sequences(train_data,
