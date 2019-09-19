@@ -82,12 +82,14 @@ def main():
     client = MongoClient()
     db = client["stocktwitsdb"]
     posts = db["AAPL"].find({}, limit=100)
-    for post in posts:
+    posts_array = np.zeros((len(posts, 256))
+    for i, post in enumerate(posts):
         text = post["body"]
         text = re.sub(r"\n+", " ", text)
         word_list = re.split(r" ", text)
         words_int = words_to_index(word_index, word_list)
-        print(words_int)
+        posts_array[i, 0:len(words_int)]
+    print(posts_array)
 
 
 if __name__ == '__main__':
