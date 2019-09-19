@@ -22,8 +22,6 @@ def main():
     imdb = keras.datasets.imdb
     (train_data, train_labels), (test_data, test_labels) = imdb.load_data(num_words=25000)
 
-    print("type(test_data) " + str(type(test_data)))
-
     # dictionary mapping words to an integer index
     word_index = imdb.get_word_index()
 
@@ -89,7 +87,9 @@ def main():
         word_list = re.split(r" ", text)
         words_int = words_to_index(word_index, word_list)
         posts_array[i, 0:len(words_int)]
-    print(posts_array)
+    print(posts_array[0])
+    print(posts_array[1])
+    print(posts_array[2])
 
 
 if __name__ == '__main__':
