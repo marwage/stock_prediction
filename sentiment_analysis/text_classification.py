@@ -87,9 +87,9 @@ def main():
         word_list = re.split(r" ", text)
         words_int = words_to_index(word_index, word_list)
         posts_array[i, 0:len(words_int)]
-    print(posts_array[0])
-    print(posts_array[1])
-    print(posts_array[2])
+        if i in range(5):
+            print(text)
+            print(words_int)
 
 
 if __name__ == '__main__':
