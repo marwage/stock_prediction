@@ -15,6 +15,8 @@ def crawl_twitter(access_token):
     auth = OAuth1(access_token["consumer_key"], access_token["consumer_secret"],
         access_token["access_token_key"], access_token["access_token_secret"])
 
+    company = "AAPL"
+
     query_dollar = "https://api.twitter.com/1.1/search/tweets.json?q=" + "%24"+ company + "&result_type=recent&count=100"
     query_hashtag = "https://api.twitter.com/1.1/search/tweets.json?q=" + "%23"+ company + "&result_type=recent&count=100"
     queries = [query_dollar, query_hashtag]
@@ -29,7 +31,7 @@ def crawl_twitter(access_token):
                 print("sleeping for 15 min")
                 time.sleep(900)
 
-        print(result)
+        print(result.json())
 
 
 def main():
