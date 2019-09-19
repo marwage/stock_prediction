@@ -76,6 +76,13 @@ def main():
                         validation_data=(x_val, y_val),
                         verbose=1)
 
+    def words_to_index(word):
+        try:
+            index = word_index[word]
+        except KeyError:
+            index = 2
+        return index
+
     #load stocktwits posts
     client = MongoClient()
     db = client["stocktwitsdb"]
@@ -85,11 +92,15 @@ def main():
         text = post["body"]
         text = re.sub(r"\n+", " ", text)
         word_list = re.split(r" ", text)
-        words_int = words_to_index(word_index, word_list)
-        posts_array[i, 0:len(words_int)]
-        if i in range(5):
-            print(text)
-            print(words_int)
+        words_int list(map(lambda x: words_to_index(x), word_list))
+        posts_array[i, 0:len(words_int)] = words_int
+
+    # predict
+    predictions = model.predict(posts_array)
+
+    for i in range(10):
+        print(decode_review(posts_array[i]))
+        print(predictions[i])
 
 
 if __name__ == '__main__':
