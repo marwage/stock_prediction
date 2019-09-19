@@ -20,10 +20,12 @@ def words_to_index(word_index, words):
 def main():
     # download imdb dataset
     imdb = keras.datasets.imdb
-    (train_data, train_labels), (test_data, test_labels) = imdb.load_data(num_words=100000)
+    (train_data, train_labels), (test_data, test_labels) = imdb.load_data(num_words=25000)
 
     # dictionary mapping words to an integer index
     word_index = imdb.get_word_index()
+
+    print(len(word_index))
 
     # The first indices are reserved
     word_index = {k:(v+3) for k,v in word_index.items()}
