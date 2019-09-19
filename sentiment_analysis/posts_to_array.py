@@ -20,9 +20,6 @@ def words_to_index(word_index, words):
 def main():
     # download imdb dataset
     imdb = keras.datasets.imdb
-    (train_data, train_labels), (test_data, test_labels) = imdb.load_data(num_words=25000)
-
-    print(type(train_data))
 
     # dictionary mapping words to an integer index
     word_index = imdb.get_word_index()
@@ -37,17 +34,22 @@ def main():
     #load stocktwits posts
     client = MongoClient()
     db = client["stocktwitsdb"]
-    posts = db["AAPL"].find({}, limit=5)
+    posts = db["AAPL"].find({}, limit=1)
     posts_array = np.zeros((posts.count(), 256))
+    print("posts_array")
+    print(posts_array)
     for i, post in enumerate(posts):
         text = post["body"]
+        print("text")
         print(text)
         text = re.sub(r"\n+", " ", text)
         word_list = re.split(r" ", text)
         words_int = words_to_index(word_index, word_list)
+        print("words_int")
         print(words_int)
         posts_array[i, 0:len(words_int)]
-        print(posts_array[i])
+        print("posts_array")
+        print(posts_array)
 
 
 if __name__ == '__main__':
