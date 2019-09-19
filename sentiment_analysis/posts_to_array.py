@@ -36,24 +36,15 @@ def main():
     db = client["stocktwitsdb"]
     posts = db["AAPL"].find({}, limit=1)
     posts_array = np.zeros((posts.count(), 256))
-    print("posts_array")
-    print(posts_array)
     for i, post in enumerate(posts):
         text = post["body"]
-        print("text")
-        print(text)
         text = re.sub(r"\n+", " ", text)
         word_list = re.split(r" ", text)
         words_int = words_to_index(word_index, word_list)
-        print("words_int")
-        print(words_int)
-        print("i")
-        print(i)
-        print("len(words_int)")
-        print(len(words_int))
-        posts_array[i, 0:len(words_int)]
-        print("posts_array")
-        print(posts_array)
+        posts_array[i, 0:len(words_int)] = words_int
+        for i in range(5):
+            print(text)
+            print(posts_array[i])
 
 
 if __name__ == '__main__':
