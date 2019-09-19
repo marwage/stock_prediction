@@ -34,7 +34,7 @@ def main():
     #load stocktwits posts
     client = MongoClient()
     db = client["stocktwitsdb"]
-    posts = db["AAPL"].find({}, limit=1)
+    posts = db["AAPL"].find({}, limit=10)
     posts_array = np.zeros((posts.count(), 256))
     for i, post in enumerate(posts):
         text = post["body"]
@@ -42,7 +42,7 @@ def main():
         word_list = re.split(r" ", text)
         words_int = words_to_index(word_index, word_list)
         posts_array[i, 0:len(words_int)] = words_int
-        for i in range(5):
+        if i in range(5):
             print(text)
             print(posts_array[i])
 
