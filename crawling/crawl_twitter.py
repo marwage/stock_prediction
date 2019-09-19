@@ -39,10 +39,11 @@ def crawl_twitter(sp500, access_token):
                         log.debug("sleeping for 15 min")
                         time.sleep(900)
 
-                logging.debug(str(len(results)) + " results for " + company)
+                result_tweets = result.json()["statuses"]
+                logging.debug(str(len(result_tweets)) + " results for " + company)
 
                 collection = db[company]
-                for tweet in result.json()["statuses"]:
+                for tweet in result_tweets:
                     db_query = {
                             "text": tweet["text"],
                             "created_at": tweet["created_at"]
