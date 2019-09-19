@@ -95,6 +95,12 @@ def main():
         words_int = list(map(lambda x: word_to_index(x), words_list))
         posts_array[i, 0:len(words_int)] = words_int
 
+    # prepare data
+    predict_data = keras.preprocessing.sequence.pad_sequences(posts_array,
+                                                            value=word_index["<PAD>"],
+                                                            padding='post',
+                                                            maxlen=256)
+
     # predict
     predictions = model.predict(posts_array)
 
