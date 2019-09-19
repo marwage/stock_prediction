@@ -47,6 +47,10 @@ def main():
         words_int = words_to_index(word_index, word_list)
         print("words_int")
         print(words_int)
+        print("i")
+        print(i)
+        print("len(words_int)")
+        print(len(words_int))
         posts_array[i, 0:len(words_int)]
         print("posts_array")
         print(posts_array)
