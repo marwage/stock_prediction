@@ -2,6 +2,7 @@ import tensorflow as tf
 from tensorflow import keras
 import numpy as np
 from pymongo import MongoClient
+import re
 
 
 def main():
@@ -70,7 +71,11 @@ def main():
     db = client["stocktwitsdb"]
     posts = db["AAPL"].find({}, limit=100)
     for post in posts:
-        print(post)
+        text = post["body"]
+        text = re.sub(r"\n+", " ", text)
+        word_list = re.split(r" ", text)
+        words_int = map(lambda x: word_index[x], word_list)
+        print(words_int)
 
 
 if __name__ == '__main__':
