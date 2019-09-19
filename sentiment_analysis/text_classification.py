@@ -10,8 +10,6 @@ def words_to_index(word_index, words):
     for word in words:
         try:
             index = word_index[word]
-            if index >= 25000:
-                index = 3
         except KeyError:
             index = 2
         words_int.append(index)
@@ -22,7 +20,7 @@ def words_to_index(word_index, words):
 def main():
     # download imdb dataset
     imdb = keras.datasets.imdb
-    (train_data, train_labels), (test_data, test_labels) = imdb.load_data(num_words=25000)
+    (train_data, train_labels), (test_data, test_labels) = imdb.load_data(num_words=100000)
 
     # dictionary mapping words to an integer index
     word_index = imdb.get_word_index()
