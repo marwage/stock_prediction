@@ -22,6 +22,8 @@ def main():
     imdb = keras.datasets.imdb
     (train_data, train_labels), (test_data, test_labels) = imdb.load_data(num_words=25000)
 
+    print(type(train_data))
+
     # dictionary mapping words to an integer index
     word_index = imdb.get_word_index()
 
@@ -31,7 +33,7 @@ def main():
     word_index["<START>"] = 1
     word_index["<UNK>"] = 2  # unknown
     word_index["<UNUSED>"] = 3
-    
+
     #load stocktwits posts
     client = MongoClient()
     db = client["stocktwitsdb"]
