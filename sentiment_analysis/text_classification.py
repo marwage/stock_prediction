@@ -10,6 +10,8 @@ def words_to_index(word_index, words):
     for word in words:
         try:
             index = word_index[word]
+            if index >= 25000:
+                index = 3
         except KeyError:
             index = 2
         words_int.append(index)
@@ -102,10 +104,10 @@ def main():
                                                             maxlen=256)
 
     # predict
-    predictions = model.predict(test_data)
+    predictions = model.predict(predict_data)
 
     for i in range(10):
-        print(decode_review(test_data[i]))
+        print(decode_review(predict_data[i]))
         print(predictions[i])
 
 
