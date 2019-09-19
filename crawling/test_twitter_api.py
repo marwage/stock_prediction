@@ -31,7 +31,7 @@ def crawl_twitter(access_token):
                 logging.debug("sleeping for 15 min")
                 time.sleep(900)
 
-        logging.debug(result.json())
+        logging.debug(result.text)
 
 
 def main():
