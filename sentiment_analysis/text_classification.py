@@ -82,7 +82,7 @@ def main():
     client = MongoClient()
     db = client["stocktwitsdb"]
     posts = db["AAPL"].find({}, limit=100)
-    posts_array = np.zeros((len(posts, 256))
+    posts_array = np.zeros((len(posts), 256))
     for i, post in enumerate(posts):
         text = post["body"]
         text = re.sub(r"\n+", " ", text)
