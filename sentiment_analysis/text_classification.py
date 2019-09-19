@@ -74,7 +74,7 @@ def main():
         text = post["body"]
         text = re.sub(r"\n+", " ", text)
         word_list = re.split(r" ", text)
-        words_int = map(lambda x: word_index[x], word_list)
+        words_int = list(map(lambda x: word_index[x], word_list))
         print(words_int)
 
 
