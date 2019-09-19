@@ -22,10 +22,12 @@ def main():
     imdb = keras.datasets.imdb
     (train_data, train_labels), (test_data, test_labels) = imdb.load_data(num_words=25000)
 
+    for i in range(3):
+        print(train_data[i])
+        print(train_labels[i])
+
     # dictionary mapping words to an integer index
     word_index = imdb.get_word_index()
-
-    print(len(word_index))
 
     # The first indices are reserved
     word_index = {k:(v+3) for k,v in word_index.items()}
@@ -108,7 +110,7 @@ def main():
     # predict
     predictions = model.predict(predict_data)
 
-    for i in range(10):
+    for i in range(3):
         print(decode_review(predict_data[i]))
         print(predictions[i])
 
