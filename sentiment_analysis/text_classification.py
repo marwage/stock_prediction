@@ -76,7 +76,7 @@ def main():
                         validation_data=(x_val, y_val),
                         verbose=1)
 
-    def words_to_index(word):
+    def word_to_index(word):
         try:
             index = word_index[word]
         except KeyError:
@@ -91,8 +91,8 @@ def main():
     for i, post in enumerate(posts):
         text = post["body"]
         text = re.sub(r"\n+", " ", text)
-        word_list = re.split(r" ", text)
-        words_int list(map(lambda x: words_to_index(x), word_list))
+        words_list = re.split(r" ", text)
+        words_int = list(map(lambda x: word_to_index(x), words_list))
         posts_array[i, 0:len(words_int)] = words_int
 
     # predict
