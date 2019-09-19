@@ -1,8 +1,10 @@
 import json
 import time
 import logging
+import requests
 from datetime import timedelta, datetime
 from pymongo import MongoClient
+from requests_oauthlib import OAuth1
 from read_sp500 import read_sp500
 
 
