@@ -83,6 +83,8 @@ def main():
             index = word_index[word]
         except KeyError:
             index = 2
+        if index >= 25000:
+            index = 3
         return index
 
     #load stocktwits posts
