@@ -102,10 +102,10 @@ def main():
                                                             maxlen=256)
 
     # predict
-    predictions = model.predict(predict_data)
+    predictions = model.predict(test_data)
 
     for i in range(10):
-        print(decode_review(predict_data[i]))
+        print(decode_review(test_data[i]))
         print(predictions[i])
 
 
