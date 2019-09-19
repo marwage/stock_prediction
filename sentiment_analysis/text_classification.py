@@ -5,6 +5,18 @@ from pymongo import MongoClient
 import re
 
 
+def words_to_index(word_index, words):
+    words_int = []
+    for word in words:
+        try:
+            index = word_index[x]
+        except KeyError:
+            index = 2
+        words_int.append(index)
+
+    return words_int
+
+
 def main():
     # download imdb dataset
     imdb = keras.datasets.imdb
@@ -74,7 +86,7 @@ def main():
         text = post["body"]
         text = re.sub(r"\n+", " ", text)
         word_list = re.split(r" ", text)
-        words_int = list(map(lambda x: word_index[x], word_list))
+        words_int = words_to_index(word_index, word_list)
         print(words_int)
 
 
