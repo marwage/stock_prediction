@@ -17,10 +17,7 @@ def get_working_proxies(path):
 
 def divide_in_chunks(lis, num):
     length = len(lis)
-    if length % num != 0:
-        chunk_size = (length // num) + 1
-    else:
-        chunk_size = (length // num)
+    chunk_size = (length // num)
     for i in range(0, length, chunk_size): 
         yield lis[i : i+chunk_size] 
 
