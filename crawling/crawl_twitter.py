@@ -32,24 +32,24 @@ def crawl_twitter(sp500, access_token):
             for query in queries:
                 succeeded = False
                 while not succeeded:
-                    try:
-                        result = requests.get(query, auth=auth)
-                        succeeded = True
-                    except:
-                        log.debug("sleeping for 15 min")
+                    result = requests.get(query, auth=auth)
+                    result_json = result.json()
+                    if "errors" in result_json:
+                        logging.debug("sleeping for 15 min")
                         time.sleep(900)
-
-                result_tweets = result.json()["statuses"]
-                logging.debug(str(len(result_tweets)) + " results for " + company)
-
+                    else:
+                        succeeded = True
+                    
+                tweets = result_json["statuses"]
+                logging.debug(str(len(tweets)) + " results for " + company)
                 collection = db[company]
-                for tweet in result_tweets:
+                for tweet in tweets:
                     db_query = {
-                            "text": tweet["text"],
-                            "created_at": tweet["created_at"]
-                            }
+                        "text": tweet["text"],
+                        "created_at": tweet["created_at"]
+                        }
                     write_result = collection.update(db_query, tweet, upsert=True)
-
+                    
 
 def main():
     crawling_path = "stock-prediction/crawling/"
