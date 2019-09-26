@@ -32,13 +32,16 @@ def crawl_twitter(sp500, access_token):
             for query in queries:
                 succeeded = False
                 while not succeeded:
-                    result = requests.get(query, auth=auth)
-                    result_json = result.json()
-                    if "errors" in result_json:
-                        logging.debug("sleeping for 15 min")
-                        time.sleep(900)
-                    else:
-                        succeeded = True
+                    try:
+                        result = requests.get(query, auth=auth)
+                        result_json = result.json()
+                        if "errors" in result_json:
+                            logging.debug("sleeping for 15 min")
+                            time.sleep(900)
+                        else:
+                            succeeded = True
+                    except Exception as e:
+                        logging.debug(str(e))
                     
                 tweets = result_json["statuses"]
                 logging.debug(str(len(tweets)) + " results for " + company)
