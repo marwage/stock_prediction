@@ -33,8 +33,7 @@ def crawl(sp500_chunk, proxies):
     proxy_index = random.randint(0, len(proxies) - 1)
     proxy = proxies[proxy_index]
 
-    end = datetime.now() + timedelta(hours=23)
-    while datetime.now() < end:
+    while True:
         for company in sp500_chunk:
             request_url = "https://api.stocktwits.com/api/2/streams/symbol/" + company + ".json"
             successful = False
@@ -87,8 +86,6 @@ def main():
         format="%(asctime)s:%(levelname)s:%(message)s"
         )
     
-    logging.info("start crawling stocktwits")
-
     sp500 = read_sp500(sp500_path)
     proxies = get_working_proxies(proxy_path)
     
@@ -104,8 +101,6 @@ def main():
 
     for thread in threads:
         thread.join()
-
-    logging.info("crawling stocktwits finished")
 
 
 if __name__ == '__main__':
