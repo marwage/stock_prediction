@@ -85,7 +85,9 @@ def main():
         level=logging.DEBUG,
         format="%(asctime)s:%(levelname)s:%(message)s"
         )
-    
+    logging.getLogger("requests").setLevel(logging.WARNING)
+    logging.getLogger("urllib3").setLevel(logging.WARNING)
+
     sp500 = read_sp500(sp500_path)
     proxies = get_working_proxies(proxy_path)
     
