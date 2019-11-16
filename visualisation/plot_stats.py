@@ -24,7 +24,7 @@ def plot_company_stats(db_name, company, stats):
 
     fig, ax = plt.subplots()
 
-    plt.rcParams['figure.figsize'] = [8, 16]
+    plt.rcParams['figure.figsize'] = [8, 32]
     plt.rcParams['xtick.bottom'] = plt.rcParams['xtick.labelbottom'] = False
     plt.rcParams['xtick.top'] = plt.rcParams['xtick.labeltop'] = True
 
