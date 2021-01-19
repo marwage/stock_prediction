@@ -22,7 +22,9 @@ def query_stock_price(apikey, sp500):
     for company in sp500:
         sucessful = False
         while not sucessful:
-            request_url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + company + "&interval=5min&apikey=" + apikey
+            request_url = "https://www.alphavantage.co/query"
+                        + "?function=TIME_SERIES_DAILY&symbol="
+                        + company + "&interval=5min&apikey=" + apikey
             result = requests.get(request_url)
             if result.status_code == 200:
                 try:
@@ -44,8 +46,8 @@ def query_stock_price(apikey, sp500):
                         entry[key]["low"] = float(value["3. low"])
                         entry[key]["close"] = float(value["4. close"])
                         entry[key]["volume"] = float(value["5. volume"])
-                        
-                        write_result = collection.update(entry, entry, upsert=True)
+
+                        collection.update(entry, entry, upsert=True)
             else:
                 logging.debug(str(result))
 
@@ -65,7 +67,7 @@ def main():
     apikey = get_apikey(apikey_path)
     sp500 = read_sp500(sp500_path)
     random.shuffle(sp500)
-    stock_price = query_stock_price(apikey, sp500)
+    query_stock_price(apikey, sp500)
 
 
 if __name__ == '__main__':
