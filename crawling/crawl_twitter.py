@@ -6,6 +6,8 @@ from datetime import timedelta, datetime
 from pymongo import MongoClient
 from requests_oauthlib import OAuth1
 from read_sp500 import read_sp500
+import os
+from pathlib import Path
 
 
 def read_access_token(access_token_path):
@@ -50,14 +52,14 @@ def crawl_twitter(sp500, access_token):
                         "text": tweet["text"],
                         "created_at": tweet["created_at"]
                         }
-                    write_result = collection.update(db_query, tweet, upsert=True)
+                    collection.update(db_query, tweet, upsert=True)
                     
 
 def main():
-    crawling_path = "stock-prediction/crawling/"
-    sp500_path = crawling_path + "data/sp500.json"
-    log_path = crawling_path + "log/crawl_twitter.log"
-    access_token_path = crawling_path + "access_token/twitter_access_token.json"
+    crawling_path = os.path.join(Path.home(), "stock-prediction/crawling")
+    sp500_path = os.path.join(crawling_path, "data/sp500.json")
+    log_path = os.path.join(crawling_path, "log/crawl_twitter.log")
+    access_token_path = os.path.join(crawling_path, "access_token/twitter_access_token.json")
 
     logging.basicConfig(
         filename=log_path,

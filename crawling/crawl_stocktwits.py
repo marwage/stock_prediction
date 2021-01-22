@@ -6,6 +6,8 @@ from pymongo import MongoClient
 from read_sp500 import read_sp500
 import threading
 import logging
+import os
+from pathlib import Path
 
 
 def get_working_proxies(path):
@@ -53,7 +55,7 @@ def crawl(sp500_chunk, proxies):
                                 "body": post["body"],
                                 "created_at": post["created_at"]
                                 }
-                            write_result = collection.update(query, post, upsert=True)
+                            collection.update(query, post, upsert=True)
                     else: # proxy worked but API did not response as wished
                         proxy_index = random.randint(0, len(proxies) - 1)
                         proxy = proxies[proxy_index]
@@ -75,10 +77,10 @@ def crawl(sp500_chunk, proxies):
 
 
 def main():
-    crawling_path = "stock-prediction/crawling/"
-    sp500_path = crawling_path + "data/sp500.json"
-    proxy_path = crawling_path + "data/working_proxies.json"
-    log_path = crawling_path + "log/crawl_stocktwits.log"
+    crawling_path = os.path.join(Path.home(), "stock-prediction/crawling")
+    sp500_path = os.path.join(crawling_path, "data/sp500.json")
+    proxy_path = os.path.join(crawling_path, "data/working_proxies.json")
+    log_path = os.path.join(crawling_path, "log/crawl_stocktwits.log")
 
     logging.basicConfig(
         filename=log_path,
@@ -107,5 +109,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
