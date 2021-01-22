@@ -8,6 +8,7 @@ import logging
 from read_sp500 import read_sp500
 import os
 from pathlib import Path
+import sys
 
 
 def get_apikey(path):
@@ -26,7 +27,7 @@ def query_stock_price(apikey, sp500):
         while not sucessful:
             request_url = "https://www.alphavantage.co/query" \
                         + "?function=TIME_SERIES_DAILY&symbol=" \
-                        + company + "&interval=5min&apikey=" + apikey
+                        + company + "&outputsize=full&apikey=" + apikey
             result = requests.get(request_url)
             if result.status_code == 200:
                 try:
@@ -47,7 +48,7 @@ def query_stock_price(apikey, sp500):
                         day_properties["high"] = float(value["2. high"])
                         day_properties["low"] = float(value["3. low"])
                         day_properties["close"] = float(value["4. close"])
-                        day_properties["volume"] = float(value["5. volume"])
+                        day_properties["volume"] = int(value["5. volume"])
 
                         collection.update_one({"date": date}, {"$set": day_properties}, upsert=True)
             else:
@@ -55,9 +56,12 @@ def query_stock_price(apikey, sp500):
 
 
 def main():
-    crawling_path = os.path.join(Path.home(), "stock-prediction/crawling")
+    if sys.platform == "linux":
+        crawling_path = os.path.join(Path.home(), "stock-prediction/crawling")
+    else:
+        crawling_path = os.path.join(Path.home(), "Studies/Master/10SS19/StockPrediction/stock-prediction/crawling")
     sp500_path = os.path.join(crawling_path, "data/sp500.json")
-    apikey_path = os.path.join(crawling_path, "access-token/alpha_vantage_apikey.json")
+    apikey_path = os.path.join(crawling_path, "access_token/alpha_vantage_apikey.json")
     log_path = os.path.join(crawling_path, "log/crawl_alpha_vantage.log")
 
     logging.basicConfig(
