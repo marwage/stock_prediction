@@ -6,6 +6,8 @@ import time
 import random
 import logging
 from read_sp500 import read_sp500
+import os
+from pathlib import Path
 
 
 def get_apikey(path):
@@ -22,13 +24,13 @@ def query_stock_price(apikey, sp500):
     for company in sp500:
         sucessful = False
         while not sucessful:
-            request_url = "https://www.alphavantage.co/query"
-                        + "?function=TIME_SERIES_DAILY&symbol="
+            request_url = "https://www.alphavantage.co/query" \
+                        + "?function=TIME_SERIES_DAILY&symbol=" \
                         + company + "&interval=5min&apikey=" + apikey
             result = requests.get(request_url)
             if result.status_code == 200:
                 try:
-                    items = result.json()["Time Series (Daily)"].items()
+                    result.json()["Time Series (Daily)"].items()
                     sucessful = True
                 except Exception as e:
                     logging.error(str(e))
@@ -39,24 +41,24 @@ def query_stock_price(apikey, sp500):
                 for key, value in result.json()["Time Series (Daily)"].items():
                     date = datetime.strptime(key, "%Y-%m-%d")
                     if date > datetime(2019, 6, 1):
-                        entry = dict()
-                        entry[key] = dict()
-                        entry[key]["open"] = float(value["1. open"])
-                        entry[key]["high"] = float(value["2. high"])
-                        entry[key]["low"] = float(value["3. low"])
-                        entry[key]["close"] = float(value["4. close"])
-                        entry[key]["volume"] = float(value["5. volume"])
+                        day_properties = dict()
+                        day_properties["date"] = date
+                        day_properties["open"] = float(value["1. open"])
+                        day_properties["high"] = float(value["2. high"])
+                        day_properties["low"] = float(value["3. low"])
+                        day_properties["close"] = float(value["4. close"])
+                        day_properties["volume"] = float(value["5. volume"])
 
-                        collection.update(entry, entry, upsert=True)
+                        collection.update_one({"date": date}, {"$set": day_properties}, upsert=True)
             else:
                 logging.debug(str(result))
 
 
 def main():
-    crawling_path = "stock-prediction/crawling/"
-    sp500_path = crawling_path + "data/sp500.json"
-    apikey_path = crawling_path + "access-token/alpha_vantage_apikey.json"
-    log_path = crawling_path + "log/crawl_alpha_vantage.log"
+    crawling_path = os.path.join(Path.home(), "stock-prediction/crawling")
+    sp500_path = os.path.join(crawling_path, "data/sp500.json")
+    apikey_path = os.path.join(crawling_path, "access-token/alpha_vantage_apikey.json")
+    log_path = os.path.join(crawling_path, "log/crawl_alpha_vantage.log")
 
     logging.basicConfig(
         filename=log_path,

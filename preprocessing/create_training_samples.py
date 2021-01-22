@@ -21,6 +21,14 @@ def clean_text(text):
 
     return cleaned
 
+def stocktwits_get_text(tweet):
+    if "body" in tweet:
+        return tweet["body"]
+    elif "text" in tweet:
+        return tweet["text"]
+    else:
+        return None
+
 
 def create_training_samples():
     client = MongoClient()
@@ -28,36 +36,47 @@ def create_training_samples():
     twitter_db = client["twitterdb"]
     stocktwits_db = client["stocktwitsdb"]
 
-    sp500_path = os.path.join(Path.home(), "stock-prediction/crawling/data/sp500.json")
+    sp500_path = os.path.join(Path.home(),
+            "Studies/Master/10SS19/StockPrediction/stock-prediction/crawling/data/sp500.json")
     sp500 = read_sp500(sp500_path)
-
-    for company in sp500:
-        if company == "AAPL":
-            collection = twitter_db[company]
-
-            tweets = collection.find()
-            for i, post in enumerate(tweets):
-                print(clean_text(post["text"]))
-                if i > 20:
-                    return
 
     start = datetime(2019, 6, 1)
     end = datetime(2021, 1, 15)
 
-    timestamp = start
-    # for each day
-    while timestamp <= end:
-        timestamp += timedelta(year=1)
+    for company in sp500:
+        twitter_company_coll = twitter_db[company]
+        stocktwits_company_coll = stocktwits_db[company]
+        learning_company_coll = learning_db[company]
+
+        print(company)
+
+        # for each day
+        timestamp_a = start
+        while timestamp_a <= end:
+            timestamp_b = timestamp_a + timedelta(days=1)
+
+            twitter_tweets = twitter_company_coll.find({ "date": { "$gte": timestamp_a, "$lt": timestamp_b } })
+            stocktwits_tweets = twitter_company_coll.find({ "date": { "$gte": timestamp_a, "$lt": timestamp_b } })
+
+            day = dict()
+            day["day"] = timestamp_a
+            twitter_tweets_text = [clean_text(tweet["text"]) for tweet in twitter_tweets]
+            stocktwits_tweets_text = [clean_text(stocktwits_get_text(tweet)) for tweet in stocktwits_tweets]
+            twitter_tweets_sentiment = [0 for tweet in twitter_tweets_text]
+            stocktwits_tweets_sentiment = [0 for tweet in stocktwits_tweets_text]
+
+            tweets = [{"text": text, "sentiment": sentiment} for text, sentiment in zip(twitter_tweets_text, twitter_tweets_sentiment)]
+            tweets.extend([{"text": text, "sentiment": sentiment} for text, sentiment in zip(stocktwits_tweets_text, stocktwits_tweets_sentiment)])
+            day["tweets"] = tweets
+            day["price_diff"] = 0
+
+            if day["tweets"]:
+                learning_company_coll.update_one({"day": timestamp_a}, {"$set": day}, upsert=True)
+
+            timestamp_a = timestamp_b
 
 
 def main():
-    # log_path = ""
-    # logging.basicConfig(
-    #     filename=log_path,
-    #     level=logging.DEBUG,
-    #     format="%(asctime)s:%(levelname)s:%(message)s"
-    #     )
-
     create_training_samples()
 
 
