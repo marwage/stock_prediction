@@ -65,7 +65,7 @@ def create_training_samples(mongo_client: MongoClient, sp500: list, first_date: 
             end = start + timedelta(days=1)
             stock_price_next_day = stock_price_company_coll.find_one({"date": end})
             while stock_price_next_day is None and end <= last_date:
-                end = start + timedelta(days=1)
+                end = end + timedelta(days=1)
                 stock_price_next_day = stock_price_company_coll.find_one({"date": end})
 
             if stock_price_next_day is None:
@@ -75,16 +75,16 @@ def create_training_samples(mongo_client: MongoClient, sp500: list, first_date: 
 
             # get all tweets between two trading days
             twitter_tweets = twitter_company_coll.find({ "date": { "$gte": start, "$lt": end } })
-            stocktwits_tweets = twitter_company_coll.find({ "date": { "$gte": start, "$lt": end } })
+            twitter_tweets_text = [clean_text(tweet["text"]) for tweet in twitter_tweets]
 
-            if twitter_tweets is None and stocktwits_tweets is None:
+            stocktwits_tweets = twitter_company_coll.find({ "date": { "$gte": start, "$lt": end } })
+            stocktwits_tweets_text = [clean_text(stocktwits_get_text(tweet)) for tweet in stocktwits_tweets]
+
+            if not twitter_tweets_text and not stocktwits_tweets_text:
                 start = start + timedelta(days=1)
-                logging.debug("There is no tweets between %s - %s", start, end)
+                logging.debug("There are no tweets between %s - %s", start, end)
                 continue
 
-            # clean text
-            twitter_tweets_text = [clean_text(tweet["text"]) for tweet in twitter_tweets]
-            stocktwits_tweets_text = [clean_text(stocktwits_get_text(tweet)) for tweet in stocktwits_tweets]
             # get sentiment
             twitter_tweets_sentiment = [get_sentiment(tweet) for tweet in twitter_tweets_text]
             stocktwits_tweets_sentiment = [get_sentiment(tweet) for tweet in stocktwits_tweets_text]
