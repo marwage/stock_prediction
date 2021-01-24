@@ -5,12 +5,13 @@ import os
 from pathlib import Path
 from pymongo import MongoClient
 import re
+from textblob import TextBlob
+import sys
 
 
 def read_sp500(path):
     with open(path, "r") as json_file:
         sp500_json = json.load(json_file)
-
     return sp500_json["sp500"]
 
 def clean_text(text):
@@ -18,7 +19,6 @@ def clean_text(text):
     cleaned = re.sub(r" {2,}", " ", cleaned)
     cleaned = re.sub(r"((http|https)://)(www.)?[a-zA-Z0-9@:%._\+~#?&//=]{1,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%._\+~#?&//=]*)",
                      "", cleaned)
-
     return cleaned
 
 def stocktwits_get_text(tweet):
@@ -29,55 +29,104 @@ def stocktwits_get_text(tweet):
     else:
         return None
 
+def get_sentiment(text):
+    text_blob = TextBlob(text)
+    return text_blob.sentiment.polarity
 
-def create_training_samples():
-    client = MongoClient()
-    learning_db = client["learning"]
-    twitter_db = client["twitterdb"]
-    stocktwits_db = client["stocktwitsdb"]
+def get_price_difference(day, next_day):
+    stock_price_day = day["open"]
+    stock_price_next_day = next_day["open"]
+    return stock_price_next_day - stock_price_day
 
-    sp500_path = os.path.join(Path.home(),
-            "Studies/Master/10SS19/StockPrediction/stock-prediction/crawling/data/sp500.json")
-    sp500 = read_sp500(sp500_path)
 
-    start = datetime(2019, 6, 1)
-    end = datetime(2021, 1, 15)
+def create_training_samples(mongo_client: MongoClient, sp500: list, first_date: datetime, last_date: datetime):
+    learning_db = mongo_client["learning"]
+    twitter_db = mongo_client["twitterdb"]
+    stocktwits_db = mongo_client["stocktwitsdb"]
+    stockprice_db = mongo_client["stockpricedb"]
 
     for company in sp500:
+        print(company)
+
         twitter_company_coll = twitter_db[company]
         stocktwits_company_coll = stocktwits_db[company]
         learning_company_coll = learning_db[company]
-
-        print(company)
+        stock_price_company_coll = stockprice_db[company]
 
         # for each day
-        timestamp_a = start
-        while timestamp_a <= end:
-            timestamp_b = timestamp_a + timedelta(days=1)
+        start = first_date
+        while start <= last_date:
+            stock_price_day = stock_price_company_coll.find_one({"date": start})
+            if stock_price_day is None:
+                start = start + timedelta(days=1)
+                continue
 
-            twitter_tweets = twitter_company_coll.find({ "date": { "$gte": timestamp_a, "$lt": timestamp_b } })
-            stocktwits_tweets = twitter_company_coll.find({ "date": { "$gte": timestamp_a, "$lt": timestamp_b } })
+            # get next trading day
+            end = start + timedelta(days=1)
+            stock_price_next_day = stock_price_company_coll.find_one({"date": end})
+            while stock_price_next_day is None and end <= last_date:
+                end = start + timedelta(days=1)
+                stock_price_next_day = stock_price_company_coll.find_one({"date": end})
 
-            day = dict()
-            day["day"] = timestamp_a
+            if stock_price_next_day is None:
+                start = start + timedelta(days=1)
+                logging.debug("There is no end date for start date %s", start)
+                continue
+
+            # get all tweets between two trading days
+            twitter_tweets = twitter_company_coll.find({ "date": { "$gte": start, "$lt": end } })
+            stocktwits_tweets = twitter_company_coll.find({ "date": { "$gte": start, "$lt": end } })
+
+            if twitter_tweets is None and stocktwits_tweets is None:
+                start = start + timedelta(days=1)
+                logging.debug("There is no tweets between %s - %s", start, end)
+                continue
+
+            # clean text
             twitter_tweets_text = [clean_text(tweet["text"]) for tweet in twitter_tweets]
             stocktwits_tweets_text = [clean_text(stocktwits_get_text(tweet)) for tweet in stocktwits_tweets]
-            twitter_tweets_sentiment = [0 for tweet in twitter_tweets_text]
-            stocktwits_tweets_sentiment = [0 for tweet in stocktwits_tweets_text]
+            # get sentiment
+            twitter_tweets_sentiment = [get_sentiment(tweet) for tweet in twitter_tweets_text]
+            stocktwits_tweets_sentiment = [get_sentiment(tweet) for tweet in stocktwits_tweets_text]
 
+            # create list with tuples of text and sentiment
             tweets = [{"text": text, "sentiment": sentiment} for text, sentiment in zip(twitter_tweets_text, twitter_tweets_sentiment)]
             tweets.extend([{"text": text, "sentiment": sentiment} for text, sentiment in zip(stocktwits_tweets_text, stocktwits_tweets_sentiment)])
-            day["tweets"] = tweets
-            day["price_diff"] = 0
+            
+            # create sample
+            sample = dict()
+            sample["start"] = start
+            sample["end"] = end
+            sample["tweets"] = tweets
+            sample["price_diff"] = get_price_difference(stock_price_day, stock_price_next_day)
 
-            if day["tweets"]:
-                learning_company_coll.update_one({"day": timestamp_a}, {"$set": day}, upsert=True)
+            learning_company_coll.update_one({"start": start}, {"$set": sample}, upsert=True)
 
-            timestamp_a = timestamp_b
+            start = end
 
 
 def main():
-    create_training_samples()
+    if sys.platform == "linux":
+        path = os.path.join(Path.home(), "stock-prediction")
+    else:
+        path = os.path.join(Path.home(), "Studies/Master/10SS19/StockPrediction/stock-prediction")
+
+    logging_path = os.path.join(path, "preprocessing/create_training_samples.log")
+    logging.basicConfig(
+        filename=logging_path,
+        level=logging.DEBUG,
+        format="%(asctime)s:%(levelname)s:%(message)s"
+        )
+    
+    sp500_path = os.path.join(path, "crawling/data/sp500.json")
+    sp500 = read_sp500(sp500_path)
+
+    first_date = datetime(2019, 6, 1)
+    last_date = datetime(2021, 1, 15)
+
+    mongo_client = MongoClient()
+
+    create_training_samples(mongo_client, sp500, first_date, last_date)
 
 
 if __name__ == '__main__':
