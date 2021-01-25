@@ -38,6 +38,9 @@ def query_stock_price(apikey, sp500):
                 elif "Note" in json_result:
                     logging.debug(json_result["Note"])
                     time.sleep(60)
+                elif "Information" in json_result:
+                    logging.debug(json_result["Information"])
+                    time.sleep(60)
                 else:
                     logging.error("Following URL is not working: %s", request_url)
             else:
