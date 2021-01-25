@@ -9,6 +9,7 @@ from read_sp500 import read_sp500
 import os
 from pathlib import Path
 import sys
+import re
 
 
 def get_apikey(path):
@@ -20,39 +21,45 @@ def get_apikey(path):
 
 def query_stock_price(apikey, sp500):
     client = MongoClient()
-    db = client.stockpricedb
+    stockprice_db = client["stockpricedb"]
+    time_zone_db = client["timezonedb"]
 
     for company in sp500:
         sucessful = False
         while not sucessful:
             request_url = "https://www.alphavantage.co/query" \
                         + "?function=TIME_SERIES_DAILY&symbol=" \
-                        + company + "&outputsize=full&apikey=" + apikey
+                        + re.sub(r"\.", "-", company) + "&outputsize=full&apikey=" + apikey
             result = requests.get(request_url)
             if result.status_code == 200:
-                try:
-                    result.json()["Time Series (Daily)"].items()
+                json_result = result.json()
+                if "Time Series (Daily)" in json_result:
                     sucessful = True
-                except Exception as e:
-                    logging.error(str(e))
+                elif "Note" in json_result:
+                    logging.debug(json_result["Note"])
                     time.sleep(60)
-                    break
-
-                collection = db[company]
-                for key, value in result.json()["Time Series (Daily)"].items():
-                    date = datetime.strptime(key, "%Y-%m-%d")
-                    if date > datetime(2019, 6, 1):
-                        day_properties = dict()
-                        day_properties["date"] = date
-                        day_properties["open"] = float(value["1. open"])
-                        day_properties["high"] = float(value["2. high"])
-                        day_properties["low"] = float(value["3. low"])
-                        day_properties["close"] = float(value["4. close"])
-                        day_properties["volume"] = int(value["5. volume"])
-
-                        collection.update_one({"date": date}, {"$set": day_properties}, upsert=True)
+                else:
+                    logging.error("Following URL is not working: %s", request_url)
             else:
-                logging.debug(str(result))
+                logging.error("Request failed with error code: %s", str(result.status_code))
+
+        collection = time_zone_db[company]
+        time_zone = json_result["Meta Data"]["5. Time Zone"]
+        collection.update_one({}, {"$set": { "time_zone": time_zone } }, upsert=True)
+
+        collection = stockprice_db[company]
+        for key, value in json_result["Time Series (Daily)"].items():
+            date = datetime.strptime(key, "%Y-%m-%d")
+            if date > datetime(2019, 6, 1):
+                day_properties = dict()
+                day_properties["date"] = date
+                day_properties["open"] = float(value["1. open"])
+                day_properties["high"] = float(value["2. high"])
+                day_properties["low"] = float(value["3. low"])
+                day_properties["close"] = float(value["4. close"])
+                day_properties["volume"] = int(value["5. volume"])
+
+                collection.update_one({"date": date}, {"$set": day_properties}, upsert=True)
 
 
 def main():
@@ -69,6 +76,8 @@ def main():
         level=logging.DEBUG,
         format="%(asctime)s:%(levelname)s:%(message)s"
         )
+    logging.getLogger("requests").setLevel(logging.WARNING)
+    logging.getLogger("urllib3").setLevel(logging.WARNING)
 
     apikey = get_apikey(apikey_path)
     sp500 = read_sp500(sp500_path)

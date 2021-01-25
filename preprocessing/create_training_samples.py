@@ -57,6 +57,7 @@ def create_training_samples(mongo_client: MongoClient, sp500: list, first_date: 
         start = first_date
         while start <= last_date:
             stock_price_day = stock_price_company_coll.find_one({"date": start})
+
             if stock_price_day is None:
                 start = start + timedelta(days=1)
                 continue
@@ -69,8 +70,9 @@ def create_training_samples(mongo_client: MongoClient, sp500: list, first_date: 
                 stock_price_next_day = stock_price_company_coll.find_one({"date": end})
 
             if stock_price_next_day is None:
+                logging.debug("%s: There is no end date for start date %s", company, start)
+
                 start = start + timedelta(days=1)
-                logging.debug("There is no end date for start date %s", start)
                 continue
 
             # get all tweets between two trading days
@@ -82,7 +84,6 @@ def create_training_samples(mongo_client: MongoClient, sp500: list, first_date: 
 
             if not twitter_tweets_text and not stocktwits_tweets_text:
                 start = start + timedelta(days=1)
-                logging.debug("There are no tweets between %s - %s", start, end)
                 continue
 
             # get sentiment
