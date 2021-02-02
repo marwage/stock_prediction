@@ -24,7 +24,14 @@ def query_stock_price(apikey, sp500):
     stockprice_db = client["stockpricedb"]
     time_zone_db = client["timezonedb"]
 
+    exclude_already_crawled = True
+    if exclude_already_crawled:
+        collection_names = time_zone_db.list_collection_names()
+
     for company in sp500:
+        if exclude_already_crawled and company in collection_names:
+            continue
+
         sucessful = False
         while not sucessful:
             request_url = "https://www.alphavantage.co/query" \
@@ -37,12 +44,12 @@ def query_stock_price(apikey, sp500):
                     sucessful = True
                 elif "Note" in json_result:
                     logging.debug(json_result["Note"])
-                    time.sleep(60)
+                    time.sleep(90)
                 elif "Information" in json_result:
                     logging.debug(json_result["Information"])
-                    time.sleep(60)
+                    time.sleep(90)
                 else:
-                    logging.error("Following URL is not working: %s", request_url)
+                    logging.error("URL is not working: %s, JSON: %s", request_url, json.dumps(json_result))
             else:
                 logging.error("Request failed with error code: %s", str(result.status_code))
 

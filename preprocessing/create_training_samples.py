@@ -76,32 +76,35 @@ def create_training_samples(mongo_client: MongoClient, sp500: list, first_date: 
                 continue
 
             # get all tweets between two trading days
-            twitter_tweets = twitter_company_coll.find({ "date": { "$gte": start, "$lt": end } })
-            twitter_tweets_text = [clean_text(tweet["text"]) for tweet in twitter_tweets]
+            trading_start = datetime(start.year, start.month, start.day, 14, 30)
+            trading_start_next_day = trading_start + timedelta(days=1)
+            twitter_tweets = twitter_company_coll.find({ "date": { "$gte": trading_start, "$lt": trading_start_next_day } })
+            twitter_tweets_text = [(clean_text(tweet["text"]), tweet["date"]) for tweet in twitter_tweets]
 
-            stocktwits_tweets = twitter_company_coll.find({ "date": { "$gte": start, "$lt": end } })
-            stocktwits_tweets_text = [clean_text(stocktwits_get_text(tweet)) for tweet in stocktwits_tweets]
+            stocktwits_tweets = twitter_company_coll.find({ "date": { "$gte": trading_start, "$lt": trading_start_next_day } })
+            stocktwits_tweets_text = [(clean_text(stocktwits_get_text(tweet)), tweet["date"]) for tweet in stocktwits_tweets]
 
             if not twitter_tweets_text and not stocktwits_tweets_text:
                 start = start + timedelta(days=1)
                 continue
 
             # get sentiment
-            twitter_tweets_sentiment = [get_sentiment(tweet) for tweet in twitter_tweets_text]
-            stocktwits_tweets_sentiment = [get_sentiment(tweet) for tweet in stocktwits_tweets_text]
+            twitter_tweets_sentiment = [get_sentiment(tweet[0]) for tweet in twitter_tweets_text]
+            stocktwits_tweets_sentiment = [get_sentiment(tweet[0]) for tweet in stocktwits_tweets_text]
 
             # create list with tuples of text and sentiment
-            tweets = [{"text": text, "sentiment": sentiment} for text, sentiment in zip(twitter_tweets_text, twitter_tweets_sentiment)]
-            tweets.extend([{"text": text, "sentiment": sentiment} for text, sentiment in zip(stocktwits_tweets_text, stocktwits_tweets_sentiment)])
+            tweets = [{"text": text[0], "date": text[1], "sentiment": sentiment} for text, sentiment in zip(twitter_tweets_text, twitter_tweets_sentiment)]
+            tweets.extend([{"text": text[0], "date": text[1], "sentiment": sentiment} for text, sentiment in zip(stocktwits_tweets_text, stocktwits_tweets_sentiment)])
+            tweets.sort(key=lambda x: x["date"])
             
             # create sample
             sample = dict()
-            sample["start"] = start
-            sample["end"] = end
+            sample["start"] = trading_start
+            sample["end"] = trading_start_next_day
             sample["tweets"] = tweets
             sample["price_diff"] = get_price_difference(stock_price_day, stock_price_next_day)
 
-            learning_company_coll.update_one({"start": start}, {"$set": sample}, upsert=True)
+            learning_company_coll.update_one({"start": trading_start}, {"$set": sample}, upsert=True)
 
             start = end
 
