@@ -24,7 +24,7 @@ def query_stock_price(apikey, sp500):
     stockprice_db = client["stockpricedb"]
     time_zone_db = client["timezonedb"]
 
-    exclude_already_crawled = True
+    exclude_already_crawled = False
     if exclude_already_crawled:
         collection_names = time_zone_db.list_collection_names()
 
