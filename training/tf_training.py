@@ -1,6 +1,7 @@
 import numpy as np
 from pymongo import MongoClient
 import tensorflow as tf
+import datetime
 
 
 def create_dataset(validation_split):
@@ -17,9 +18,10 @@ def create_dataset(validation_split):
     #  for collection_name in db.list_collection_names():
         for document in db[collection_name].find({}):
             labels.append(document["price_diff"])
-            sentiments.append([pair["sentiment"] for pair in document["tweets"]])
+            sentiments.append([[pair["sentiment"]] for pair in document["tweets"]])
+            # data must be 3D for LSTM
 
-    sentiments = tf.ragged.constant(sentiments)
+    sentiments = tf.ragged.constant(sentiments, inner_shape=(1,))
 
     labels = tf.constant(labels)
 
@@ -36,10 +38,11 @@ def create_dataset(validation_split):
 
 def main():
     batch_size = 128
-    num_hidden_channels = 256
+    num_hidden_channels = 64
     learning_rate = 0.001
     num_epochs = 10
     validation_split = 0.2
+    embedding_size = 16
 
     train_dataset, val_dataset = create_dataset(validation_split)
     train_dataset = train_dataset.shuffle(2048)
@@ -48,28 +51,23 @@ def main():
 
     print("loading dataset finished")
 
-    # debugging
-    for a, b in train_dataset.take(1):
-        print(a.shape)
-        print(a.dtype)
-        print("+++")
-        print(b.shape)
-        print(b.dtype)
-        break
-
     model = tf.keras.models.Sequential([
-        tf.keras.layers.InputLayer(input_shape=(None,), dtype=tf.float32, ragged=True),
-        tf.keras.layers.Reshape((None, None, 1)),
         tf.keras.layers.LSTM(num_hidden_channels),
         tf.keras.layers.Dense(1)
         ])
 
-    model.compile(loss=tf.keras.losses.MeanAbsoluteError,
+    model.compile(loss=tf.keras.losses.MeanAbsoluteError(),
                   optimizer=tf.keras.optimizers.Adam(learning_rate))
 
-    print(model.summary())
+    log_dir = "logs/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+    tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
 
-    model.fit(train_dataset, epochs=num_epochs, validation_data=val_dataset)
+    model.fit(train_dataset,
+            epochs=num_epochs,
+            validation_data=val_dataset,
+            callbacks=[tensorboard_callback])
+
+    print(model.summary())
 
 
 if __name__ == "__main__":
