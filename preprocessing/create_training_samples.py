@@ -115,7 +115,7 @@ def main():
     else:
         path = os.path.join(Path.home(), "Studies/Master/10SS19/StockPrediction/stock-prediction")
 
-    logging_path = os.path.join(path, "preprocessing/create_training_samples.log")
+    logging_path = os.path.join(path, "preprocessing/logs/create_training_samples.log")
     logging.basicConfig(
         filename=logging_path,
         level=logging.DEBUG,

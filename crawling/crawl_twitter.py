@@ -1,3 +1,4 @@
+import sys
 import json
 import time
 import logging
@@ -21,42 +22,53 @@ def crawl_twitter(sp500, access_token):
     client = MongoClient()
     db = client.twitterdb
 
-    auth = OAuth1(access_token["consumer_key"], access_token["consumer_secret"],
-        access_token["access_token_key"], access_token["access_token_secret"])
+    auth = OAuth1(access_token["consumer_key"],
+                  access_token["consumer_secret"],
+                  access_token["access_token_key"],
+                  access_token["access_token_secret"])
 
     while True:
         for company in sp500:
-            query_dollar = "https://api.twitter.com/1.1/search/tweets.json?q=" + "%24"+ company + "&result_type=recent&count=100"
-            query_hashtag = "https://api.twitter.com/1.1/search/tweets.json?q=" + "%23"+ company + "&result_type=recent&count=100"
-            queries = [query_dollar, query_hashtag]
+            query = "https://api.twitter.com/2/tweets/search/recent?query=" \
+                    + "%23"+ company \
+                    + "&max_results=100" \
+                    + "&tweet.fields=created_at"
             
-            for query in queries:
-                succeeded = False
-                while not succeeded:
-                    try:
-                        result = requests.get(query, auth=auth)
-                        result_json = result.json()
-                        if "errors" in result_json:
-                            logging.debug("sleeping for 15 min")
-                            time.sleep(900)
-                        else:
-                            succeeded = True
-                    except Exception as e:
-                        logging.debug(str(e))
+            succeeded = False
+            while not succeeded:
+                try:
+                    result = requests.get(query, auth=auth)
+                    result_json = result.json()
                     
-                tweets = result_json["statuses"]
-                logging.debug(str(len(tweets)) + " results for " + company)
-                collection = db[company]
-                for tweet in tweets:
-                    db_query = {
-                        "text": tweet["text"],
-                        "created_at": tweet["created_at"]
-                        }
-                    collection.update(db_query, tweet, upsert=True)
-                    
+                    if "errors" in result_json:
+                        logging.debug("sleeping for 15 min")
+                        time.sleep(900)
+                    else:
+                        succeeded = True
+                except Exception as e:
+                    logging.debug(str(e))
+
+            tweets = result_json["data"]
+            logging.debug(str(len(tweets)) + " results for " + company)
+            collection = db[company]
+            for tweet in tweets:
+                db_query = {
+                    "text": tweet["text"],
+                    "created_at": tweet["created_at"]
+                    }
+
+                # DEBUGGING
+                print(db_query)
+
+                #  collection.update(db_query, tweet, upsert=True)
+
 
 def main():
-    crawling_path = os.path.join(Path.home(), "stock-prediction/crawling")
+    if sys.platform == "linux":
+        path = os.path.join(Path.home(), "stock-prediction")
+    else:
+        path = os.path.join(Path.home(), "Studies/Master/10SS19/StockPrediction/stock-prediction")
+    crawling_path = os.path.join(path, "crawling")
     sp500_path = os.path.join(crawling_path, "data/sp500.json")
     log_path = os.path.join(crawling_path, "log/crawl_twitter.log")
     access_token_path = os.path.join(crawling_path, "access_token/twitter_access_token.json")
@@ -76,3 +88,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
