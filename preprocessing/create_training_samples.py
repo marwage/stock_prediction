@@ -33,10 +33,10 @@ def get_sentiment(text):
     text_blob = TextBlob(text)
     return text_blob.sentiment.polarity
 
-def get_price_difference(day, next_day):
+def get_relative_price_difference(day, next_day):
     stock_price_day = day["open"]
     stock_price_next_day = next_day["open"]
-    return stock_price_next_day - stock_price_day
+    return (stock_price_next_day - stock_price_day) / stock_price_day
 
 
 def create_training_samples(mongo_client: MongoClient, sp500: list, first_date: datetime, last_date: datetime):
@@ -102,7 +102,7 @@ def create_training_samples(mongo_client: MongoClient, sp500: list, first_date: 
             sample["start"] = trading_start
             sample["end"] = trading_start_next_day
             sample["tweets"] = tweets
-            sample["price_diff"] = get_price_difference(stock_price_day, stock_price_next_day)
+            sample["price_diff"] = get_relatvie_price_difference(stock_price_day, stock_price_next_day)
 
             learning_company_coll.update_one({"start": trading_start}, {"$set": sample}, upsert=True)
 
