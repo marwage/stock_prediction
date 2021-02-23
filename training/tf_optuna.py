@@ -47,7 +47,7 @@ def create_model(trial):
         ])
 
     # Compile model.
-    model.compile(loss=tf.keras.losses.MeanAbsoluteError(),
+    model.compile(loss=tf.keras.losses.MeanSquaredError(),
                   optimizer=tf.keras.optimizers.Adam(lr))
 
     return model

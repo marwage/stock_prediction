@@ -52,7 +52,7 @@ def main():
         tf.keras.layers.Dense(1)
         ])
 
-    model.compile(loss=tf.keras.losses.MeanAbsoluteError(),
+    model.compile(loss=tf.keras.losses.MeanSquaredError(),
                   optimizer=tf.keras.optimizers.Adam(learning_rate))
 
     log_dir = "logs/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
