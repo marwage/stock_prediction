@@ -1,4 +1,3 @@
-import numpy as np
 from pymongo import MongoClient
 import tensorflow as tf
 import datetime
@@ -6,7 +5,6 @@ import datetime
 
 def create_dataset(validation_split):
     db_name = "learning"
-    collection_name = "AAPL"
 
     client = MongoClient("localhost", 27017)
     db = client[db_name]
@@ -14,8 +12,7 @@ def create_dataset(validation_split):
     sentiments = []
     labels = []
 
-    for collection_name in ["AAPL"]:
-    #  for collection_name in db.list_collection_names():
+    for collection_name in db.list_collection_names():
         for document in db[collection_name].find({}):
             labels.append(document["price_diff"])
             sentiments.append([[pair["sentiment"]] for pair in document["tweets"]])
@@ -42,7 +39,6 @@ def main():
     learning_rate = 0.001
     num_epochs = 10
     validation_split = 0.2
-    embedding_size = 16
 
     train_dataset, val_dataset = create_dataset(validation_split)
     train_dataset = train_dataset.shuffle(2048)
