@@ -1,11 +1,13 @@
 import datetime
 import optuna
 from optuna.integration import TFKerasPruningCallback
+from optuna.trial import TrialState
+import pandas as pd
 from pymongo import MongoClient
 import tensorflow as tf
 
 
-def create_dataset(validation_split):
+def create_dataset(validation_split, filtr):
     db_name = "learning"
 
     client = MongoClient("localhost", 27017)
@@ -16,9 +18,11 @@ def create_dataset(validation_split):
 
     for collection_name in db.list_collection_names():
         for document in db[collection_name].find({}):
-            labels.append(document["price_diff"])
-            sentiments.append([[pair["sentiment"]] for pair in document["tweets"]])
+            sentiment_sample = [[pair["sentiment"]] for pair in document["tweets"]]
             # data must be 3D for LSTM
+            if not (filtr and len(sentiment_sample) < 100):
+                sentiments.append(sentiment_sample)
+                labels.append(document["price_diff"])
 
     sentiments = tf.ragged.constant(sentiments, inner_shape=(1,))
 
@@ -56,7 +60,7 @@ def create_model(trial):
 def objective(trial):
     batch_size = trial.suggest_categorical("batch_size", [32, 64, 128, 256, 512])
     batch_size = 128
-    num_epochs = 30
+    num_epochs = 1 # 30 # DEBUGGING
     validation_split = 0.2
 
     # Clear clutter from previous TensorFlow graphs.
@@ -66,7 +70,7 @@ def objective(trial):
     model = create_model(trial)
 
     # Create dataset instance.
-    train_dataset, val_dataset = create_dataset(validation_split)
+    train_dataset, val_dataset = create_dataset(validation_split, True)
     train_dataset = train_dataset.shuffle(2048)
     train_dataset = train_dataset.batch(batch_size)
     val_dataset = val_dataset.batch(batch_size)
@@ -74,7 +78,7 @@ def objective(trial):
     # Create callbacks for early stopping and pruning.
     log_dir = "logs/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
     tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
-    monitor = "val_accuracy"
+    monitor = "val_loss"
     callbacks = [
         tf.keras.callbacks.EarlyStopping(patience=3),
         TFKerasPruningCallback(trial, monitor),
@@ -93,9 +97,8 @@ def objective(trial):
 
 
 def show_result(study):
-
-    pruned_trials = [t for t in study.trials if t.state == optuna.trial.TrialState.PRUNED]
-    complete_trials = [t for t in study.trials if t.state == optuna.trial.TrialState.COMPLETE]
+    pruned_trials = study.get_trials(deepcopy=False, states=[TrialState.PRUNED])
+    complete_trials = study.get_trials(deepcopy=False, states=[TrialState.COMPLETE])
 
     print("Study statistics: ")
     print("  Number of finished trials: ", len(study.trials))
@@ -111,14 +114,18 @@ def show_result(study):
     for key, value in trial.params.items():
         print("    {}: {}".format(key, value))
 
+    # Marcel
+    df = study.trials_dataframe()
+    print(df)
+
 
 def main():
 
     study = optuna.create_study(
-        direction="maximize", pruner=optuna.pruners.MedianPruner(n_startup_trials=2)
+        direction="minimize", pruner=optuna.pruners.MedianPruner(n_startup_trials=2)
     )
 
-    study.optimize(objective, n_trials=25, timeout=600)
+    study.optimize(objective, n_trials=50)
 
     show_result(study)
 
