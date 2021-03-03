@@ -1,3 +1,4 @@
+import re
 import sys
 import json
 import time
@@ -20,7 +21,7 @@ def read_access_token(access_token_path):
 
 def crawl_twitter(sp500, access_token):
     client = MongoClient()
-    db = client.twitterdb
+    db = client.twitter2db
 
     auth = OAuth1(access_token["consumer_key"],
                   access_token["consumer_secret"],
@@ -32,7 +33,7 @@ def crawl_twitter(sp500, access_token):
             query = "https://api.twitter.com/2/tweets/search/recent?query=" \
                     + "%23"+ company \
                     + "&max_results=100" \
-                    + "&tweet.fields=created_at"
+                    + "&tweet.fields=created_at,public_metrics"
             
             succeeded = False
             while not succeeded:
@@ -48,19 +49,21 @@ def crawl_twitter(sp500, access_token):
                 except Exception as e:
                     logging.debug(str(e))
 
-            tweets = result_json["data"]
-            logging.debug(str(len(tweets)) + " results for " + company)
-            collection = db[company]
-            for tweet in tweets:
-                db_query = {
-                    "text": tweet["text"],
-                    "created_at": tweet["created_at"]
-                    }
+            if "data" in result_json:
+                tweets = result_json["data"]
 
-                # DEBUGGING
-                print(db_query)
+                logging.debug(str(len(tweets)) + " results for " + company)
 
-                #  collection.update(db_query, tweet, upsert=True)
+                collection = db[company]
+                for tweet in tweets:
+                    db_query = {
+                        "text": tweet["text"],
+                        }
+
+                    d = datetime.fromisoformat(re.sub("Z", "", tweet["created_at"]))
+                    tweet["date"] = d
+
+                    collection.update_one(db_query, {"$set": tweet}, upsert=True)
 
 
 def main():
