@@ -46,7 +46,7 @@ def crawl(sp500_chunk, proxies):
                     if result.status_code == 200: # request was successful
                         successful = True
 
-                        logging.debug(str(len(result.json()["messages"])) + " results for " + company)
+                        logging.info(str(len(result.json()["messages"])) + " results for " + company)
 
                         # add all messages to the database
                         collection = db[company]
@@ -84,7 +84,7 @@ def main():
 
     logging.basicConfig(
         filename=log_path,
-        level=logging.DEBUG,
+        level=logging.INFO,
         format="%(asctime)s:%(levelname)s:%(message)s"
         )
     logging.getLogger("requests").setLevel(logging.WARNING)

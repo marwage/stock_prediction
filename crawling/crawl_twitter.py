@@ -52,7 +52,7 @@ def crawl_twitter(sp500, access_token):
             if "data" in result_json:
                 tweets = result_json["data"]
 
-                logging.debug(str(len(tweets)) + " results for " + company)
+                logging.info(str(len(tweets)) + " results for " + company)
 
                 collection = db[company]
                 for tweet in tweets:
@@ -78,11 +78,12 @@ def main():
 
     logging.basicConfig(
         filename=log_path,
-        level=logging.DEBUG,
+        level=logging.INFO,
         format="%(asctime)s:%(levelname)s:%(message)s"
         )
     logging.getLogger("requests").setLevel(logging.WARNING)
     logging.getLogger("urllib3").setLevel(logging.WARNING)
+    logging.getLogger("requests_oauthlib").setLevel(logging.WARNING)
 
     sp500 = read_sp500(sp500_path)
     access_token = read_access_token(access_token_path)
