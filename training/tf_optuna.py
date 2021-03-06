@@ -59,8 +59,7 @@ def create_model(trial):
 
 def objective(trial):
     batch_size = trial.suggest_categorical("batch_size", [32, 64, 128, 256, 512])
-    batch_size = 128
-    num_epochs = 1 # 30 # DEBUGGING
+    num_epochs = 1
     validation_split = 0.2
 
     # Clear clutter from previous TensorFlow graphs.
@@ -92,6 +91,8 @@ def objective(trial):
         validation_data=val_dataset,
         callbacks=callbacks,
     )
+    
+    model.save_weights("checkpoint-{}".format(trial.number))
 
     return history.history[monitor][-1]
 
@@ -114,13 +115,11 @@ def show_result(study):
     for key, value in trial.params.items():
         print("    {}: {}".format(key, value))
 
-    # Marcel
     df = study.trials_dataframe()
-    print(df)
+    df.to_csv("study.csv")
 
 
 def main():
-
     study = optuna.create_study(
         direction="minimize", pruner=optuna.pruners.MedianPruner(n_startup_trials=2)
     )
