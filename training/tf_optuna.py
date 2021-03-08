@@ -19,6 +19,7 @@ def create_dataset(validation_split, filtr):
     for collection_name in db.list_collection_names():
         for document in db[collection_name].find({}):
             sentiment_sample = [[pair["sentiment"]] for pair in document["tweets"]]
+            sentiment_sample = [x for x in sentiment_sample if x != 0]
             # data must be 3D for LSTM
             if not (filtr and len(sentiment_sample) < 100):
                 sentiments.append(sentiment_sample)
@@ -42,7 +43,7 @@ def create_dataset(validation_split, filtr):
 def create_model(trial):
     # Hyperparameters to be tuned by Optuna.
     lr = trial.suggest_float("lr", 1e-4, 1e-1, log=True)
-    units = trial.suggest_categorical("units", [32, 64, 128, 256, 512])
+    units = trial.suggest_categorical("units", [32, 64, 128, 256, 512, 1024])
 
     # Compose neural network with one hidden layer.
     model = tf.keras.models.Sequential([
@@ -58,7 +59,7 @@ def create_model(trial):
 
 
 def objective(trial):
-    batch_size = trial.suggest_categorical("batch_size", [32, 64, 128, 256, 512])
+    batch_size = trial.suggest_categorical("batch_size", [32, 64, 128, 256, 512, 1024])
     num_epochs = 1
     validation_split = 0.2
 

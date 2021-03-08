@@ -33,7 +33,7 @@ def crawl_twitter(sp500, access_token):
             query = "https://api.twitter.com/2/tweets/search/recent?query=" \
                     + "%23"+ company \
                     + "&max_results=100" \
-                    + "&tweet.fields=created_at,public_metrics"
+                    + "&tweet.fields=created_at,public_metrics,lang"
             
             succeeded = False
             while not succeeded:
@@ -56,6 +56,10 @@ def crawl_twitter(sp500, access_token):
 
                 collection = db[company]
                 for tweet in tweets:
+                    # debugging
+                    print(tweet)
+                    break
+
                     db_query = {
                         "text": tweet["text"],
                         }
