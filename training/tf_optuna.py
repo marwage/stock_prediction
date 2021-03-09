@@ -43,7 +43,7 @@ def create_dataset(validation_split, filtr):
 def create_model(trial):
     # Hyperparameters to be tuned by Optuna.
     lr = trial.suggest_float("lr", 1e-4, 1e-1, log=True)
-    units = trial.suggest_categorical("units", [32, 64, 128, 256, 512, 1024])
+    units = trial.suggest_categorical("units", [128, 256, 512, 1024])
 
     # Compose neural network with one hidden layer.
     model = tf.keras.models.Sequential([
@@ -59,7 +59,7 @@ def create_model(trial):
 
 
 def objective(trial):
-    batch_size = trial.suggest_categorical("batch_size", [32, 64, 128, 256, 512, 1024])
+    batch_size = trial.suggest_categorical("batch_size", [32, 64, 128, 256])
     num_epochs = 1
     validation_split = 0.2
 
@@ -93,7 +93,7 @@ def objective(trial):
         callbacks=callbacks,
     )
     
-    model.save_weights("checkpoint-{}".format(trial.number))
+    model.save_weights("checkpoints/checkpoint-{}".format(trial.number))
 
     return history.history[monitor][-1]
 
@@ -117,7 +117,7 @@ def show_result(study):
         print("    {}: {}".format(key, value))
 
     df = study.trials_dataframe()
-    df.to_csv("study.csv")
+    df.to_csv("optuna_study.csv")
 
 
 def main():
