@@ -56,10 +56,6 @@ def crawl_twitter(sp500, access_token):
 
                 collection = db[company]
                 for tweet in tweets:
-                    # debugging
-                    print(tweet)
-                    break
-
                     db_query = {
                         "text": tweet["text"],
                         }
