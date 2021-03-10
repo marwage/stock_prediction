@@ -5,9 +5,19 @@ from optuna.trial import TrialState
 import pandas as pd
 from pymongo import MongoClient
 import tensorflow as tf
+import fasttext
 
 
-def create_dataset(validation_split, filtr):
+model = fasttext.load_model("../preprocessing/lid.176.ftz")
+
+def detect_language(text):
+    pred = model.predict(text, k=1)
+    lang = pred[0][0].replace("__label__", "")
+    return lang
+
+
+def create_dataset(validation_split):
+    num_tweets_threshold = 240
     db_name = "learning"
 
     client = MongoClient("localhost", 27017)
@@ -16,12 +26,22 @@ def create_dataset(validation_split, filtr):
     sentiments = []
     labels = []
 
-    for collection_name in db.list_collection_names():
+    for collection_name in ["AAPL"]: # for now, only for Apple
+    #  for collection_name in db.list_collection_names():
         for document in db[collection_name].find({}):
-            sentiment_sample = [[pair["sentiment"]] for pair in document["tweets"]]
-            sentiment_sample = [x for x in sentiment_sample if x != 0]
+            # get sentiments
             # data must be 3D for LSTM
-            if not (filtr and len(sentiment_sample) < 100):
+            sentiment_sample = []
+            for tweet in document["tweets"]:
+                text = tweet["text"]
+                sentiment = tweet["sentiment"]
+                # check if tweet is in English
+                if detect_language(text) == "en":
+                    sentiment_sample.append([sentiment])
+            # filter out sentiments == 0
+            sentiment_sample = [x for x in sentiment_sample if x != 0]
+            # filter out days with less than 100 tweets
+            if len(sentiment_sample) >= num_tweets_threshold:
                 sentiments.append(sentiment_sample)
                 labels.append(document["price_diff"])
 
@@ -70,7 +90,7 @@ def objective(trial):
     model = create_model(trial)
 
     # Create dataset instance.
-    train_dataset, val_dataset = create_dataset(validation_split, True)
+    train_dataset, val_dataset = create_dataset(validation_split)
     train_dataset = train_dataset.shuffle(2048)
     train_dataset = train_dataset.batch(batch_size)
     val_dataset = val_dataset.batch(batch_size)
@@ -125,7 +145,7 @@ def main():
         direction="minimize", pruner=optuna.pruners.MedianPruner(n_startup_trials=2)
     )
 
-    study.optimize(objective, n_trials=50)
+    study.optimize(objective, n_trials=10)
 
     show_result(study)
 
