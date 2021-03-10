@@ -37,7 +37,7 @@ def crawl_twitter(sp500, access_token):
                         result = requests.get(query, auth=auth)
                         result_json = result.json()
                         if "errors" in result_json:
-                            logging.debug("sleeping for 15 min")
+                            logging.info("sleeping for 15 min")
                             time.sleep(900)
                         else:
                             succeeded = True
@@ -45,7 +45,7 @@ def crawl_twitter(sp500, access_token):
                         logging.debug(str(e))
                     
                 tweets = result_json["statuses"]
-                logging.debug(str(len(tweets)) + " results for " + company)
+                logging.info(str(len(tweets)) + " results for " + company)
                 collection = db[company]
                 for tweet in tweets:
                     db_query = {
@@ -63,7 +63,7 @@ def main():
 
     logging.basicConfig(
         filename=log_path,
-        level=logging.DEBUG,
+        level=logging.INFO,
         format="%(asctime)s:%(levelname)s:%(message)s"
         )
     logging.getLogger("requests").setLevel(logging.WARNING)
