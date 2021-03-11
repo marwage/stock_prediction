@@ -5,7 +5,7 @@ import fasttext
 import pandas as pd
 
 
-model = fasttext.load_model("lid.176.ftz")
+model = fasttext.load_model("../preprocessing/lid.176.ftz")
 
 def detect_language(text):
     pred = model.predict(text, k=1)
@@ -31,6 +31,7 @@ def many():
     tweets_in_english = 0
     tweets_sentiment_zero = 0
     tweets_total = 0
+    num_days = 0
     company_stats = []
 
     company_names = db.list_collection_names()
@@ -40,6 +41,7 @@ def many():
         company_tweets_sentiment_zero = 0
         company_tweets_total = 0
         company_tweets_times = []
+        company_num_days = 0
 
         collection = db[company]
         for day in collection.find():
@@ -55,6 +57,11 @@ def many():
 
                 date = tweet["date"]
                 d = date.hour + date.minute / 60
+                # shift
+                if d >= 14.5:
+                    d = d - 14.5
+                else:
+                    d = d + 9.5
                 company_tweets_times.append(d)
 
                 text = tweet["text"]
@@ -68,21 +75,25 @@ def many():
             company_tweets_in_english = company_tweets_in_english + day_tweets_in_english
             company_tweets_sentiment_zero = company_tweets_sentiment_zero + day_tweets_sentiment_zero
             company_tweets_total = company_tweets_total + day_tweets_total
+            company_num_days = company_num_days + 1
 
         plot_histogram(company, company_tweets_times)
         company_stats.append([company, company_tweets_total, company_tweets_in_english,
                 company_tweets_sentiment_zero])
 
-        df = pd.DataFrame(company_stats, columns=["company", "num_tweets", "tweets_in_english",
-                "tweets_sentiment_zero"])
-        df.to_csv("out/company_stats.csv")
-
         tweets_in_english = tweets_in_english + company_tweets_in_english
         tweets_sentiment_zero = tweets_sentiment_zero + company_tweets_sentiment_zero
         tweets_total = tweets_total + company_tweets_total
+        num_days = num_days + company_num_days
+        
+    df = pd.DataFrame(company_stats, columns=["company", "num_tweets", "tweets_in_english",
+            "tweets_sentiment_zero"])
+    df.to_csv("out/company_stats.csv")
 
-    df = pd.DataFrame([[tweets_total, tweets_in_english, tweets_sentiment_zero]],
-            columns=["num_tweets", "tweets_in_english", "tweets_sentiment_zero"])
+    df = pd.DataFrame([[tweets_total, tweets_in_english, tweets_sentiment_zero, num_days,
+            len(company_names)]],
+            columns=["num_tweets", "tweets_in_english", "tweets_sentiment_zero", "num_days",
+                "num_companies"])
     df.to_csv("out/total_stats.csv")
 
 

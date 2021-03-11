@@ -26,8 +26,7 @@ def create_dataset(validation_split):
     sentiments = []
     labels = []
 
-    for collection_name in ["AAPL"]: # for now, only for Apple
-    #  for collection_name in db.list_collection_names():
+    for collection_name in db.list_collection_names():
         for document in db[collection_name].find({}):
             # get sentiments
             # data must be 3D for LSTM
@@ -62,8 +61,8 @@ def create_dataset(validation_split):
 
 def create_model(trial):
     # Hyperparameters to be tuned by Optuna.
-    lr = trial.suggest_float("lr", 1e-4, 1e-1, log=True)
-    units = trial.suggest_categorical("units", [128, 256, 512, 1024])
+    lr = trial.suggest_float("lr", 1e-4, 1e-2, log=True)
+    units = trial.suggest_categorical("units", [128, 256, 512, 1024, 2048])
 
     # Compose neural network with one hidden layer.
     model = tf.keras.models.Sequential([
@@ -79,7 +78,7 @@ def create_model(trial):
 
 
 def objective(trial):
-    batch_size = trial.suggest_categorical("batch_size", [32, 64, 128, 256])
+    batch_size = trial.suggest_categorical("batch_size", [32, 64, 128])
     num_epochs = 1
     validation_split = 0.2
 
