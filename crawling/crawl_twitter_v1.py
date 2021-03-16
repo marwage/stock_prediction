@@ -8,6 +8,7 @@ from requests_oauthlib import OAuth1
 from read_sp500 import read_sp500
 import os
 from pathlib import Path
+import re
 
 
 def read_access_token(access_token_path):
@@ -52,7 +53,7 @@ def crawl_twitter(sp500, access_token):
                         "text": tweet["text"],
                         }
 
-                    d = datetime.fromisoformat(re.sub("Z", "", tweet["created_at"]))
+                    d = datetime.strptime(tweet["created_at"], "%a %b %d %H:%M:%S %z %Y")
                     tweet["date"] = d
 
                     collection.update_one(db_query, {"$set": tweet}, upsert=True)
