@@ -50,10 +50,13 @@ def crawl_twitter(sp500, access_token):
                 for tweet in tweets:
                     db_query = {
                         "text": tweet["text"],
-                        "created_at": tweet["created_at"]
                         }
-                    collection.update(db_query, tweet, upsert=True)
-                    
+
+                    d = datetime.fromisoformat(re.sub("Z", "", tweet["created_at"]))
+                    tweet["date"] = d
+
+                    collection.update_one(db_query, {"$set": tweet}, upsert=True)
+
 
 def main():
     crawling_path = os.path.join(Path.home(), "stock-prediction/crawling")
