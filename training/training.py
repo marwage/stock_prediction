@@ -6,6 +6,7 @@ import pandas as pd
 from pymongo import MongoClient
 import tensorflow as tf
 import fasttext
+import argparse
 
 
 model = fasttext.load_model("../preprocessing/lid.176.ftz")
@@ -59,19 +60,59 @@ def create_dataset(validation_split):
     return train_dataset, val_dataset
 
 
+def create_dataset_twitter_three(validation_split):
+    db_name = "twitter_three"
+
+    client = MongoClient("localhost", 27017)
+    db = client[db_name]
+
+    features_list = []
+    labels_list = []
+
+    for collection_name in db.list_collection_names():
+        for document in db[collection_name].find({}):
+            features_list.append(document["tweets"])
+            labels_list.append(document["price_diff"])
+
+    features = tf.ragged.constant(features_list, inner_shape=(3,))
+
+    labels = tf.constant(labels_list)
+
+    num_data_samples = len(labels)
+    split_point = int(num_data_samples * (1 - validation_split))
+
+    train_dataset = tf.data.Dataset.from_tensor_slices((features[:split_point],
+                                                        labels[:split_point]))
+    val_dataset = tf.data.Dataset.from_tensor_slices((features[split_point:],
+                                                      labels[split_point:]))
+
+    return train_dataset, val_dataset
+
+
 def create_model(trial):
     # Hyperparameters to be tuned by Optuna.
     lr = trial.suggest_float("lr", 1e-4, 1e-2, log=True)
     units = trial.suggest_categorical("units", [128, 256, 512, 1024, 2048])
 
     # Compose neural network with one hidden layer.
-    model = tf.keras.models.Sequential([
-        tf.keras.layers.LSTM(units),
-        tf.keras.layers.Dense(1)
-        ])
+    model = tf.keras.models.Sequential()
+    if args.rnn == "lstm":
+        model.add(tf.keras.layers.LSTM(units))
+    elif args.rnn =="gru":
+        model.add(tf.keras.layers.GRU(units))
+    else:
+        print("Error: RNN {} not possible.".format(rnn))
+    model.add(tf.keras.layers.Dense(1))
 
     # Compile model.
-    model.compile(loss=tf.keras.losses.MeanSquaredError(),
+    if args.loss == "mse": # mean squared error
+        loss = tf.keras.losses.MeanSquaredError()
+    elif args.loss == "mae": # mean absolute error
+        loss = tf.keras.losses.MeanAbsoluteError()
+    else:
+        print("Error: Loss {} not possible.".format(args.loss))
+
+    model.compile(loss=loss,
                   optimizer=tf.keras.optimizers.Adam(lr))
 
     return model
@@ -79,7 +120,6 @@ def create_model(trial):
 
 def objective(trial):
     batch_size = trial.suggest_categorical("batch_size", [32, 64, 128])
-    num_epochs = 1
     validation_split = 0.2
 
     # Clear clutter from previous TensorFlow graphs.
@@ -89,14 +129,15 @@ def objective(trial):
     model = create_model(trial)
 
     # Create dataset instance.
-    train_dataset, val_dataset = create_dataset(validation_split)
+    #  train_dataset, val_dataset = create_dataset(validation_split)
+    train_dataset, val_dataset = create_dataset_twitter_three(validation_split)
     train_dataset = train_dataset.shuffle(2048)
     train_dataset = train_dataset.batch(batch_size)
     val_dataset = val_dataset.batch(batch_size)
 
     # Create callbacks for early stopping and pruning.
     log_dir = "logs/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-    tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
+    tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, update_freq="batch")
     monitor = "val_loss"
     callbacks = [
         tf.keras.callbacks.EarlyStopping(patience=3),
@@ -107,7 +148,7 @@ def objective(trial):
     # Train model.
     history = model.fit(
         train_dataset,
-        epochs=num_epochs,
+        epochs=args.epochs,
         validation_data=val_dataset,
         callbacks=callbacks,
     )
@@ -150,4 +191,13 @@ def main():
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Training parameters")
+    parser.add_argument("--rnn", type=str,
+                        help="RNN layer lstm or gru")
+    parser.add_argument("--loss", type=str,
+                        help="Loss mse or mae")
+    parser.add_argument("--epochs", type=int,
+                        help="Number of epochs")
+    args = parser.parse_args()
+
     main()
