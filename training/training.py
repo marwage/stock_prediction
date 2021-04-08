@@ -16,6 +16,14 @@ def detect_language(text):
     lang = pred[0][0].replace("__label__", "")
     return lang
 
+def parse_split(split_str):
+    pieces = split_str.split(",")
+    split = [float(x) for x in pieces]
+    if sum(split) != 1.0 or len(split) != 3:
+        raise Error("Argument split is invalid")
+    else:
+        return split
+
 
 def create_dataset(validation_split):
     num_tweets_threshold = 240
@@ -60,7 +68,7 @@ def create_dataset(validation_split):
     return train_dataset, val_dataset
 
 
-def create_dataset_twitter_three(validation_split):
+def create_dataset_twitter_three(split):
     db_name = "twitter_three"
 
     client = MongoClient("localhost", 27017)
@@ -79,20 +87,25 @@ def create_dataset_twitter_three(validation_split):
     labels = tf.constant(labels_list)
 
     num_data_samples = len(labels)
-    split_point = int(num_data_samples * (1 - validation_split))
+    split_point_train_val = int(num_data_samples * split[0])
+    split_point_val_test = int(num_data_samples * (split[0] + split[1]))
 
-    train_dataset = tf.data.Dataset.from_tensor_slices((features[:split_point],
-                                                        labels[:split_point]))
-    val_dataset = tf.data.Dataset.from_tensor_slices((features[split_point:],
-                                                      labels[split_point:]))
+    train_dataset = tf.data.Dataset.from_tensor_slices((features[:split_point_train_val],
+                                                        labels[:split_point_train_val]))
+    val_dataset = tf.data.Dataset.from_tensor_slices(
+            (features[split_point_train_val:split_point_val_test],
+            labels[split_point_train_val:split_point_val_test]))
+    test_dataset = tf.data.Dataset.from_tensor_slices(
+            (features[split_point_val_test:],
+            labels[split_point_val_test:]))
 
-    return train_dataset, val_dataset
+    return train_dataset, val_dataset, test_dataset
 
 
 def create_model(trial):
     # Hyperparameters to be tuned by Optuna.
     lr = trial.suggest_float("lr", 1e-4, 1e-2, log=True)
-    units = trial.suggest_categorical("units", [128, 256, 512, 1024, 2048])
+    units = trial.suggest_categorical("units", [8, 16, 32, 64, 128, 256, 512])
 
     # Compose neural network with one hidden layer.
     model = tf.keras.models.Sequential()
@@ -119,8 +132,7 @@ def create_model(trial):
 
 
 def objective(trial):
-    batch_size = trial.suggest_categorical("batch_size", [32, 64, 128])
-    validation_split = 0.2
+    batch_size = trial.suggest_categorical("batch_size", [8, 16, 32, 64, 128])
 
     # Clear clutter from previous TensorFlow graphs.
     tf.keras.backend.clear_session()
@@ -130,10 +142,12 @@ def objective(trial):
 
     # Create dataset instance.
     #  train_dataset, val_dataset = create_dataset(validation_split)
-    train_dataset, val_dataset = create_dataset_twitter_three(validation_split)
-    train_dataset = train_dataset.shuffle(2048)
-    train_dataset = train_dataset.batch(batch_size)
-    val_dataset = val_dataset.batch(batch_size)
+    split = parse_split(args.split)
+    train_set, val_set, test_set = create_dataset_twitter_three(split)
+    train_set = train_set.shuffle(2048)
+    train_set = train_set.batch(batch_size)
+    val_set = val_set.batch(batch_size)
+    test_set = test_set.batch(batch_size)
 
     # Create callbacks for early stopping and pruning.
     log_dir = "logs/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
@@ -147,47 +161,63 @@ def objective(trial):
 
     # Train model.
     history = model.fit(
-        train_dataset,
+        train_set,
         epochs=args.epochs,
-        validation_data=val_dataset,
+        validation_data=val_set,
         callbacks=callbacks,
     )
     
-    model.save_weights("checkpoints/checkpoint-{}".format(trial.number))
+    model.save("checkpoints/checkpoint-{}".format(trial.number))
+
+    # Predict
+    predictions = model.predict(test_set)
+
+    # calculate R^2
+    true_labels = np.concatenate([y for x, y in test_set], axis=0)
+    residual_sum = np.sum(np.square(true_labels - predictions))
+    true_labels_mean = np.mean(true_labels)
+    total_sum = np.sum(np.square(true_labels - true_labels_mean))
+    r_squared = 1 - (residual_sum / total_sum)
+
+    # calculate mean absolute error
+    mae = np.mean(np.abs(true_labels - predictions))
+    # calculate mean squared error
+    mse = np.mean(np.square(true_labels - predictions))
+
+    test_stats_path = os.path.join(log_dir, "test_stats.txt")
+    with open(test_stats_path, "w") as stats_file:
+        stats_file.write("true labels mean: {}\n".format(true_labels_mean))
+        stats_file.write("residual sum: {}\n".format(residual_sum))
+        stats_file.write("total sum: {}\n".format(total_sum))
+        stats_file.write("r squared: {}\n".format(r_squared))
+        stats_file.write("mean absolute error: {}\n".format(mae))
+        stats_file.write("mean squared error: {}\n".format(mse))
 
     return history.history[monitor][-1]
 
 
-def show_result(study):
-    pruned_trials = study.get_trials(deepcopy=False, states=[TrialState.PRUNED])
-    complete_trials = study.get_trials(deepcopy=False, states=[TrialState.COMPLETE])
-
-    print("Study statistics: ")
-    print("  Number of finished trials: ", len(study.trials))
-    print("  Number of pruned trials: ", len(pruned_trials))
-    print("  Number of complete trials: ", len(complete_trials))
-
-    print("Best trial:")
-    trial = study.best_trial
-
-    print("  Value: ", trial.value)
-
-    print("  Params: ")
-    for key, value in trial.params.items():
-        print("    {}: {}".format(key, value))
-
+def log_study_as_csv(study):
     df = study.trials_dataframe()
     df.to_csv("optuna_study.csv")
 
 
 def main():
+    # log arguments
+    with open("study_args.txt", "w") as args_file:
+        args_file.write("dataset: {}\n".format("twitter_three")) # TODO hardcoded so far
+        args_file.write("rnn: {}\n".format(args.rnn))
+        args_file.write("loss: {}\n".format(args.loss))
+        args_file.write("epochs: {}\n".format(args.epochs))
+        args_file.write("split: {}\n".format(args.split))
+        args_file.write("trials: {}\n".format(args.num_trials))
+
+
+    # study
     study = optuna.create_study(
         direction="minimize", pruner=optuna.pruners.MedianPruner(n_startup_trials=2)
     )
-
-    study.optimize(objective, n_trials=10)
-
-    show_result(study)
+    study.optimize(objective, n_trials=args.num_trials)
+    log_study_as_csv(study)
 
 
 if __name__ == "__main__":
@@ -198,6 +228,10 @@ if __name__ == "__main__":
                         help="Loss mse or mae")
     parser.add_argument("--epochs", type=int,
                         help="Number of epochs")
+    parser.add_argument("--split", type=str,
+                        help="Dataset split; training, validation, test; e.g. 0.8,0.1,0,1")
+    parser.add_argument("--num_trials", type=int,
+                        help="Number of trials")
     args = parser.parse_args()
 
     main()
