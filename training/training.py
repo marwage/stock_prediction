@@ -108,8 +108,9 @@ def create_model(trial):
     # Hyperparameters to be tuned by Optuna.
     lr = trial.suggest_float("lr", 1e-4, 1e-2, log=True)
     units = trial.suggest_categorical("units", [8, 16, 32, 64, 128, 256, 512])
-    activation = trial.suggest_categorical("activation", ["gelu", "relu", "sigmoid", "tanh"])
-    recurrent_activation = trial.suggest_categorical("recurrent_activation", ["gelu", "relu", "sigmoid", "tanh"])
+    activation = trial.suggest_categorical("activation", ["gelu", "relu", "sigmoid", "tanh", "linear"])
+    recurrent_activation = trial.suggest_categorical("recurrent_activation", ["gelu", "relu",
+        "sigmoid", "tanh", "linear"])
 
     # Compose neural network with one hidden layer.
     model = tf.keras.models.Sequential()
