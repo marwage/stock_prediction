@@ -75,17 +75,20 @@ def create_training_samples(mongo_client: MongoClient, sp500: list, first_date: 
             for tweet in twitter_tweets:
                 # filter English tweets only
                 if tweet["lang"] == "en":
-                    tweet_features = dict()
-                    tweet_features["text"] = clean_text(tweet["text"])
-                    tweet_features["sentiment"] = get_sentiment(tweet_features["text"])
-                    tweet_features["date"] = tweet["date"]
-                    tweet_features["followers"] = tweet["user"]["followers_count"]
-                    if "retweeted_count" in tweet:
-                        tweet_features["retweets"] = tweet["retweeted_count"]
-                    else:
-                        tweet_features["retweets"] = 0
-                    
-                    tweets.append(tweet_features)
+                    try:
+                        tweet_features = dict()
+                        tweet_features["text"] = clean_text(tweet["text"])
+                        tweet_features["sentiment"] = get_sentiment(tweet_features["text"])
+                        tweet_features["date"] = tweet["date"]
+                        tweet_features["followers"] = tweet["user"]["followers_count"]
+                        if "retweeted_count" in tweet:
+                            tweet_features["retweets"] = tweet["retweeted_count"]
+                        else:
+                            tweet_features["retweets"] = 0
+                        
+                        tweets.append(tweet_features)
+                    except:
+                        logging.debug("%s: Tweet does not have attribute: %s", company, tweet)
 
             # filter more than 240 tweets
             tweets_threshold = 240
@@ -97,6 +100,9 @@ def create_training_samples(mongo_client: MongoClient, sp500: list, first_date: 
 
             # create features list sorted by date
             tweets.sort(key=lambda x: x["date"])
+            # extract features
+            tweets_features = [[tweet["sentiment"], tweet["followers"], tweet["retweets"]] for
+                    tweet in tweets]
 
             # create sample
             sample = dict()
