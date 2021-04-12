@@ -47,7 +47,7 @@ def query_company_info(apikey, sp500):
                 logging.error("Request failed with error code: %s", str(result.status_code))
 
         collection = info_db[company]
-        collection.update_one({"Symbol": company}, {"$set": result }, upsert=True)
+        collection.update_one({"Symbol": company}, {"$set": json_result }, upsert=True)
 
 
 def main():
