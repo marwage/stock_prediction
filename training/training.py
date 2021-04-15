@@ -234,7 +234,7 @@ def main():
     # log arguments
     with open("study_args.txt", "w") as args_file:
         args_file.write("dataset: {}\n".format("twitter_three"))  # TODO hardcoded so far
-        args_file.write("rnn: {}\n".format(args.rnn))
+        #  args_file.write("rnn: {}\n".format(args.rnn))
         args_file.write("loss: {}\n".format(args.loss))
         args_file.write("epochs: {}\n".format(args.epochs))
         args_file.write("split: {}\n".format(args.split))
@@ -243,7 +243,8 @@ def main():
 
     study = optuna.create_study(
         direction="minimize",
-        pruner=optuna.pruners.MedianPruner(n_startup_trials=2)
+        #  pruner=optuna.pruners.MedianPruner(n_startup_trials=2)
+        pruner=optuna.pruners.SuccessiveHalvingPruner()
     )
     study.optimize(objective, n_trials=args.num_trials)
     log_study_as_csv(study)
