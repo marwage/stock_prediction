@@ -22,8 +22,12 @@ def get_apikey(path):
 def query_company_info(apikey, sp500):
     client = MongoClient()
     info_db = client["companyinfodb"]
+    collection_names = info_db.list_collection_names()
 
     for company in sp500:
+        if company in collection_names:
+            continue
+
         sucessful = False
         while not sucessful:
             # https://www.alphavantage.co/query?function=OVERVIEW&symbol=IBM&apikey=demo
@@ -43,6 +47,7 @@ def query_company_info(apikey, sp500):
                     time.sleep(90)
                 else:
                     logging.error("URL is not working: %s, JSON: %s", request_url, json.dumps(json_result))
+                    return # most likely symbol not working
             else:
                 logging.error("Request failed with error code: %s", str(result.status_code))
 
