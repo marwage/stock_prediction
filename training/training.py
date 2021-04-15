@@ -224,6 +224,7 @@ def objective(trial):
         stats_file.write("mean absolute error: {}\n".format(mae))
         stats_file.write("mean squared error: {}\n".format(mse))
         stats_file.write("accuracy (up, down): {}\n".format(accuracy))
+        stats_file.write("training history: {}\n".format(history.history))
 
     return history.history[monitor][-1]
 
