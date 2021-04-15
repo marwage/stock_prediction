@@ -73,9 +73,7 @@ def create_dataset(validation_split):
     return training_dataset, validation_dataset
 
 
-def create_dataset_twitter_three(split: list, only_nonzero: bool):
-    tweet_threshold = 240
-
+def create_dataset_twitter_three(split: list, only_nonzero: bool, tweets_threshold: int):
     client = MongoClient("localhost", 27017)
     database = client["twitter_three"]
 
@@ -92,7 +90,7 @@ def create_dataset_twitter_three(split: list, only_nonzero: bool):
                 for tweet in document["tweets"]:
                     if tweet[0] != 0:  # sentiment
                         nonzero_tweets.append(tweet)
-                if len(nonzero_tweets) >= tweet_threshold:
+                if len(nonzero_tweets) >= tweets_threshold:
                     features_list.append(nonzero_tweets)
                     labels_list.append(document["price_diff"])
 
@@ -148,6 +146,8 @@ def create_model(trial):
 
 def objective(trial):
     batch_size = trial.suggest_categorical("batch_size", [8, 16, 32, 64, 128])
+    tweets_threshold = trial.suggest_categorical("tweets_threshold",
+                                                 [240, 480, 720, 960])
 
     # Clear clutter from previous TensorFlow graphs.
     tf.keras.backend.clear_session()
@@ -157,8 +157,10 @@ def objective(trial):
 
     # Create dataset instance.
     split = parse_split(args.split)
-    train_set, val_set, test_set = create_dataset_twitter_three(split,
-                                                                args.nonzero)
+    sets = create_dataset_twitter_three(split,
+                                        args.nonzero,
+                                        tweets_threshold)
+    train_set, val_set, test_set = sets
     train_set = train_set.shuffle(2048)
     train_set = train_set.batch(batch_size)
     val_set = val_set.batch(batch_size)
