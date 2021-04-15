@@ -225,7 +225,7 @@ def objective(trial):
 
 def log_study_as_csv(study):
     data_frame = study.trials_dataframe()
-    data_frame.to_csv("optuna_study.csv")
+    data_frame.to_csv("study.csv")
 
 
 def main():
