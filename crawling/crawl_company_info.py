@@ -43,6 +43,7 @@ def query_company_info(apikey, sp500):
                     time.sleep(90)
                 else:
                     logging.error("URL is not working: %s, JSON: %s", request_url, json.dumps(json_result))
+                    return # most likely symbol not working
             else:
                 logging.error("Request failed with error code: %s", str(result.status_code))
 
