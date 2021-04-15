@@ -73,7 +73,9 @@ def create_dataset(validation_split):
     return training_dataset, validation_dataset
 
 
-def create_dataset_twitter_three(split: list, only_nonzero: bool, tweets_threshold: int):
+def create_dataset_twitter_three(split: list,
+                                 only_nonzero: bool,
+                                 tweets_threshold: int):
     client = MongoClient("localhost", 27017)
     database = client["twitter_three"]
 
@@ -116,9 +118,10 @@ def create_dataset_twitter_three(split: list, only_nonzero: bool, tweets_thresho
 
 def create_model(trial):
     # Hyperparameters to be tuned by Optuna.
-    learning_rate = trial.suggest_float("lr", 1e-4, 1e-2, log=True)
-    units = trial.suggest_categorical("units", [8, 16, 32, 64, 128, 256, 512])
+    learning_rate = trial.suggest_float("lr", 1e-5, 1e-3, log=True)
+    units = trial.suggest_categorical("units", [16, 32, 64, 128, 256])
     rnn = trial.suggest_categorical("rnn", ["lstm", "gru"])
+    loss = trial.suggest_categorical("loss", ["mse", "mae"])
 
     # Compose neural network with one hidden layer.
     model = tf.keras.models.Sequential()
@@ -131,21 +134,21 @@ def create_model(trial):
     model.add(tf.keras.layers.Dense(1))
 
     # Compile model.
-    if args.loss == "mse":  # mean squared error
-        loss = tf.keras.losses.MeanSquaredError()
-    elif args.loss == "mae":  # mean absolute error
-        loss = tf.keras.losses.MeanAbsoluteError()
+    if loss == "mse":  # mean squared error
+        loss_tf = tf.keras.losses.MeanSquaredError()
+    elif loss == "mae":  # mean absolute error
+        loss_tf = tf.keras.losses.MeanAbsoluteError()
     else:
         print("Error: Loss {} not possible.".format(args.loss))
 
-    model.compile(loss=loss,
+    model.compile(loss=loss_tf,
                   optimizer=tf.keras.optimizers.Adam(learning_rate))
 
     return model
 
 
 def objective(trial):
-    batch_size = trial.suggest_categorical("batch_size", [8, 16, 32, 64, 128])
+    batch_size = trial.suggest_categorical("batch_size", [16, 32, 64])
     tweets_threshold = trial.suggest_categorical("tweets_threshold",
                                                  [240, 480, 720, 960])
 
@@ -235,7 +238,7 @@ def main():
     with open("study_args.txt", "w") as args_file:
         args_file.write("dataset: {}\n".format("twitter_three"))  # TODO hardcoded so far
         #  args_file.write("rnn: {}\n".format(args.rnn))
-        args_file.write("loss: {}\n".format(args.loss))
+        #  args_file.write("loss: {}\n".format(args.loss))
         args_file.write("epochs: {}\n".format(args.epochs))
         args_file.write("split: {}\n".format(args.split))
         args_file.write("trials: {}\n".format(args.num_trials))
@@ -254,8 +257,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Training parameters")
     #  parser.add_argument("--rnn", type=str,
     #                      help="RNN layer lstm or gru")
-    parser.add_argument("--loss", type=str,
-                        help="Loss mse or mae")
+    #  parser.add_argument("--loss", type=str,
+    #                      help="Loss mse or mae")
     parser.add_argument("--epochs", type=int,
                         help="Number of epochs")
     parser.add_argument("--split", type=str,
