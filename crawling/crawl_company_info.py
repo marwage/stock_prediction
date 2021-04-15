@@ -22,8 +22,12 @@ def get_apikey(path):
 def query_company_info(apikey, sp500):
     client = MongoClient()
     info_db = client["companyinfodb"]
+    collection_names = info_db.list_collection_names()
 
     for company in sp500:
+        if company in collection_names:
+            continue
+
         sucessful = False
         while not sucessful:
             # https://www.alphavantage.co/query?function=OVERVIEW&symbol=IBM&apikey=demo
