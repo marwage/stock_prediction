@@ -225,6 +225,12 @@ def objective(trial):
         stats_file.write("mean squared error: {}\n".format(mse))
         stats_file.write("accuracy (up, down): {}\n".format(accuracy))
         stats_file.write("training history: {}\n".format(history.history))
+        stats_file.write("training dataset size: {}\n".format(
+            tf.data.experimental.cardinality(train_set).numpy()))
+        stats_file.write("validation dataset size: {}\n".format(
+            tf.data.experimental.cardinality(val_set).numpy()))
+        stats_file.write("test dataset size: {}\n".format(
+            tf.data.experimental.cardinality(test_set).numpy()))
 
     return history.history[monitor][-1]
 
@@ -248,7 +254,7 @@ def main():
     study = optuna.create_study(
         direction="minimize",
         #  pruner=optuna.pruners.MedianPruner(n_startup_trials=2)
-        pruner=optuna.pruners.SuccessiveHalvingPruner()
+        pruner=optuna.pruners.HyperbandPruner()
     )
     study.optimize(objective, n_trials=args.num_trials)
     log_study_as_csv(study)
