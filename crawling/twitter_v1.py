@@ -1,15 +1,15 @@
 import json
 import logging
 import os
+import random
 import re
 import requests
-import sys
 import time
 from datetime import timedelta, datetime
 from pathlib import Path
 from pymongo import MongoClient
-from read_sp500 import read_sp500
 from requests_oauthlib import OAuth1
+from read_sp500 import read_sp500
 
 
 def read_access_token(access_token_path):
@@ -21,7 +21,7 @@ def read_access_token(access_token_path):
 
 def crawl_twitter(sp500, access_token):
     client = MongoClient()
-    database = client["twitterv2"]
+    database = client.twitterdb
 
     auth = OAuth1(access_token["consumer_key"],
                   access_token["consumer_secret"],
@@ -30,39 +30,38 @@ def crawl_twitter(sp500, access_token):
 
     while True:
         for company in sp500:
-            query = "https://api.twitter.com/2/tweets/search/recent?query=" \
-                  + "%23" + company \
-                  + "&max_results=100" \
-                  + "&tweet.fields=created_at,public_metrics,lang"
+            q_dollar = "https://api.twitter.com/1.1/search/tweets.json?q=" \
+                + "%24" + company \
+                + "&result_type=recent&count=100"
+            q_hashtag = "https://api.twitter.com/1.1/search/tweets.json?q=" \
+                + "%23" + company + "&result_type=recent&count=100"
+            queries = [q_dollar, q_hashtag]
 
-            succeeded = False
-            while not succeeded:
-                try:
-                    result = requests.get(query, auth=auth)
-                    result_json = result.json()
+            for query in queries:
+                succeeded = False
+                while not succeeded:
+                    try:
+                        result = requests.get(query, auth=auth)
+                        result_json = result.json()
+                        if "errors" in result_json:
+                            logging.info("sleeping for 15 min")
+                            time.sleep(900)
+                        else:
+                            succeeded = True
+                    except Exception as exception:
+                        logging.debug(str(exception))
 
-                    if "errors" in result_json:
-                        logging.debug("sleeping for 15 min")
-                        time.sleep(900)
-                    else:
-                        succeeded = True
-                except Exception as e:
-                    logging.debug(str(e))
-
-            if "data" in result_json:
-                tweets = result_json["data"]
-
+                tweets = result_json["statuses"]
                 logging.info("%d results for %s", len(tweets), company)
-
                 collection = database[company]
                 for tweet in tweets:
-                    created_at = re.sub("Z", "", tweet["created_at"])
-                    date = datetime.fromisoformat(created_at)
+                    date = datetime.strptime(tweet["created_at"],
+                                             "%a %b %d %H:%M:%S %z %Y")
                     tweet["date"] = date
 
                     db_query = {
                         "text": tweet["text"],
-                        "date": date
+                        "date": tweet["date"]
                         }
                     collection.update_one(db_query,
                                           {"$set": tweet},
@@ -70,14 +69,9 @@ def crawl_twitter(sp500, access_token):
 
 
 def main():
-    if sys.platform == "linux":
-        path = os.path.join(Path.home(), "stock-prediction")
-    else:
-        directory = "Studies/Master/10SS19/StockPrediction/stock-prediction"
-        path = os.path.join(Path.home(), directory)
-    crawling_path = os.path.join(path, "crawling")
+    crawling_path = os.path.join(Path.home(), "stock-prediction/crawling")
     sp500_path = os.path.join(crawling_path, "data/sp500.json")
-    log_path = os.path.join(crawling_path, "log/crawl_twitter_v2.log")
+    log_path = os.path.join(crawling_path, "log/twitter_v1.log")
     access_token_path = os.path.join(crawling_path,
                                      "access_token/twitter_access_token.json")
 
@@ -88,9 +82,9 @@ def main():
         )
     logging.getLogger("requests").setLevel(logging.WARNING)
     logging.getLogger("urllib3").setLevel(logging.WARNING)
-    logging.getLogger("requests_oauthlib").setLevel(logging.WARNING)
 
     sp500 = read_sp500(sp500_path)
+    random.shuffle(sp500)
     access_token = read_access_token(access_token_path)
     crawl_twitter(sp500, access_token)
 

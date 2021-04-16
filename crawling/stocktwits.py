@@ -80,7 +80,7 @@ def main():
     crawling_path = os.path.join(Path.home(), "stock-prediction/crawling")
     sp500_path = os.path.join(crawling_path, "data/sp500.json")
     proxy_path = os.path.join(crawling_path, "data/working_proxies.json")
-    log_path = os.path.join(crawling_path, "log/crawl_stocktwits.log")
+    log_path = os.path.join(crawling_path, "log/stocktwits.log")
 
     logging.basicConfig(
         filename=log_path,

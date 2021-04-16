@@ -83,7 +83,7 @@ def crawl_twitter(sp500, access_token):
 def main():
     crawling_path = os.path.join(Path.home(), "stock-prediction/crawling")
     sp500_path = os.path.join(crawling_path, "data/sp500.json")
-    log_path = os.path.join(crawling_path, "log/crawl_twitter_v1.log")
+    log_path = os.path.join(crawling_path, "log/twitter_v1.log")
     access_token_path = os.path.join(crawling_path,
                                      "access_token/twitter_access_token.json")
 
