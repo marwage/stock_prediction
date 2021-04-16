@@ -1,6 +1,7 @@
 import json
 import logging
 import os
+import random
 import re
 import requests
 import time
@@ -70,7 +71,7 @@ def crawl_twitter(sp500, access_token):
 def main():
     crawling_path = os.path.join(Path.home(), "stock-prediction/crawling")
     sp500_path = os.path.join(crawling_path, "data/sp500.json")
-    log_path = os.path.join(crawling_path, "log/crawl_twitter.log")
+    log_path = os.path.join(crawling_path, "log/crawl_twitter_v1.log")
     access_token_path = os.path.join(crawling_path,
                                      "access_token/twitter_access_token.json")
 
@@ -83,6 +84,7 @@ def main():
     logging.getLogger("urllib3").setLevel(logging.WARNING)
 
     sp500 = read_sp500(sp500_path)
+    random.shuffle(sp500)
     access_token = read_access_token(access_token_path)
     crawl_twitter(sp500, access_token)
 
