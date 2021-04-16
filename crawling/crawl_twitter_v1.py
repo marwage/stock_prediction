@@ -1,14 +1,14 @@
 import json
-import time
 import logging
+import os
+import re
 import requests
+import time
 from datetime import timedelta, datetime
+from pathlib import Path
 from pymongo import MongoClient
 from requests_oauthlib import OAuth1
 from read_sp500 import read_sp500
-import os
-from pathlib import Path
-import re
 
 
 def read_access_token(access_token_path):
@@ -20,17 +20,22 @@ def read_access_token(access_token_path):
 
 def crawl_twitter(sp500, access_token):
     client = MongoClient()
-    db = client.twitterdb
+    database = client.twitterdb
 
-    auth = OAuth1(access_token["consumer_key"], access_token["consumer_secret"],
-        access_token["access_token_key"], access_token["access_token_secret"])
+    auth = OAuth1(access_token["consumer_key"],
+                  access_token["consumer_secret"],
+                  access_token["access_token_key"],
+                  access_token["access_token_secret"])
 
     while True:
         for company in sp500:
-            query_dollar = "https://api.twitter.com/1.1/search/tweets.json?q=" + "%24"+ company + "&result_type=recent&count=100"
-            query_hashtag = "https://api.twitter.com/1.1/search/tweets.json?q=" + "%23"+ company + "&result_type=recent&count=100"
-            queries = [query_dollar, query_hashtag]
-            
+            q_dollar = "https://api.twitter.com/1.1/search/tweets.json?q=" \
+                + "%24" + company \
+                + "&result_type=recent&count=100"
+            q_hashtag = "https://api.twitter.com/1.1/search/tweets.json?q=" \
+                + "%23" + company + "&result_type=recent&count=100"
+            queries = [q_dollar, q_hashtag]
+
             for query in queries:
                 succeeded = False
                 while not succeeded:
@@ -42,28 +47,32 @@ def crawl_twitter(sp500, access_token):
                             time.sleep(900)
                         else:
                             succeeded = True
-                    except Exception as e:
-                        logging.debug(str(e))
-                    
+                    except Exception as exception:
+                        logging.debug(str(exception))
+
                 tweets = result_json["statuses"]
-                logging.info(str(len(tweets)) + " results for " + company)
-                collection = db[company]
+                logging.info("%d results for %s", len(tweets), company)
+                collection = database[company]
                 for tweet in tweets:
+                    date = datetime.strptime(tweet["created_at"],
+                                             "%a %b %d %H:%M:%S %z %Y")
+                    tweet["date"] = date
+
                     db_query = {
                         "text": tweet["text"],
+                        "date": tweet["date"]
                         }
-
-                    d = datetime.strptime(tweet["created_at"], "%a %b %d %H:%M:%S %z %Y")
-                    tweet["date"] = d
-
-                    collection.update_one(db_query, {"$set": tweet}, upsert=True)
+                    collection.update_one(db_query,
+                                          {"$set": tweet},
+                                          upsert=True)
 
 
 def main():
     crawling_path = os.path.join(Path.home(), "stock-prediction/crawling")
     sp500_path = os.path.join(crawling_path, "data/sp500.json")
     log_path = os.path.join(crawling_path, "log/crawl_twitter.log")
-    access_token_path = os.path.join(crawling_path, "access_token/twitter_access_token.json")
+    access_token_path = os.path.join(crawling_path,
+                                     "access_token/twitter_access_token.json")
 
     logging.basicConfig(
         filename=log_path,
