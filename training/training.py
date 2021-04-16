@@ -119,7 +119,8 @@ def create_dataset_twitter_three(split: list,
 def create_model(trial):
     # Hyperparameters to be tuned by Optuna.
     learning_rate = trial.suggest_float("lr", 1e-5, 1e-3, log=True)
-    units = trial.suggest_categorical("units", [16, 32, 64, 128, 256])
+    #  units = trial.suggest_categorical("units", [16, 32, 64, 128, 256])
+    units = trial.suggest_int("units", 16, 512)
     rnn = trial.suggest_categorical("rnn", ["lstm", "gru"])
     loss = trial.suggest_categorical("loss", ["mse", "mae"])
 
@@ -148,9 +149,11 @@ def create_model(trial):
 
 
 def objective(trial):
-    batch_size = trial.suggest_categorical("batch_size", [16, 32, 64])
-    tweets_threshold = trial.suggest_categorical("tweets_threshold",
-                                                 [240, 480, 720, 960])
+    #  batch_size = trial.suggest_categorical("batch_size", [16, 32, 64])
+    batch_size = trial.suggest_int("batch_size", 16, 128)
+    #  tweets_threshold = trial.suggest_categorical("tweets_threshold",
+    #                                               [240, 480, 720, 960])
+    tweets_threshold = trial.suggest_int("tweets_threshold", 240, 960)
 
     # Clear clutter from previous TensorFlow graphs.
     tf.keras.backend.clear_session()
