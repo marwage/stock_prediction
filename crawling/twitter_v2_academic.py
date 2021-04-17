@@ -44,7 +44,7 @@ def construct_header(bearer_token: str):
     return {"Authorization": "Bearer {}".format(bearer_token)}
 
 
-def request_until_seccess(headers: dict, params: dict):
+def request_until_success(headers: dict, params: dict):
     search_url = "https://api.twitter.com/2/tweets/search/all"
     succeeded = False
     while not succeeded:
@@ -68,7 +68,14 @@ def request_until_seccess(headers: dict, params: dict):
             logging.warning(str(e))
 
         if "errors" in result_json:
-            logging.info("%d errors in result", len(result_json["errors"]))
+            errors = dict()
+            for error in result_json["errors"]:
+                error_title = error["title"]
+                if error_title in errors:
+                    errors[error_title] = errors[error_title] + 1
+                else:
+                    errors[error_title] = 1
+            logging.info("Request errors: %s", json.dumps(errors))
 
     return result_json
 
@@ -82,40 +89,45 @@ def crawl_company(company: str, database, headers: dict):
     start_time = start_time + "Z"
 
     for tag in tags:
-        query = "{}{} lang:en".format(tag, company)
-        params = construct_params(query, start_time)
+        has_next_token = True
+        next_token = None
+        num_next_token = 0
+        while has_next_token:
+            query = "{}{} lang:en".format(tag, company)
+            params = construct_params(query, start_time)
+            if next_token is not None:
+                params["next_token"] = next_token
 
-        result = request_until_seccess(headers, params)
+            result = request_until_success(headers, params)
 
-        # debugging
-        with open("result.json", "w") as result_file:
-            json.dump(result, result_file, indent=4)
+            if "data" not in result:
+                logging.warning("%s", result["error"])
+                continue
+            tweets = result["data"]
 
-        if "data" not in result:
-            logging.warning("%s", result["error"])
-            continue
-        tweets = result["data"]
+            logging.info("%d results for %s, next token %d",
+                         len(tweets), company, num_next_token)
 
-        logging.info("%d results for %s", len(tweets), company)
+            collection = database[company]
+            for tweet in tweets:
+                created_at = re.sub("Z", "", tweet["created_at"])
+                date = datetime.datetime.fromisoformat(created_at)
+                tweet["date"] = date
 
-        collection = database[company]
-        for tweet in tweets:
-            created_at = re.sub("Z", "", tweet["created_at"])
-            date = datetime.datetime.fromisoformat(created_at)
-            tweet["date"] = date
+                if tag == hastag_code:
+                    tweet["tag"] = "hastag"
+                else:  # tag == cashtag_code
+                    tweet["tag"] = "cashtag"
 
-            if tag == hastag_code:
-                tweet["tag"] = "hastag"
-            else:  # tag == cashtag_code
-                tweet["tag"] = "cashtag"
+                collection.update_one({"id": tweet["id"]},
+                                      {"$set": tweet},
+                                      upsert=True)
 
-            db_query = {
-                "text": tweet["text"],
-                "date": date
-                }
-            collection.update_one(db_query,
-                                  {"$set": tweet},
-                                  upsert=True)
+            if "next_token" in result["meta"]:
+                next_token = result["meta"]["next_token"]
+                num_next_token = num_next_token + 1
+            else:
+                has_next_token = False
 
 
 def crawl_twitter(sp500: list, bearer_token: str):
@@ -136,14 +148,13 @@ def main():
         path = os.path.join(Path.home(), directory)
     crawling_path = os.path.join(path, "crawling")
     sp500_path = os.path.join(crawling_path, "data/sp500.json")
-    log_path = os.path.join(crawling_path, "log/twitter_v2_enterprise.log")
+    log_path = os.path.join(crawling_path, "log/twitter_v2_academic.log")
     bearer_token_path = os.path.join(crawling_path,
                                      "access_token/twitter_bearer_token.json")
 
     logging.basicConfig(
         filename=log_path,
         level=logging.INFO,
-        #  level=logging.DEBUG,
         format="%(asctime)s:%(levelname)s:%(message)s"
         )
     logging.getLogger("requests").setLevel(logging.WARNING)
