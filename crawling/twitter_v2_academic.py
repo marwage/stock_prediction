@@ -1,3 +1,4 @@
+import datetime
 import json
 import logging
 import os
@@ -6,7 +7,6 @@ import re
 import requests
 import sys
 import time
-from datetime import timedelta, datetime
 from pathlib import Path
 from pymongo import MongoClient
 from read_sp500 import read_sp500
@@ -19,25 +19,25 @@ def read_bearer_token(bearer_token_path: str):
     return json_object["bearer_token"]
 
 
-def construct_url(query: str):
-    api_url = "https://api.twitter.com/2/tweets/search/recent?"
-    expansions = "&expansions=attachments.poll_ids,attachments.media_keys," \
+def construct_params(query: str, start_time: str):
+    params = {"query": query,
+              "max_results": 500,
+              "start_time":  start_time}
+
+    params["expansions"] = "attachments.poll_ids,attachments.media_keys," \
         + "author_id,entities.mentions.username,geo.place_id," \
         + "in_reply_to_user_id"
-    max_results = "&max_results=100"
-    place_fields = "&place.fields=contained_within,country,country_code," \
+    params["place.fields"] = "contained_within,country,country_code," \
         + "full_name,geo,id,name,place_type"
-    tweet_fields = "&tweet.fields=attachments,author_id,context_annotations," \
+    params["tweet.fields"] = "attachments,author_id,context_annotations," \
         + "conversation_id,created_at,entities,geo,id,in_reply_to_user_id," \
         + "lang,public_metrics,possibly_sensitive,referenced_tweets," \
         + "reply_settings,source,text,withheld"
-    user_fields = "&user.fields=created_at,description,entities,id,location," \
+    params["user.fields"] = "created_at,description,entities,id,location," \
         + "name,pinned_tweet_id,profile_image_url,protected,public_metrics," \
         + "url,username,verified,withheld"
 
-    url = api_url + query + expansions + max_results + place_fields \
-        + tweet_fields + user_fields
-    return url
+    return params
 
 
 def construct_header(bearer_token: str):
@@ -55,6 +55,8 @@ def request_until_seccess(headers: dict, params: dict):
         status_code = result.status_code
         if not status_code == 200:
             logging.warning("Status code is %d", status_code)
+            if status_code == 503:
+                continue
             if status_code == 429:
                 time.sleep(905)
                 continue
@@ -65,9 +67,8 @@ def request_until_seccess(headers: dict, params: dict):
         except Exception as e:
             logging.warning(str(e))
 
-        if succeeded and "errors" in result_json:
-            logging.warning(result_json["errors"])
-            return {}
+        if "errors" in result_json:
+            logging.info("%d errors in result", len(result_json["errors"]))
 
     return result_json
 
@@ -76,28 +77,31 @@ def crawl_company(company: str, database, headers: dict):
     hastag_code = "#"
     cashtag_code = "$"
     tags = [hastag_code, cashtag_code]
-    from_date = "201903010000"  # 1. March 2019
+    first_date = datetime.datetime(2019, 4, 1)
+    start_time = first_date.isoformat(timespec="milliseconds")
+    start_time = start_time + "Z"
 
     for tag in tags:
-        params = {"query": "{}{} lang:en".format(tag, company),
-                  "max_results": 500,
-                  "start_time":  from_date}
+        query = "{}{} lang:en".format(tag, company)
+        params = construct_params(query, start_time)
 
         result = request_until_seccess(headers, params)
 
-        if "data" not in result:
-            return
-        tweets = result["data"]
+        # debugging
+        with open("result.json", "w") as result_file:
+            json.dump(result, result_file, indent=4)
 
-        print(json.dumps(tweets, indent=4))  # debugging
-        return
+        if "data" not in result:
+            logging.warning("%s", result["error"])
+            continue
+        tweets = result["data"]
 
         logging.info("%d results for %s", len(tweets), company)
 
         collection = database[company]
         for tweet in tweets:
             created_at = re.sub("Z", "", tweet["created_at"])
-            date = datetime.fromisoformat(created_at)
+            date = datetime.datetime.fromisoformat(created_at)
             tweet["date"] = date
 
             if tag == hastag_code:
@@ -116,7 +120,7 @@ def crawl_company(company: str, database, headers: dict):
 
 def crawl_twitter(sp500: list, bearer_token: str):
     client = MongoClient()
-    database = client["twitterv2"]
+    database = client["twitterv2db"]
     headers = {"Authorization": "Bearer " + bearer_token}
 
     while True:
