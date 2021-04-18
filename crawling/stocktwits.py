@@ -33,7 +33,7 @@ def crawl(sp500_chunk, proxies):
 
     timeout = 15
     proxy_index = random.randint(0, len(proxies) - 1)
-    proxy = proxies[proxy_index]
+    proxy_url = proxies[proxy_index]
 
     while True:
         for company in sp500_chunk:
@@ -43,7 +43,7 @@ def crawl(sp500_chunk, proxies):
             while not successful:
                 try:
                     result = requests.get(request_url,
-                                          proxies=proxy,
+                                          proxies={"http": proxy_url},
                                           timeout=timeout)
 
                     if result.status_code == 200:  # request was successful
@@ -64,7 +64,7 @@ def crawl(sp500_chunk, proxies):
                             collection.update_one(query, post, upsert=True)
                     else:  # proxy worked but API did not response as wished
                         proxy_index = random.randint(0, len(proxies) - 1)
-                        proxy = proxies[proxy_index]
+                        proxy_url = proxies[proxy_index]
                 except Exception as e:
                     logging.debug(str(e))
 
@@ -79,7 +79,7 @@ def crawl(sp500_chunk, proxies):
 
                     # select a new proxy randomly
                     proxy_index = random.randint(0, len(proxies) - 1)
-                    proxy = proxies[proxy_index]
+                    proxy_url = proxies[proxy_index]
 
 
 def main():

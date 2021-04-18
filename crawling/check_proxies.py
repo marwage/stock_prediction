@@ -32,10 +32,12 @@ def check_proxies(proxies, output_path):
             + "AAPL.json"
         try:
             response = requests.get(request_url,
-                                    proxies={"http": proxy},
+                                    proxies={"https": proxy},  # try with https
                                     timeout=timeout)
-            if response.status_code != 200:
+            status_code = response.status_code
+            if status_code != 200:
                 successful = False
+                print(status_code)  # debugging
         except Exception as e:
             logging.debug("Requests exception: %s", str(e))
             successful = False
