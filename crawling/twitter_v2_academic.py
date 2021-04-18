@@ -49,25 +49,25 @@ def request_until_success(headers: dict, params: dict):
     search_url = "https://api.twitter.com/2/tweets/search/all"
     succeeded = False
     while not succeeded:
-        result = requests.get(search_url,
-                              headers=headers,
-                              params=params,
-                              timeout=timeout)
+        try:
+            result = requests.get(search_url,
+                                  headers=headers,
+                                  params=params,
+                                  timeout=timeout)
+        except Exception as e:
+            logging.warning(str(e))
+            continue
 
         status_code = result.status_code
         if not status_code == 200:
-            if status_code == 503:
-                continue
             if status_code == 429:
                 logging.info("Sleeping for 15 min")
                 time.sleep(905)
-                continue
 
-        try:
-            result_json = result.json()
-            succeeded = True
-        except Exception as e:
-            logging.warning(str(e))
+            continue
+
+        succeeded = True
+        result_json = result.json()
 
         if "errors" in result_json:
             errors = dict()
