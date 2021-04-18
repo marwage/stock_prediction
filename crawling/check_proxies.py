@@ -14,9 +14,7 @@ def get_proxies(path):
 
     for row in proxy_lines:
         row = row.replace("\n", "")
-        proxy = dict()
-        proxy["https"] = "http://" + row
-        proxies.append(proxy)
+        proxies.append("http://" + row)
 
     return proxies
 
@@ -24,20 +22,29 @@ def get_proxies(path):
 def check_proxies(proxies, output_path):
     timeout = 12
     num_proxies = len(proxies)
+    working_proxies = []
 
     for i, proxy in enumerate(proxies):
         logging.debug("check proxy %d/%d", i, num_proxies)
 
+        successful = True
         request_url = "https://api.stocktwits.com/api/2/streams/symbol/" \
             + "AAPL.json"
-
         try:
-            _ = requests.get(request_url, proxies=proxy, timeout=timeout)
+            response = requests.get(request_url,
+                                    proxies={"http": proxy},
+                                    timeout=timeout)
+            if response.status_code != 200:
+                successful = False
         except Exception as e:
-            proxies.remove(proxy)
+            logging.debug("Requests exception: %s", str(e))
+            successful = False
+
+        if successful:
+            working_proxies.append(proxy)
 
     with open(output_path, "w") as proxies_file:
-        json.dump(proxies, proxies_file, indent="\t")
+        json.dump(working_proxies, proxies_file, indent="\t")
 
 
 def main():
