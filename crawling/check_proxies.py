@@ -1,6 +1,6 @@
 import json
-import requests
 import logging
+import requests
 
 
 def get_proxies(path):
@@ -19,16 +19,17 @@ def get_proxies(path):
 
 
 def check_proxies(proxies, output_path):
-    timeout = 9
+    timeout = 12
     num_proxies = len(proxies)
 
     for i, proxy in enumerate(proxies):
-        logging.debug("check proxy " + str(i) + "/" + str(num_proxies))
+        logging.debug("check proxy %d/%d", i, num_proxies)
 
-        request_url = "https://api.stocktwits.com/api/2/streams/symbol/AAPL.json"     
-            
+        request_url = "https://api.stocktwits.com/api/2/streams/symbol/" \
+            + "AAPL.json"
+
         try:
-            result = requests.get(request_url, proxies=proxy, timeout=timeout)
+            _ = requests.get(request_url, proxies=proxy, timeout=timeout)
         except Exception as e:
             proxies.remove(proxy)
 
@@ -54,5 +55,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
