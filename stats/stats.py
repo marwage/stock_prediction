@@ -7,6 +7,7 @@ import pandas as pd
 
 model = fasttext.load_model("../preprocessing/lid.176.ftz")
 
+
 def detect_language(text):
     pred = model.predict(text, k=1)
     lang = pred[0][0].replace("__label__", "")
@@ -19,7 +20,7 @@ def plot_histogram(company, dates):
 
     axs.hist(dates, bins=num_bins)
 
-    fig.savefig("out/tweet_distr_{}.png".format(company))
+    fig.savefig("output/tweet_distr_{}.png".format(company))
     plt.close(fig)
 
 
@@ -85,16 +86,16 @@ def many():
         tweets_sentiment_zero = tweets_sentiment_zero + company_tweets_sentiment_zero
         tweets_total = tweets_total + company_tweets_total
         num_days = num_days + company_num_days
-        
+
     df = pd.DataFrame(company_stats, columns=["company", "num_tweets", "tweets_in_english",
             "tweets_sentiment_zero"])
-    df.to_csv("out/company_stats.csv")
+    df.to_csv("output/company_stats.csv")
 
     df = pd.DataFrame([[tweets_total, tweets_in_english, tweets_sentiment_zero, num_days,
             len(company_names)]],
             columns=["num_tweets", "tweets_in_english", "tweets_sentiment_zero", "num_days",
                 "num_companies"])
-    df.to_csv("out/total_stats.csv")
+    df.to_csv("output/total_stats.csv")
 
 
 def day_tweet_distr():
@@ -119,14 +120,14 @@ def day_tweet_distr():
 
         axs.hist(x, bins=num_bins)
 
-        fig.savefig("out/tweet_distr_{}.png".format(company))
+        fig.savefig("output/tweet_distr_{}.png".format(company))
         plt.close(fig)
 
 
 def create_json_file():
     client = MongoClient()
     learning_db = client["learning"]
-    
+
     collection_names = learning_db.list_collection_names()
     num_companies = len(collection_names)
     print("Number of companies: {}".format(num_companies))
@@ -135,7 +136,7 @@ def create_json_file():
     for company in collection_names:
         collection = learning_db[company]
         stats[company] = dict()
-        
+
         stats[company]["days"] = collection.count_documents({})
 
         tweets = list()
@@ -155,4 +156,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
