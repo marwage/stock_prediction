@@ -17,6 +17,13 @@ def get_working_proxies(path):
     return proxies
 
 
+def divide_in_chunks(lis, num):
+    length = len(lis)
+    chunk_size = (length // num)
+    for i in range(0, length, chunk_size):
+        yield lis[i: i+chunk_size]
+
+
 def crawl(sp500_chunk, proxies):
     client = MongoClient()
     database = client.stocktwitsdb
@@ -59,7 +66,7 @@ def crawl(sp500_chunk, proxies):
                         proxy_index = random.randint(0, len(proxies) - 1)
                         proxy_url = proxies[proxy_index]
                 except Exception as e:
-                    logging.warning(str(e))
+                    logging.debug(str(e))
 
                     # delete the proxy that causes an exception from the list
                     del proxies[proxy_index]
@@ -92,7 +99,20 @@ def main():
     sp500 = read_sp500(sp500_path)
     proxies = get_working_proxies(proxy_path)
 
-    crawl(sp500, proxies)
+    num_threads = 24
+    sp500_chunks = list(divide_in_chunks(sp500, num_threads))
+    proxies_chunks = list(divide_in_chunks(proxies, num_threads))
+
+    threads = []
+    for i in range(num_threads):
+        thread = threading.Thread(target=crawl,
+                                  args=(sp500_chunks[i],
+                                        proxies_chunks[i].copy()))
+        thread.start()
+        threads.append(thread)
+
+    for thread in threads:
+        thread.join()
 
 
 if __name__ == '__main__':
