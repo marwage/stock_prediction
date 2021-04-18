@@ -45,19 +45,21 @@ def construct_header(bearer_token: str):
 
 
 def request_until_success(headers: dict, params: dict):
+    timeout = 30
     search_url = "https://api.twitter.com/2/tweets/search/all"
     succeeded = False
     while not succeeded:
         result = requests.get(search_url,
                               headers=headers,
-                              params=params)
+                              params=params,
+                              timeout=timeout)
 
         status_code = result.status_code
         if not status_code == 200:
-            logging.warning("Status code is %d", status_code)
             if status_code == 503:
                 continue
             if status_code == 429:
+                logging.info("Sleeping for 15 min")
                 time.sleep(905)
                 continue
 
@@ -101,7 +103,7 @@ def crawl_company(company: str, database, headers: dict):
             result = request_until_success(headers, params)
 
             if "data" not in result:
-                logging.warning("%s", result["error"])
+                logging.warning("Response error: %s", result["error"])
                 continue
             tweets = result["data"]
 
