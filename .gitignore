@@ -1,11 +1,12 @@
 .DS_Store
-/tmp/*
-*/access_token/*
+tmp
+access_token
 __pycache__
 *.log
 *.h5
 .vscode
 playground.py
 logs
+log
 *.swp
-
+output
