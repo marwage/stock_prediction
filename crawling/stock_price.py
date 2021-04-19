@@ -1,3 +1,4 @@
+import datetime
 import json
 import logging
 import os
@@ -6,7 +7,6 @@ import re
 import requests
 import sys
 import time
-from datetime import datetime
 from pathlib import Path
 from pymongo import MongoClient
 from read_sp500 import read_sp500
@@ -19,53 +19,50 @@ def get_apikey(path):
 
 
 def query_stock_price(apikey, sp500):
+    start_date = datetime.datetime(2019, 4, 1)
+    sleep_time = 95
     client = MongoClient()
     stockprice_db = client["stockpricedb"]
     time_zone_db = client["timezonedb"]
 
-    exclude_already_crawled = False
-    if exclude_already_crawled:
-        collection_names = time_zone_db.list_collection_names()
-
     for company in sp500:
-        if exclude_already_crawled and company in collection_names:
-            continue
-
         sucessful = False
         while not sucessful:
-            request_url = "https://www.alphavantage.co/query" \
-                        + "?function=TIME_SERIES_DAILY&symbol=" \
-                        + re.sub(r"\.", "-", company) \
-                        + "&outputsize=full&apikey=" + apikey
-            result = requests.get(request_url)
+            url = "https://www.alphavantage.co/query"
+            params = {"function": "TIME_SERIES_DAILY",
+                      "symbol": re.sub(r"\.", "-", company),
+                      "outputsize": "full",
+                      "apikey": apikey}
+            result = requests.get(url, params=params)
             if result.status_code == 200:
                 json_result = result.json()
                 if "Time Series (Daily)" in json_result:
                     sucessful = True
                 elif "Note" in json_result:
                     logging.debug(json_result["Note"])
-                    time.sleep(90)
+                    time.sleep(sleep_time)
                 elif "Information" in json_result:
                     logging.debug(json_result["Information"])
-                    time.sleep(90)
+                    time.sleep(sleep_time)
                 else:
-                    logging.error("URL is not working: %s, JSON: %s",
-                                  request_url,
-                                  json.dumps(json_result))
+                    logging.warning("URL is not working: %s %s, JSON: %s",
+                                    url,
+                                    json.dumps(params),
+                                    json.dumps(json_result))
             else:
-                logging.error("Request failed with error code: %s",
-                              str(result.status_code))
+                logging.warning("Request failed with error code: %s",
+                                str(result.status_code))
 
         collection = time_zone_db[company]
         time_zone = json_result["Meta Data"]["5. Time Zone"]
-        collection.update_one({},
+        collection.update_one({"time_zone": time_zone},
                               {"$set": {"time_zone": time_zone}},
                               upsert=True)
 
         collection = stockprice_db[company]
         for key, value in json_result["Time Series (Daily)"].items():
-            date = datetime.strptime(key, "%Y-%m-%d")
-            if date > datetime(2019, 6, 1):
+            date = datetime.datetime.strptime(key, "%Y-%m-%d")
+            if date > start_date:
                 day_properties = dict()
                 day_properties["date"] = date
                 day_properties["open"] = float(value["1. open"])
