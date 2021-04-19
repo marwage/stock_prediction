@@ -1,11 +1,12 @@
+import datetime
 import json
 import argparse
 import logging
 import os
-import requests
 import random
+import re
+import requests
 import threading
-from datetime import timedelta, datetime
 from pathlib import Path
 from pymongo import MongoClient
 from read_sp500 import read_sp500
@@ -66,6 +67,8 @@ class ProxyList:
 
 def add_messages_to_db(messages, collection):
     for post in messages:
+        date_str = re.sub("Z", "", post["created_at"])
+        post["date"] = datetime.datetime.fromisoformat(date_str)
         update_result = collection.update_one({"id": post["id"]},
                                               {"$set": post},
                                               upsert=True)
