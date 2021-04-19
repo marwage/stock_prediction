@@ -31,12 +31,9 @@ def check_proxies(proxies, output_path):
         request_url = "https://api.stocktwits.com/api/2/streams/symbol/" \
             + "AAPL.json"
         try:
-            response = requests.get(request_url,
-                                    proxies={"https": proxy},  # try with https
-                                    timeout=timeout)
-            status_code = response.status_code
-            if status_code != 200:
-                successful = False
+            _ = requests.get(request_url,
+                             proxies={"https": proxy},
+                             timeout=timeout)
         except Exception as e:
             logging.debug("Requests exception: %s", str(e))
             successful = False

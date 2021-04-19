@@ -23,6 +23,7 @@ def check(sp500: list, output_path: str):
         current_day = start_day
 
         while current_day < end_day:
+            logging.debug("Check %s on %s", company, current_day)
             found_days = collection.count_documents({"date": current_day})
             if found_days == 0:
                 days.append(current_day)
@@ -36,7 +37,8 @@ def check(sp500: list, output_path: str):
             current_day = current_day + datetime.timedelta(days=1)
 
         data_frame = pd.DataFrame({"day": days, "has_entry": has_entry})
-        data_frame.to_csv(os.path.join(output_path, "{}.csv".format(company)))
+        file_name = "stock_price_availability_{}.csv".format(company)
+        data_frame.to_csv(os.path.join(output_path, file_name))
 
 
 def main():
@@ -47,7 +49,7 @@ def main():
                   + "stock-prediction/crawling"
         crawling_path = os.path.join(Path.home(), directory)
     sp500_path = os.path.join(crawling_path, "data/sp500.json")
-    log_path = os.path.join(crawling_path, "log/stock_price.log")
+    log_path = os.path.join(crawling_path, "log/check_stock_price_db.log")
     output_path = os.path.join(crawling_path, "output")
 
     logging.basicConfig(

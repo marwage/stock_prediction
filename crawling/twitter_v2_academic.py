@@ -1,3 +1,4 @@
+import argparse
 import datetime
 import json
 import logging
@@ -85,7 +86,10 @@ def request_until_success(headers: dict, params: dict):
 def crawl_company(company: str, database, headers: dict):
     hastag_code = "#"
     cashtag_code = "$"
-    tags = [hastag_code, cashtag_code]
+    if args.onlycashtag:
+        tags = [cashtag_code]
+    else:
+        tags = [hastag_code, cashtag_code]
     first_date = datetime.datetime(2019, 4, 1)
     start_time = first_date.isoformat(timespec="milliseconds")
     start_time = start_time + "Z"
@@ -170,5 +174,10 @@ def main():
     crawl_twitter(sp500, bearer_token)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Training parameters")
+    parser.add_argument("--onlycashtag", action="store_true",
+                        help="Only Cashtag $")
+    args = parser.parse_args()
+
     main()
