@@ -3,7 +3,7 @@ from pymongo import MongoClient
 
 def delete_stocktwitsdb_duplicates():
     client = MongoClient()
-    db = client.stocktwitsdb
+    database = client.stocktwitsdb
 
     pipeline = [
         {"$group": {
@@ -15,18 +15,18 @@ def delete_stocktwitsdb_duplicates():
             "count": {"$sum": 1}
             }
         },
-        {"$match": { 
+        {"$match": {
             "count": {"$gt": 1}
             }
         }
         ]
-   
-    delete_duplicates(db, pipeline)
+
+    delete_duplicates(database, pipeline)
 
 
 def delete_twitterdb_duplicates():
     client = MongoClient()
-    db = client.twitterdb
+    database = client.twitterdb
 
     pipeline = [
         {"$group": {
@@ -38,25 +38,26 @@ def delete_twitterdb_duplicates():
             "count": {"$sum": 1}
             }
         },
-        {"$match": { 
+        {"$match": {
             "count": {"$gt": 1}
             }
         }
         ]
-   
-    delete_duplicates(db, pipeline)
+
+    delete_duplicates(database, pipeline)
 
 
-def delete_duplicates(db, pipeline):
-    for collection_name in db.list_collection_names():
-        for ob in db[collection_name].aggregate(pipeline):
-            db[collection_name].delete_many( { "_id": { "$in": ob["uniqueIds"][0:len(ob["uniqueIds"]) - 1]}})
+def delete_duplicates(database, pipeline):
+    for collection_name in database.list_collection_names():
+        for obj in database[collection_name].aggregate(pipeline):
+            unique_ids = obj["uniqueIds"][0:len(obj["uniqueIds"]) - 1]
+            database[collection_name].delete_many({"_id": {"$in": unique_ids}})
 
 
 def main():
     delete_twitterdb_duplicates()
-    #delete_stocktwitsdb_duplicates()
+    # delete_stocktwitsdb_duplicates()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
