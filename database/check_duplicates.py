@@ -1,3 +1,4 @@
+import argparse
 import logging
 import os
 import sys
@@ -7,7 +8,7 @@ from pymongo import MongoClient
 
 def check_duplicates():
     client = MongoClient()
-    database = client["twitterdb"]
+    databases = [client["stocktwitsdb"], client["twitterdb"]]
 
     pipeline = [
         {"$group": {
@@ -24,18 +25,20 @@ def check_duplicates():
         }
         ]
 
-    for company in database.list_collection_names():
-        logging.debug("Looking into %s", company)
-        collection = database[company]
-        cursor = collection.aggregate(pipeline, allowDiskUse=True)
-        for match in cursor:
-            logging.info("Found duplicate: %s", match)
-            for object_id in match["object_ids"]:
-                tweet = collection.find_one({"_id": object_id})
-                logging.debug("Tweet %s: id %s, date %s",
-                              tweet["_id"], tweet["id"], tweet["date"])
-            print("Press a key to continue")
-            input()
+    for database in databases:
+        for company in database.list_collection_names():
+            logging.debug("Looking into %s", company)
+            collection = database[company]
+            cursor = collection.aggregate(pipeline, allowDiskUse=True)
+            for match in cursor:
+                logging.info("Found duplicate: %s", match)
+                if args.delete:
+                    set_size = len(match["object_ids"])
+                    delete_set = match["object_ids"][0:set_size - 1]
+                    filtr = {"_id": {"$in": delete_set}}
+                    delete_result = collection.delete_many(filtr)
+                    logging.debug("Deleted %d objects",
+                                  delete_result.deleted_count)
 
 
 def main():
@@ -56,4 +59,9 @@ def main():
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Training parameters")
+    parser.add_argument("--delete", action="store_true",
+                        help="Delete duplicates")
+    args = parser.parse_args()
+
     main()
