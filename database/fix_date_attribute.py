@@ -54,17 +54,20 @@ def fix_date(sp500: list):
             logging.info("Fix %s %s", database_name, company)
             database = client[database_name]
             collection = database[company]
-            tweets = collection.find()
-            for tweet in tweets:
+            cursor = collection.find({}, batch_size=64)
+            for tweet in cursor:
                 if "date" in tweet:
                     date_attribute = tweet["date"]
                     if isinstance(date_attribute, datetime.datetime):
+                        logging.debug("Date is fine")
                         continue
                     elif isinstance(date_attribute, str):
+                        logging.debug("Date is String")
                         fix_tweet(tweet, collection)
                     else:
                         logging.error("Date is neither datetime nor str")
                 else:
+                    logging.debug("Date does not exist")
                     fix_tweet(tweet, collection)
 
 
@@ -79,7 +82,7 @@ def main():
 
     logging.basicConfig(
         filename=log_path,
-        level=logging.INFO,
+        level=logging.DEBUG,
         format="%(asctime)s:%(levelname)s:%(message)s"
         )
 
