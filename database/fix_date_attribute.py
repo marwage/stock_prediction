@@ -1,3 +1,4 @@
+import argparse
 import datetime
 import json
 import logging
@@ -6,13 +7,9 @@ import re
 import sys
 from pathlib import Path
 from pymongo import MongoClient
-
-
-def read_sp500(path):
-    with open(path, "r") as json_file:
-        sp500_json = json.load(json_file)
-
-    return sp500_json["sp500"]
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from util.threads import start_with_threads
+from util.read_sp500 import read_sp500
 
 
 def update_tweet(tweet, collection, new_date: datetime.datetime):
@@ -78,7 +75,7 @@ def main():
         directory = "Studies/Master/10SS19/StockPrediction/stock-prediction"
         path = os.path.join(Path.home(), directory)
     sp500_path = os.path.join(path, "crawling/data/sp500.json")
-    log_path = os.path.join(path, "database/log/fix_date_attribute.log")
+    log_path = os.path.join(path, "database/log/fix_date.log")
 
     logging.basicConfig(
         filename=log_path,
@@ -88,8 +85,16 @@ def main():
 
     sp500 = read_sp500(sp500_path)
 
-    fix_date(sp500)
+    if args.threading:
+        start_with_threads(fix_date, sp500)
+    else:
+        fix_date(sp500)
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Fix date attribute")
+    parser.add_argument("--threading", action="store_true",
+                        help="Enable threading")
+    args = parser.parse_args()
+
     main()
