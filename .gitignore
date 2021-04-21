@@ -10,3 +10,5 @@ logs
 log
 *.swp
 output
+.mypy_cache
+lid.176.ftz
