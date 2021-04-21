@@ -6,10 +6,12 @@ import os
 import random
 import re
 import requests
+import sys
 import threading
 from pathlib import Path
 from pymongo import MongoClient
-from read_sp500 import read_sp500
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from util.read_sp500 import read_sp500
 
 
 def get_working_proxies(path):
@@ -27,7 +29,7 @@ def divide_in_chunks(alist: list, num: int):
 
 
 def start_with_threads(sp500: list, proxies: list):
-    num_threads = 24
+    num_threads = 12
     sp500_chunks = list(divide_in_chunks(sp500, num_threads))
     proxies_chunks = list(divide_in_chunks(proxies, num_threads))
 

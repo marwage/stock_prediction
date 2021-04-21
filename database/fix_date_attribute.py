@@ -44,7 +44,7 @@ def fix_tweet(tweet, collection):
 
 def fix_date(sp500: list):
     client = MongoClient()
-    database_names = ["twitterdb", "stocktwitsdb"]
+    database_names = ["stocktwitsdb", "twitterdb"]
 
     for database_name in database_names:
         for company in sp500:
@@ -59,12 +59,16 @@ def fix_date(sp500: list):
                         logging.debug("Date is fine")
                         continue
                     elif isinstance(date_attribute, str):
-                        logging.debug("Date is String")
+                        logging.info("%s:%s:Date is String",
+                                     database_name,
+                                     company)
                         fix_tweet(tweet, collection)
                     else:
                         logging.error("Date is neither datetime nor str")
                 else:
-                    logging.debug("Date does not exist")
+                    logging.info("%s:%s:Date does not exist",
+                                 database_name,
+                                 company)
                     fix_tweet(tweet, collection)
 
 
@@ -79,7 +83,7 @@ def main():
 
     logging.basicConfig(
         filename=log_path,
-        level=logging.DEBUG,
+        level=logging.INFO,
         format="%(asctime)s:%(levelname)s:%(message)s"
         )
 

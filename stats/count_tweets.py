@@ -1,18 +1,33 @@
+import argparse
 import datetime
 import json
 import logging
 import os
 import pandas as pd
 import sys
+import threading
 from pathlib import Path
 from pymongo import MongoClient
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from util.threads import divide_in_chunks
+from util.read_sp500 import read_sp500
 
 
-def read_sp500(path):
-    with open(path, "r") as json_file:
-        sp500_json = json.load(json_file)
+def start_with_threads(task, sp500: list, database, output_path: str):
+    num_threads = 12
+    sp500_chunks = list(divide_in_chunks(sp500, num_threads))
 
-    return sp500_json["sp500"]
+    threads = []
+    for i in range(num_threads):
+        thread = threading.Thread(target=task,
+                                  args=(sp500_chunks[i],
+                                        database,
+                                        output_path))
+        thread.start()
+        threads.append(thread)
+
+    for thread in threads:
+        thread.join()
 
 
 def check(sp500: list, database_name: str, output_path: str):
@@ -66,10 +81,19 @@ def main():
     logging.getLogger("urllib3").setLevel(logging.WARNING)
 
     sp500 = read_sp500(sp500_path)
-    databases = ["twitterdb", "stocktwitsdb"]
+    #  databases = ["stocktwitsdb", "twitterdb"]
+    databases = ["stocktwitsdb"]  # TEMPORARY
     for database in databases:
-        check(sp500, database, output_path)
+        if args.threading:
+            start_with_threads(check, sp500, database, output_path)
+        else:
+            check(sp500, database, output_path)
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Count tweets")
+    parser.add_argument("--threading", action="store_true",
+                        help="Enable threading")
+    args = parser.parse_args()
+
     main()
