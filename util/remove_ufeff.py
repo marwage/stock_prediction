@@ -1,17 +1,24 @@
-import csv
+import argparse
 
 
-def main():
-    file_name = "../crawling/data/sp500_constituents.csv"
-
-    with open(file_name, "r") as file:
+def remove_ufeff(path):
+    with open(path, "r") as file:
         file_as_string = file.read()
 
-    file_replaced = file_as_string.replace('\ufeff', '')
+    file_replaced = file_as_string.replace("\ufeff", "")
 
-    with open(file_name, "w") as file:
+    with open(path, "w") as file:
         file.write(file_replaced)
 
 
-if __name__ == '__main__':
+def main():
+    remove_ufeff(args.path)
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Remove unicode ufeff")
+    parser.add_argument("path", type=str,
+                        help="Path to file")
+    args = parser.parse_args()
+
     main()
