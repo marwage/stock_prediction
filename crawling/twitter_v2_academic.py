@@ -10,14 +10,27 @@ import sys
 import time
 from pathlib import Path
 from pymongo import MongoClient
-from read_sp500 import read_sp500
 from requests_oauthlib import OAuth1
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from util.read_sp500 import read_sp500
 
 
 def read_bearer_token(bearer_token_path: str):
     with open(bearer_token_path, "r") as bearer_token_file:
         json_object = json.load(bearer_token_file)
     return json_object["bearer_token"]
+
+
+def read_finished_companies(path):
+    with open(path, "r") as companies_file:
+        finished_companies = json.load(companies_file)
+
+    return finished_companies
+
+
+def write_finished_companies(path, finished_companies):
+    with open(path, "w") as companies_file:
+        json.dump(finished_companies, companies_file, indent=4)
 
 
 def construct_params(query: str, start_time: str):
@@ -136,14 +149,25 @@ def crawl_company(company: str, database, headers: dict):
                 has_next_token = False
 
 
-def crawl_twitter(sp500: list, bearer_token: str):
+def crawl_twitter(sp500: list,
+                  bearer_token: str,
+                  finished_companies_path: str):
     client = MongoClient()
     database = client["twitterv2db"]
     headers = {"Authorization": "Bearer " + bearer_token}
 
+    finished_companies = read_finished_companies(finished_companies_path)
+
     while True:
         for company in sp500:
+            if company in finished_companies:
+                continue
+
             crawl_company(company, database, headers)
+
+            finished_companies.append(company)
+            write_finished_companies(finished_companies_path,
+                                     finished_companies)
 
 
 def main():
@@ -154,6 +178,8 @@ def main():
         path = os.path.join(Path.home(), directory)
     crawling_path = os.path.join(path, "crawling")
     sp500_path = os.path.join(crawling_path, "data/sp500.json")
+    finished_companies_path = os.path.join(crawling_path,
+                                           "data/finished_companies.json")
     log_path = os.path.join(crawling_path, "log/twitter_v2_academic.log")
     bearer_token_path = os.path.join(crawling_path,
                                      "access_token/twitter_bearer_token.json")
@@ -171,7 +197,7 @@ def main():
     random.shuffle(sp500)
     bearer_token = read_bearer_token(bearer_token_path)
 
-    crawl_twitter(sp500, bearer_token)
+    crawl_twitter(sp500, bearer_token, finished_companies_path)
 
 
 if __name__ == "__main__":
