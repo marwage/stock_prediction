@@ -14,13 +14,13 @@ from util.read_sp500 import read_sp500
 
 def check_date(sp500: list):
     client = MongoClient()
-#      database_names = ["stocktwitsdb", "twitterdb"]
-    database_names = ["stocktwitsdb"]
+    database_names = ["stocktwitsdb", "twitterdb"]
     num_wrong_dates = 0
 
     for database_name in database_names:
         for company in sp500:
-            logging.info("Check %s %s", database_name, company)
+            logging.debug("%s:%s:Check", database_name, company)
+            num_wrong_dates_company = 0
             database = client[database_name]
             collection = database[company]
             cursor = collection.find({}, batch_size=64)
@@ -34,16 +34,21 @@ def check_date(sp500: list):
                         logging.info("%s:%s:Date is String",
                                      database_name,
                                      company)
-                        num_wrong_dates = num_wrong_dates + 1
+                        num_wrong_dates_company = num_wrong_dates_company + 1
                     else:
                         logging.error("Date is neither datetime nor str")
                 else:
                     logging.info("%s:%s:Date does not exist",
                                  database_name,
                                  company)
-                    num_wrong_dates = num_wrong_dates + 1
+                    num_wrong_dates_company = num_wrong_dates_company + 1
+            logging.info("%s:%s:Wrong dates: %d",
+                         database_name,
+                         company,
+                         num_wrong_dates_company)
+            num_wrong_dates = num_wrong_dates + num_wrong_dates_company
 
-    logging.info("%d wrong dates", num_wrong_dates)
+    logging.info("Wrong dates %d", num_wrong_dates)
     print("{} wrong dates".format(num_wrong_dates))
 
 
