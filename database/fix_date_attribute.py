@@ -74,7 +74,7 @@ def fix_date(sp500: list):
 
 def main():
     if sys.platform == "linux":
-        path = os.path.join(Path.home(), "stock-prediction")
+        path = os.path.join(Path.home(), "stock/stock-prediction")
     else:
         directory = "Studies/Master/10SS19/StockPrediction/stock-prediction"
         path = os.path.join(Path.home(), directory)

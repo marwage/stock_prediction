@@ -9,7 +9,7 @@ def divide_in_chunks(alist: list, num: int):
 
 
 def start_with_threads(task, data: list):
-    num_threads = 12
+    num_threads = 20
     data_chunks = list(divide_in_chunks(data, num_threads))
 
     threads = []
