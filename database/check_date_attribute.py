@@ -14,7 +14,8 @@ from util.read_sp500 import read_sp500
 
 def check_date(sp500: list):
     client = MongoClient()
-    database_names = ["stocktwitsdb", "twitterdb"]
+#      database_names = ["stocktwitsdb", "twitterdb"]
+    database_names = ["stocktwitsdb"]
     num_wrong_dates = 0
 
     for database_name in database_names:
@@ -48,12 +49,12 @@ def check_date(sp500: list):
 
 def main():
     if sys.platform == "linux":
-        path = os.path.join(Path.home(), "stock-prediction")
+        path = os.path.join(Path.home(), "stock/stock-prediction")
     else:
         directory = "Studies/Master/10SS19/StockPrediction/stock-prediction"
         path = os.path.join(Path.home(), directory)
     sp500_path = os.path.join(path, "crawling/data/sp500.json")
-    log_path = os.path.join(path, "database/log/fix_date.log")
+    log_path = os.path.join(path, "database/log/check_date.log")
 
     logging.basicConfig(
         filename=log_path,

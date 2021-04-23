@@ -23,15 +23,6 @@ def clean_text(text):
     return cleaned
 
 
-def stocktwits_get_text(tweet):
-    if "body" in tweet:
-        return tweet["body"]
-    elif "text" in tweet:
-        return tweet["text"]
-    else:
-        return None
-
-
 def get_sentiment(text):
     text_blob = TextBlob(text)
     return text_blob.sentiment.polarity
@@ -47,80 +38,115 @@ def increase_day_one(date: datetime.datetime):
     return date + datetime.timedelta(days=1)
 
 
-def create_training_data_set(companies: list,
-                            first_date: datetime.datetime,
-                            last_date: datetime.datetime):
-    client = MongoClient()
+def body(client: MongoClient,
+         company: str,
+         start_date: datetime.datetime,
+         end_date: datetime.datetime,
+         price_diff: float):
     trainingdataset_db = client["trainingdatasetdb"]
     twitter_db = client["twitterdb"]
     stocktwits_db = client["stocktwitsdb"]
-    stockprice_db = client["stockpricedb"]
+    twitter_coll = twitter_db[company]
+    stocktwits_coll = stocktwits_db[company]
     data_set_coll = trainingdataset_db["Ava"]
+
+    trading_start = datetime.datetime(start_date.year,
+                                      start_date.month,
+                                      start_date.day,
+                                      14, 30)
+    trading_start_next_day = datetime.datetime(end_date.year,
+                                               end_date.month,
+                                               end_date.day,
+                                               14, 30)
+
+    # Twitter
+    tweets = twitter_coll.find({"date": {"$gte": trading_start,
+                                         "$lt": trading_start_next_day}})
+    tweets_text = []
+    for tweet in tweets:
+        tweets_text.append((clean_text(tweet["text"]), tweet["date"]))
+    tweets_sentiment = [get_sentiment(tweet[0]) for tweet in tweets_text]
+
+    # Stocktwits
+    # TODO
+    ideas = stocktwits_coll.find({"date": {"$gte": trading_start,
+                                           "$lt": trading_start_next_day}})
+    ideas_text = []
+    for idea in ideas:
+        ideas_text.append((clean_text(idea["body"]), idea["date"]))
+    ideas_sentiment = [get_sentiment(tweet[0]) for tweet in ideas_text]
+
+    # Check if there are any tweets or ideas
+    if not tweets_text and not ideas_text:
+        start_date = start_date + datetime.timedelta(days=1)
+        return False
+
+    # Company Info
+    # TODO
+
+    # create data point
+    day = dict()
+    day["company"] = company
+    day["start"] = trading_start
+    day["end"] = trading_start_next_day
+    day["price_diff"] = price_diff
+    day["tweets"] = tweets
+
+    data_set_coll.update_one({"start": trading_start, "company": company},
+                             {"$set": day},
+                             upsert=True)
+
+    return True
+
+
+def create_training_data_set(companies: list,
+                             first_date: datetime.datetime,
+                             last_date: datetime.datetime):
+    client = MongoClient()
+    stockprice_db = client["stockpricedb"]
 
     for company in companies:
         logging.info("%s:Get training samples", company)
 
-        twitter_coll = twitter_db[company]
-        stocktwits_coll = stocktwits_db[company]
         stock_price_coll = stockprice_db[company]
 
         # for each day
-        start = first_date
-        while start <= last_date:
-            stock_price_day = stock_price_coll.find_one({"date": start})
+        start_date = first_date
+        while start_date <= last_date:
+            price_day = stock_price_coll.find_one({"date": start_date})
 
-            if stock_price_day is None:
-                start = increase_day_one(start)
+            if price_day is None:
+                start_date = increase_day_one(start_date)
                 continue
 
             # get next trading day
-            end = increase_day_one(start)
-            stock_price_next_day = stock_price_coll.find_one({"date": end})
-            while stock_price_next_day is None and end <= last_date:
-                end = increase_day_one(end)
-                stock_price_next_day = stock_price_coll.find_one({"date": end}
+            end_date = increase_day_one(start_date)
+            price_next_day = stock_price_coll.find_one({"date": end_date})
+            while price_next_day is None and end_date <= last_date:
+                end_date = increase_day_one(end_date)
+                price_next_day = stock_price_coll.find_one({"date": end_date})
 
-            if stock_price_next_day is None:
+            if price_next_day is None:
                 logging.debug("%s:There is no end date for start date %s",
                               company,
-                              start)
-                start = increase_day_one(start)
+                              start_date)
+                start_date = increase_day_one(start_date)
                 continue
 
-            # TODO checkpoint
+            price_diff = get_relative_price_difference(price_day,
+                                                       price_next_day)
 
-            # get all tweets between two trading days
-            trading_start = datetime.datetime(start.year, start.month, start.day, 14, 30)
-            trading_start_next_day = trading_start + datetime.timedelta(days=1)
-            twitter_tweets = twitter_coll.find({ "date": { "$gte": trading_start, "$lt": trading_start_next_day } })
-            twitter_tweets_text = [(clean_text(tweet["text"]), tweet["date"]) for tweet in twitter_tweets]
+            created_data_point = body(client,
+                                      company,
+                                      start_date,
+                                      end_date,
+                                      price_diff)
+            if not created_data_point:
+                logging.debug("%s:There are no tweets nor ideas for date %s",
+                              company,
+                              start_date)
 
-            stocktwits_tweets = twitter_coll.find({ "date": { "$gte": trading_start, "$lt": trading_start_next_day } })
-            stocktwits_tweets_text = [(clean_text(stocktwits_get_text(tweet)), tweet["date"]) for tweet in stocktwits_tweets]
-
-            if not twitter_tweets_text and not stocktwits_tweets_text:
-                start = start + datetime.timedelta(days=1)
-                continue
-
-            # get sentiment
-            twitter_tweets_sentiment = [get_sentiment(tweet[0]) for tweet in twitter_tweets_text]
-            stocktwits_tweets_sentiment = [get_sentiment(tweet[0]) for tweet in stocktwits_tweets_text]
-
-            # create list with tuples of text and sentiment
-            tweets = [{"text": text[0], "date": text[1], "sentiment": sentiment} for text, sentiment in zip(twitter_tweets_text, twitter_tweets_sentiment)]
-            tweets.extend([{"text": text[0], "date": text[1], "sentiment": sentiment} for text, sentiment in zip(stocktwits_tweets_text, stocktwits_tweets_sentiment)])
-            tweets.sort(key=lambda x: x["date"])
-            
-            # create sample
-            sample = dict()
-            sample["start"] = trading_start
-            sample["end"] = trading_start_next_day
-            sample["tweets"] = tweets
-            sample["price_diff"] = get_relatvie_price_difference(stock_price_day, stock_price_next_day)
-
-            learning_company_coll.update_one({"start": trading_start}, {"$set": sample}, upsert=True)
-
-            start = end
+            start_date = end_date
 
 
 def main():
@@ -144,8 +170,8 @@ def main():
     first_date = datetime.datetime(2019, 6, 1)
     last_date = datetime.datetime(2021, 4, 15)
 
-    create_training_samples(sp500, first_date, last_date)
+    create_training_data_set(sp500, first_date, last_date)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
