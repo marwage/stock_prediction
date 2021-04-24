@@ -96,8 +96,65 @@ def get_idea_features(idea: dict):
     return features
 
 
-def get_company_info(info: dict):
+def get_industry(industry_str: str):
     pass
+
+
+def get_sector(sector_str: str):
+    pass
+
+
+def get_company_info(info: dict):
+    features = dict()
+
+    features["200DayMovingAverage"] = float(info["200DayMovingAverage"])
+    features["50DayMovingAverage"] = float(info["50DayMovingAverage"])
+    features["52WeekHigh"] = float(info["52WeekHigh"])
+    features["52WeekLow"] = float(info["52WeekLow"])
+    features["Beta"] = float(info["Beta"])
+    features["BookValue"] = float(info["BookValue"])
+    features["DilutedEPSTTM"] = float(info["DilutedEPSTTM"])
+    features["DividendPerShare"] = float(info["DividendPerShare"])
+    features["DividendYield"] = float(info["DividendYield"])
+    features["EBITDA"] = float(info["EBITDA"])
+    features["EPS"] = float(info["EPS"])
+    features["EVToEBITDA"] = float(info["EVToEBITDA"])
+    features["EVToRevenue"] = float(info["EVToRevenue"])
+    features["ForwardAnnualDividendRate"] = float(info["ForwardAnnualDividendRate"])
+    features["ForwardAnnualDividendYield"] = float(info["ForwardAnnualDividendYield"])
+    features["ForwardPE"] = float(info["ForwardPE"])
+    features["FullTimeEmployees"] = float(info["FullTimeEmployees"])
+    features["GrossProfitTTM"] = float(info["GrossProfitTTM"])
+    industry = get_industry(info["Industry"])
+    features["Industry"] = industry
+    features["MarketCapitalization"] = float(info["MarketCapitalization"])
+    features["OperatingMarginTTM"] = float(info["OperatingMarginTTM"])
+    features["PEGRatio"] = float(info["PEGRatio"])
+    features["PERatio"] = float(info["PERatio"])
+    features["PayoutRatio"] = float(info["PayoutRatio"])
+    features["PercentInsiders"] = float(info["PercentInsiders"])
+    features["PercentInstitutions"] = float(info["PercentInstitutions"])
+    features["PriceToBookRatio"] = float(info["PriceToBookRatio"])
+    features["PriceToSalesRatioTTM"] = float(info["PriceToSalesRatioTTM"])
+    features["ProfitMargin"] = float(info["ProfitMargin"])
+    features["QuarterlyEarningsGrowthYOY"] = float(info["QuarterlyEarningsGrowthYOY"])
+    features["QuarterlyRevenueGrowthYOY"] = float(info["QuarterlyRevenueGrowthYOY"])
+    features["ReturnOnAssetsTTM"] = float(info["ReturnOnAssetsTTM"])
+    features["ReturnOnEquityTTM"] = float(info["ReturnOnEquityTTM"])
+    features["RevenuePerShareTTM"] = float(info["RevenuePerShareTTM"])
+    features["RevenueTTM"] = float(info["RevenueTTM"])
+    sector = get_sector(info["Sector"])
+    features["Sector"] = sector
+    features["SharesFloat"] = float(info["SharesFloat"])
+    features["SharesOutstanding"] = float(info["SharesOutstanding"])
+    features["SharesShort"] = float(info["SharesShort"])
+    features["SharesShortPriorMonth"] = float(info["SharesShortPriorMonth"])
+    features["ShortPercentFloat"] = float(info["ShortPercentFloat"])
+    features["ShortPercentOutstanding"] = float(info["ShortPercentOutstanding"])
+    features["ShortRatio"] = float(info["ShortRatio"])
+    features["TrailingPE"] = float(info["TrailingPE"])
+
+    return features
 
 
 def body(client: MongoClient,
