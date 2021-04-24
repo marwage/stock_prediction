@@ -1,12 +1,39 @@
+import argparse
 import datetime
 import json
 import logging
 import os
+import pandas as pd
+import pymongo
 import re
 import sys
+import threading
 from pathlib import Path
-from pymongo import MongoClient
 from textblob import TextBlob
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from util.threads import divide_in_chunks
+
+
+def start_with_threads(task,
+                       sp500: list,
+                       first_date: datetime.datetime,
+                       last_date: datetime.datetime,
+                       data_path: str):
+    num_threads = 12
+    sp500_chunks = list(divide_in_chunks(sp500, num_threads))
+
+    threads = []
+    for i in range(num_threads):
+        thread = threading.Thread(target=task,
+                                  args=(sp500_chunks[i],
+                                        first_date,
+                                        last_date,
+                                        data_path))
+        thread.start()
+        threads.append(thread)
+
+    for thread in threads:
+        thread.join()
 
 
 def read_sp500(path):
@@ -54,14 +81,39 @@ def get_tweet_features(tweet: dict, company: str):
     sentiment = get_sentiment_textblob(text)
     features["sentiment_polarity"] = sentiment[0]
     features["sentiment_subjectivity"] = sentiment[1]
-    features["followers"] = float(tweet["user"]["followers_count"])
-    features["friends"] = float(tweet["user"]["friends_count"])
-    features["listed"] = float(tweet["user"]["listed_count"])
-    features["user_favourites"] = float(tweet["user"]["favourites_count"])
+    if "followers_count" in tweet["user"]:
+        followers = float(tweet["user"]["followers_count"])
+    else:
+        followers = 0.0
+    features["followers"] = followers
+    if "friends_count" in tweet["user"]:
+        friends = float(tweet["user"]["friends_count"])
+    else:
+        friends = 0.0
+    features["friends"] = friends
+    if "listed_count" in tweet["user"]:
+        listed = float(tweet["user"]["listed_count"])
+    else:
+        listed = 0.0
+    features["listed"] = listed
+    if "favourites_count" in tweet["user"]:
+        favourites = float(tweet["user"]["favourites_count"])
+    else:
+        favourites = 0.0
+    features["user_favourites"] = favourites
     features["statuses"] = float(tweet["user"]["statuses_count"])
-    features["retweets"] = float(tweet["retweet_count"])
-    features["tweet_favourites"] = float(tweet["favorite_count"])
+    if "retweet_count" in tweet:
+        retweets = float(tweet["retweet_count"])
+    else:
+        retweets = 0.0
+    features["retweets"] = retweets
+    if "favorite_count" in tweet:
+        favourites = float(tweet["favorite_count"])
+    else:
+        favourites = 0.0
+    features["tweet_favourites"] = favourites
     features["cashtag"] = get_contains_cashtag(text, company)
+    features["language"] = tweet["lang"]
 
     return features
 
@@ -89,22 +141,37 @@ def get_idea_features(idea: dict):
     features["ideas"] = float(idea["user"]["ideas"])
     features["watch_list"] = float(idea["user"]["watchlist_stocks_count"])
     features["user_likes"] = float(idea["user"]["like_count"])
-    features["idea_likes"] = float(idea["likes"]["total"])
-    sentiment_str = idea["entities"]["sentiment"]["basic"]
+    if "likes" in idea:
+        idea_likes = float(idea["likes"]["total"])
+    else:
+        idea_likes = 0.0
+    features["idea_likes"] = idea_likes
+    if ("sentiment" in idea["entities"]
+            and idea["entities"]["sentiment"] is not None
+            and "basic" in idea["entities"]["sentiment"]):
+        sentiment_str = idea["entities"]["sentiment"]["basic"]
+    else:
+        sentiment_str = ""
     features["sentiment_stocktwits"] = get_stocktwits_sentiment(sentiment_str)
 
     return features
 
 
-def get_industry(industry_str: str):
-    pass
+def get_industry(industry_str: str, mapping: pd.DataFrame):
+    mapping_row = mapping[mapping["industry"] == industry_str]
+    value = float(mapping_row["value"])
+    return value
 
 
-def get_sector(sector_str: str):
-    pass
+def get_sector(sector_str: str, mapping: pd.DataFrame):
+    mapping_row = mapping[mapping["sector"] == sector_str]
+    value = float(mapping_row["value"])
+    return value
 
 
-def get_company_info(info: dict):
+def get_company_info(info: dict,
+                     industry_mapping: pd.DataFrame,
+                     sector_mappping: pd.DataFrame):
     features = dict()
 
     features["200DayMovingAverage"] = float(info["200DayMovingAverage"])
@@ -114,9 +181,17 @@ def get_company_info(info: dict):
     features["Beta"] = float(info["Beta"])
     features["BookValue"] = float(info["BookValue"])
     features["DilutedEPSTTM"] = float(info["DilutedEPSTTM"])
-    features["DividendPerShare"] = float(info["DividendPerShare"])
+    if info["DividendPerShare"] != "None":
+        dividend_share = float(info["DividendPerShare"])
+    else:
+        dividend_share = 0.0
+    features["DividendPerShare"] = dividend_share
     features["DividendYield"] = float(info["DividendYield"])
-    features["EBITDA"] = float(info["EBITDA"])
+    if info["EBITDA"] != "None":
+        ebitda = float(info["EBITDA"])
+    else:
+        ebitda = 0.0
+    features["EBITDA"] = ebitda
     features["EPS"] = float(info["EPS"])
     features["EVToEBITDA"] = float(info["EVToEBITDA"])
     features["EVToRevenue"] = float(info["EVToRevenue"])
@@ -125,12 +200,16 @@ def get_company_info(info: dict):
     features["ForwardPE"] = float(info["ForwardPE"])
     features["FullTimeEmployees"] = float(info["FullTimeEmployees"])
     features["GrossProfitTTM"] = float(info["GrossProfitTTM"])
-    industry = get_industry(info["Industry"])
+    industry = get_industry(info["Industry"], industry_mapping)
     features["Industry"] = industry
     features["MarketCapitalization"] = float(info["MarketCapitalization"])
     features["OperatingMarginTTM"] = float(info["OperatingMarginTTM"])
     features["PEGRatio"] = float(info["PEGRatio"])
-    features["PERatio"] = float(info["PERatio"])
+    if info["PERatio"] != "None":
+        pe_ratio = float(info["PERatio"])
+    else:
+        pe_ratio = 0.0
+    features["PERatio"] = pe_ratio
     features["PayoutRatio"] = float(info["PayoutRatio"])
     features["PercentInsiders"] = float(info["PercentInsiders"])
     features["PercentInstitutions"] = float(info["PercentInstitutions"])
@@ -143,7 +222,7 @@ def get_company_info(info: dict):
     features["ReturnOnEquityTTM"] = float(info["ReturnOnEquityTTM"])
     features["RevenuePerShareTTM"] = float(info["RevenuePerShareTTM"])
     features["RevenueTTM"] = float(info["RevenueTTM"])
-    sector = get_sector(info["Sector"])
+    sector = get_sector(info["Sector"], sector_mappping)
     features["Sector"] = sector
     features["SharesFloat"] = float(info["SharesFloat"])
     features["SharesOutstanding"] = float(info["SharesOutstanding"])
@@ -157,17 +236,21 @@ def get_company_info(info: dict):
     return features
 
 
-def body(client: MongoClient,
-         company: str,
-         start_date: datetime.datetime,
-         end_date: datetime.datetime,
-         price_diff: float):
+def construct_day(client: pymongo.MongoClient,
+                  company: str,
+                  start_date: datetime.datetime,
+                  end_date: datetime.datetime,
+                  price_diff: float,
+                  industry_mapping: pd.DataFrame,
+                  sector_mapping: pd.DataFrame):
     trainingdataset_db = client["trainingdatasetdb"]
     twitter_db = client["twitterdb"]
     stocktwits_db = client["stocktwitsdb"]
+    company_info_db = client["companyinfodb"]
     twitter_coll = twitter_db[company]
     stocktwits_coll = stocktwits_db[company]
     data_set_coll = trainingdataset_db["Ava"]
+    company_info_coll = company_info_db[company]
 
     trading_start = datetime.datetime(start_date.year,
                                       start_date.month,
@@ -179,29 +262,35 @@ def body(client: MongoClient,
                                                14, 30)
 
     # Twitter
-    tweets = twitter_coll.find({"date": {"$gte": trading_start,
+    cursor = twitter_coll.find({"date": {"$gte": trading_start,
                                          "$lt": trading_start_next_day}})
-    tweets_text = []
-    for tweet in tweets:
-        tweets_text.append((clean_text(tweet["text"]), tweet["date"]))
-    tweets_sentiment = [get_sentiment(tweet[0]) for tweet in tweets_text]
+
+    tweets_raw = [tweet.copy() for tweet in cursor]
+    num_tweets_raw = len(tweets_raw)
+    if num_tweets_raw > 0:
+        tweets_raw.sort(key=(lambda x: x["date"]))
+        tweets = [get_tweet_features(tweet, company) for tweet in tweets_raw]
+    else:
+        tweets = []
 
     # Stocktwits
-    # TODO
-    ideas = stocktwits_coll.find({"date": {"$gte": trading_start,
-                                           "$lt": trading_start_next_day}})
-    ideas_text = []
-    for idea in ideas:
-        ideas_text.append((clean_text(idea["body"]), idea["date"]))
-    ideas_sentiment = [get_sentiment(tweet[0]) for tweet in ideas_text]
+    cursor = stocktwits_coll.find({"date": {"$gte": trading_start,
+                                            "$lt": trading_start_next_day}})
+    ideas_raw = [idea.copy() for idea in cursor]
+    num_ideas_raw = len(ideas_raw)
+    if num_ideas_raw > 0:
+        ideas_raw.sort(key=(lambda x: x["date"]))
+        ideas = [get_idea_features(idea) for idea in ideas_raw]
+    else:
+        ideas = []
 
     # Check if there are any tweets or ideas
-    if not tweets_text and not ideas_text:
-        start_date = start_date + datetime.timedelta(days=1)
+    if not tweets and not ideas:
         return False
 
     # Company Info
-    # TODO
+    info = company_info_coll.find_one({})
+    company_info = get_company_info(info, industry_mapping, sector_mapping)
 
     # create data point
     day = dict()
@@ -210,19 +299,32 @@ def body(client: MongoClient,
     day["end"] = trading_start_next_day
     day["price_diff"] = price_diff
     day["tweets"] = tweets
+    day["ideas"] = ideas
+    day["company_info"] = company_info
 
     data_set_coll.update_one({"start": trading_start, "company": company},
                              {"$set": day},
                              upsert=True)
+
+    # debugging
+#      day["start"] = day["start"].isoformat()
+#      day["end"] = day["end"].isoformat()
+#      with open("debug.json", "w") as json_file:
+#          json.dump(day, json_file, indent=4)
+#      sys.exit()
 
     return True
 
 
 def create_training_data_set(companies: list,
                              first_date: datetime.datetime,
-                             last_date: datetime.datetime):
-    client = MongoClient()
+                             last_date: datetime.datetime,
+                             data_path: str):
+    client = pymongo.MongoClient()
     stockprice_db = client["stockpricedb"]
+
+    industry_mapping = pd.read_csv(os.path.join(data_path, "industries.csv"))
+    sector_mapping = pd.read_csv(os.path.join(data_path, "sectors.csv"))
 
     for company in companies:
         logging.info("%s:Get training samples", company)
@@ -255,11 +357,13 @@ def create_training_data_set(companies: list,
             price_diff = get_relative_price_difference(price_day,
                                                        price_next_day)
 
-            created_data_point = body(client,
-                                      company,
-                                      start_date,
-                                      end_date,
-                                      price_diff)
+            created_data_point = construct_day(client,
+                                               company,
+                                               start_date,
+                                               end_date,
+                                               price_diff,
+                                               industry_mapping,
+                                               sector_mapping)
             if not created_data_point:
                 logging.debug("%s:There are no tweets nor ideas for date %s",
                               company,
@@ -275,7 +379,8 @@ def main():
         path = "Studies/Master/10SS19/StockPrediction/stock-prediction"
         base_path = os.path.join(Path.home(), path)
 
-    path = "preprocessing/logs/create_training_data_set.log"
+    data_path = os.path.join(base_path, "preprocessing/data")
+    path = "preprocessing/log/create_training_data_set.log"
     logging_path = os.path.join(base_path, path)
     logging.basicConfig(
         filename=logging_path,
@@ -289,8 +394,20 @@ def main():
     first_date = datetime.datetime(2019, 6, 1)
     last_date = datetime.datetime(2021, 4, 15)
 
-    create_training_data_set(sp500, first_date, last_date)
+    if args.threading:
+        start_with_threads(create_training_data_set,
+                           sp500,
+                           first_date,
+                           last_date,
+                           data_path)
+    else:
+        create_training_data_set(sp500, first_date, last_date, data_path)
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Count tweets")
+    parser.add_argument("--threading", action="store_true",
+                        help="Enable threading")
+    args = parser.parse_args()
+
     main()

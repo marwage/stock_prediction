@@ -9,7 +9,7 @@ from util.read_sp500 import read_sp500
 
 def create_index_date(sp500: list):
     client = MongoClient()
-    database_names = ["stocktwitsdb", "twitterdb"]
+    database_names = ["stocktwitsdb", "twitterdb", "stockpricedb"]
 
     for database_name in database_names:
         database = client[database_name]
