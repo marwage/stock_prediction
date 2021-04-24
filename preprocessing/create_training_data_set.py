@@ -101,7 +101,11 @@ def get_tweet_features(tweet: dict, company: str):
     else:
         favourites = 0.0
     features["user_favourites"] = favourites
-    features["statuses"] = float(tweet["user"]["statuses_count"])
+    if "statuses_count" in tweet["user"]:
+        statuses = float(tweet["user"]["statuses_count"])
+    else:
+        statuses = 0.0
+    features["statuses"] = statuses
     if "retweet_count" in tweet:
         retweets = float(tweet["retweet_count"])
     else:
@@ -168,70 +172,68 @@ def get_sector(sector_str: str, mapping: pd.DataFrame):
     value = float(mapping_row["value"])
     return value
 
+def parse_str_to_float(string: str):
+    if string == "None":
+        return 0.0
+    else:
+        return float(string)
+
 
 def get_company_info(info: dict,
                      industry_mapping: pd.DataFrame,
                      sector_mappping: pd.DataFrame):
     features = dict()
 
-    features["200DayMovingAverage"] = float(info["200DayMovingAverage"])
-    features["50DayMovingAverage"] = float(info["50DayMovingAverage"])
-    features["52WeekHigh"] = float(info["52WeekHigh"])
-    features["52WeekLow"] = float(info["52WeekLow"])
-    features["Beta"] = float(info["Beta"])
-    features["BookValue"] = float(info["BookValue"])
-    features["DilutedEPSTTM"] = float(info["DilutedEPSTTM"])
-    if info["DividendPerShare"] != "None":
-        dividend_share = float(info["DividendPerShare"])
+    if "200DayMovingAverage" in info:
+        200_day_ma = parse_str_to_float(info["200DayMovingAverage"])
     else:
-        dividend_share = 0.0
-    features["DividendPerShare"] = dividend_share
-    features["DividendYield"] = float(info["DividendYield"])
-    if info["EBITDA"] != "None":
-        ebitda = float(info["EBITDA"])
-    else:
-        ebitda = 0.0
-    features["EBITDA"] = ebitda
-    features["EPS"] = float(info["EPS"])
-    features["EVToEBITDA"] = float(info["EVToEBITDA"])
-    features["EVToRevenue"] = float(info["EVToRevenue"])
-    features["ForwardAnnualDividendRate"] = float(info["ForwardAnnualDividendRate"])
-    features["ForwardAnnualDividendYield"] = float(info["ForwardAnnualDividendYield"])
-    features["ForwardPE"] = float(info["ForwardPE"])
-    features["FullTimeEmployees"] = float(info["FullTimeEmployees"])
-    features["GrossProfitTTM"] = float(info["GrossProfitTTM"])
+        200_day_ma = 0.0
+    features["200DayMovingAverage"] = 200_day_ma
+    features["50DayMovingAverage"] = parse_str_to_float(info["50DayMovingAverage"])
+    features["52WeekHigh"] = parse_str_to_float(info["52WeekHigh"])
+    features["52WeekLow"] = parse_str_to_float(info["52WeekLow"])
+    features["Beta"] = parse_str_to_float(info["Beta"])
+    features["BookValue"] = parse_str_to_float(info["BookValue"])
+    features["DilutedEPSTTM"] = parse_str_to_float(info["DilutedEPSTTM"])
+    features["DividendPerShare"] = parse_str_to_float(info["DividendPerShare"])
+    features["DividendYield"] = parse_str_to_float(info["DividendYield"])
+    features["EBITDA"] = parse_str_to_float(info["EBITDA"])
+    features["EPS"] = parse_str_to_float(info["EPS"])
+    features["EVToEBITDA"] = parse_str_to_float(info["EVToEBITDA"])
+    features["EVToRevenue"] = parse_str_to_float(info["EVToRevenue"])
+    features["ForwardAnnualDividendRate"] = parse_str_to_float(info["ForwardAnnualDividendRate"])
+    features["ForwardAnnualDividendYield"] = parse_str_to_float(info["ForwardAnnualDividendYield"])
+    features["ForwardPE"] = parse_str_to_float(info["ForwardPE"])
+    features["FullTimeEmployees"] = parse_str_to_float(info["FullTimeEmployees"])
+    features["GrossProfitTTM"] = parse_str_to_float(info["GrossProfitTTM"])
     industry = get_industry(info["Industry"], industry_mapping)
     features["Industry"] = industry
-    features["MarketCapitalization"] = float(info["MarketCapitalization"])
-    features["OperatingMarginTTM"] = float(info["OperatingMarginTTM"])
-    features["PEGRatio"] = float(info["PEGRatio"])
-    if info["PERatio"] != "None":
-        pe_ratio = float(info["PERatio"])
-    else:
-        pe_ratio = 0.0
-    features["PERatio"] = pe_ratio
-    features["PayoutRatio"] = float(info["PayoutRatio"])
-    features["PercentInsiders"] = float(info["PercentInsiders"])
-    features["PercentInstitutions"] = float(info["PercentInstitutions"])
-    features["PriceToBookRatio"] = float(info["PriceToBookRatio"])
-    features["PriceToSalesRatioTTM"] = float(info["PriceToSalesRatioTTM"])
-    features["ProfitMargin"] = float(info["ProfitMargin"])
-    features["QuarterlyEarningsGrowthYOY"] = float(info["QuarterlyEarningsGrowthYOY"])
-    features["QuarterlyRevenueGrowthYOY"] = float(info["QuarterlyRevenueGrowthYOY"])
-    features["ReturnOnAssetsTTM"] = float(info["ReturnOnAssetsTTM"])
-    features["ReturnOnEquityTTM"] = float(info["ReturnOnEquityTTM"])
-    features["RevenuePerShareTTM"] = float(info["RevenuePerShareTTM"])
-    features["RevenueTTM"] = float(info["RevenueTTM"])
+    features["MarketCapitalization"] = parse_str_to_float(info["MarketCapitalization"])
+    features["OperatingMarginTTM"] = parse_str_to_float(info["OperatingMarginTTM"])
+    features["PEGRatio"] = parse_str_to_float(info["PEGRatio"])
+    features["PERatio"] = parse_str_to_float(info["PERatio"])
+    features["PayoutRatio"] = parse_str_to_float(info["PayoutRatio"])
+    features["PercentInsiders"] = parse_str_to_float(info["PercentInsiders"])
+    features["PercentInstitutions"] = parse_str_to_float(info["PercentInstitutions"])
+    features["PriceToBookRatio"] = parse_str_to_float(info["PriceToBookRatio"])
+    features["PriceToSalesRatioTTM"] = parse_str_to_float(info["PriceToSalesRatioTTM"])
+    features["ProfitMargin"] = parse_str_to_float(info["ProfitMargin"])
+    features["QuarterlyEarningsGrowthYOY"] = parse_str_to_float(info["QuarterlyEarningsGrowthYOY"])
+    features["QuarterlyRevenueGrowthYOY"] = parse_str_to_float(info["QuarterlyRevenueGrowthYOY"])
+    features["ReturnOnAssetsTTM"] = parse_str_to_float(info["ReturnOnAssetsTTM"])
+    features["ReturnOnEquityTTM"] = parse_str_to_float(info["ReturnOnEquityTTM"])
+    features["RevenuePerShareTTM"] = parse_str_to_float(info["RevenuePerShareTTM"])
+    features["RevenueTTM"] = parse_str_to_float(info["RevenueTTM"])
     sector = get_sector(info["Sector"], sector_mappping)
     features["Sector"] = sector
-    features["SharesFloat"] = float(info["SharesFloat"])
-    features["SharesOutstanding"] = float(info["SharesOutstanding"])
-    features["SharesShort"] = float(info["SharesShort"])
-    features["SharesShortPriorMonth"] = float(info["SharesShortPriorMonth"])
-    features["ShortPercentFloat"] = float(info["ShortPercentFloat"])
-    features["ShortPercentOutstanding"] = float(info["ShortPercentOutstanding"])
-    features["ShortRatio"] = float(info["ShortRatio"])
-    features["TrailingPE"] = float(info["TrailingPE"])
+    features["SharesFloat"] = parse_str_to_float(info["SharesFloat"])
+    features["SharesOutstanding"] = parse_str_to_float(info["SharesOutstanding"])
+    features["SharesShort"] = parse_str_to_float(info["SharesShort"])
+    features["SharesShortPriorMonth"] = parse_str_to_float(info["SharesShortPriorMonth"])
+    features["ShortPercentFloat"] = parse_str_to_float(info["ShortPercentFloat"])
+    features["ShortPercentOutstanding"] = parse_str_to_float(info["ShortPercentOutstanding"])
+    features["ShortRatio"] = parse_str_to_float(info["ShortRatio"])
+    features["TrailingPE"] = parse_str_to_float(info["TrailingPE"])
 
     return features
 
