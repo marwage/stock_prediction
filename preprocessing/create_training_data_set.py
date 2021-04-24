@@ -23,9 +23,10 @@ def clean_text(text):
     return cleaned
 
 
-def get_sentiment(text):
+def get_sentiment_textblob(text):
     text_blob = TextBlob(text)
-    return text_blob.sentiment.polarity
+    return (text_blob.sentiment.polarity,
+            text_blob.sentiment.subjectivity)
 
 
 def get_relative_price_difference(day, next_day):
@@ -36,6 +37,67 @@ def get_relative_price_difference(day, next_day):
 
 def increase_day_one(date: datetime.datetime):
     return date + datetime.timedelta(days=1)
+
+
+def get_contains_cashtag(text: str, company: str):
+    match = re.search(r"\${}".format(company), text)
+    if match is None:
+        return 0.0
+    else:
+        return 1.0
+
+
+def get_tweet_features(tweet: dict, company: str):
+    features = dict()
+
+    text = tweet["text"]
+    sentiment = get_sentiment_textblob(text)
+    features["sentiment_polarity"] = sentiment[0]
+    features["sentiment_subjectivity"] = sentiment[1]
+    features["followers"] = float(tweet["user"]["followers_count"])
+    features["friends"] = float(tweet["user"]["friends_count"])
+    features["listed"] = float(tweet["user"]["listed_count"])
+    features["user_favourites"] = float(tweet["user"]["favourites_count"])
+    features["statuses"] = float(tweet["user"]["statuses_count"])
+    features["retweets"] = float(tweet["retweet_count"])
+    features["tweet_favourites"] = float(tweet["favorite_count"])
+    features["cashtag"] = get_contains_cashtag(text, company)
+
+    return features
+
+
+def get_stocktwits_sentiment(sentiment: str):
+    if sentiment is None:
+        return 0.0
+    elif sentiment == "Bullish":
+        return 1.0
+    elif sentiment == "Bearish":
+        return -1.0
+    else:  # error
+        return None
+
+
+def get_idea_features(idea: dict):
+    features = dict()
+
+    text = idea["body"]
+    sentiment = get_sentiment_textblob(text)
+    features["sentiment_polarity"] = sentiment[0]
+    features["sentiment_subjectivity"] = sentiment[1]
+    features["followers"] = float(idea["user"]["followers"])
+    features["following"] = float(idea["user"]["following"])
+    features["ideas"] = float(idea["user"]["ideas"])
+    features["watch_list"] = float(idea["user"]["watchlist_stocks_count"])
+    features["user_likes"] = float(idea["user"]["like_count"])
+    features["idea_likes"] = float(idea["likes"]["total"])
+    sentiment_str = idea["entities"]["sentiment"]["basic"]
+    features["sentiment_stocktwits"] = get_stocktwits_sentiment(sentiment_str)
+
+    return features
+
+
+def get_company_info(info: dict):
+    pass
 
 
 def body(client: MongoClient,
