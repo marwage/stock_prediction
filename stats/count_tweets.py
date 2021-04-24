@@ -62,7 +62,7 @@ def check(sp500: list, database_name: str, output_path: str):
 
 def main():
     if sys.platform == "linux":
-        path = os.path.join(Path.home(), "stock-prediction")
+        path = os.path.join(Path.home(), "stock/stock-prediction")
     else:
         path = os.path.join(Path.home(),
                             "Studies/Master/10SS19/StockPrediction")
@@ -81,8 +81,7 @@ def main():
     logging.getLogger("urllib3").setLevel(logging.WARNING)
 
     sp500 = read_sp500(sp500_path)
-    #  databases = ["stocktwitsdb", "twitterdb"]
-    databases = ["stocktwitsdb"]  # TEMPORARY
+    databases = ["stocktwitsdb", "twitterdb"]
     for database in databases:
         if args.threading:
             start_with_threads(check, sp500, database, output_path)

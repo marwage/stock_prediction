@@ -16,7 +16,7 @@ def check_companies(sp500: list):
         collection_names = database.list_collection_names()
         names_set = set(collection_names)
         sp500_set = set(sp500)
-        only_in_sp500 = sp500_set - names_set
+        only_in_sp500 = sp500_set.difference(names_set)
         print("{} {}".format(database_name, only_in_sp500))
 
 
