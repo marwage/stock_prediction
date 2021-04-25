@@ -155,7 +155,7 @@ def get_idea_features(idea: dict):
             and "basic" in idea["entities"]["sentiment"]):
         sentiment_str = idea["entities"]["sentiment"]["basic"]
     else:
-        sentiment_str = ""
+        sentiment_str = None
     features["sentiment_stocktwits"] = get_stocktwits_sentiment(sentiment_str)
 
     return features
@@ -184,11 +184,7 @@ def get_company_info(info: dict,
                      sector_mappping: pd.DataFrame):
     features = dict()
 
-    if "200DayMovingAverage" in info:
-        200_day_ma = parse_str_to_float(info["200DayMovingAverage"])
-    else:
-        200_day_ma = 0.0
-    features["200DayMovingAverage"] = 200_day_ma
+    features["200DayMovingAverage"] = parse_str_to_float(info["200DayMovingAverage"])
     features["50DayMovingAverage"] = parse_str_to_float(info["50DayMovingAverage"])
     features["52WeekHigh"] = parse_str_to_float(info["52WeekHigh"])
     features["52WeekLow"] = parse_str_to_float(info["52WeekLow"])
@@ -292,6 +288,8 @@ def construct_day(client: pymongo.MongoClient,
 
     # Company Info
     info = company_info_coll.find_one({})
+    if info is None:
+        return False
     company_info = get_company_info(info, industry_mapping, sector_mapping)
 
     # create data point
@@ -307,13 +305,6 @@ def construct_day(client: pymongo.MongoClient,
     data_set_coll.update_one({"start": trading_start, "company": company},
                              {"$set": day},
                              upsert=True)
-
-    # debugging
-#      day["start"] = day["start"].isoformat()
-#      day["end"] = day["end"].isoformat()
-#      with open("debug.json", "w") as json_file:
-#          json.dump(day, json_file, indent=4)
-#      sys.exit()
 
     return True
 
