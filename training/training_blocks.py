@@ -63,12 +63,14 @@ def create_model(trial):
                                                lstm_stocktwits,
                                                input_company_info])
     dense_a = tf.keras.layers.Dense(units_dense,
-                                    activation="relu")(dense_input)
-    dense_b = tf.keras.layers.Dense(1)(dense_a)
+                                    activation="tanh")(dense_input)
+    dense_b = tf.keras.layers.Dense(units_dense,
+                                    activation="tanh")(dense_a)
+    dense_c = tf.keras.layers.Dense(1)(dense_b)
     model = tf.keras.Model(inputs=[input_twitter,
                                    input_stocktwits,
                                    input_company_info],
-                           outputs=dense_b)
+                           outputs=dense_c)
 
     # Compile model.
     loss = args.loss
@@ -116,7 +118,7 @@ def objective(trial):
     model = create_model(trial)
 
     # Create callbacks for early stopping and pruning.
-    log_dir = "logs/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+    log_dir = "tf_log/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
     tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir,
                                                           profile_batch=0,
                                                           update_freq="batch")
@@ -135,7 +137,7 @@ def objective(trial):
         callbacks=callbacks,
     )
 
-    model.save("checkpoints/checkpoint-{}".format(trial.number))
+    model.save("checkpoint/checkpoint-{}".format(trial.number))
 
     # Predict
     predictions = model.predict(test_data_set)
