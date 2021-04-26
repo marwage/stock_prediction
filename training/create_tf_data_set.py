@@ -106,6 +106,9 @@ def main():
 
     data_set = create_tf_data_set()
 
+    logging.info("element_spec: %s", data_set.element_spec)
+    print("element_spec: {}".format(data_set.element_spec))
+
     data_set_path = os.path.join(base_path, "training/dataset/saved_data")
     tf.data.experimental.save(data_set, data_set_path)
 

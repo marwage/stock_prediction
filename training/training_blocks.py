@@ -1,13 +1,17 @@
 import argparse
 import datetime
+import numpy as np
 import os
 import optuna
-from optuna.integration import TFKerasPruningCallback
 import pandas as pd
-from pymongo import MongoClient
+import sys
 import tensorflow as tf
-import fasttext
-import numpy as np
+from optuna.integration import TFKerasPruningCallback
+from pathlib import Path
+
+
+# global variables
+data_set_path = ""
 
 
 def parse_split(split_str):
@@ -19,10 +23,25 @@ def parse_split(split_str):
         raise AssertionError("Argument split is invalid")
 
 
-def create_dataset(split: list,
-                   only_nonzero: bool,
-                   tweets_threshold: int):
-    return None
+def get_dataset(path: str,
+                split: list,
+                tweets_threshold: int = 0):
+    element_spec = {"tweets": tf.RaggedTensorSpec(tf.TensorShape([None, 10]),
+                                                  tf.float32,
+                                                  0,
+                                                  tf.int64),
+                    "ideas": tf.RaggedTensorSpec(tf.TensorShape([None, 9]),
+                                                 tf.float32,
+                                                 0,
+                                                 tf.int64),
+                    "company_info": tf.TensorSpec(shape=(44,),
+                                                  dtype=tf.float32),
+                    "label": tf.TensorSpec(shape=(),
+                                           dtype=tf.float32)}
+
+    data_set = tf.data.experimental.load(path, element_spec)
+
+    return data_set
 
 
 def create_model(trial):
@@ -74,28 +93,25 @@ def create_model(trial):
 
 
 def objective(trial):
-    #  batch_size = trial.suggest_categorical("batch_size", [16, 32, 64])
+#      batch_size = trial.suggest_categorical("batch_size", [16, 32, 64])
     batch_size = trial.suggest_int("batch_size", 16, 128)
-    #  tweets_threshold = trial.suggest_categorical("tweets_threshold",
-    #                                               [240, 480, 720, 960])
-    tweets_threshold = trial.suggest_int("tweets_threshold", 240, 960)
+#      tweets_threshold = trial.suggest_int("tweets_threshold", 240, 960)
 
     # Clear clutter from previous TensorFlow graphs.
     tf.keras.backend.clear_session()
 
-    # Create tf.keras model instance.
-    model = create_model(trial)
-
     # Create dataset instance.
     split = parse_split(args.split)
-    sets = create_dataset(split,
-                                        args.nonzero,
-                                        tweets_threshold)
-    train_set, val_set, test_set = sets
-    train_set = train_set.shuffle(2048)
-    train_set = train_set.batch(batch_size)
-    val_set = val_set.batch(batch_size)
-    test_set = test_set.batch(batch_size)
+    data_set = get_dataset(data_set_path, split)
+    return
+#      train_set, val_set, test_set = sets
+#      train_set = train_set.shuffle(2048)
+#      train_set = train_set.batch(batch_size)
+#      val_set = val_set.batch(batch_size)
+#      test_set = test_set.batch(batch_size)
+
+    # Create tf.keras model instance.
+    model = create_model(trial)
 
     # Create callbacks for early stopping and pruning.
     log_dir = "logs/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
@@ -169,23 +185,22 @@ def log_study_as_csv(study):
 
 
 def main():
-    # debugging
-    study = optuna.create_study(
-        direction="minimize",
-        pruner=optuna.pruners.HyperbandPruner()
-    )
-    study.optimize(create_model, n_trials=1)
-    return
+    if sys.platform == "linux":
+        path = os.path.join(Path.home(), "stock/stock-prediction")
+    else:
+        path = os.path.join(Path.home(),
+                            "Studies/Master/10SS19/StockPrediction")
+        path = os.path.join(path, "stock-prediction")
+    global data_set_path
+    data_set_path = os.path.join(path, "training/dataset/saved_data")
 
     # log arguments
     with open("study_args.txt", "w") as args_file:
-        args_file.write("dataset: {}\n".format("NOT SET"))
-        args_file.write("rnn: {}\n".format(args.rnn))
+        args_file.write("dataset: {}\n".format("Ava"))  # HARD
         args_file.write("loss: {}\n".format(args.loss))
         args_file.write("epochs: {}\n".format(args.epochs))
         args_file.write("split: {}\n".format(args.split))
         args_file.write("trials: {}\n".format(args.num_trials))
-        args_file.write("nonzero: {}\n".format(args.nonzero))
 
     study = optuna.create_study(
         direction="minimize",
@@ -197,8 +212,6 @@ def main():
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Training parameters")
-#      parser.add_argument("--rnn", type=str,
-#                          help="RNN layer lstm or gru")
     parser.add_argument("--loss", type=str,
                         help="Loss mse or mae")
     parser.add_argument("--epochs", type=int,
@@ -207,8 +220,6 @@ if __name__ == "__main__":
                         help="Dataset split; train,val,test; e.g. 0.8,0.1,0,1")
     parser.add_argument("--num_trials", type=int,
                         help="Number of trials")
-    parser.add_argument("--nonzero", action="store_true",
-                        help="Only non-zero sentiments")
     args = parser.parse_args()
 
     main()
