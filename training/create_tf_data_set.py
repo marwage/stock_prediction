@@ -57,7 +57,7 @@ def create_tf_data_set():
         tweets_list = [convert_dict_to_list(tweet) for tweet in tweets]
 
         ideas = day["ideas"]
-        ideas = filtered_ideas(ideas)
+        ideas = filter_ideas(ideas)
         ideas_list = [convert_dict_to_list(idea) for idea in ideas]
 
         num_tweets = len(tweets_list)
