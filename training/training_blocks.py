@@ -11,7 +11,7 @@ from pathlib import Path
 
 
 # global variables
-data_set_path = ""
+DATA_SET_PATH = ""
 
 
 def parse_split(split_str):
@@ -19,25 +19,22 @@ def parse_split(split_str):
     split = [float(x) for x in pieces]
     if sum(split) == 1.0 and len(split) == 3:
         return split
-    else:
-        raise AssertionError("Argument split is invalid")
+
+    raise AssertionError("Argument split is invalid")
 
 
-def get_dataset(path: str,
-                split: list,
-                tweets_threshold: int = 0):
-    element_spec = {"tweets": tf.RaggedTensorSpec(tf.TensorShape([None, 10]),
+def get_dataset(path: str):
+    element_spec = ({"tweets": tf.RaggedTensorSpec(tf.TensorShape([None, 10]),
+                                                   tf.float32,
+                                                   0,
+                                                   tf.int64),
+                     "ideas": tf.RaggedTensorSpec(tf.TensorShape([None, 9]),
                                                   tf.float32,
                                                   0,
                                                   tf.int64),
-                    "ideas": tf.RaggedTensorSpec(tf.TensorShape([None, 9]),
-                                                 tf.float32,
-                                                 0,
-                                                 tf.int64),
-                    "company_info": tf.TensorSpec(shape=(44,),
-                                                  dtype=tf.float32),
-                    "label": tf.TensorSpec(shape=(),
-                                           dtype=tf.float32)}
+                     "company_info": tf.TensorSpec(shape=(44,),
+                                                   dtype=tf.float32)},
+                    tf.TensorSpec(shape=(), dtype=tf.float32,))
 
     data_set = tf.data.experimental.load(path, element_spec)
 
@@ -51,19 +48,17 @@ def create_model(trial):
     units_dense = trial.suggest_int("units_dense", 16, 512)
 
     # Compose neural network
-    num_twitter_features = 1
-    num_stocktwits_features = 2
-    num_company_infos = 3
+    num_twitter_features = 10
+    num_stocktwits_features = 9
+    num_company_infos = 44
     input_twitter = tf.keras.Input(shape=(None, num_twitter_features),
-                                   name="input_twitter")
+                                   name="tweets")
     input_stocktwits = tf.keras.Input(shape=(None, num_stocktwits_features),
-                                      name="input_stocktwits")
+                                      name="ideas")
     input_company_info = tf.keras.Input(shape=(num_company_infos,),
-                                        name="input_company_input")
-    lstm_twitter = tf.keras.layers.LSTM(units_lstm,
-                                        activation="relu")(input_twitter)
-    lstm_stocktwits = tf.keras.layers.LSTM(units_lstm,
-                                           activation="relu")(input_stocktwits)
+                                        name="company_info")
+    lstm_twitter = tf.keras.layers.LSTM(units_lstm)(input_twitter)
+    lstm_stocktwits = tf.keras.layers.LSTM(units_lstm)(input_stocktwits)
     dense_input = tf.keras.layers.concatenate([lstm_twitter,
                                                lstm_stocktwits,
                                                input_company_info])
@@ -87,8 +82,6 @@ def create_model(trial):
     model.compile(loss=loss_tf,
                   optimizer=tf.keras.optimizers.Adam(learning_rate))
 
-    print("Como estas")  # debugging
-
     return model
 
 
@@ -101,14 +94,23 @@ def objective(trial):
     tf.keras.backend.clear_session()
 
     # Create dataset instance.
+    data_set = get_dataset(DATA_SET_PATH)
+    data_set = data_set.shuffle(8192)
+
     split = parse_split(args.split)
-    data_set = get_dataset(data_set_path, split)
-    return
-#      train_set, val_set, test_set = sets
-#      train_set = train_set.shuffle(2048)
-#      train_set = train_set.batch(batch_size)
-#      val_set = val_set.batch(batch_size)
-#      test_set = test_set.batch(batch_size)
+    data_set_size = int(data_set.cardinality())
+    train_data_set_size = int(split[0] * data_set_size)
+    val_data_set_size = int(split[1] * data_set_size)
+    test_data_set_size = int(split[2] * data_set_size)
+
+    train_data_set = data_set.take(train_data_set_size)
+    val_test_data_set = data_set.skip(train_data_set_size)
+    test_data_set = val_test_data_set.take(test_data_set_size)
+    val_data_set = val_test_data_set.skip(test_data_set_size)
+
+    train_data_set = train_data_set.batch(batch_size)
+    val_data_set = val_data_set.batch(batch_size)
+    test_data_set = test_data_set.batch(batch_size)
 
     # Create tf.keras model instance.
     model = create_model(trial)
@@ -127,19 +129,19 @@ def objective(trial):
 
     # Train model.
     history = model.fit(
-        train_set,
+        train_data_set,
         epochs=args.epochs,
-        validation_data=val_set,
+        validation_data=val_data_set,
         callbacks=callbacks,
     )
 
     model.save("checkpoints/checkpoint-{}".format(trial.number))
 
     # Predict
-    predictions = model.predict(test_set)
+    predictions = model.predict(test_data_set)
 
     # calculate R^2
-    true_labels = np.concatenate([y for x, y in test_set], axis=0)
+    true_labels = np.concatenate([y for x, y in test_data_set], axis=0)
     residual_sum = np.sum(np.square(true_labels - predictions))
     true_labels_mean = np.mean(true_labels)
     total_sum = np.sum(np.square(true_labels - true_labels_mean))
@@ -170,11 +172,11 @@ def objective(trial):
         stats_file.write("accuracy (up, down): {}\n".format(accuracy))
         stats_file.write("training history: {}\n".format(history.history))
         stats_file.write("training dataset size: {}\n".format(
-            tf.data.experimental.cardinality(train_set).numpy()))
+            tf.data.experimental.cardinality(train_data_set).numpy()))
         stats_file.write("validation dataset size: {}\n".format(
-            tf.data.experimental.cardinality(val_set).numpy()))
+            tf.data.experimental.cardinality(val_data_set).numpy()))
         stats_file.write("test dataset size: {}\n".format(
-            tf.data.experimental.cardinality(test_set).numpy()))
+            tf.data.experimental.cardinality(test_data_set).numpy()))
 
     return history.history[monitor][-1]
 
@@ -191,8 +193,8 @@ def main():
         path = os.path.join(Path.home(),
                             "Studies/Master/10SS19/StockPrediction")
         path = os.path.join(path, "stock-prediction")
-    global data_set_path
-    data_set_path = os.path.join(path, "training/dataset/saved_data")
+    global DATA_SET_PATH
+    DATA_SET_PATH = os.path.join(path, "training/dataset/Ava")
 
     # log arguments
     with open("study_args.txt", "w") as args_file:

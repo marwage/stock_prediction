@@ -81,11 +81,10 @@ def create_tf_data_set():
     tf_company_infos = tf.constant(input_company_infos)
     tf_lables = tf.constant(labels)
 
-    data_set_dict = {"tweets": tf_tweets,
-                     "ideas": tf_ideas,
-                     "company_info": tf_company_infos,
-                     "label": tf_lables}
-    data_set = tf.data.Dataset.from_tensor_slices(data_set_dict)
+    input_dict = {"tweets": tf_tweets,
+                  "ideas": tf_ideas,
+                  "company_info": tf_company_infos}
+    data_set = tf.data.Dataset.from_tensor_slices((input_dict, tf_lables))
     return data_set
 
 
@@ -109,7 +108,7 @@ def main():
     logging.info("element_spec: %s", data_set.element_spec)
     print("element_spec: {}".format(data_set.element_spec))
 
-    data_set_path = os.path.join(base_path, "training/dataset/saved_data")
+    data_set_path = os.path.join(base_path, "training/dataset/Ava")
     tf.data.experimental.save(data_set, data_set_path)
 
 
