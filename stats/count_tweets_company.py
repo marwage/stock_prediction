@@ -12,18 +12,26 @@ def sum_up(sp500: list, output_path: str):
     idea_count = []
     for company in sp500:
         path = os.path.join(output_path,
-                            "tweet_count_stocktwitsdb_{}.csv".format(company))
-        data_frame = pd.read_csv(path)
-        summ = data_frame["tweet_count"].sum()
-        tweet_count.append(summ)
-
-        path = os.path.join(output_path,
                             "tweet_count_twitterdb_{}.csv".format(company))
-        data_frame = pd.read_csv(path)
-        summ = data_frame["tweet_count"].sum()
-        idea_count.append(summ)
+        if os.path.isfile(path):
+            data_frame = pd.read_csv(path)
+            summ = data_frame["tweet_count"].sum()
+            tweet_count.append(summ)
+        else:
+            tweet_count.append(0)
 
-    data_frame = pd.DataFrame({"company": sp500, "tweet_count": tweet_count})
+        if os.path.isfile(path):
+            path = os.path.join(output_path,
+                                "tweet_count_stocktwitsdb_{}.csv".format(company))
+            data_frame = pd.read_csv(path)
+            summ = data_frame["tweet_count"].sum()
+            idea_count.append(summ)
+        else:
+            idea_count.append(0)
+
+    data_frame = pd.DataFrame({"company": sp500,
+                               "tweet_count": tweet_count,
+                               "idea_count": idea_count})
     file_name = os.path.join(output_path, "tweet_count_company.csv")
     data_frame.to_csv(file_name)
 

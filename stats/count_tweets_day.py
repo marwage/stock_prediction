@@ -45,7 +45,10 @@ def check(sp500: list, database_name: str, output_path: str):
         current_day = start_day
 
         while current_day < end_day:
-            logging.debug("Check %s on %s", company, current_day)
+            logging.debug("%s:%s:Check %s",
+                          database_name,
+                          company,
+                          current_day)
             next_day = current_day + datetime.timedelta(days=1)
             num_tweets = collection.count_documents(
                     {"date": {"$gte": current_day,
@@ -62,7 +65,7 @@ def check(sp500: list, database_name: str, output_path: str):
 
 def main():
     if sys.platform == "linux":
-        path = os.path.join(Path.home(), "stock/stock-prediction")
+        path = os.path.join(Path.home(), "stock-prediction")
     else:
         path = os.path.join(Path.home(),
                             "Studies/Master/10SS19/StockPrediction")
