@@ -70,7 +70,7 @@ def main():
     stats_path = os.path.join(path, "stats")
     crawling_path = os.path.join(path, "crawling")
     sp500_path = os.path.join(crawling_path, "data/sp500.json")
-    log_path = os.path.join(stats_path, "log/count_tweets.log")
+    log_path = os.path.join(stats_path, "log/count_tweets_day.log")
     output_path = os.path.join(stats_path, "output")
 
     logging.basicConfig(
