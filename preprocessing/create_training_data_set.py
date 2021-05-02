@@ -2,12 +2,15 @@ import argparse
 import datetime
 import json
 import logging
+import nltk
+nltk.download("vader_lexicon")
 import os
 import pandas as pd
 import pymongo
 import re
 import sys
 import threading
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from pathlib import Path
 from textblob import TextBlob
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -56,6 +59,11 @@ def get_sentiment_textblob(text):
             text_blob.sentiment.subjectivity)
 
 
+def get_sentiment_nltk(text):
+    sid = SentimentIntensityAnalyzer()
+    score = sid.polarity_scores(text)
+    return score
+
 def get_relative_price_difference(day, next_day):
     stock_price_day = day["open"]
     stock_price_next_day = next_day["open"]
@@ -78,9 +86,17 @@ def get_tweet_features(tweet: dict, company: str):
     features = dict()
 
     text = tweet["text"]
-    sentiment = get_sentiment_textblob(text)
-    features["sentiment_polarity"] = sentiment[0]
-    features["sentiment_subjectivity"] = sentiment[1]
+    use_textblob = False
+    if use_textblob:
+        sentiment = get_sentiment_textblob(text)
+        features["sentiment_polarity"] = sentiment[0]
+        features["sentiment_subjectivity"] = sentiment[1]
+    else:
+        sentiment = get_sentiment_nltk(text)
+        features["sentiment_negative"] = sentiment["neg"]
+        features["sentiment_neutral"] = sentiment["neu"]
+        features["sentiment_positive"] = sentiment["pos"]
+        features["sentiment_compound"] = sentiment["compound"]
     if "followers_count" in tweet["user"]:
         followers = float(tweet["user"]["followers_count"])
     else:
@@ -137,9 +153,17 @@ def get_idea_features(idea: dict):
     features = dict()
 
     text = idea["body"]
-    sentiment = get_sentiment_textblob(text)
-    features["sentiment_polarity"] = sentiment[0]
-    features["sentiment_subjectivity"] = sentiment[1]
+    use_textblob = False
+    if use_textblob:
+        sentiment = get_sentiment_textblob(text)
+        features["sentiment_polarity"] = sentiment[0]
+        features["sentiment_subjectivity"] = sentiment[1]
+    else:
+        sentiment = get_sentiment_nltk(text)
+        features["sentiment_negative"] = sentiment["neg"]
+        features["sentiment_neutral"] = sentiment["neu"]
+        features["sentiment_positive"] = sentiment["pos"]
+        features["sentiment_compound"] = sentiment["compound"]
     features["followers"] = float(idea["user"]["followers"])
     features["following"] = float(idea["user"]["following"])
     features["ideas"] = float(idea["user"]["ideas"])
@@ -175,8 +199,8 @@ def get_sector(sector_str: str, mapping: pd.DataFrame):
 def parse_str_to_float(string: str):
     if string == "None":
         return 0.0
-    else:
-        return float(string)
+        
+    return float(string)
 
 
 def get_company_info(info: dict,
@@ -247,7 +271,10 @@ def construct_day(client: pymongo.MongoClient,
     company_info_db = client["companyinfodb"]
     twitter_coll = twitter_db[company]
     stocktwits_coll = stocktwits_db[company]
-    data_set_coll = trainingdataset_db["Ava"]
+    if False:
+        data_set_coll = trainingdataset_db["Ava"]
+    else:
+        data_set_coll = trainingdataset_db["Bella"]
     company_info_coll = company_info_db[company]
 
     trading_start = datetime.datetime(start_date.year,
