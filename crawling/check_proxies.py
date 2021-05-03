@@ -46,19 +46,14 @@ def check_proxies(proxies, output_path):
 
 
 def main():
-    if sys.platform == "linux":
-        path = os.path.join(Path.home(), "stock-prediction")
-    else:
-        print("Wrong OS")
-        return
-    crawling_path = os.path.join(path, "crawling")
-    log_path = os.path.join(crawling_path, "log/check_proxies.log")
-    proxy_path = os.path.join(crawling_path, "data/proxy_list.txt")
-    output_path = os.path.join(crawling_path, "data/working_proxies.json")
+    log_path = os.path.join(".", "log/check_proxies.log")
+    os.makedirs(os.path.dirname(log_path), exist_ok=True)
+    proxy_path = os.path.join(".", "data/proxy_list.txt")
+    output_path = os.path.join(".", "data/working_proxies.json")
 
     logging.basicConfig(
         filename=log_path,
-        level=logging.DEBUG,
+        level=logging.INFO,
         format="%(asctime)s:%(levelname)s:%(message)s"
         )
 

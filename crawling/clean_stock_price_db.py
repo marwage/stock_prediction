@@ -24,18 +24,13 @@ def clean(sp500: list):
                               delete_result.acknowledged)
 
 def main():
-    if sys.platform == "linux":
-        crawling_path = os.path.join(Path.home(), "stock-prediction/crawling")
-    else:
-        directory = "Studies/Master/10SS19/StockPrediction/" \
-                  + "stock-prediction/crawling"
-        crawling_path = os.path.join(Path.home(), directory)
-    sp500_path = os.path.join(crawling_path, "data/sp500.json")
-    log_path = os.path.join(crawling_path, "log/clean_stock_price_db.log")
+    sp500_path = os.path.join(".", "data/sp500.json")
+    log_path = os.path.join(".", "log/clean_stock_price_db.log")
+    os.makedirs(os.path.dirname(log_path), exist_ok=True)
 
     logging.basicConfig(
         filename=log_path,
-        level=logging.DEBUG,
+        level=logging.INFO,
         format="%(asctime)s:%(levelname)s:%(message)s"
         )
 
@@ -43,5 +38,5 @@ def main():
     clean(sp500)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

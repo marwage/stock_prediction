@@ -171,17 +171,12 @@ def crawl_twitter(sp500: list,
 
 
 def main():
-    if sys.platform == "linux":
-        path = os.path.join(Path.home(), "stock-prediction")
-    else:
-        directory = "Studies/Master/10SS19/StockPrediction/stock-prediction"
-        path = os.path.join(Path.home(), directory)
-    crawling_path = os.path.join(path, "crawling")
-    sp500_path = os.path.join(crawling_path, "data/sp500.json")
-    finished_companies_path = os.path.join(crawling_path,
+    sp500_path = os.path.join(".", "data/sp500.json")
+    finished_companies_path = os.path.join(".",
                                            "data/finished_companies.json")
-    log_path = os.path.join(crawling_path, "log/twitter_v2_academic.log")
-    bearer_token_path = os.path.join(crawling_path,
+    log_path = os.path.join(".", "log/twitter_v2_academic.log")
+    os.makedirs(os.path.dirname(log_path), exist_ok=True)
+    bearer_token_path = os.path.join(".",
                                      "access_token/twitter_bearer_token.json")
 
     logging.basicConfig(

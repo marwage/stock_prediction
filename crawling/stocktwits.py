@@ -119,10 +119,10 @@ def crawl(sp500_chunk, proxies):
 
 
 def main():
-    crawling_path = os.path.join(Path.home(), "stock-prediction/crawling")
-    sp500_path = os.path.join(crawling_path, "data/sp500.json")
-    proxy_path = os.path.join(crawling_path, "data/working_proxies.json")
-    log_path = os.path.join(crawling_path, "log/stocktwits.log")
+    sp500_path = os.path.join(".", "data/sp500.json")
+    proxy_path = os.path.join(".", "data/working_proxies.json")
+    log_path = os.path.join(".", "log/stocktwits.log")
+    os.makedirs(os.path.dirname(log_path), exist_ok=True)
 
     logging.basicConfig(
         filename=log_path,
@@ -143,7 +143,7 @@ def main():
         crawl(sp500, proxies)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Training parameters")
     parser.add_argument("--threading", action="store_true",
                         help="Only non-zero sentiments")

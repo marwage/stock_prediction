@@ -9,7 +9,8 @@ import sys
 import time
 from pathlib import Path
 from pymongo import MongoClient
-from read_sp500 import read_sp500
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from util.read_sp500 import read_sp500
 
 
 def get_apikey(path):
@@ -77,20 +78,15 @@ def query_stock_price(apikey, sp500):
 
 
 def main():
-    if sys.platform == "linux":
-        crawling_path = os.path.join(Path.home(), "stock-prediction/crawling")
-    else:
-        directory = "Studies/Master/10SS19/StockPrediction/" \
-                  + "stock-prediction/crawling"
-        crawling_path = os.path.join(Path.home(), directory)
-    sp500_path = os.path.join(crawling_path, "data/sp500.json")
-    apikey_path = os.path.join(crawling_path,
+    sp500_path = os.path.join(".", "data/sp500.json")
+    apikey_path = os.path.join(".",
                                "access_token/alpha_vantage_apikey.json")
-    log_path = os.path.join(crawling_path, "log/stock_price.log")
+    log_path = os.path.join(".", "log/stock_price.log")
+    os.makedirs(os.path.dirname(log_path), exist_ok=True)
 
     logging.basicConfig(
         filename=log_path,
-        level=logging.DEBUG,
+        level=logging.INFO,
         format="%(asctime)s:%(levelname)s:%(message)s"
         )
     logging.getLogger("requests").setLevel(logging.WARNING)
@@ -102,5 +98,5 @@ def main():
     query_stock_price(apikey, sp500)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

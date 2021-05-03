@@ -4,12 +4,14 @@ import os
 import random
 import re
 import requests
+import sys
 import time
 from datetime import timedelta, datetime
 from pathlib import Path
 from pymongo import MongoClient
 from requests_oauthlib import OAuth1
-from read_sp500 import read_sp500
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from util.read_sp500 import read_sp500
 
 
 def read_access_token(access_token_path):
@@ -69,10 +71,10 @@ def crawl_twitter(sp500, access_token):
 
 
 def main():
-    crawling_path = os.path.join(Path.home(), "stock-prediction/crawling")
-    sp500_path = os.path.join(crawling_path, "data/sp500.json")
-    log_path = os.path.join(crawling_path, "log/twitter_v1.log")
-    access_token_path = os.path.join(crawling_path,
+    sp500_path = os.path.join(".", "data/sp500.json")
+    log_path = os.path.join(".", "log/twitter_v1.log")
+    os.makedirs(os.path.dirname(log_path), exist_ok=True)
+    access_token_path = os.path.join(".",
                                      "access_token/twitter_access_token.json")
 
     logging.basicConfig(
@@ -89,5 +91,5 @@ def main():
     crawl_twitter(sp500, access_token)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

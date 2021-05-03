@@ -9,8 +9,9 @@ import time
 from datetime import timedelta, datetime
 from pathlib import Path
 from pymongo import MongoClient
-from read_sp500 import read_sp500
 from requests_oauthlib import OAuth1
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from util.read_sp500 import read_sp500
 
 
 def read_bearer_token(bearer_token_path: str):
@@ -119,21 +120,15 @@ def crawl_twitter(sp500: list, bearer_token: str):
 
 
 def main():
-    if sys.platform == "linux":
-        path = os.path.join(Path.home(), "stock-prediction")
-    else:
-        directory = "Studies/Master/10SS19/StockPrediction/stock-prediction"
-        path = os.path.join(Path.home(), directory)
-    crawling_path = os.path.join(path, "crawling")
-    sp500_path = os.path.join(crawling_path, "data/sp500.json")
-    log_path = os.path.join(crawling_path, "log/twitter_v2.log")
-    bearer_token_path = os.path.join(crawling_path,
+    sp500_path = os.path.join(".", "data/sp500.json")
+    log_path = os.path.join(".", "log/twitter_v2.log")
+    os.makedirs(os.path.dirname(log_path), exist_ok=True)
+    bearer_token_path = os.path.join(".",
                                      "access_token/twitter_bearer_token.json")
 
     logging.basicConfig(
         filename=log_path,
         level=logging.INFO,
-        #  level=logging.DEBUG,
         format="%(asctime)s:%(levelname)s:%(message)s"
         )
     logging.getLogger("requests").setLevel(logging.WARNING)
@@ -147,5 +142,5 @@ def main():
     crawl_twitter(sp500, bearer_token)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

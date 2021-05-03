@@ -5,7 +5,8 @@ import pandas as pd
 import sys
 from pathlib import Path
 from pymongo import MongoClient
-from read_sp500 import read_sp500
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from util.read_sp500 import read_sp500
 
 
 def check(sp500: list, output_path: str):
@@ -42,19 +43,15 @@ def check(sp500: list, output_path: str):
 
 
 def main():
-    if sys.platform == "linux":
-        crawling_path = os.path.join(Path.home(), "stock-prediction/crawling")
-    else:
-        directory = "Studies/Master/10SS19/StockPrediction/" \
-                  + "stock-prediction/crawling"
-        crawling_path = os.path.join(Path.home(), directory)
-    sp500_path = os.path.join(crawling_path, "data/sp500.json")
-    log_path = os.path.join(crawling_path, "log/check_stock_price_db.log")
-    output_path = os.path.join(crawling_path, "output")
+    sp500_path = os.path.join(".", "data/sp500.json")
+    log_path = os.path.join(".", "log/check_stock_price_db.log")
+    os.makedirs(os.path.dirname(log_path), exist_ok=True)
+    output_path = os.path.join(".", "output")
+    os.makedirs(output_path, exist_ok=True)
 
     logging.basicConfig(
         filename=log_path,
-        level=logging.DEBUG,
+        level=logging.INFO,
         format="%(asctime)s:%(levelname)s:%(message)s"
         )
     logging.getLogger("requests").setLevel(logging.WARNING)
@@ -64,5 +61,5 @@ def main():
     check(sp500, output_path)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
