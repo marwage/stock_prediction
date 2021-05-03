@@ -118,7 +118,10 @@ def objective(trial):
     model = create_model(trial)
 
     # Create callbacks for early stopping and pruning.
-    log_dir = "tf_log/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+    log_path = os.path.join(".", "tensor_board_log")
+    os.makedirs(log_path, exist_ok=True)
+    date = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+    log_dir = os.path.join(log_path, date)
     tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir,
                                                           profile_batch=0,
                                                           update_freq="batch")
@@ -137,7 +140,11 @@ def objective(trial):
         callbacks=callbacks,
     )
 
-    model.save("checkpoint/checkpoint-{}".format(trial.number))
+    checkpoint_path = os.path.join(".", "checkpoint")
+    os.makedirs(checkpoint_path, exist_ok=True)
+    checkpoint_name = "checkpoint-{}".format(trial.number)
+    file_name = os.path.join(checkpoint_path, checkpoint_name)
+    model.save(file_name)
 
     # Predict
     predictions = model.predict(test_data_set)
@@ -189,14 +196,9 @@ def log_study_as_csv(study):
 
 
 def main():
-    if sys.platform == "linux":
-        path = os.path.join(Path.home(), "stock/stock-prediction")
-    else:
-        path = os.path.join(Path.home(),
-                            "Studies/Master/10SS19/StockPrediction")
-        path = os.path.join(path, "stock-prediction")
     global DATA_SET_PATH
-    DATA_SET_PATH = os.path.join(path, "training/dataset/Ava")
+    DATA_SET_PATH = os.path.join(".", "dataset/Ava")
+    os.makedirs(os.path.dirname(DATA_SET_PATH), exist_ok=True)
 
     # log arguments
     with open("study_args.txt", "w") as args_file:

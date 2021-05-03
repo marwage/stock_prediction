@@ -6,17 +6,7 @@ from optuna.integration import TFKerasPruningCallback
 import pandas as pd
 from pymongo import MongoClient
 import tensorflow as tf
-import fasttext
 import numpy as np
-
-
-language_model = fasttext.load_model("../preprocessing/lid.176.ftz")
-
-
-def detect_language(text):
-    pred = language_model.predict(text, k=1)
-    lang = pred[0][0].replace("__label__", "")
-    return lang
 
 
 def parse_split(split_str):
@@ -44,11 +34,8 @@ def create_dataset(validation_split):
             # data must be 3D for LSTM
             sentiment_sample = []
             for tweet in document["tweets"]:
-                text = tweet["text"]
                 sentiment = tweet["sentiment"]
-                # check if tweet is in English
-                if detect_language(text) == "en":
-                    sentiment_sample.append([sentiment])
+                sentiment_sample.append([sentiment])
             # filter out sentiments == 0
             sentiment_sample = [x for x in sentiment_sample if x != 0]
             # filter out days with less than 100 tweets
@@ -173,7 +160,10 @@ def objective(trial):
     test_set = test_set.batch(batch_size)
 
     # Create callbacks for early stopping and pruning.
-    log_dir = "logs/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+    log_path = os.path.join(".", "tensor_board_log")
+    os.makedirs(log_path, exist_ok=True)
+    date = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+    log_dir = os.path.join(log_path, date)
     tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir,
                                                           profile_batch=0,
                                                           update_freq="batch")
@@ -192,7 +182,11 @@ def objective(trial):
         callbacks=callbacks,
     )
 
-    model.save("checkpoints/checkpoint-{}".format(trial.number))
+    checkpoint_path = os.path.join(".", "checkpoint")
+    os.makedirs(checkpoint_path, exist_ok=True)
+    checkpoint_name = "checkpoint-{}".format(trial.number)
+    file_name = os.path.join(checkpoint_path, checkpoint_name)
+    model.save(file_name)
 
     # Predict
     predictions = model.predict(test_set)

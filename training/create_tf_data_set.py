@@ -90,16 +90,13 @@ def create_tf_data_set():
 
 
 def main():
-    if sys.platform == "linux":
-        base_path = os.path.join(Path.home(), "stock/stock-prediction")
-    else:
-        path = "Studies/Master/10SS19/StockPrediction/stock-prediction"
-        base_path = os.path.join(Path.home(), path)
+    log_path = os.path.join(".", "log/create_tf_data_set.log")
+    os.makedirs(os.path.dirname(log_path), exist_ok=True)
+    data_set_path = os.path.join(".", "dataset/Ava")
+    os.makedirs(os.path.dirname(data_set_path), exist_ok=True)
 
-    path = "training/log/create_tf_data_set.log"
-    logging_path = os.path.join(base_path, path)
     logging.basicConfig(
-        filename=logging_path,
+        filename=log_path,
         level=logging.DEBUG,
         format="%(asctime)s:%(levelname)s:%(message)s"
         )
@@ -107,9 +104,7 @@ def main():
     data_set = create_tf_data_set()
 
     logging.info("element_spec: %s", data_set.element_spec)
-    print("element_spec: {}".format(data_set.element_spec))
 
-    data_set_path = os.path.join(base_path, "training/dataset/Ava")
     tf.data.experimental.save(data_set, data_set_path)
 
 
