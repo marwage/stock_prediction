@@ -24,7 +24,7 @@ def clean(sp500: list):
                               delete_result.acknowledged)
 
 def main():
-    sp500_path = os.path.join(".", "data/sp500.json")
+    sp500_path = os.path.join("../crawling", "data/sp500.json")
     log_path = os.path.join(".", "log/clean_stock_price_db.log")
     os.makedirs(os.path.dirname(log_path), exist_ok=True)
 

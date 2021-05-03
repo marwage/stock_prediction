@@ -2,7 +2,6 @@ import argparse
 import logging
 import os
 import sys
-from pathlib import Path
 from pymongo import MongoClient
 
 
@@ -42,12 +41,8 @@ def check_duplicates():
 
 
 def main():
-    if sys.platform == "linux":
-        path = os.path.join(Path.home(), "stock-prediction")
-    else:
-        directory = "Studies/Master/10SS19/StockPrediction/stock-prediction"
-        path = os.path.join(Path.home(), directory)
-    log_path = os.path.join(path, "database/log/check_duplicates.log")
+    log_path = os.path.join(".", "log/check_duplicates.log")
+    os.makedirs(os.path.dirname(log_path), exist_ok=True)
 
     logging.basicConfig(
         filename=log_path,

@@ -1,7 +1,6 @@
 import logging
 import os
 import sys
-from pathlib import Path
 from pymongo import MongoClient
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from util.read_sp500 import read_sp500
@@ -17,17 +16,13 @@ def check_companies(sp500: list):
         names_set = set(collection_names)
         sp500_set = set(sp500)
         only_in_sp500 = sp500_set.difference(names_set)
-        print("{} {}".format(database_name, only_in_sp500))
+        logging.info("%s: Only in S&P500  %s", database_name, only_in_sp500)
 
 
 def main():
-    if sys.platform == "linux":
-        path = os.path.join(Path.home(), "stock/stock-prediction")
-    else:
-        directory = "Studies/Master/10SS19/StockPrediction/stock-prediction"
-        path = os.path.join(Path.home(), directory)
-    sp500_path = os.path.join(path, "crawling/data/sp500.json")
-    log_path = os.path.join(path, "database/log/check_date.log")
+    sp500_path = os.path.join("../crawling", "data/sp500.json")
+    log_path = os.path.join(".", "log/check_companies.log")
+    os.makedirs(os.path.dirname(log_path), exist_ok=True)
 
     logging.basicConfig(
         filename=log_path,

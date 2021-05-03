@@ -5,7 +5,6 @@ import logging
 import os
 import re
 import sys
-from pathlib import Path
 from pymongo import MongoClient
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from util.threads import start_with_threads
@@ -30,7 +29,7 @@ def check_date(sp500: list):
                     if isinstance(date_attribute, datetime.datetime):
                         logging.debug("Date is fine")
                         continue
-                    elif isinstance(date_attribute, str):
+                    if isinstance(date_attribute, str):
                         logging.info("%s:%s:Date is String",
                                      database_name,
                                      company)
@@ -53,13 +52,9 @@ def check_date(sp500: list):
 
 
 def main():
-    if sys.platform == "linux":
-        path = os.path.join(Path.home(), "stock/stock-prediction")
-    else:
-        directory = "Studies/Master/10SS19/StockPrediction/stock-prediction"
-        path = os.path.join(Path.home(), directory)
-    sp500_path = os.path.join(path, "crawling/data/sp500.json")
-    log_path = os.path.join(path, "database/log/check_date.log")
+    sp500_path = os.path.join("../crawling", "data/sp500.json")
+    log_path = os.path.join(".", "log/check_date_attribute.log")
+    os.makedirs(os.path.dirname(log_path), exist_ok=True)
 
     logging.basicConfig(
         filename=log_path,

@@ -43,7 +43,7 @@ def check(sp500: list, output_path: str):
 
 
 def main():
-    sp500_path = os.path.join(".", "data/sp500.json")
+    sp500_path = os.path.join("../crawling", "data/sp500.json")
     log_path = os.path.join(".", "log/check_stock_price_db.log")
     os.makedirs(os.path.dirname(log_path), exist_ok=True)
     output_path = os.path.join(".", "output")
