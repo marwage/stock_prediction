@@ -2,7 +2,6 @@ import logging
 import os
 import pandas as pd
 import sys
-from pathlib import Path
 from pymongo import MongoClient
 
 
@@ -44,18 +43,14 @@ def get(output_path: str):
 
 
 def main():
-    if sys.platform == "linux":
-        base_path = os.path.join(Path.home(), "stock/stock-prediction")
-    else:
-        path = "Studies/Master/10SS19/StockPrediction/stock-prediction"
-        base_path = os.path.join(Path.home(), path)
+    output_path = os.path.join(".", "data")
+    os.makedirs(output_path, exist_ok=True)
+    log_path = os.path.join(".", "log/get_industry_sector.log")
+    os.makedirs(os.path.dirname(log_path), exist_ok=True)
 
-    output_path = os.path.join(base_path, "preprocessing/data")
-    path = "preprocessing/log/get_industry_sector.log"
-    logging_path = os.path.join(base_path, path)
     logging.basicConfig(
-        filename=logging_path,
-        level=logging.DEBUG,
+        filename=log_path,
+        level=logging.INFO,
         format="%(asctime)s:%(levelname)s:%(message)s"
         )
 

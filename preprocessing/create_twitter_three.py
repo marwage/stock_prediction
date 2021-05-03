@@ -1,12 +1,11 @@
 import json
 import logging
-from datetime import datetime, timedelta
 import os
-from pathlib import Path
-from pymongo import MongoClient
 import re
-from textblob import TextBlob
 import sys
+from datetime import datetime, timedelta
+from pymongo import MongoClient
+from textblob import TextBlob
 
 
 def read_sp500(path):
@@ -38,7 +37,7 @@ def create_training_samples(mongo_client: MongoClient, sp500: list, first_date: 
     stockprice_db = mongo_client["stockpricedb"]
 
     for company in sp500:
-        print(company)
+        logging.info("Create training samples for %s", company)
 
         twitter_company_coll = twitter_db[company]
         dataset_company_coll = dataset_db[company]
@@ -85,7 +84,7 @@ def create_training_samples(mongo_client: MongoClient, sp500: list, first_date: 
                             tweet_features["retweets"] = tweet["retweeted_count"]
                         else:
                             tweet_features["retweets"] = 0
-                        
+
                         tweets.append(tweet_features)
                     except:
                         logging.debug("%s: Tweet does not have attribute: %s", company, tweet)
@@ -111,25 +110,22 @@ def create_training_samples(mongo_client: MongoClient, sp500: list, first_date: 
             sample["tweets"] = tweets_features
             sample["price_diff"] = get_relative_price_difference(stock_price_day, stock_price_next_day)
 
-            result = dataset_company_coll.update_one({"start": trading_start}, {"$set": sample}, upsert=True)
+            dataset_company_coll.update_one({"start": trading_start}, {"$set": sample}, upsert=True)
 
             start = end
 
 
 def main():
-    if sys.platform == "linux":
-        path = os.path.join(Path.home(), "stock-prediction")
-    else:
-        path = os.path.join(Path.home(), "Studies/Master/10SS19/StockPrediction/stock-prediction")
+    sp500_path = os.path.join("../crawling", "data/sp500.json")
+    log_path = os.path.join(".", "log/create_training_samples_twitter.log")
+    os.makedirs(os.path.dirname(log_path), exist_ok=True)
 
-    logging_path = os.path.join(path, "preprocessing/logs/create_training_samples_twitter.log")
     logging.basicConfig(
-        filename=logging_path,
-        level=logging.DEBUG,
+        filename=log_path,
+        level=logging.INFO,
         format="%(asctime)s:%(levelname)s:%(message)s"
         )
     
-    sp500_path = os.path.join(path, "crawling/data/sp500.json")
     sp500 = read_sp500(sp500_path)
 
     first_date = datetime(2019, 6, 1)
@@ -138,7 +134,11 @@ def main():
     mongo_client = MongoClient()
 
     samples_db = "twitter_three"
-    create_training_samples(mongo_client, sp500, first_date, last_date, samples_db)
+    create_training_samples(mongo_client,
+                            sp500,
+                            first_date,
+                            last_date,
+                            samples_db)
 
 
 if __name__ == '__main__':

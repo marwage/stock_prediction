@@ -393,22 +393,17 @@ def create_training_data_set(companies: list,
 
 
 def main():
-    if sys.platform == "linux":
-        base_path = os.path.join(Path.home(), "stock/stock-prediction")
-    else:
-        path = "Studies/Master/10SS19/StockPrediction/stock-prediction"
-        base_path = os.path.join(Path.home(), path)
+    data_path = os.path.join(".", "data")
+    log_path = os.path.join(".", "log/create_training_data_set.log")
+    os.makedirs(os.path.dirname(log_path), exist_ok=True)
+    sp500_path = os.path.join("../crawling", "data/sp500.json")
 
-    data_path = os.path.join(base_path, "preprocessing/data")
-    path = "preprocessing/log/create_training_data_set.log"
-    logging_path = os.path.join(base_path, path)
     logging.basicConfig(
-        filename=logging_path,
-        level=logging.DEBUG,
+        filename=log_path,
+        level=logging.INFO,
         format="%(asctime)s:%(levelname)s:%(message)s"
         )
 
-    sp500_path = os.path.join(base_path, "crawling/data/sp500.json")
     sp500 = read_sp500(sp500_path)
 
     first_date = datetime.datetime(2019, 6, 1)

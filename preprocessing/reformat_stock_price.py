@@ -1,8 +1,7 @@
 import json
-from pymongo import MongoClient
-from datetime import datetime
 import os
-from pathlib import Path
+from datetime import datetime
+from pymongo import MongoClient
 
 
 def read_sp500(path):
@@ -11,13 +10,12 @@ def read_sp500(path):
 
     return sp500_json["sp500"]
 
+
 def reformat_stock_price(sp500):
     client = MongoClient()
     db = client.stockpricedb
 
     for company in sp500:
-        print(company)
-
         company_coll = db[company]
         days = company_coll.find()
         for day in days:
@@ -38,12 +36,11 @@ def reformat_stock_price(sp500):
                         company_coll.replace_one({"_id": day["_id"]}, day_properties, upsert=True)
 
 def main():
-    sp500_path = os.path.join(Path.home(),
-            "Studies/Master/10SS19/StockPrediction/stock-prediction/crawling/data/sp500.json")
+    sp500_path = os.path.join("../crawling", "data/sp500.json")
 
     sp500 = read_sp500(sp500_path)
     reformat_stock_price(sp500)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

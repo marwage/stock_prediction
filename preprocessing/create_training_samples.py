@@ -1,12 +1,11 @@
 import json
 import logging
-from datetime import datetime, timedelta
 import os
-from pathlib import Path
-from pymongo import MongoClient
 import re
-from textblob import TextBlob
 import sys
+from datetime import datetime, timedelta
+from pymongo import MongoClient
+from textblob import TextBlob
 
 
 def read_sp500(path):
@@ -46,7 +45,7 @@ def create_training_samples(mongo_client: MongoClient, sp500: list, first_date: 
     stockprice_db = mongo_client["stockpricedb"]
 
     for company in sp500:
-        print(company)
+        logging.info("Create training samples for %s", company)
 
         twitter_company_coll = twitter_db[company]
         stocktwits_company_coll = stocktwits_db[company]
@@ -81,7 +80,7 @@ def create_training_samples(mongo_client: MongoClient, sp500: list, first_date: 
             twitter_tweets = twitter_company_coll.find({ "date": { "$gte": trading_start, "$lt": trading_start_next_day } })
             twitter_tweets_text = [(clean_text(tweet["text"]), tweet["date"]) for tweet in twitter_tweets]
 
-            stocktwits_tweets = twitter_company_coll.find({ "date": { "$gte": trading_start, "$lt": trading_start_next_day } })
+            stocktwits_tweets = stocktwits_company_coll.find({ "date": { "$gte": trading_start, "$lt": trading_start_next_day } })
             stocktwits_tweets_text = [(clean_text(stocktwits_get_text(tweet)), tweet["date"]) for tweet in stocktwits_tweets]
 
             if not twitter_tweets_text and not stocktwits_tweets_text:
@@ -102,7 +101,7 @@ def create_training_samples(mongo_client: MongoClient, sp500: list, first_date: 
             sample["start"] = trading_start
             sample["end"] = trading_start_next_day
             sample["tweets"] = tweets
-            sample["price_diff"] = get_relatvie_price_difference(stock_price_day, stock_price_next_day)
+            sample["price_diff"] = get_relative_price_difference(stock_price_day, stock_price_next_day)
 
             learning_company_coll.update_one({"start": trading_start}, {"$set": sample}, upsert=True)
 
@@ -110,19 +109,16 @@ def create_training_samples(mongo_client: MongoClient, sp500: list, first_date: 
 
 
 def main():
-    if sys.platform == "linux":
-        path = os.path.join(Path.home(), "stock-prediction")
-    else:
-        path = os.path.join(Path.home(), "Studies/Master/10SS19/StockPrediction/stock-prediction")
+    sp500_path = os.path.join("../crawling", "data/sp500.json")
+    log_path = os.path.join(".", "log/create_training_samples.log")
+    os.makedirs(os.path.dirname(log_path), exist_ok=True)
 
-    logging_path = os.path.join(path, "preprocessing/logs/create_training_samples.log")
     logging.basicConfig(
-        filename=logging_path,
-        level=logging.DEBUG,
+        filename=log_path,
+        level=logging.INFO,
         format="%(asctime)s:%(levelname)s:%(message)s"
         )
-    
-    sp500_path = os.path.join(path, "crawling/data/sp500.json")
+
     sp500 = read_sp500(sp500_path)
 
     first_date = datetime(2019, 6, 1)
