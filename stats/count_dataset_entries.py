@@ -1,30 +1,22 @@
-from pymongo import MongoClient
 import json
 import matplotlib.pyplot as plt
-import fasttext
+import os
 import pandas as pd
+from pymongo import MongoClient
 
 
-model = fasttext.load_model("../preprocessing/lid.176.ftz")
-
-
-def detect_language(text):
-    pred = model.predict(text, k=1)
-    lang = pred[0][0].replace("__label__", "")
-    return lang
-
-
-def plot_histogram(company, dates):
+def plot_histogram(company: str, dates, output_path: str):
     num_bins = 240
     fig, axs = plt.subplots()
 
     axs.hist(dates, bins=num_bins)
 
-    fig.savefig("output/tweet_distr_{}.png".format(company))
+    file_name = os.path.join(output_path, "tweet_distr_{}.png".format(company))
+    fig.savefig(file_name)
     plt.close(fig)
 
 
-def many():
+def count_dataset_entries(output_path: str):
     client = MongoClient()
     db = client["learning"]
 
@@ -38,7 +30,6 @@ def many():
     company_names = db.list_collection_names()
     for company in company_names:
         # for all days
-        company_tweets_in_english = 0
         company_tweets_sentiment_zero = 0
         company_tweets_total = 0
         company_tweets_times = []
@@ -47,7 +38,6 @@ def many():
         collection = db[company]
         for day in collection.find():
             # for all tweets
-            day_tweets_in_english = 0
             day_tweets_sentiment_zero = 0
             day_tweets_total = 0
 
@@ -65,44 +55,43 @@ def many():
                     d = d + 9.5
                 company_tweets_times.append(d)
 
-                text = tweet["text"]
-                if detect_language(text) == "en":
-                    day_tweets_in_english = day_tweets_in_english + 1
-
                 sentiment = tweet["sentiment"]
                 if sentiment == 0:
                     day_tweets_sentiment_zero = day_tweets_sentiment_zero + 1
 
-            company_tweets_in_english = company_tweets_in_english + day_tweets_in_english
-            company_tweets_sentiment_zero = company_tweets_sentiment_zero + day_tweets_sentiment_zero
+            company_tweets_sentiment_zero = (company_tweets_sentiment_zero
+                                             + day_tweets_sentiment_zero)
             company_tweets_total = company_tweets_total + day_tweets_total
             company_num_days = company_num_days + 1
 
-        plot_histogram(company, company_tweets_times)
-        company_stats.append([company, company_tweets_total, company_tweets_in_english,
-                company_tweets_sentiment_zero])
+        plot_histogram(company, company_tweets_times, output_path)
+        company_stats.append([company, company_tweets_total,
+                              company_tweets_sentiment_zero])
 
-        tweets_in_english = tweets_in_english + company_tweets_in_english
-        tweets_sentiment_zero = tweets_sentiment_zero + company_tweets_sentiment_zero
+        tweets_sentiment_zero = (tweets_sentiment_zero
+                                 + company_tweets_sentiment_zero)
         tweets_total = tweets_total + company_tweets_total
         num_days = num_days + company_num_days
 
-    df = pd.DataFrame(company_stats, columns=["company", "num_tweets", "tweets_in_english",
-            "tweets_sentiment_zero"])
-    df.to_csv("output/company_stats.csv")
+    df = pd.DataFrame(company_stats,
+                      columns=["company", "num_tweets", "tweets_in_english",
+                               "tweets_sentiment_zero"])
+    file_name = os.path.join(output_path, "company_stats.csv")
+    df.to_csv(file_name)
 
-    df = pd.DataFrame([[tweets_total, tweets_in_english, tweets_sentiment_zero, num_days,
-            len(company_names)]],
-            columns=["num_tweets", "tweets_in_english", "tweets_sentiment_zero", "num_days",
-                "num_companies"])
-    df.to_csv("output/total_stats.csv")
+    df = pd.DataFrame([[tweets_total, tweets_in_english, tweets_sentiment_zero,
+                        num_days, len(company_names)]],
+                      columns=["num_tweets", "tweets_in_english",
+                               "tweets_sentiment_zero", "num_days",
+                               "num_companies"])
+    file_name = os.path.join(output_path, "total_stats.csv")
+    df.to_csv(file_name)
 
 
-def day_tweet_distr():
+def day_tweet_distr(output_path: str):
     client = MongoClient()
     db = client["learning"]
 
-    #  company_names = ["AAPL"]
     company_names = db.list_collection_names()
     num_bins = 240
 
@@ -120,11 +109,13 @@ def day_tweet_distr():
 
         axs.hist(x, bins=num_bins)
 
-        fig.savefig("output/tweet_distr_{}.png".format(company))
+        file_name = os.path.join(output_path,
+                                 "tweet_distr_{}.png".format(company))
+        fig.savefig(file_name)
         plt.close(fig)
 
 
-def create_json_file():
+def create_json_file(output_path: str):
     client = MongoClient()
     learning_db = client["learning"]
 
@@ -149,9 +140,10 @@ def create_json_file():
 
 
 def main():
-    #  create_json_file()
-    #  day_tweet_distr()
-    many()
+    output_path = os.path.join(".", "output")
+    os.makedirs(output_path, exist_ok=True)
+
+    count_dataset_entries(output_path)
 
 
 if __name__ == "__main__":

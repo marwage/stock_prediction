@@ -64,21 +64,15 @@ def check(sp500: list, database_name: str, output_path: str):
 
 
 def main():
-    if sys.platform == "linux":
-        path = os.path.join(Path.home(), "stock-prediction")
-    else:
-        path = os.path.join(Path.home(),
-                            "Studies/Master/10SS19/StockPrediction")
-        path = os.path.join(path, "stock-prediction")
-    stats_path = os.path.join(path, "stats")
-    crawling_path = os.path.join(path, "crawling")
-    sp500_path = os.path.join(crawling_path, "data/sp500.json")
-    log_path = os.path.join(stats_path, "log/count_tweets_day.log")
-    output_path = os.path.join(stats_path, "output")
+    sp500_path = os.path.join("../crawling", "data/sp500.json")
+    log_path = os.path.join(".", "log/count_tweets_day.log")
+    os.makedirs(os.path.dirname(log_path), exist_ok=True)
+    output_path = os.path.join(".", "output")
+    os.makedirs(output_path, exist_ok=True)
 
     logging.basicConfig(
         filename=log_path,
-        level=logging.DEBUG,
+        level=logging.INFO,
         format="%(asctime)s:%(levelname)s:%(message)s")
     logging.getLogger("requests").setLevel(logging.WARNING)
     logging.getLogger("urllib3").setLevel(logging.WARNING)

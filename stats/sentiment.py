@@ -2,9 +2,6 @@ import logging
 import os
 import pandas as pd
 import pymongo
-import sys
-import tensorflow as tf
-from pathlib import Path
 
 
 def filter_tweets(tweets):
@@ -108,18 +105,14 @@ def retrieve_sentiment(output_path: str):
 
 
 def main():
-    if sys.platform == "linux":
-        base_path = os.path.join(Path.home(), "stock-prediction")
-    else:
-        path = "Studies/Master/10SS19/StockPrediction/stock-prediction"
-        base_path = os.path.join(Path.home(), path)
+    output_path = os.path.join(".", "output")
+    os.makedirs(output_path, exist_ok=True)
+    log_path = os.path.join(".", "log/sentiment.log")
+    os.makedirs(os.path.dirname(log_path), exist_ok=True)
 
-    output_path = os.path.join(base_path, "stats/output")
-    path = "stats/log/sentiment.log"
-    logging_path = os.path.join(base_path, path)
     logging.basicConfig(
-        filename=logging_path,
-        level=logging.DEBUG,
+        filename=log_path,
+        level=logging.INFO,
         format="%(asctime)s:%(levelname)s:%(message)s"
         )
 

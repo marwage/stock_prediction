@@ -92,14 +92,8 @@ def do_benchmark(data_path: str, sp500_path: str, output_path: str):
 
 
 def main():
-    if sys.platform == "linux":
-        path = os.path.join(Path.home(), "stock-prediction")
-    else:
-        path = os.path.join(Path.home(),
-                            "Studies/Master/10SS19/StockPrediction")
-        path = os.path.join(path, "stock-prediction")
-    data_path = os.path.join(path, "stats/output")
-    sp500_path = os.path.join(path, "crawling/data/sp500.json")
+    data_path = os.path.join(".", "output")
+    sp500_path = os.path.join("../crawling", "data/sp500.json")
 
     do_benchmark(data_path, sp500_path, data_path)
 

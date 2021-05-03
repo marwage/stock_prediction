@@ -1,9 +1,10 @@
-from datetime import datetime
+import os
 import pandas as pd
+from datetime import datetime
 from pymongo import MongoClient
 
 
-def extract_mean_sentiment(only_nonzero):
+def extract_mean_sentiment(output_path: str, only_nonzero: bool):
     client = MongoClient()
     database = client["twitter_three"]
 
@@ -39,17 +40,22 @@ def extract_mean_sentiment(only_nonzero):
         data_frame = pd.DataFrame(mean_sentiments,
                                   columns=["date", "mean_sentiment"])
         if only_nonzero:
-            file_name = "out/mean_sentiments_nonzero_{}.csv".format(company)
+            file_name = "mean_sentiments_nonzero_{}.csv".format(company)
         else:
-            file_name = "out/mean_sentiments_{}.csv".format(company)
+            file_name = "mean_sentiments_{}.csv".format(company)
+        file_name = os.path.join(output_path, file_name)
         data_frame.to_csv(file_name)
 
 
 def main():
+    output_path = os.path.join(".", "output")
+    os.makedirs(output_path, exist_ok=True)
+
     only_nonzero = True
-    extract_mean_sentiment(only_nonzero)
+    extract_mean_sentiment(output_path, only_nonzero)
+
     only_nonzero = False
-    extract_mean_sentiment(only_nonzero)
+    extract_mean_sentiment(output_path, only_nonzero)
 
 
 if __name__ == "__main__":
