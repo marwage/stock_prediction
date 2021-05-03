@@ -146,7 +146,7 @@ def main():
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Training parameters")
     parser.add_argument("--threading", action="store_true",
-                        help="Only non-zero sentiments")
+                        help="Use threads")
     args = parser.parse_args()
 
     main()
