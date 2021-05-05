@@ -48,7 +48,7 @@ def plot_stats(db_name: str, output_path: str):
     db = client[db_name]
 
     for company in db.list_collection_names():
-        logging.debug("get posts of " + company)
+        logging.debug("get posts of %s", company)
         collection = db[company]
         company_stats = dict()
         for post in collection.find({}):

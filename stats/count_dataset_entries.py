@@ -7,9 +7,11 @@ from pymongo import MongoClient
 
 def plot_histogram(company: str, dates, output_path: str):
     num_bins = 240
-    fig, axs = plt.subplots()
+    fig, ax = plt.subplots()
+    ax.set_xlabel("Hour")
+    ax.set_ylabel("Number of tweets")
 
-    axs.hist(dates, bins=num_bins)
+    ax.hist(dates, bins=num_bins)
 
     file_name = os.path.join(output_path, "tweet_distr_{}.png".format(company))
     fig.savefig(file_name)
@@ -21,13 +23,13 @@ def count_dataset_entries(output_path: str):
     db = client["learning"]
 
     # for all companies
-    tweets_in_english = 0
     tweets_sentiment_zero = 0
     tweets_total = 0
     num_days = 0
     company_stats = []
 
-    company_names = db.list_collection_names()
+    #  company_names = db.list_collection_names()
+    company_names = ["AAPL"]
     for company in company_names:
         # for all days
         company_tweets_sentiment_zero = 0
@@ -74,16 +76,15 @@ def count_dataset_entries(output_path: str):
         num_days = num_days + company_num_days
 
     df = pd.DataFrame(company_stats,
-                      columns=["company", "num_tweets", "tweets_in_english",
+                      columns=["company", "num_tweets",
                                "tweets_sentiment_zero"])
     file_name = os.path.join(output_path, "company_stats.csv")
     df.to_csv(file_name)
 
-    df = pd.DataFrame([[tweets_total, tweets_in_english, tweets_sentiment_zero,
+    df = pd.DataFrame([[tweets_total, tweets_sentiment_zero,
                         num_days, len(company_names)]],
-                      columns=["num_tweets", "tweets_in_english",
-                               "tweets_sentiment_zero", "num_days",
-                               "num_companies"])
+                      columns=["num_tweets", "tweets_sentiment_zero",
+                               "num_days", "num_companies"])
     file_name = os.path.join(output_path, "total_stats.csv")
     df.to_csv(file_name)
 
