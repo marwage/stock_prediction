@@ -30,8 +30,11 @@ def get_relative_price_difference(day, next_day):
     return (stock_price_next_day - stock_price_day) / stock_price_day
 
 
-def create_training_samples(mongo_client: MongoClient, sp500: list, first_date: datetime,
-            last_date: datetime, dataset_db_name: str):
+def create_training_samples(mongo_client: MongoClient,
+                            sp500: list,
+                            first_date: datetime,
+                            last_date: datetime,
+                            dataset_db_name: str):
     dataset_db = mongo_client[dataset_db_name]
     twitter_db = mongo_client["twitterdb"]
     stockprice_db = mongo_client["stockpricedb"]
@@ -39,14 +42,14 @@ def create_training_samples(mongo_client: MongoClient, sp500: list, first_date: 
     for company in sp500:
         logging.info("Create training samples for %s", company)
 
-        twitter_company_coll = twitter_db[company]
-        dataset_company_coll = dataset_db[company]
-        stock_price_company_coll = stockprice_db[company]
+        twitter_coll = twitter_db[company]
+        dataset_coll = dataset_db[company]
+        stock_price_coll = stockprice_db[company]
 
         # for each day
         start = first_date
         while start <= last_date:
-            stock_price_day = stock_price_company_coll.find_one({"date": start})
+            stock_price_day = stock_price_coll.find_one({"date": start})
 
             if stock_price_day is None:
                 start = start + timedelta(days=1)
@@ -54,13 +57,15 @@ def create_training_samples(mongo_client: MongoClient, sp500: list, first_date: 
 
             # get next trading day
             end = start + timedelta(days=1)
-            stock_price_next_day = stock_price_company_coll.find_one({"date": end})
+            stock_price_next_day = stock_price_coll.find_one({"date": end})
             while stock_price_next_day is None and end <= last_date:
                 end = end + timedelta(days=1)
-                stock_price_next_day = stock_price_company_coll.find_one({"date": end})
+                stock_price_next_day = stock_price_coll.find_one({"date": end})
 
             if stock_price_next_day is None:
-                logging.debug("%s: There is no end date for start date %s", company, start)
+                logging.debug("%s: There is no end date for start date %s",
+                              company,
+                              start)
 
                 start = start + timedelta(days=1)
                 continue
@@ -68,7 +73,8 @@ def create_training_samples(mongo_client: MongoClient, sp500: list, first_date: 
             # get all tweets between two trading days
             trading_start = datetime(start.year, start.month, start.day, 14, 30)
             trading_start_next_day = trading_start + timedelta(days=1)
-            twitter_tweets = twitter_company_coll.find({ "date": { "$gte": trading_start, "$lt": trading_start_next_day } })
+            twitter_tweets = twitter_coll.find({"date": {"$gte": trading_start,
+                                                         "$lt": trading_start_next_day}})
 
             tweets = []
             for tweet in twitter_tweets:
@@ -87,30 +93,37 @@ def create_training_samples(mongo_client: MongoClient, sp500: list, first_date: 
 
                         tweets.append(tweet_features)
                     except:
-                        logging.debug("%s: Tweet does not have attribute: %s", company, tweet)
+                        logging.debug("%s: Tweet does not have attribute: %s",
+                                      company,
+                                      tweet)
 
             # filter more than 240 tweets
             tweets_threshold = 240
             num_tweets = len(tweets)
             if num_tweets < tweets_threshold:
                 start = start + timedelta(days=1)
-                logging.debug("%s: There are %s < %s tweets", company, num_tweets, tweets_threshold)
+                logging.debug("%s: There are %s < %s tweets",
+                              company,
+                              num_tweets,
+                              tweets_threshold)
                 continue
 
             # create features list sorted by date
             tweets.sort(key=lambda x: x["date"])
             # extract features
-            tweets_features = [[tweet["sentiment"], tweet["followers"], tweet["retweets"]] for
-                    tweet in tweets]
+            tweets_features = [[tweet["sentiment"], tweet["followers"], tweet["retweets"]] for tweet in tweets]
 
             # create sample
             sample = dict()
             sample["start"] = trading_start
             sample["end"] = trading_start_next_day
             sample["tweets"] = tweets_features
-            sample["price_diff"] = get_relative_price_difference(stock_price_day, stock_price_next_day)
+            sample["price_diff"] = get_relative_price_difference(stock_price_day,
+                                                                 stock_price_next_day)
 
-            dataset_company_coll.update_one({"start": trading_start}, {"$set": sample}, upsert=True)
+            dataset_coll.update_one({"start": trading_start},
+                                    {"$set": sample},
+                                    upsert=True)
 
             start = end
 
