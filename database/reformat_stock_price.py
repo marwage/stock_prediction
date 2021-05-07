@@ -20,9 +20,9 @@ def reformat_stock_price(sp500):
         days = company_coll.find()
         for day in days:
             keys = day.keys()
-            if "date" not in keys: # not updated
+            if "date" not in keys:  # not updated
                 for key in keys:
-                    if key != "_id": # key with date
+                    if key != "_id":  # key with date
                         attr = day[key]
                         date = datetime.strptime(key, "%Y-%m-%d")
                         day_properties = dict()
@@ -33,7 +33,9 @@ def reformat_stock_price(sp500):
                         day_properties["close"] = attr["close"]
                         day_properties["volume"] = attr["volume"]
 
-                        company_coll.replace_one({"_id": day["_id"]}, day_properties, upsert=True)
+                        company_coll.replace_one({"_id": day["_id"]},
+                                                 day_properties,
+                                                 upsert=True)
 
 def main():
     sp500_path = os.path.join("../crawling", "data/sp500.json")
