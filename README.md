@@ -1,21 +1,6 @@
-::: {.titlepage}
-TUM SCHOOL OF MANAGEMENT\
-TECHNICAL UNIVERSITY OF MUNICH\
+# Evaluate Predictability of Daily Returns Based on Crowd Based Sentiment Data
 
-**Evaluate Predictability of Daily Returns Based on Crowd Based
-Sentiment Data**
-
-Documentation\
-
-**Marcel Wagenländer**
-
-  ------------- -----------------
-  Supervisor:   Tobias Kalsbach
-  Date:         07.05.21
-  ------------- -----------------
-:::
-
-# Quickstart
+## Quickstart
 
 1.  Install MongoDB (\>=4.2)
 
@@ -30,9 +15,9 @@ Documentation\
 
 6.  Run a scripte.g. `python3 twitterv2academic.py`
 
-# Prerequisites
+## Prerequisites
 
-## Code
+### Code
 
 The repository of the code is hosted on Github. The website[^1] shows
 the code and project structure. To clone the git repository and get the
@@ -40,7 +25,7 @@ code on the local storage the following command must be executed.
 
     git clone git@github.com:marwage/stock_prediction.git
 
-## Database
+### Database
 
 We use MongoDB, because it gives us the flexibility of JSON objects and
 the responses for API queries are in the JSON format. How to install
@@ -51,9 +36,9 @@ run the script, one needs to install at least version 4.2. A MongoDB
 holds several databases. Each database consists of collections and each
 collection consists of documents.
 
-## Python
+### Python
 
-### Python interpreter
+#### Python interpreter
 
 The code is written in Python 3. Our system uses Python in version 3.8.
 To run the code without any issues, Python must be installed in at least
@@ -62,7 +47,7 @@ must be executed on the shell to install Python 3.8.
 
     sudo apt install python3.8
 
-### Python packages
+#### Python packages
 
 We use many third-party Python packages. The packages and the required
 version are stored in the `requirements.txt` file. For instance, we need
@@ -71,7 +56,7 @@ once, execute the following command.
 
     pip3 install -r requirements.txt
 
-# Project structure
+## Project structure
 
 The overall structure of the project can be seen in the following tree.
 
@@ -141,13 +126,13 @@ The overall structure of the project can be seen in the following tree.
         ├── read_sp500.py
         └── threads.py
 
-## Crawling
+### Crawling
 
 In the directory `crawling` are all scripts and data related to the
 gathering of data. The scripts are Python code using access tokens and a
 company list.
 
-### Twitter API v1.1
+#### Twitter API v1.1
 
 The script `twitterv1.py` crawls recent tweets using the Twitter API
 v1.1[^5]. The search looks for recent tweets containing *\#COMPANY* or
@@ -169,7 +154,7 @@ like the following.
         "access_token_secret": "Ou4m8wKhxwzaHyXZAHuo7t7WlWg"
     }
 
-### Twitter API v2.0
+#### Twitter API v2.0
 
 The script `twitterv2.py` crawls recent tweets using the Twitter API
 v2.0. The search looks for recent tweets containing *\#COMPANY* or
@@ -211,7 +196,7 @@ for authenticating to the API, as described above with the script
 companies for which the script finished crawling all the tweets. It
 helps to avoid crawling all tweets again in the event of an error.
 
-### Stocktwits
+#### Stocktwits
 
 The script `stocktwits.py` crawls recent ideas using the Stocktwits API.
 The search looks for recent ideas containing *\$COMPANY*. The ideas are
@@ -224,7 +209,7 @@ looks like the following.
 
     python3 stocktwits.py --threading
 
-### Stock price
+#### Stock price
 
 The script `stockprice.py` crawls all stock prices in a time window
 using the Alpha Vantage API[^9]. The stock prices for each day are
@@ -243,7 +228,7 @@ the following.
         "apikey": "NDIFD7VBDNVUZEGDI335"
     }
 
-### Helpers
+#### Helpers
 
 The other scripts in `crawling` are helpers to support the crawling. The
 script `mergesp500.py` merges two S&P500 lists, which because the S&P500
@@ -251,7 +236,7 @@ index is dynamic and changes over time. `sp500tojson.py` takes a list of
 S&P500 that are not in a JSON format and converts it into the JSON
 format.
 
-## Database
+### Database
 
 In the directory `database` are all the scripts that keep the database
 cleaned and consistent.
@@ -297,13 +282,13 @@ those so that it is easier for us to work with. This functionality is
 included in the crawling of stock prices and should not be necessary
 anymore.
 
-## Preprocessing
+### Preprocessing
 
 In `preprocessing` are all the scripts that take the raw data crawled
 from Twitter, Stocktwits, etc. and creates training datasets. The
 training datasets are needed for the training of the neural network.
 
-### Sentiment only
+#### Sentiment only
 
 The script `createtrainingsamples.py` creates a dataset with days as
 samples. Each day holds a list of sentiments and a relative price
@@ -313,8 +298,7 @@ text of tweets and the body of ideas. We get the relative price
 difference by crawling the opening price of today and yesterday from the
 stock price database. The days are stored in the `learning` database for
 each company individually. A drawing of the day is shown in figure
-[\[fig:dataset_sentiment_only\]](#fig:dataset_sentiment_only){reference-type="ref"
-reference="fig:dataset_sentiment_only"}.
+_dataset_sentiment_only_.
 
     ┌─────────────────────────────────┐
     │                                 │
@@ -324,7 +308,7 @@ reference="fig:dataset_sentiment_only"}.
     │                                 │
     └─────────────────────────────────┘
 
-### Twitter three
+#### Twitter three
 
 The script `createtwitterthree.py` creates a dataset with days as
 samples. Each day holds a list of tuples sentiment, followers, retweets.
@@ -336,9 +320,7 @@ yesterday from the stock price database. The days are stored in the
 `twitterthree` database for each company individually. The
 `twitterthree` database only uses the `twitterdb` database as the source
 because the feature set between tweets and ideas is different. A
-visualisation of the day is shown in figure
-[\[fig:dataset_twitter_three\]](#fig:dataset_twitter_three){reference-type="ref"
-reference="fig:dataset_twitter_three"}.
+visualisation of the day is shown in figure _dataset_twitter_three_.
 
     ┌─────────────────────────────────┐
     │                                 │
@@ -352,10 +334,8 @@ reference="fig:dataset_twitter_three"}.
     │                                 │
     └─────────────────────────────────┘
 
-[\[fig:dataset_twitter_three\]]{#fig:dataset_twitter_three
-label="fig:dataset_twitter_three"}
 
-## Ava
+### Ava
 
 The script `createtrainingdataset.py` creates a dataset with days as
 samples. Each day holds a list of tweets, ideas and company information.
@@ -368,8 +348,7 @@ generating of the dataset, the script can be called with the
 `–threading` argument. Because the input features for the training must
 be floats, the script `getindustrysector.py` maps the sectors and
 industries from strings to floats. A visualisation of the day is shown
-in figure [\[fig:dataset_Ava\]](#fig:dataset_Ava){reference-type="ref"
-reference="fig:dataset_Ava"}.
+in figure _dataset_Ava_.
 
     ┌────────────────────────────────────────┐
     │                                        │
@@ -416,15 +395,14 @@ reference="fig:dataset_Ava"}.
     │                                        │
     └────────────────────────────────────────┘
 
-[\[fig:dataset_Ava\]]{#fig:dataset_Ava label="fig:dataset_Ava"}
 
-## Training
+### Training
 
 To predict the relative price difference on new data, we must train a
 model. The model is a neural network consisting of recurrent neural
 networks and fully connected or dense layers.
 
-### Ava
+#### Ava
 
 The dataset `Ava` is stored in the MongoDB. To save time and only create
 the dataset once in the correct Tensorflow[^14] format, there is the
@@ -454,7 +432,7 @@ For the parameter search, we use Optuna[^16]. The findings of Optuna are
 in the file `study.csv`. It has a table with the loss and parameters
 chosen for a specific study.
 
-### Twitter Three
+#### Twitter Three
 
 To do training with the `twitterthree` dataset, we must run the script
 `training.py`. During the training, a parameters search is executed. In
@@ -477,7 +455,7 @@ For the parameter search, we use Optuna[^18]. The findings of Optuna are
 in the file `study.csv`. It has a table with the loss and parameters
 chosen for a specific study.
 
-### Regression
+#### Regression
 
 To get a basic idea between sentiment and the relative stock price
 difference, we do a regression with the mean sentiment during one day
@@ -489,9 +467,9 @@ individually for each company and each data source Twitter and
 Stocktwits. We use ridge, bayesian and SVM regression. The stats include
 the coefficients, standard error, t-value, p-value and $R^2$.
 
-## Stats
+### Stats
 
-### Sampling
+#### Sampling
 
 To see how a document in a dataset looks like, we have a script that
 samples ten entries from the dataset. The samples will be stored in the
@@ -508,7 +486,7 @@ To get samples from the Ava dataset, one must execute the script
 `sampledates.py`. After executing, there are going to be ten days with
 the price difference, tweets, etc.
 
-### Sentiment
+#### Sentiment
 
 After creating the dataset Ava, we have companies, days and the
 sentiment. To generate a table for each company with the day, sentiment
@@ -538,7 +516,7 @@ following.
 
 -   price difference
 
-### Regression
+#### Regression
 
 The script `plotregression.py` draws a graph that shows the result from
 `sentiment.py`. That implies that the script `sentiment.py` must be run
@@ -548,7 +526,7 @@ and the relative price difference on the y-axis. But one graph shows the
 sentiment for Twitter and the other graph shows the sentiment for
 Stocktwits.
 
-### Count
+#### Count
 
 To get stats about the databases, we count entries and filter entries
 based on certain attributes.
@@ -574,7 +552,7 @@ The script `counttweetscompany.py` uses the output of
 `counttweetsday.py`. It sums up the number of tweets and it sums up the
 number of ideas. So that we have the total number of tweets and ideas.
 
-## Utilities
+### Utilities
 
 In the directory `util` are scripts that are needed by most of the other
 submodules. `readsp500.py` reads the JSON file with the S&P500 companies
@@ -582,7 +560,7 @@ and returns a Python list. The file `threads.py` helps to start scripts
 with threading. It is mostly needed when one starts a script with the
 `–threading` argument.
 
-# S&P500 index
+## S&P500 index
 
 In the following table are the symbols of companies we crawl tweets and
 ideas for.
